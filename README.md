@@ -21,5 +21,8 @@ Turbo GWT Core is currently available at maven central.
 </dependency>
 ```
 
+## Documentation
+* [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
+
 ## License
 Turbo GWT Core is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
