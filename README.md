@@ -9,6 +9,12 @@ Turbo GWT (*TurboG*) Core
 * [JavaScriptObjects](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/client/JavaScriptObjects.html) - Easy boxing and unboxing JS native values and much more.
 * [JsMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html) - Fast map from String to Objects.
 
+## Documentation
+* [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
+
+## Community
+* [Turbo GWT Google Group](http://groups.google.com/d/forum/turbogwt) - Share ideas and ask for help.
+
 ## Downloads
 Turbo GWT Core is currently available at maven central.
 
@@ -20,9 +26,6 @@ Turbo GWT Core is currently available at maven central.
     <version>0.1.0</version>
 </dependency>
 ```
-
-## Documentation
-* [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
 
 ## License
 Turbo GWT Core is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
