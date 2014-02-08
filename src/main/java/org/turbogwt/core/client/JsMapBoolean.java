@@ -21,7 +21,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 /**
  * Map of String to native boolean implemented on a JavaScriptObject.
  *
- *  @author Thomas Broyer
+ * @author Thomas Broyer
  */
 public class JsMapBoolean extends JavaScriptObject {
 
