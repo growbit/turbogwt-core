@@ -74,11 +74,11 @@ public final class JavaScriptObjects {
         return jso[property];
     }-*/;
 
-    public static String[] getOwnPropertyNames(JavaScriptObject jso) {
+    public static JsArrayString getOwnPropertyNames(JavaScriptObject jso) {
         return getOwnPropertyNames(jso, false);
     }
 
-    public static native String[] getOwnPropertyNames(JavaScriptObject jso, boolean sorted) /*-{
+    public static native JsArrayString getOwnPropertyNames(JavaScriptObject jso, boolean sorted) /*-{
         if (sorted) return Object.getOwnPropertyNames(jso).sort();
         return Object.getOwnPropertyNames(jso);
     }-*/;
