@@ -15,34 +15,34 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.client;
+package org.turbogwt.core.js.collections.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * Map of String to Object implemented on a JavaScriptObject.
+ * Map of String to String implemented on a JavaScriptObject.
  *
- * @param <T> Type of mapped values
  * @author Thomas Broyer
  */
-public class JsMap<T> extends JavaScriptObject {
+public class JsMapString extends JavaScriptObject {
 
-    protected JsMap() {
+    protected JsMapString() {
     }
 
-    public static <T> JsMap<T> create() {
+    public static JsMapString create() {
         return JavaScriptObject.createObject().cast();
     }
 
-    public final native T get(String key) /*-{
+    public final native String get(String key) /*-{
         return this[key];
     }-*/;
 
-    public final native T get(String key, T defaultValue) /*-{
-        return this[key] || defaultValue;
+    public final native String get(String key, String defaultValue) /*-{
+        var ret = this[key];
+        return ret != null ? ret : defaultValue;
     }-*/;
 
-    public final native void set(String key, T value) /*-{
+    public final native void set(String key, String value) /*-{
         this[key] = value;
     }-*/;
 

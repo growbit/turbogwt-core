@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.client;
+package org.turbogwt.core.js.collections.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -61,7 +61,7 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
 
     @Override
     public native boolean contains(Object o) /*-{
-        return this.@org.turbogwt.core.client.JsArrayList::jsArray.indexOf(o) > -1;
+        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.indexOf(o) > -1;
     }-*/;
 
     @Override
@@ -88,7 +88,7 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
 
     @Override
     public native boolean remove(Object o) /*-{
-        var a = this.@org.turbogwt.core.client.JsArrayList::jsArray;
+        var a = this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray;
         var i = a.indexOf(o);
         if (i == -1)
             return false;
@@ -131,7 +131,7 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
 
     @Override
     public native void clear() /*-{
-        this.@org.turbogwt.core.client.JsArrayList::jsArray.length = 0;
+        this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.length = 0;
     }-*/;
 
     @Override
@@ -162,7 +162,7 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
 
     @Override
     public native T remove(int i) /*-{
-        var a = this.@org.turbogwt.core.client.JsArrayList::jsArray;
+        var a = this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray;
         if (i >= a.length) {
             return false;
         }
@@ -173,12 +173,12 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
 
     @Override
     public native int indexOf(Object o) /*-{
-        return this.@org.turbogwt.core.client.JsArrayList::jsArray.indexOf(o);
+        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.indexOf(o);
     }-*/;
 
     @Override
     public native int lastIndexOf(Object o) /*-{
-        return this.@org.turbogwt.core.client.JsArrayList::jsArray.lastIndexOf(o);
+        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.lastIndexOf(o);
     }-*/;
 
     @Override
@@ -200,7 +200,7 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
     }
 
     public native com.google.gwt.core.client.JsArray<T> subArray(int i, int i2) /*-{
-        return this.@org.turbogwt.core.client.JsArrayList::jsArray.slice(i, i2);
+        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.slice(i, i2);
     }-*/;
 
     private class Itr implements Iterator<T> {

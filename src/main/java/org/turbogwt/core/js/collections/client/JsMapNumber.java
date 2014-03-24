@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.client;
+package org.turbogwt.core.js.collections.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

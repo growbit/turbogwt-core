@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.client;
+package org.turbogwt.core.js.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
@@ -139,7 +139,7 @@ public final class Overlays {
             copy = [];
             for (var i = 0, len = obj.length; i < len; i++) {
                 if (obj[i] == null || typeof obj[i] != "object") copy[i] = obj[i];
-                else copy[i] = @org.turbogwt.core.client.Overlays
+                else copy[i] = @org.turbogwt.core.js.client.Overlays
                     ::deepCopyNative(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[i]);
             }
         } else {
@@ -148,7 +148,7 @@ public final class Overlays {
             for (var attr in obj) {
                 if (obj.hasOwnProperty(attr)) {
                     if (obj[attr] == null || typeof obj[attr] != "object") copy[attr] = obj[attr];
-                    else copy[attr] = @org.turbogwt.core.client.Overlays
+                    else copy[attr] = @org.turbogwt.core.js.client.Overlays
                         ::deepCopyNative(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[attr]);
                 }
             }

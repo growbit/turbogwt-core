@@ -3,5 +3,10 @@
     <!-- Inherit the core Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
 
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java"/>
+    <!-- Inherit the core Turbo GWT stuff. -->
+    <inherits name="org.turbogwt.core.js.Js"/>
+    <inherits name="org.turbogwt.core.js.collections.Collections"/>
+    <inherits name="org.turbogwt.core.providers.Providers"/>
+
+    <!--<source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java"/>-->
 </module>
