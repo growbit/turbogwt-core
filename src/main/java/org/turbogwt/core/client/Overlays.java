@@ -17,18 +17,17 @@
 package org.turbogwt.core.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
-
-import javax.annotation.Nullable;
+import com.google.gwt.core.client.JsArrayString;
 
 /**
- * Utility methods for JavaScriptObject manipulation.
+ * Utility methods for Overlay Types manipulation.
  *
  * @author Danilo Reinert
  * @author Javier Ferrero (#deepCopy)
  */
-public final class JavaScriptObjects {
+public final class Overlays {
 
-    private JavaScriptObjects() {
+    private Overlays() {
     }
 
     public static native Boolean boxPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
@@ -48,17 +47,16 @@ public final class JavaScriptObjects {
         return (T) deepCopyNative(obj);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends JavaScriptObject> T eval(String text) {
-        return (T) evalNative(text);
+    public static JsArrayString getOwnPropertyNames(JavaScriptObject jso) {
+        return getOwnPropertyNames(jso, false);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends JavaScriptObject> T getPropertyAsObject(JavaScriptObject jso, String property) {
-        return (T) getPropertyAsObjectNative(jso, property);
-    }
+    public static native JsArrayString getOwnPropertyNames(JavaScriptObject jso, boolean sorted) /*-{
+        if (sorted) return Object.getOwnPropertyNames(jso).sort();
+        return Object.getOwnPropertyNames(jso);
+    }-*/;
 
-    public static native String getPropertyAsString(JavaScriptObject jso, String property) /*-{
+    public static native boolean getPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
         return jso[property];
     }-*/;
 
@@ -70,36 +68,17 @@ public final class JavaScriptObjects {
         return jso[property];
     }-*/;
 
-    public static native boolean getPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
-        return jso[property];
-    }-*/;
-
-    public static JsArrayString getOwnPropertyNames(JavaScriptObject jso) {
-        return getOwnPropertyNames(jso, false);
+    @SuppressWarnings("unchecked")
+    public static <T extends JavaScriptObject> T getPropertyAsObject(JavaScriptObject jso, String property) {
+        return (T) getPropertyAsObjectNative(jso, property);
     }
 
-    public static native JsArrayString getOwnPropertyNames(JavaScriptObject jso, boolean sorted) /*-{
-        if (sorted) return Object.getOwnPropertyNames(jso).sort();
-        return Object.getOwnPropertyNames(jso);
+    public static native String getPropertyAsString(JavaScriptObject jso, String property) /*-{
+        return jso[property];
     }-*/;
 
     public static native boolean isPropertyNullOrUndefined(JavaScriptObject jso, String property) /*-{
         return jso[property] ? false : true;
-    }-*/;
-
-    public static native boolean isNumeric(@Nullable String text) /*-{
-        if (text) {
-            return !isNaN(text);
-        }
-        return false;
-    }-*/;
-
-    public static native void log(JavaScriptObject jso) /*-{
-        $wnd.console.log(jso);
-    }-*/;
-
-    public static native void log(String text) /*-{
-        $wnd.console.log(text);
     }-*/;
 
     public static native void setNullToProperty(JavaScriptObject jso, String property) /*-{
@@ -120,14 +99,6 @@ public final class JavaScriptObjects {
 
     public static native void setValueToProperty(JavaScriptObject jso, String property, boolean value) /*-{
         jso[property] = value;
-    }-*/;
-
-    public static native String toFixed(double number) /*-{
-        return number.toFixed();
-    }-*/;
-
-    public static native String toFixed(double number, int fractionalDigits) /*-{
-        return number.toFixed(fractionalDigits);
     }-*/;
 
     public static void unboxValueToProperty(JavaScriptObject jso, String property, Double value) {
@@ -168,7 +139,7 @@ public final class JavaScriptObjects {
             copy = [];
             for (var i = 0, len = obj.length; i < len; i++) {
                 if (obj[i] == null || typeof obj[i] != "object") copy[i] = obj[i];
-                else copy[i] = @org.turbogwt.core.client.JavaScriptObjects
+                else copy[i] = @org.turbogwt.core.client.Overlays
                     ::deepCopyNative(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[i]);
             }
         } else {
@@ -177,16 +148,12 @@ public final class JavaScriptObjects {
             for (var attr in obj) {
                 if (obj.hasOwnProperty(attr)) {
                     if (obj[attr] == null || typeof obj[attr] != "object") copy[attr] = obj[attr];
-                    else copy[attr] = @org.turbogwt.core.client.JavaScriptObjects
+                    else copy[attr] = @org.turbogwt.core.client.Overlays
                         ::deepCopyNative(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[attr]);
                 }
             }
         }
         return copy;
-    }-*/;
-
-    private static native JavaScriptObject evalNative(String text) /*-{
-        return eval(text);
     }-*/;
 
     private static native JavaScriptObject getPropertyAsObjectNative(JavaScriptObject jso, String property) /*-{
