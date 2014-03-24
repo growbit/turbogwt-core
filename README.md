@@ -5,9 +5,9 @@ Turbo GWT (*TurboG*) Core
 **Turbo GWT Core** contains JavaScriptObject extensions intended to improve performance of any GWT application. These classes are reused across other TurboG modules.
 
 ## Highlights
-* [JsArrayList](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/client/JsArrayList.html) - List implementation wrapping JsArray. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList\<T\>(jsArray)</code>.
-* [JavaScriptObjects](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/client/JavaScriptObjects.html) - Easy boxing and unboxing JS native values and much more.
-* [JsMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html) - Fast map from String to Objects.
+* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/client/JsArrayList.java) - List implementation wrapping JsArray. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList\<T\>(jsArray)</code>.
+* [Overlays](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/client/Overlays.java) - Easy boxing and unboxing JS native values and much more.
+* [JsMap](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/client/JsMap.java) - Fast map from String to Objects.
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
