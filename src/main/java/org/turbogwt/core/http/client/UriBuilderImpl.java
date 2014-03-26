@@ -1,3 +1,19 @@
+/*
+ * Copyright 2014 Grow Bit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.turbogwt.core.http.client;
 
 import com.google.gwt.core.client.JsArrayString;
@@ -7,6 +23,8 @@ import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsMap;
 
 /**
+ * Default implementation of {@link UriBuilder}.
+ *
  * @author Danilo Reinert
  */
 public class UriBuilderImpl implements UriBuilder {
@@ -49,7 +67,7 @@ public class UriBuilderImpl implements UriBuilder {
      */
     @Override
     public UriBuilder scheme(String scheme) throws IllegalArgumentException {
-        //TODO: check scheme validity
+        // TODO: check scheme validity
         this.scheme = scheme;
         return this;
     }
@@ -63,7 +81,7 @@ public class UriBuilderImpl implements UriBuilder {
      */
     @Override
     public UriBuilder userInfo(String ui) {
-        //TODO: check userInfo validity
+        // TODO: check userInfo validity
         this.userInfo = ui;
         return this;
     }
@@ -79,7 +97,7 @@ public class UriBuilderImpl implements UriBuilder {
      */
     @Override
     public UriBuilder host(String host) throws IllegalArgumentException {
-        //TODO: check host validity
+        // TODO: check host validity
         this.host = host;
         return this;
     }
@@ -116,7 +134,7 @@ public class UriBuilderImpl implements UriBuilder {
         if (path == null || path.isEmpty()) {
             this.path = "/";
         } else {
-            this.path = processSegment(path);
+            this.path = formatSegment(path);
         }
         return this;
     }
@@ -137,7 +155,7 @@ public class UriBuilderImpl implements UriBuilder {
     public UriBuilder segment(String... segments) throws IllegalArgumentException {
         assertNotNull(segments, "Segments cannot be null.");
         if (this.segments == null)
-            this.segments = (JsArrayString) JsArrayString.createArray(segments.length);
+            this.segments = (JsArrayString) JsArrayString.createArray();
         for (String segment : segments) {
             assertNotNullOrEmpty(segment, "Segment cannot be null or empty.", false);
             this.segments.push(segment);
@@ -169,8 +187,7 @@ public class UriBuilderImpl implements UriBuilder {
             matrixParams = JsMap.create();
         }
 
-        //String segment = (segments == null || segments.length() == 0) ? "/" : segments.get(segments.length()-1);
-        //TODO: validate this assertion
+        // TODO: validate this assertion
         assertNotNull(segments, "There is no segment added to the URI. " +
                 "There must be at least one segment added in order to bind matrix parameters");
 
@@ -181,7 +198,7 @@ public class UriBuilderImpl implements UriBuilder {
             segmentParams = JsMap.create();
             matrixParams.set(segment, segmentParams);
         }
-        //TODO: instead of setting the array, incrementally add to an existing one?
+        // TODO: instead of setting the array, incrementally add to an existing one?
         segmentParams.set(name, values);
 
         return this;
@@ -256,11 +273,12 @@ public class UriBuilderImpl implements UriBuilder {
 
             for (int i = 0; i < segments.length(); i++) {
                 String segment = segments.get(i);
-                uri.append(processSegment(segment));
+                uri.append(formatSegment(segment));
                 // Check if there are matrix params for this segment
                 if (matrixParams != null) {
                     JsMap<Object[]> segmentParams = matrixParams.get(segment);
                     if (segmentParams != null) {
+                        uri.append(";");
                         JsArrayString params = Overlays.getOwnPropertyNames(segmentParams);
                         for (int j = 0; j < params.length(); j++) {
                             String param = params.get(j);
@@ -331,11 +349,12 @@ public class UriBuilderImpl implements UriBuilder {
      *
      * @return the processed segment
      */
-    private String processSegment(String segment) {
-        if (segment.endsWith("/"))
-            segment = segment.substring(0, segment.length() - 1);
-        if (!segment.startsWith("/"))
-            segment = "/" + segment;
-        return segment;
+    private String formatSegment(String segment) {
+        String formattedSegment = segment;
+        if (formattedSegment.endsWith("/"))
+            formattedSegment = formattedSegment.substring(0, formattedSegment.length() - 1);
+        if (!formattedSegment.startsWith("/"))
+            formattedSegment = "/" + formattedSegment;
+        return formattedSegment;
     }
 }
