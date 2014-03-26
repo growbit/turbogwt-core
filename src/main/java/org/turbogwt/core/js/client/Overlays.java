@@ -140,8 +140,7 @@ public final class Overlays {
             for (var i = 0, len = obj.length; i < len; i++) {
                 if (obj[i] == null || typeof obj[i] != "object") copy[i] = obj[i];
                 // CHECKSTYLE:OFF
-                else copy[i] = @org.turbogwt.core.js.client.Overlays::deepCopyNative
-                    (Lcom/google/gwt/core/client/JavaScriptObject;)(obj[i]);
+                else copy[i] = @org.turbogwt.core.js.client.Overlays::deepCopyNative(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[i]);
                 // CHECKSTYLE:ON
             }
         } else {
@@ -151,8 +150,7 @@ public final class Overlays {
                 if (obj.hasOwnProperty(attr)) {
                     if (obj[attr] == null || typeof obj[attr] != "object") copy[attr] = obj[attr];
                     // CHECKSTYLE:OFF
-                    else copy[attr] = @org.turbogwt.core.js.client.Overlays::deepCopyNative
-                        (Lcom/google/gwt/core/client/JavaScriptObject;)(obj[attr]);
+                    else copy[attr] = @org.turbogwt.core.js.client.Overlays::deepCopyNative(Lcom/google/gwt/core/client/JavaScriptObject;)(obj[attr]);
                     // CHECKSTYLE:ON
                 }
             }
