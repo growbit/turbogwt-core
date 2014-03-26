@@ -17,12 +17,7 @@
 
 <module>
     <!-- Inherit the core Web Toolkit stuff. -->
-    <inherits name="com.google.gwt.core.Core"/>
     <inherits name="com.google.gwt.user.User"/>
-
-    <!-- Inherit the core Turbo GWT stuff. -->
-    <inherits name="org.turbogwt.core.js.collections.Collections"/>
-    <inherits name="org.turbogwt.core.js.Js"/>
 
     <source path="client"/>
 </module>

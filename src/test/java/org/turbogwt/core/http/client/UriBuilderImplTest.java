@@ -21,7 +21,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 /**
  * @author Danilo Reinert
  */
-public class UrlBuilderImplTest extends GWTTestCase {
+public class UriBuilderImplTest extends GWTTestCase {
 
     @Override
     public String getModuleName() {
