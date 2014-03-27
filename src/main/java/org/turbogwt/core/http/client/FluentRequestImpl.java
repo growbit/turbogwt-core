@@ -25,6 +25,8 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import org.turbogwt.core.http.client.serdes.Serdes;
+import org.turbogwt.core.http.client.serdes.Serializer;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsMap;
 

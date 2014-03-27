@@ -14,23 +14,25 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http.client;
+package org.turbogwt.core.http.client.serdes;
+
+import org.turbogwt.core.http.client.Headers;
 
 /**
- * Performs serialization of types.
+ * Performs deserialization of Types.
  *
- * @param <T> The type it can serialize.
+ * @param <T> The type it can deserialize.
  *
  * @author Danilo Reinert
  */
-public interface Serializer<T> {
+public interface Deserializer<T> {
 
     /**
-     * Serialize T to plain text.
+     * Deserialize the plain text into an object of type T.
      *
-     * @param t         The object to be serialized.
-     * @param headers   Http headers from current request.
-     * @return The object serialized.
+     * @param response  Http response body content.
+     * @param headers   Http response headers.
+     * @return The object deserialized.
      */
-    String serialize(T t, Headers headers);
+    T deserialize(String response, Headers headers);
 }
