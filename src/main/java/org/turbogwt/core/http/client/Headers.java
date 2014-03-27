@@ -16,16 +16,31 @@
 
 package org.turbogwt.core.http.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
 /**
- * Performs serialization and deserialization of a type to/from text.
- *
- * @param <T> Type of serialization
+ * Stores the headers from a HTTP request/response.
  *
  * @author Danilo Reinert
  */
-public interface Serializer<T> {
+public class Headers extends JavaScriptObject {
 
-    T deserialize(String response, Headers headers);
+    protected Headers() {
+    }
 
-    String serialize(T t, Headers headers);
+    protected static Headers create() {
+        return JavaScriptObject.createObject().cast();
+    }
+
+    public final native boolean contains(String key) /*-{
+        return (key in this);
+    }-*/;
+
+    public final native String get(String key) /*-{
+        return this[key];
+    }-*/;
+
+    protected final native void set(String key, String value) /*-{
+        this[key] = value;
+    }-*/;
 }

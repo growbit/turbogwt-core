@@ -17,6 +17,7 @@
 package org.turbogwt.core.http.client;
 
 import com.google.gwt.core.client.JsArrayString;
+import com.google.gwt.http.client.Header;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -26,7 +27,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsMap;
-import org.turbogwt.core.js.collections.client.JsMapString;
 
 /**
  * Default implementation of fluent request.
@@ -44,7 +44,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
     private AsyncCallback<ResponseType> resultCallback;
     private Serializer<RequestType> requestSerializer;
     private Serializer<ResponseType> responseSerializer;
-    private JsMapString headers;
+    private Headers headers;
     private String user;
     private String password;
     private int timeout;
@@ -209,7 +209,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if header or value are the empty string
      */
     public AdvancedFluentRequest<RequestType, ResponseType> header(String header, String value) {
-        if (headers == null) headers = JsMapString.create();
+        if (headers == null) headers = Headers.create();
         headers.set(header, value);
         return this;
     }
@@ -382,7 +382,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
                     final String body = response.getText();
                     if (body != null && !body.isEmpty()) {
                         // Serializer init was verified on construction
-                        result = responseSerializer.deserialize(body);
+                        Headers responseHeaders = Headers.create();
+                        final Header[] responseHeaderArray = response.getHeaders();
+                        for (Header header : responseHeaderArray) {
+                            responseHeaders.set(header.getName(), header.getValue());
+                        }
+                        result = responseSerializer.deserialize(body, responseHeaders);
                     }
                     getResultCallback().onSuccess(result);
                     return;
@@ -420,7 +425,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
         String body = null;
         if (data != null) {
             // Serializer init was verified on construction
-            body = requestSerializer.serialize(data);
+            body = requestSerializer.serialize(data, Overlays.deepCopy(headers));
         }
         requestBuilder.setRequestData(body);
 
