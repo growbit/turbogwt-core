@@ -17,20 +17,23 @@
 package org.turbogwt.core.http.client;
 
 /**
- * Performs serialization of types.
- *
- * @param <T> The type it can serialize.
- *
  * @author Danilo Reinert
  */
-public interface Serializer<T> {
+public class VoidSerdes implements Serdes<Void> {
 
-    /**
-     * Serialize T to plain text.
-     *
-     * @param t         The object to be serialized.
-     * @param headers   Http headers from current request.
-     * @return The object serialized.
-     */
-    String serialize(T t, Headers headers);
+    private static VoidSerdes INSTANCE = new VoidSerdes();
+
+    public static VoidSerdes getInstance() {
+        return INSTANCE;
+    }
+
+    @Override
+    public Void deserialize(String response, Headers headers) {
+        return null;
+    }
+
+    @Override
+    public String serialize(Void v, Headers headers) {
+        return null;
+    }
 }

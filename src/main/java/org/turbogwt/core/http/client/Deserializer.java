@@ -17,23 +17,20 @@
 package org.turbogwt.core.http.client;
 
 /**
+ * Performs deserialization of Types.
+ *
+ * @param <T> The type it can deserialize.
+ *
  * @author Danilo Reinert
  */
-public class VoidSerializer implements Serializer<Void> {
+public interface Deserializer<T> {
 
-    private static VoidSerializer INSTANCE = new VoidSerializer();
-
-    public static VoidSerializer getInstance() {
-        return INSTANCE;
-    }
-
-    @Override
-    public Void deserialize(String response) {
-        return null;
-    }
-
-    @Override
-    public String serialize(Void v) {
-        return null;
-    }
+    /**
+     * Deserialize the plain text into an object of type T.
+     *
+     * @param response  Http response body content.
+     * @param headers   Http response headers.
+     * @return The object deserialized.
+     */
+    T deserialize(String response, Headers headers);
 }

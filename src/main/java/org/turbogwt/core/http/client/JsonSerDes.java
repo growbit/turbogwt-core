@@ -28,22 +28,22 @@ import org.turbogwt.core.js.client.Native;
  *
  * @author Danilo Reinert
  */
-public class JsonSerializer<T extends JavaScriptObject> implements Serializer<T> {
+public class JsonSerdes<T extends JavaScriptObject> implements Serdes<T> {
 
-    private static JsonSerializer<JavaScriptObject> INSTANCE = new JsonSerializer<>();
+    private static JsonSerdes<JavaScriptObject> INSTANCE = new JsonSerdes<>();
 
     @SuppressWarnings("unchecked")
-    public static <O extends JavaScriptObject> JsonSerializer<O> getInstance() {
-        return (JsonSerializer<O>) INSTANCE;
+    public static <O extends JavaScriptObject> JsonSerdes<O> getInstance() {
+        return (JsonSerdes<O>) INSTANCE;
     }
 
     @Override
-    public T deserialize(String response) {
+    public T deserialize(String response, Headers headers) {
         return JsonUtils.safeEval(response);
     }
 
     @Override
-    public String serialize(T t) {
+    public String serialize(T t, Headers headers) {
         return Native.stringify(t);
     }
 }

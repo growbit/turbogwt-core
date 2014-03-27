@@ -42,25 +42,25 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
     private AsyncCallback<ResponseType> resultCallback;
-    private Serializer<RequestType> requestSerializer;
-    private Serializer<ResponseType> responseSerializer;
+    private Serializer<RequestType> requestSerdes;
+    private Serdes<ResponseType> responseSerdes;
     private Headers headers;
     private String user;
     private String password;
     private int timeout;
 
-    public FluentRequestImpl(MultipleParamStrategy strategy, Serializer<RequestType> requestSerializer,
-                             Serializer<ResponseType> responseSerializer) throws NullPointerException {
-        this(requestSerializer, responseSerializer);
-        this.requestSerializer = requestSerializer;
+    public FluentRequestImpl(MultipleParamStrategy strategy, Serializer<RequestType> requestSerdes,
+                             Serdes<ResponseType> responseSerdes) throws NullPointerException {
+        this(requestSerdes, responseSerdes);
+        this.requestSerdes = requestSerdes;
         this.uriBuilder.multipleParamStrategy(strategy);
     }
 
-    public FluentRequestImpl(Serializer<RequestType> requestSerializer, Serializer<ResponseType> responseSerializer)
+    public FluentRequestImpl(Serializer<RequestType> requestSerdes, Serdes<ResponseType> responseSerdes)
             throws NullPointerException {
-        if (requestSerializer == null) throw new NullPointerException("Request serializer cannot be null.");
-        if (responseSerializer == null) throw new NullPointerException("Reponse serializer cannot be null.");
-        this.responseSerializer = responseSerializer;
+        if (requestSerdes == null) throw new NullPointerException("Request serializer cannot be null.");
+        if (responseSerdes == null) throw new NullPointerException("Reponse serializer cannot be null.");
+        this.responseSerdes = responseSerdes;
         this.uriBuilder = new UriBuilderImpl();
     }
 
@@ -387,7 +387,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
                         for (Header header : responseHeaderArray) {
                             responseHeaders.set(header.getName(), header.getValue());
                         }
-                        result = responseSerializer.deserialize(body, responseHeaders);
+                        result = responseSerdes.deserialize(body, responseHeaders);
                     }
                     getResultCallback().onSuccess(result);
                     return;
@@ -425,7 +425,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
         String body = null;
         if (data != null) {
             // Serializer init was verified on construction
-            body = requestSerializer.serialize(data, Overlays.deepCopy(headers));
+            body = requestSerdes.serialize(data, Overlays.deepCopy(headers));
         }
         requestBuilder.setRequestData(body);
 
