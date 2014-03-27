@@ -22,43 +22,34 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 /**
  * Capable of submitting requests with type callbacks support.
  *
- * @param <T> Type of result from requests when appropriate.
+ * @param <RequestType> Type of data to be sent in the HTTP request body, when appropriate.
+ * @param <ResponseType> Type of result from requests, when appropriate.
  *
  * @author Danilo Reinert
  */
-public interface RequestSender<T> {
+public interface RequestSender<RequestType, ResponseType> {
 
-    /*
-    Request send(RequestBuilder.Method httpMethod, T data, AsyncCallback<T> callback);
-
-    Request send(RequestBuilder.Method httpMethod, T data);
-
-    Request send(RequestBuilder.Method httpMethod, AsyncCallback<T> callback);
-
-    Request send(RequestBuilder.Method httpMethod);
-    */
-
-    Request get(AsyncCallback<T> callback);
+    Request get(AsyncCallback<ResponseType> callback);
 
     Request get();
 
-    Request post(T data, AsyncCallback<T> callback);
+    Request post(RequestType data, AsyncCallback<ResponseType> callback);
 
-    Request post(AsyncCallback<T> callback);
+    Request post(AsyncCallback<ResponseType> callback);
 
     Request post();
 
-    Request put(T data, AsyncCallback<T> callback);
+    Request put(RequestType data, AsyncCallback<ResponseType> callback);
 
-    Request put(AsyncCallback<T> callback);
+    Request put(AsyncCallback<ResponseType> callback);
 
     Request put();
 
-    Request delete(AsyncCallback<T> callback);
+    Request delete(AsyncCallback<ResponseType> callback);
 
     Request delete();
 
-    Request head(AsyncCallback<T> callback);
+    Request head(AsyncCallback<ResponseType> callback);
 
     Request head();
 }

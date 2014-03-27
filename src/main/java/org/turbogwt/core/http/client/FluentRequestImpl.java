@@ -31,30 +31,36 @@ import org.turbogwt.core.js.collections.client.JsMapString;
 /**
  * Default implementation of fluent request.
  *
- * @param <T> The type of request result.
+ * @param <RequestType> Type of data to be sent in the HTTP request body, when appropriate.
+ * @param <ResponseType> Type of result from requests, when appropriate.
  *
  * @author Danilo Reinert
  */
-public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
+public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFluentRequest<RequestType, ResponseType> {
 
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
-    private AsyncCallback<T> resultCallback;
-    private Serializer<T> serializer;
+    private AsyncCallback<ResponseType> resultCallback;
+    private Serializer<RequestType> requestSerializer;
+    private Serializer<ResponseType> responseSerializer;
     private JsMapString headers;
     private String user;
     private String password;
     private int timeout;
 
-    public FluentRequestImpl(MultipleParamStrategy strategy, Serializer<T> serializer) throws NullPointerException {
-        this(serializer);
+    public FluentRequestImpl(MultipleParamStrategy strategy, Serializer<RequestType> requestSerializer,
+                             Serializer<ResponseType> responseSerializer) throws NullPointerException {
+        this(requestSerializer, responseSerializer);
+        this.requestSerializer = requestSerializer;
         this.uriBuilder.multipleParamStrategy(strategy);
     }
 
-    public FluentRequestImpl(Serializer<T> serializer) throws NullPointerException {
-        if (serializer == null) throw new NullPointerException("Serializer cannot be null.");
-        this.serializer = serializer;
+    public FluentRequestImpl(Serializer<RequestType> requestSerializer, Serializer<ResponseType> responseSerializer)
+            throws NullPointerException {
+        if (requestSerializer == null) throw new NullPointerException("Request serializer cannot be null.");
+        if (responseSerializer == null) throw new NullPointerException("Reponse serializer cannot be null.");
+        this.responseSerializer = responseSerializer;
         this.uriBuilder = new UriBuilderImpl();
     }
 
@@ -67,7 +73,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @throws IllegalArgumentException if scheme is invalid
      */
-    public FluentRequestImpl scheme(String scheme) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException {
         uriBuilder.scheme(scheme);
         return this;
     }
@@ -81,7 +87,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @throws IllegalArgumentException if host is invalid.
      */
-    public FluentRequestImpl host(String host) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> host(String host) throws IllegalArgumentException {
         uriBuilder.host(host);
         return this;
     }
@@ -95,7 +101,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @throws IllegalArgumentException if port is invalid
      */
-    public FluentRequestImpl port(int port) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> port(int port) throws IllegalArgumentException {
         uriBuilder.port(port);
         return this;
     }
@@ -108,7 +114,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @return the updated UriBuilder
      */
-    public FluentRequestImpl path(String path) {
+    public AdvancedFluentRequest<RequestType, ResponseType> path(String path) {
         uriBuilder.path(path);
         return this;
     }
@@ -125,7 +131,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
-    public FluentRequestImpl segment(String... segments) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> segment(String... segments) throws IllegalArgumentException {
         uriBuilder.segment(segments);
         return this;
     }
@@ -145,7 +151,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      * @throws IllegalArgumentException if name or values is null
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
-    public FluentRequestImpl matrixParam(String name, Object... values) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values) throws IllegalArgumentException {
         uriBuilder.matrixParam(name, values);
         return this;
     }
@@ -162,7 +168,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @throws IllegalArgumentException if name or values is null
      */
-    public FluentRequestImpl queryParam(String name, Object... values) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values) throws IllegalArgumentException {
         uriBuilder.queryParam(name, values);
         return this;
     }
@@ -174,19 +180,19 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @return the updated UriBuilder
      */
-    public FluentRequestImpl fragment(String fragment) {
+    public AdvancedFluentRequest<RequestType, ResponseType> fragment(String fragment) {
         uriBuilder.fragment(fragment);
         return this;
     }
 
     /*
     **
-     * Se the serializer for handling request/response body.
+     * Se the responseSerializer for handling request/response body.
      *
-     * @param serializer the serializer of T.
+     * @param responseSerializer the responseSerializer of ResponseType.
      *
-    public FluentRequest serializer(Serializer<T> serializer) {
-        this.serializer = serializer;
+    public FluentRequest responseSerializer(Serializer<ResponseType> responseSerializer) {
+        this.responseSerializer = responseSerializer;
         return this;
     }
     */
@@ -202,7 +208,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      * @throws NullPointerException if header or value are null
      * @throws IllegalArgumentException if header or value are the empty string
      */
-    public FluentRequestImpl<T> header(String header, String value) {
+    public AdvancedFluentRequest<RequestType, ResponseType> header(String header, String value) {
         if (headers == null) headers = JsMapString.create();
         headers.set(header, value);
         return this;
@@ -214,7 +220,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @param uri The URI for requesting.
      */
-    protected FluentRequestImpl<T> setUri(String uri) {
+    protected AdvancedFluentRequest<RequestType, ResponseType> setUri(String uri) {
         this.uri = uri;
         return this;
     }
@@ -227,7 +233,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      * @throws IllegalArgumentException if the user is empty
      * @throws NullPointerException if the user is null
      */
-    public FluentRequestImpl<T> user(String user) {
+    public AdvancedFluentRequest<RequestType, ResponseType> user(String user) {
         this.user = user;
         return this;
     }
@@ -241,7 +247,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      * @throws IllegalArgumentException if the password is empty
      * @throws NullPointerException if the password is null
      */
-    public FluentRequestImpl<T> password(String password) {
+    public AdvancedFluentRequest<RequestType, ResponseType> password(String password) {
         this.password = password;
         return this;
     }
@@ -261,7 +267,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      *
      * @throws IllegalArgumentException if the timeout value is negative
      */
-    public FluentRequestImpl<T> timeout(int timeoutMillis) {
+    public AdvancedFluentRequest<RequestType, ResponseType> timeout(int timeoutMillis) {
         this.timeout = timeoutMillis;
         return this;
     }
@@ -274,14 +280,14 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      * @param statusCode    the unit, dozen or hundred expected on response's status code.
      * @param callback      the callback to handle informed code
      */
-    public FluentRequestImpl<T> on(int statusCode, SingleCallback callback) {
+    public AdvancedFluentRequest<RequestType, ResponseType> on(int statusCode, SingleCallback callback) {
         if (mappedCallbacks == null) mappedCallbacks = JsMap.create();
         mappedCallbacks.set(String.valueOf(statusCode), callback);
         return this;
     }
 
     @Override
-    public Request get(AsyncCallback<T> callback) {
+    public Request get(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.GET, null, callback);
     }
 
@@ -291,12 +297,12 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
     }
 
     @Override
-    public Request post(T data, AsyncCallback<T> callback) {
+    public Request post(RequestType data, AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.POST, data, callback);
     }
 
     @Override
-    public Request post(AsyncCallback<T> callback) {
+    public Request post(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.POST, null, callback);
     }
 
@@ -306,12 +312,12 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
     }
 
     @Override
-    public Request put(T data, AsyncCallback<T> callback) {
+    public Request put(RequestType data, AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.PUT, data, callback);
     }
 
     @Override
-    public Request put(AsyncCallback<T> callback) {
+    public Request put(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.PUT, null, callback);
     }
 
@@ -321,7 +327,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
     }
 
     @Override
-    public Request delete(AsyncCallback<T> callback) {
+    public Request delete(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.DELETE, null, callback);
     }
 
@@ -331,7 +337,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
     }
 
     @Override
-    public Request head(AsyncCallback<T> callback) {
+    public Request head(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.HEAD, null, callback);
     }
 
@@ -347,7 +353,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
      * @param data              The data to be serialized and sent into the request body.
      * @param resultCallback    The user callback.
      */
-    private Request send(RequestBuilder.Method method, T data, AsyncCallback<T> resultCallback) {
+    private Request send(RequestBuilder.Method method, RequestType data, AsyncCallback<ResponseType> resultCallback) {
         this.resultCallback = resultCallback;
 
         // Prepare callback for following request builder
@@ -372,11 +378,11 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
 
                 // Successful response
                 if (code.startsWith("2")) {
-                    T result = null;
+                    ResponseType result = null;
                     final String body = response.getText();
                     if (body != null && !body.isEmpty()) {
                         // Serializer init was verified on construction
-                        result = serializer.deserialize(body);
+                        result = responseSerializer.deserialize(body);
                     }
                     getResultCallback().onSuccess(result);
                     return;
@@ -414,7 +420,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
         String body = null;
         if (data != null) {
             // Serializer init was verified on construction
-            body = serializer.serialize(data);
+            body = requestSerializer.serialize(data);
         }
         requestBuilder.setRequestData(body);
 
@@ -431,7 +437,7 @@ public class FluentRequestImpl<T> implements AdvancedFluentRequest<T> {
         return resultCallback != null;
     }
 
-    private AsyncCallback<T> getResultCallback() {
+    private AsyncCallback<ResponseType> getResultCallback() {
         return resultCallback;
     }
 
