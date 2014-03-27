@@ -21,5 +21,5 @@ package org.turbogwt.core.http.client;
  *
  * @author Danilo Reinert
  */
-public interface FluentRequest extends HasUri {
+public interface FluentRequest<T> extends HasUri {
 }

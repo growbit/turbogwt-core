@@ -23,5 +23,5 @@ package org.turbogwt.core.http.client;
  *
  * @author Danilo Reinert
  */
-public interface AdvancedFluentRequest<T> extends FluentRequest, RequestSender<T> {
+public interface AdvancedFluentRequest<T> extends FluentRequest<T>, RequestSender<T> {
 }
