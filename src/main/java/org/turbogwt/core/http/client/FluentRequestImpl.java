@@ -25,8 +25,14 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import org.turbogwt.core.http.client.serdes.Serdes;
-import org.turbogwt.core.http.client.serdes.Serializer;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import javax.annotation.Nullable;
+
+import org.turbogwt.core.http.client.serialization.Deserializer;
+import org.turbogwt.core.http.client.serialization.Serializer;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsMap;
 
@@ -43,26 +49,25 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
-    private AsyncCallback<ResponseType> resultCallback;
-    private Serializer<RequestType> requestSerdes;
-    private Serdes<ResponseType> responseSerdes;
+    private Serializer<RequestType> requestSerializer;
+    private Deserializer<ResponseType> responseDeserializer;
     private Headers headers;
     private String user;
     private String password;
     private int timeout;
 
-    public FluentRequestImpl(MultipleParamStrategy strategy, Serializer<RequestType> requestSerdes,
-                             Serdes<ResponseType> responseSerdes) throws NullPointerException {
-        this(requestSerdes, responseSerdes);
-        this.requestSerdes = requestSerdes;
+    public FluentRequestImpl(MultipleParamStrategy strategy, Serializer<RequestType> requestSerializer,
+                             Deserializer<ResponseType> responseDeserializer) throws NullPointerException {
+        this(requestSerializer, responseDeserializer);
+        this.requestSerializer = requestSerializer;
         this.uriBuilder.multipleParamStrategy(strategy);
     }
 
-    public FluentRequestImpl(Serializer<RequestType> requestSerdes, Serdes<ResponseType> responseSerdes)
+    public FluentRequestImpl(Serializer<RequestType> requestSerializer, Deserializer<ResponseType> responseDeserializer)
             throws NullPointerException {
-        if (requestSerdes == null) throw new NullPointerException("Request serializer cannot be null.");
-        if (responseSerdes == null) throw new NullPointerException("Reponse serializer cannot be null.");
-        this.responseSerdes = responseSerdes;
+        if (requestSerializer == null) throw new NullPointerException("Request serializer cannot be null.");
+        if (responseDeserializer == null) throw new NullPointerException("Response deserializer cannot be null.");
+        this.responseDeserializer = responseDeserializer;
         this.uriBuilder = new UriBuilderImpl();
     }
 
@@ -290,12 +295,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
 
     @Override
     public Request get(AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.GET, null, callback);
+        return send(RequestBuilder.GET, (String) null, callback);
     }
 
     @Override
     public Request get() {
-        return send(RequestBuilder.GET, null, null);
+        return send(RequestBuilder.GET, (String) null, null);
     }
 
     @Override
@@ -304,13 +309,18 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
     }
 
     @Override
+    public <C extends Collection<RequestType>> Request post(C data, AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.POST, data, callback);
+    }
+
+    @Override
     public Request post(AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.POST, null, callback);
+        return send(RequestBuilder.POST, (String) null, callback);
     }
 
     @Override
     public Request post() {
-        return send(RequestBuilder.POST, null, null);
+        return send(RequestBuilder.POST, (String) null, null);
     }
 
     @Override
@@ -319,33 +329,56 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
     }
 
     @Override
+    public <C extends Collection<RequestType>> Request put(C data, AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.PUT, data, callback);
+    }
+
+    @Override
     public Request put(AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.PUT, null, callback);
+        return send(RequestBuilder.PUT, (String) null, callback);
     }
 
     @Override
     public Request put() {
-        return send(RequestBuilder.PUT, null, null);
+        return send(RequestBuilder.PUT, (String) null, null);
     }
 
     @Override
     public Request delete(AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.DELETE, null, callback);
+        return send(RequestBuilder.DELETE, (String) null, callback);
     }
 
     @Override
     public Request delete() {
-        return send(RequestBuilder.DELETE, null, null);
+        return send(RequestBuilder.DELETE, (String) null, null);
     }
 
     @Override
     public Request head(AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.HEAD, null, callback);
+        return send(RequestBuilder.HEAD, (String) null, callback);
     }
 
     @Override
     public Request head() {
-        return send(RequestBuilder.HEAD, null, null);
+        return send(RequestBuilder.HEAD, (String) null, null);
+    }
+
+    /**
+     * Build request and send it.
+     * If the request could not be sent then the returned {@link Request} is null and resultCallback#onError is called.
+     *
+     * @param dataCollection              The data collection to be serialized and sent into the request body.
+     * @param resultCallback    The user callback.
+     */
+    private <C extends Collection<RequestType>> Request send(RequestBuilder.Method method,
+                                                             @Nullable C dataCollection,
+                                                             @Nullable AsyncCallback<ResponseType> resultCallback) {
+        String body = null;
+        if (dataCollection != null) {
+            // Serializer init was verified on construction
+            body = requestSerializer.serializeFromCollection(dataCollection, Overlays.deepCopy(headers));
+        }
+        return send(method, body, resultCallback);
     }
 
     /**
@@ -355,22 +388,38 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @param data              The data to be serialized and sent into the request body.
      * @param resultCallback    The user callback.
      */
-    private Request send(RequestBuilder.Method method, RequestType data, AsyncCallback<ResponseType> resultCallback) {
-        this.resultCallback = resultCallback;
+    private Request send(RequestBuilder.Method method, @Nullable RequestType data,
+                         @Nullable AsyncCallback<ResponseType> resultCallback) {
+        String body = null;
+        if (data != null) {
+            // Serializer init was verified on construction
+            body = requestSerializer.serialize(data, Overlays.deepCopy(headers));
+        }
+        return send(method, body, resultCallback);
+    }
 
+    /**
+     * Build request and send it.
+     * If the request could not be sent then the returned {@link Request} is null and resultCallback#onError is called.
+     *
+     * @param body              The content to be sent in the request body.
+     * @param resultCallback    The user callback.
+     */
+    private Request send(RequestBuilder.Method method, @Nullable String body,
+                         @Nullable final AsyncCallback<ResponseType> resultCallback) {
         // Prepare callback for following request builder
         RequestCallback callback = new RequestCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
                 final String code = String.valueOf(response.getStatusCode());
 
-                // Mapped response status
+                // Check if the response matches any mapped status code
                 if (mappedCallbacks != null) {
-                    JsArrayString codes = Overlays.getOwnPropertyNames(mappedCallbacks, true);
-                    codes = reverse(codes);
+                    JsArrayString codes = getMappedCodes();
                     for (int i = 0; i < codes.length(); i++) {
                         String mappedCode = codes.get(i);
                         if (code.startsWith(mappedCode)) {
+                            // Status code matched. Execute callback and finish
                             SingleCallback singleCallback = mappedCallbacks.get(mappedCode);
                             singleCallback.onResponseReceived(request, response);
                             return;
@@ -380,37 +429,47 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
 
                 // Successful response
                 if (code.startsWith("2")) {
-                    ResponseType result = null;
                     final String body = response.getText();
                     if (body != null && !body.isEmpty()) {
-                        // Serializer init was verified on construction
-                        Headers responseHeaders = Headers.create();
-                        final Header[] responseHeaderArray = response.getHeaders();
-                        for (Header header : responseHeaderArray) {
-                            responseHeaders.set(header.getName(), header.getValue());
-                        }
-                        result = responseSerdes.deserialize(body, responseHeaders);
+                        Headers responseHeaders = mountHeadersFromResponse(response);
+                        // Check AsyncCallback type in order to correctly deserialize
+                        deserializeAndCallOnSuccess(body, responseHeaders, resultCallback);
+                    } else {
+                        if (resultCallback != null) resultCallback.onSuccess(null);
                     }
-                    getResultCallback().onSuccess(result);
                     return;
                 }
 
                 // Unsuccessful response
-                getResultCallback().onFailure(new UnsuccessfulResponseException(request, response));
+                if (resultCallback != null)
+                    resultCallback.onFailure(new UnsuccessfulResponseException(request, response));
             }
 
             @Override
             public void onError(Request request, Throwable exception) {
-                if (hasResultCallback()) getResultCallback().onFailure(exception);
+                if (resultCallback != null) resultCallback.onFailure(exception);
             }
         };
 
         if (uri == null) uri = uriBuilder.build();
         RequestBuilder requestBuilder = new RequestBuilder(method, uri);
-        uri = null; // Avoid caching problems
+        uri = null; // Avoid caching problems. TODO: add caching capabilities to UriBuilderImpl
         requestBuilder.setCallback(callback);
 
         // Handle request parameters
+        configureRequestBuilder(requestBuilder);
+        requestBuilder.setRequestData(body);
+
+        try {
+            return requestBuilder.send();
+        } catch (RequestException e) {
+            if (resultCallback != null) resultCallback.onFailure(e);
+        }
+
+        return null;
+    }
+
+    private void configureRequestBuilder(RequestBuilder requestBuilder) {
         if (timeout > 0) requestBuilder.setTimeoutMillis(timeout);
         if (user != null) requestBuilder.setUser(user);
         if (password != null) requestBuilder.setPassword(password);
@@ -422,30 +481,43 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
                 requestBuilder.setHeader(header, headers.get(header));
             }
         }
-
-        // Handle request body
-        String body = null;
-        if (data != null) {
-            // Serializer init was verified on construction
-            body = requestSerdes.serialize(data, Overlays.deepCopy(headers));
-        }
-        requestBuilder.setRequestData(body);
-
-        try {
-            return requestBuilder.send();
-        } catch (RequestException e) {
-            getResultCallback().onFailure(e);
-        }
-
-        return null;
     }
 
-    private boolean hasResultCallback() {
-        return resultCallback != null;
+    private JsArrayString getMappedCodes() {
+        JsArrayString codes = Overlays.getOwnPropertyNames(mappedCallbacks, true);
+        // Reverse order to check from most specific to generic
+        codes = reverse(codes);
+        return codes;
     }
 
-    private AsyncCallback<ResponseType> getResultCallback() {
-        return resultCallback;
+    private Headers mountHeadersFromResponse(Response response) {
+        Headers responseHeaders = Headers.create();
+        final Header[] responseHeaderArray = response.getHeaders();
+        for (Header header : responseHeaderArray) {
+            responseHeaders.set(header.getName(), header.getValue());
+        }
+        return responseHeaders;
+    }
+
+    private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
+                                             @Nullable AsyncCallback<ResponseType> resultCallback) {
+        // Deserializer init was verified on construction
+        if (resultCallback != null) {
+            if (resultCallback instanceof ListAsyncCallback) {
+                @SuppressWarnings("unchecked")
+                List<ResponseType> list = responseDeserializer.deserializeAsCollection(List.class, body, headers);
+                ListAsyncCallback<ResponseType> lac = (ListAsyncCallback<ResponseType>) resultCallback;
+                lac.onSuccess(list);
+            } else if (resultCallback instanceof SetAsyncCallback) {
+                @SuppressWarnings("unchecked")
+                Set<ResponseType> set = responseDeserializer.deserializeAsCollection(Set.class, body, headers);
+                SetAsyncCallback<ResponseType> sac = (SetAsyncCallback<ResponseType>) resultCallback;
+                sac.onSuccess(set);
+            } else {
+                ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
+                resultCallback.onSuccess(result);
+            }
+        }
     }
 
     private static native JsArrayString reverse(JsArrayString array) /*-{

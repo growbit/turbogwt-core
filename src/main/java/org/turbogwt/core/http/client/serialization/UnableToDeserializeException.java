@@ -14,28 +14,21 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http.client.serdes;
-
-import org.turbogwt.core.http.client.Headers;
+package org.turbogwt.core.http.client.serialization;
 
 /**
  * @author Danilo Reinert
  */
-public class VoidSerdes implements Serdes<Void> {
+public class UnableToDeserializeException extends SerializationException {
 
-    private static VoidSerdes INSTANCE = new VoidSerdes();
-
-    public static VoidSerdes getInstance() {
-        return INSTANCE;
+    public UnableToDeserializeException() {
     }
 
-    @Override
-    public Void deserialize(String response, Headers headers) {
-        return null;
+    public UnableToDeserializeException(String s) {
+        super(s);
     }
 
-    @Override
-    public String serialize(Void v, Headers headers) {
-        return null;
+    public UnableToDeserializeException(String s, Throwable throwable) {
+        super(s, throwable);
     }
 }

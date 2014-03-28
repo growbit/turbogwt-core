@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http.client;
+package org.turbogwt.core.http.client.serialization;
+
+import java.util.Collection;
+
+import org.turbogwt.core.http.client.Headers;
 
 /**
  * @author Danilo Reinert
@@ -33,7 +37,18 @@ public class VoidSerdes implements Serdes<Void> {
     }
 
     @Override
+    public <C extends Collection<Void>> C deserializeAsCollection(Class<C> collectionType, String response, Headers
+            headers) {
+        return null;
+    }
+
+    @Override
     public String serialize(Void v, Headers headers) {
+        return null;
+    }
+
+    @Override
+    public String serializeFromCollection(Collection<Void> c, Headers headers) {
         return null;
     }
 }

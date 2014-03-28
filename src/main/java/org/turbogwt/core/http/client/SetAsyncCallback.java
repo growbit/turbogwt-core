@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http.client.serdes;
+package org.turbogwt.core.http.client;
+
+import java.util.Set;
 
 /**
- * Performs serialization and deserialization of a type to/from plain text.
- *
- * @param <T> Type of serialization
- *
  * @author Danilo Reinert
  */
-public interface Serdes<T> extends Deserializer<T>,Serializer<T> {
-
+public abstract class SetAsyncCallback<T> implements CollectionAsyncCallback<Set<T>, T> {
 }
