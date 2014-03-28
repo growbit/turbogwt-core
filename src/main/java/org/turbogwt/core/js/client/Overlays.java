@@ -101,6 +101,10 @@ public final class Overlays {
         jso[property] = value;
     }-*/;
 
+    public static native String stringify(JavaScriptObject jso) /*-{
+        return JSON.stringify(jso);
+    }-*/;
+
     public static void unboxValueToProperty(JavaScriptObject jso, String property, Double value) {
         if (value != null) {
             setValueToProperty(jso, property, value.doubleValue());

@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.turbogwt.core.http.client.Headers;
-import org.turbogwt.core.js.client.Native;
+import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 
 /**
@@ -70,22 +70,22 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
 
     @Override
     public String serialize(T t, Headers headers) {
-        return Native.stringify(t);
+        return Overlays.stringify(t);
     }
 
     @Override
     public String serializeFromCollection(Collection<T> c, Headers headers) {
         if (c instanceof JsArrayList) {
-            return Native.stringify(((JsArrayList<T>)c).asJsArray());
+            return Overlays.stringify(((JsArrayList<T>)c).asJsArray());
         }
 
         if (c instanceof JavaScriptObject) {
-            return Native.stringify((JavaScriptObject)c);
+            return Overlays.stringify((JavaScriptObject)c);
         }
 
         @SuppressWarnings("unchecked")
         JsArray<T> jsArray = (JsArray<T>) JsArray.createArray();
         for (T t : c) jsArray.push(t);
-        return Native.stringify(jsArray);
+        return Overlays.stringify(jsArray);
     }
 }

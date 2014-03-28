@@ -50,10 +50,6 @@ public final class Native {
         $wnd.console.log(text);
     }-*/;
 
-    public static native String stringify(JavaScriptObject jso) /*-{
-        return JSON.stringify(jso);
-    }-*/;
-
     public static native String toFixed(double number) /*-{
         return number.toFixed();
     }-*/;
