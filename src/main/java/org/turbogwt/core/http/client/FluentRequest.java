@@ -25,6 +25,18 @@ package org.turbogwt.core.http.client;
  * @author Danilo Reinert
  */
 public interface FluentRequest<RequestType, ResponseType> extends HasUri {
+
+    /**
+     * Set the strategy for appending parameters with multiple values.
+     *
+     * @param strategy the strategy.
+     *
+     * @return the updated UriBuilder
+     *
+     * @throws IllegalArgumentException if strategy is null
+     */
+    FluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+            throws IllegalArgumentException;
     
     /**
      * Set the URI scheme.

@@ -24,6 +24,17 @@ package org.turbogwt.core.http.client;
 public interface HasUri {
 
     /**
+     * Set the strategy for appending parameters with multiple values.
+     *
+     * @param strategy the strategy.
+     *
+     * @return the updated UriBuilder
+     *
+     * @throws IllegalArgumentException if strategy is null
+     */
+    HasUri multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException;
+
+    /**
      * Set the URI scheme.
      *
      * @param scheme the URI scheme. A null value will unset the URI scheme.

@@ -26,6 +26,19 @@ package org.turbogwt.core.http.client;
  */
 public interface AdvancedFluentRequest<RequestType, ResponseType> extends FluentRequest<RequestType, ResponseType>,
         RequestSender<RequestType, ResponseType> {
+
+    /**
+     * Set the strategy for appending parameters with multiple values.
+     *
+     * @param strategy the strategy.
+     *
+     * @return the updated UriBuilder
+     *
+     * @throws IllegalArgumentException if strategy is null
+     */
+    @Override
+    AdvancedFluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+            throws IllegalArgumentException;
     
     /**
      * Set the URI scheme.
@@ -131,4 +144,99 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      */
     @Override
     AdvancedFluentRequest<RequestType, ResponseType> fragment(String fragment);
+
+    /**
+     * Sets a request header with the given name and value. If a header with the
+     * specified name has already been set then the new value overwrites the
+     * current value.
+     *
+     * @param header the name of the header
+     * @param value the value of the header
+     *
+     * @throws NullPointerException if header or value are null
+     * @throws IllegalArgumentException if header or value are the empty string
+     */
+    AdvancedFluentRequest<RequestType, ResponseType> header(String header, String value);
+
+    /**
+     * Sets the user name that will be used in the request URL.
+     *
+     * @param user user name to use
+     *
+     * @throws IllegalArgumentException if the user is empty
+     * @throws NullPointerException if the user is null
+     */
+    AdvancedFluentRequest<RequestType, ResponseType> user(String user);
+
+    /**
+     * Sets the password to use in the request URL. This is ignored if there is no
+     * user specified.
+     *
+     * @param password password to use in the request URL
+     *
+     * @throws IllegalArgumentException if the password is empty
+     * @throws NullPointerException if the password is null
+     */
+    AdvancedFluentRequest<RequestType, ResponseType> password(String password);
+
+    /**
+     * Sets the number of milliseconds to wait for a request to complete. Should
+     * the request timeout, the
+     * {@link com.google.gwt.http.client.RequestCallback#onError(com.google.gwt.http.client.Request, Throwable)}
+     * method will be called on the callback instance given to the
+     * {@link com.google.gwt.http.client.RequestBuilder#sendRequest(String, com.google.gwt.http.client.RequestCallback)}
+     * method. The callback method will receive an instance of the
+     * {@link com.google.gwt.http.client.RequestTimeoutException} class as its
+     * {@link Throwable} argument.
+     *
+     * @param timeoutMillis number of milliseconds to wait before canceling the
+     *          request, a value of zero disables timeouts
+     *
+     * @throws IllegalArgumentException if the timeout value is negative
+     */
+    AdvancedFluentRequest<RequestType, ResponseType> timeout(int timeoutMillis);
+
+    /**
+     * Set a callback to handle specific HTTP status code response.
+     * <p/>
+     * The informed code can represent a group of codes, e.g. 4 will handle any code in [400,499].
+     * Similarly, 20 will handle any code in [200,209].
+     * <p/>
+     * The codes have priority for specificity, e.g. 201 has a higher priority than 20,
+     * which has a higher priority than 2.
+     *
+     * @param statusCode    the unit, dozen or hundred expected on response's status code.
+     * @param callback      the callback to handle informed code
+     */
+    public AdvancedFluentRequest<RequestType, ResponseType> on(int statusCode, SingleCallback callback);
+
+    /**
+     * Deserialize result to T.
+     *
+     * @param type The class from T.
+     * @param <T> The type to be deserialized.
+     * @return The new FluentRequest capable of deserializing T.
+     * @throws IllegalArgumentException if no Deserializer is registered for type T.
+     */
+    public <T> AdvancedFluentRequest<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException;
+
+    /**
+     * Serialize request data from T.
+     *
+     * @param type The class from T.
+     * @param <T> The type to be serialized.
+     * @return The new FluentRequest capable of serializing T.
+     * @throws IllegalArgumentException if no Serializer is registered for type T.
+     */
+    public <T> AdvancedFluentRequest<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException;
+
+    /**
+     * Serialize and Deserialize transmitting data from/to T.
+     *
+     * @param type The class from T.
+     * @param <T> The type to be de/serialized.
+     * @return The new FluentRequest capable of de/serializing T.
+     * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
+     */
+    public <T> AdvancedFluentRequest<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;
 }

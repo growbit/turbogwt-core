@@ -156,7 +156,9 @@ public class Requestory {
 
     private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType> createFluentRequestImpl
             (Class<RequestType> requestType, Class<ResponseType> responseType, MultipleParamStrategy strategy) {
-        return new FluentRequestImpl<>(strategy, serdesManager.getSerializer(requestType),
-                serdesManager.getDeserializer(responseType));
+        final FluentRequestImpl<RequestType, ResponseType> request = new
+                FluentRequestImpl<>(serdesManager, requestType, responseType);
+        request.multipleParamStrategy(strategy);
+        return request;
     }
 }
