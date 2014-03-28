@@ -26,8 +26,6 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -588,16 +586,13 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
                                              @Nullable AsyncCallback<ResponseType> resultCallback) {
         // Deserializer init was verified on construction
         if (resultCallback != null) {
-            if (resultCallback instanceof ListAsyncCallback) {
+            if (resultCallback instanceof CollectionAsyncCallback) {
+                CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
+                        (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
                 @SuppressWarnings("unchecked")
-                List<ResponseType> list = responseDeserializer.deserializeAsCollection(List.class, body, headers);
-                ListAsyncCallback<ResponseType> lac = (ListAsyncCallback<ResponseType>) resultCallback;
-                lac.onSuccess(list);
-            } else if (resultCallback instanceof SetAsyncCallback) {
-                @SuppressWarnings("unchecked")
-                Set<ResponseType> set = responseDeserializer.deserializeAsCollection(Set.class, body, headers);
-                SetAsyncCallback<ResponseType> sac = (SetAsyncCallback<ResponseType>) resultCallback;
-                sac.onSuccess(set);
+                Collection<ResponseType> col = (Collection<ResponseType>)
+                        responseDeserializer.deserializeAsCollection(cac.getCollectionClass(), body, headers);
+                cac.onSuccess(col);
             } else {
                 ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
                 resultCallback.onSuccess(result);

@@ -21,5 +21,10 @@ import java.util.Set;
 /**
  * @author Danilo Reinert
  */
-public abstract class SetAsyncCallback<T> implements CollectionAsyncCallback<Set<T>, T> {
+public abstract class SetAsyncCallback<T> extends CollectionAsyncCallback<Set<T>, T> {
+
+    @Override
+    public Class<Set> getCollectionClass() {
+        return Set.class;
+    }
 }

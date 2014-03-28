@@ -55,7 +55,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
     public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
                                                                Headers headers) {
         JsArray<T> jsArray = JsonUtils.safeEval(response);
-        if (collectionType.equals(List.class)) {
+        if (collectionType.equals(List.class) || collectionType.equals(Collection.class)) {
             return (C) new JsArrayList<>(jsArray);
         } else if (collectionType.equals(Set.class)) {
             Set set = new HashSet(jsArray.length());

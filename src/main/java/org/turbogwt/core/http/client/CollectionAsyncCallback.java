@@ -23,13 +23,9 @@ import java.util.Collection;
 /**
  * @author Danilo Reinert
  */
-public interface CollectionAsyncCallback<C extends Collection<T>, T> extends AsyncCallback<C> {
+public abstract class CollectionAsyncCallback<C extends Collection<T>, T> implements AsyncCallback<C> {
 
-    /**
-     * Called when an asynchronous call completes successfully.
-     *
-     * @param result the return value of the remote produced call
-     */
-    @Override
-    void onSuccess(C result);
+    public Class<? super C> getCollectionClass() {
+        return Collection.class;
+    }
 }

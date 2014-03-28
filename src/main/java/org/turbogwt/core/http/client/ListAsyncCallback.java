@@ -21,5 +21,10 @@ import java.util.List;
 /**
  * @author Danilo Reinert
  */
-public abstract class ListAsyncCallback<T> implements CollectionAsyncCallback<List<T>, T> {
+public abstract class ListAsyncCallback<T> extends CollectionAsyncCallback<List<T>, T> {
+
+    @Override
+    public Class<List> getCollectionClass() {
+        return List.class;
+    }
 }
