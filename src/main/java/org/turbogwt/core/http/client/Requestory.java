@@ -16,15 +16,18 @@
 
 package org.turbogwt.core.http.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.Collection;
 
 import org.turbogwt.core.http.client.serialization.Deserializer;
+import org.turbogwt.core.http.client.serialization.OverlaySerdes;
 import org.turbogwt.core.http.client.serialization.Serdes;
 import org.turbogwt.core.http.client.serialization.SerdesManager;
 import org.turbogwt.core.http.client.serialization.Serializer;
+import org.turbogwt.core.http.client.serialization.VoidSerdes;
 
 /**
  * This class is configurable {@link FluentRequest} factory.
@@ -38,6 +41,11 @@ public class Requestory {
 
     private final SerdesManager serdesManager = new SerdesManager();
     private MultipleParamStrategy defaultStrategy;
+
+    public Requestory() {
+        serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
+        serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
+    }
 
     //===================================================================
     // FluentRequest factory methods
