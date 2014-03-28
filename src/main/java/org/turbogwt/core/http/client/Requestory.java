@@ -19,6 +19,8 @@ package org.turbogwt.core.http.client;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import java.util.Collection;
+
 import org.turbogwt.core.http.client.serialization.Deserializer;
 import org.turbogwt.core.http.client.serialization.Serdes;
 import org.turbogwt.core.http.client.serialization.SerdesManager;
@@ -27,6 +29,8 @@ import org.turbogwt.core.http.client.serialization.Serializer;
 /**
  * This class is configurable {@link FluentRequest} factory.
  * Usually, you will use it as a singleton along your project.
+ * <p/>
+ * It provides a convenience API for building/executing HTTP Requests.
  *
  * @author Danilo Reinert
  */
@@ -34,6 +38,10 @@ public class Requestory {
 
     private final SerdesManager serdesManager = new SerdesManager();
     private MultipleParamStrategy defaultStrategy;
+
+    //===================================================================
+    // FluentRequest factory methods
+    //===================================================================
 
     public <RequestType, ResponseType> FluentRequest<RequestType, ResponseType> request(Class<RequestType> requestType,
                                                                                      Class<ResponseType> responseType) {
@@ -54,66 +62,93 @@ public class Requestory {
         return createFluentRequestImpl(Void.class, Void.class, strategy);
     }
 
-    public Request get(String uri) {
-        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).get();
-    }
+    //===================================================================
+    // Request aliases
+    //===================================================================
 
+    /* GET */
     public <ResponseType> Request get(String uri, Class<ResponseType> responseType,
                                       AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
     }
-
-    /*
-    @Override
-    public <T, R> Request post(T data, AsyncCallback<R> callback) {
-        return null;
+    
+    public Request get(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).get();
     }
 
-    @Override
-    public Request post(AsyncCallback<Object> callback) {
-        return null;
+    /* POST */
+    public <RequestType, ResponseType> Request post(String uri, Class<RequestType> requestType, RequestType data,
+                                                    Class<ResponseType> responseType,
+                                                    AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri).post(data, callback);
     }
 
-    @Override
-    public Request post() {
-        return null;
+    public <RequestType, C extends Collection<RequestType>, ResponseType> Request post(String uri,
+                                                                                       Class<RequestType> requestType,
+                                                                                       C dataCollection,
+                                                                                       Class<ResponseType> responseType,
+                                                                                 AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
+                .post(dataCollection, callback);
     }
 
-    @Override
-    public Request put(Object data, AsyncCallback<Object> callback) {
-        return null;
+    public <ResponseType> Request post(String uri, Class<ResponseType> responseType,
+                                       AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).post(callback);
     }
 
-    @Override
-    public Request put(AsyncCallback<Object> callback) {
-        return null;
+    public Request post(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).post();
     }
 
-    @Override
-    public Request put() {
-        return null;
+    /* PUT */
+    public <RequestType, ResponseType> Request put(String uri, Class<RequestType> requestType, RequestType data,
+                                                    Class<ResponseType> responseType,
+                                                    AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri).put(data, callback);
     }
 
-    @Override
-    public Request delete(AsyncCallback<Object> callback) {
-        return null;
+    public <RequestType, C extends Collection<RequestType>, ResponseType> Request put(String uri,
+                                                                                       Class<RequestType> requestType,
+                                                                                       C dataCollection,
+                                                                                       Class<ResponseType> responseType,
+                                                                                       AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
+                .put(dataCollection, callback);
     }
 
-    @Override
-    public Request delete() {
-        return null;
+    public <ResponseType> Request put(String uri, Class<ResponseType> responseType,
+                                       AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
     }
 
-    @Override
-    public Request head(AsyncCallback<Object> callback) {
-        return null;
+    public Request put(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).put();
     }
 
-    @Override
-    public Request head() {
-        return null;
+    /* DELETE */
+    public <ResponseType> Request delete(String uri, Class<ResponseType> responseType,
+                                      AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
     }
-    */
+
+    public Request delete(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).delete();
+    }
+
+    /* HEAD */
+    public <ResponseType> Request head(String uri, Class<ResponseType> responseType,
+                                      AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).head(callback);
+    }
+
+    public Request head(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).head();
+    }
+
+    //===================================================================
+    // Requestory configuration
+    //===================================================================
 
     public MultipleParamStrategy getDefaultStrategy() {
         return defaultStrategy;
