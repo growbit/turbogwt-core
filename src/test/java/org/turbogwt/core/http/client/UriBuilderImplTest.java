@@ -50,4 +50,28 @@ public class UriBuilderImplTest extends GWTTestCase {
 
         assertEquals(expected, uri);
     }
+
+    public void testCommaSeparatedStrategy() {
+        String expected = "http://user:pwd@localhost:8888/server/root;class=2,5,6" +
+                "/child;group=A;subGroup=A.1,A.2?age=12&name=Aa,Zz#first";
+
+        String uri = new UriBuilderImpl()
+                .multipleParamStrategy(MultipleParamStrategy.COMMA_SEPARATED)
+                .scheme("http")
+                .userInfo("user:pwd")
+                .host("localhost")
+                .port(8888)
+                .path("server")
+                .segment("root")
+                .matrixParam("class", 2, 5, 6)
+                .segment("child")
+                .matrixParam("group", "A")
+                .matrixParam("subGroup", "A.1", "A.2")
+                .queryParam("age", 12)
+                .queryParam("name", "Aa", "Zz")
+                .fragment("first")
+                .build();
+
+        assertEquals(expected, uri);
+    }
 }
