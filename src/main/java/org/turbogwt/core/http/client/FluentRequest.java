@@ -37,7 +37,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      */
     FluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
             throws IllegalArgumentException;
-    
+
     /**
      * Set the URI scheme.
      *

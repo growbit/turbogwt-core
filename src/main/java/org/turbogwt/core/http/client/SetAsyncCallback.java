@@ -21,6 +21,8 @@ import java.util.Set;
 /**
  * {@link CollectionAsyncCallback} for the {@link Set} type.
  *
+ * @param <T> The parametrized type of the Set.
+ *
  * @author Danilo Reinert
  */
 public abstract class SetAsyncCallback<T> extends CollectionAsyncCallback<Set<T>, T> {

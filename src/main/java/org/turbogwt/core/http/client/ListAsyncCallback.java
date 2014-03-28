@@ -21,6 +21,8 @@ import java.util.List;
 /**
  * {@link CollectionAsyncCallback} for the {@link List} type.
  *
+ * @param <T> The parametrized type of the List.
+ *
  * @author Danilo Reinert
  */
 public abstract class ListAsyncCallback<T> extends CollectionAsyncCallback<List<T>, T> {

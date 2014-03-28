@@ -90,7 +90,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if strategy is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+            throws IllegalArgumentException {
         uriBuilder.multipleParamStrategy(strategy);
         return this;
     }
@@ -167,7 +168,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> segment(String... segments) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> segment(String... segments)
+            throws IllegalArgumentException {
         uriBuilder.segment(segments);
         return this;
     }
@@ -188,7 +190,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values)
+            throws IllegalArgumentException {
         uriBuilder.matrixParam(name, values);
         return this;
     }
@@ -206,7 +209,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if name or values is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values) throws IllegalArgumentException {
+    public AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values)
+            throws IllegalArgumentException {
         uriBuilder.queryParam(name, values);
         return this;
     }
