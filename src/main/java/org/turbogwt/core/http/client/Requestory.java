@@ -35,32 +35,15 @@ public class Requestory {
     private final SerdesManager serdesManager = new SerdesManager();
     private MultipleParamStrategy defaultStrategy;
 
-    public <RequestType, ResponseType> FluentRequest<RequestType, ResponseType> sendingAndReceiving(
-            Class<RequestType> requestType, Class<ResponseType> responseType) {
+    public <RequestType, ResponseType> FluentRequest<RequestType, ResponseType> request(Class<RequestType> requestType,
+                                                                                     Class<ResponseType> responseType) {
         return createFluentRequestImpl(requestType, responseType, defaultStrategy);
     }
 
-    public <RequestType, ResponseType> FluentRequest<RequestType, ResponseType> sendingAndReceiving(
-            Class<RequestType> requestType, Class<ResponseType> responseType, MultipleParamStrategy strategy) {
+    public <RequestType, ResponseType> FluentRequest<RequestType, ResponseType> request(Class<RequestType> requestType,
+                                                                                       Class<ResponseType> responseType,
+                                                                                       MultipleParamStrategy strategy) {
         return createFluentRequestImpl(requestType, responseType, strategy);
-    }
-
-    public <RequestType> FluentRequest<RequestType, Void> sending(Class<RequestType> requestType) {
-        return createFluentRequestImpl(requestType, Void.class, defaultStrategy);
-    }
-
-    public <RequestType> FluentRequest<RequestType, Void> sending(Class<RequestType> requestType,
-                                                             MultipleParamStrategy strategy) {
-        return createFluentRequestImpl(requestType, Void.class, strategy);
-    }
-
-    public <ResponseType> FluentRequest<Void, ResponseType> receiving(Class<ResponseType> responseType) {
-        return createFluentRequestImpl(Void.class, responseType, defaultStrategy);
-    }
-
-    public <ResponseType> FluentRequest<Void, ResponseType> receiving(Class<ResponseType> responseType,
-                                                  MultipleParamStrategy strategy) {
-        return createFluentRequestImpl(Void.class, responseType, strategy);
     }
 
     public FluentRequest<Void, Void> request() {
@@ -75,12 +58,10 @@ public class Requestory {
         return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).get();
     }
 
-    public <ResponseType> Request get(Class<ResponseType> responseType, String uri,
+    public <ResponseType> Request get(String uri, Class<ResponseType> responseType,
                                       AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
     }
-
-    // TODO: easily support any object on JsArray and impement List<> in the overlay type
 
     /*
     @Override
