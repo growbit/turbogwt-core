@@ -21,10 +21,22 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Collection;
 
 /**
+ * Super class of all callbacks intended to receive result as collection of objects.
+ *
+ * @param <T> The parametrized type of the collection
+ *
  * @author Danilo Reinert
  */
 public abstract class CollectionAsyncCallback<C extends Collection<T>, T> implements AsyncCallback<C> {
 
+    /**
+     * Returns the collection type which this callback expects.
+     * <p/>
+     * IMPORTANT! You should override this method to return the specific class
+     * you want to receive at #onSuccess.
+     *
+     * @return The collection type which this callback expects.
+     */
     public Class<? super C> getCollectionClass() {
         return Collection.class;
     }

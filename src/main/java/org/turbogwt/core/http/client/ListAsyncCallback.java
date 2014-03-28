@@ -19,6 +19,8 @@ package org.turbogwt.core.http.client;
 import java.util.List;
 
 /**
+ * {@link CollectionAsyncCallback} for the {@link List} type.
+ *
  * @author Danilo Reinert
  */
 public abstract class ListAsyncCallback<T> extends CollectionAsyncCallback<List<T>, T> {
