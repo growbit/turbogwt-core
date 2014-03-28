@@ -224,18 +224,6 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
         return this;
     }
 
-    /*
-    **
-     * Se the responseSerializer for handling request/response body.
-     *
-     * @param responseSerializer the responseSerializer of ResponseType.
-     *
-    public FluentRequest responseSerializer(Serializer<ResponseType> responseSerializer) {
-        this.responseSerializer = responseSerializer;
-        return this;
-    }
-    */
-
     /**
      * Deserialize result to T.
      *
@@ -513,12 +501,14 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
                 // Successful response
                 if (code.startsWith("2")) {
                     final String body = response.getText();
-                    if (body != null && !body.isEmpty()) {
-                        Headers responseHeaders = mountHeadersFromResponse(response);
-                        // Check AsyncCallback type in order to correctly deserialize
-                        deserializeAndCallOnSuccess(body, responseHeaders, resultCallback);
-                    } else {
-                        if (resultCallback != null) resultCallback.onSuccess(null);
+                    if (resultCallback != null) {
+                        if (body != null && !body.isEmpty()) {
+                            Headers responseHeaders = mountHeadersFromResponse(response);
+                            // Check AsyncCallback type in order to correctly deserialize
+                            deserializeAndCallOnSuccess(body, responseHeaders, resultCallback);
+                        } else {
+                            resultCallback.onSuccess(null);
+                        }
                     }
                     return;
                 }
@@ -566,6 +556,11 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
         }
     }
 
+    /**
+     * Get the HTTP codes registered with special callbacks in order of priority from the most specific to the least.
+     *
+     * @return The registered codes as an array of String.
+     */
     private JsArrayString getMappedCodes() {
         JsArrayString codes = Overlays.getOwnPropertyNames(mappedCallbacks, true);
         // Reverse order to check from most specific to generic
@@ -582,24 +577,34 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
         return responseHeaders;
     }
 
+    /**
+     * Performs deserialization of the HTTP body checking whether it should be deserialized into a Collection or a
+     * single Object.
+     *
+     * @param body The content from HTTP response.
+     * @param responseHeaders The headers from HTTP response.
+     * @param resultCallback The user callback.
+     */
     private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
-                                             @Nullable AsyncCallback<ResponseType> resultCallback) {
-        // Deserializer init was verified on construction
-        if (resultCallback != null) {
-            if (resultCallback instanceof CollectionAsyncCallback) {
-                CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
-                        (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
-                @SuppressWarnings("unchecked")
-                Collection<ResponseType> col = (Collection<ResponseType>)
-                        responseDeserializer.deserializeAsCollection(cac.getCollectionClass(), body, headers);
-                cac.onSuccess(col);
-            } else {
-                ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
-                resultCallback.onSuccess(result);
-            }
+                                             AsyncCallback<ResponseType> resultCallback) {
+        if (resultCallback instanceof CollectionAsyncCallback) {
+            CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
+                    (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
+            @SuppressWarnings("unchecked")
+            Collection<ResponseType> col = (Collection<ResponseType>)
+                    responseDeserializer.deserializeAsCollection(cac.getCollectionClass(), body, headers);
+            cac.onSuccess(col);
+        } else {
+            ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
+            resultCallback.onSuccess(result);
         }
     }
 
+    /**
+     * Copies all internal fields to a new {@link FluentRequestImpl} instance.
+     *
+     * @param newReq The new instance.
+     */
     private void copyFieldsTo(FluentRequestImpl<?, ?> newReq) {
         newReq.uriBuilder = uriBuilder;
         newReq.uri = uri;
