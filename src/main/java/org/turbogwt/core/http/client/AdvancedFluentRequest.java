@@ -118,7 +118,8 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values) throws IllegalArgumentException;
+    AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values)
+            throws IllegalArgumentException;
 
     /**
      * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
@@ -133,7 +134,8 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if name or values is null
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values) throws IllegalArgumentException;
+    AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values)
+            throws IllegalArgumentException;
 
     /**
      * Set the URI fragment.
@@ -208,7 +210,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @param statusCode    the unit, dozen or hundred expected on response's status code.
      * @param callback      the callback to handle informed code
      */
-    public AdvancedFluentRequest<RequestType, ResponseType> on(int statusCode, SingleCallback callback);
+    AdvancedFluentRequest<RequestType, ResponseType> on(int statusCode, SingleCallback callback);
 
     /**
      * Deserialize result to T.
@@ -218,7 +220,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return The new FluentRequest capable of deserializing T.
      * @throws IllegalArgumentException if no Deserializer is registered for type T.
      */
-    public <T> AdvancedFluentRequest<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException;
+    <T> AdvancedFluentRequest<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException;
 
     /**
      * Serialize request data from T.
@@ -228,7 +230,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return The new FluentRequest capable of serializing T.
      * @throws IllegalArgumentException if no Serializer is registered for type T.
      */
-    public <T> AdvancedFluentRequest<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException;
+    <T> AdvancedFluentRequest<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException;
 
     /**
      * Serialize and Deserialize transmitting data from/to T.
@@ -238,5 +240,5 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return The new FluentRequest capable of de/serializing T.
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
      */
-    public <T> AdvancedFluentRequest<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;
+    <T> AdvancedFluentRequest<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;
 }
