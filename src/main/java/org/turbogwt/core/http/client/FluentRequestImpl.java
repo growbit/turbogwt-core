@@ -16,6 +16,7 @@
 
 package org.turbogwt.core.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.http.client.Header;
 import com.google.gwt.http.client.Request;
@@ -76,7 +77,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
         }
 
         this.serdesManager = serdesManager;
-        this.uriBuilder = new UriBuilderImpl();
+        this.uriBuilder = GWT.create(UriBuilder.class);
     }
 
     /**
@@ -528,36 +529,20 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
             }
         };
 
+        // If the uri was not set via #setUri, then build it.
         if (uri == null) uri = uriBuilder.build();
-        RequestBuilder requestBuilder = new RequestBuilder(method, uri);
-        uri = null; // Avoid caching problems. TODO: add caching capabilities to UriBuilderImpl
-        requestBuilder.setCallback(callback);
 
-        // Handle request parameters
-        configureRequestBuilder(requestBuilder);
-        requestBuilder.setRequestData(body);
+        ServerConnection connection = GWT.create(ServerConnection.class);
 
         try {
-            return requestBuilder.send();
+            connection.sendRequest(timeout, user, password, headers, method, uri, body, callback);
         } catch (RequestException e) {
             if (resultCallback != null) resultCallback.onFailure(e);
+        } finally {
+            uri = null; // Avoid caching problems. TODO: add caching capabilities to UriBuilderImpl
         }
 
         return null;
-    }
-
-    private void configureRequestBuilder(RequestBuilder requestBuilder) {
-        if (timeout > 0) requestBuilder.setTimeoutMillis(timeout);
-        if (user != null) requestBuilder.setUser(user);
-        if (password != null) requestBuilder.setPassword(password);
-        if (user != null && password != null) requestBuilder.setIncludeCredentials(true);
-        if (headers != null) {
-            JsArrayString names = Overlays.getOwnPropertyNames(headers);
-            for (int i = 0; i < names.length(); i++) {
-                String header = names.get(i);
-                requestBuilder.setHeader(header, headers.get(header));
-            }
-        }
     }
 
     /**
@@ -595,9 +580,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
             CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
                     (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
             @SuppressWarnings("unchecked")
-            Collection<ResponseType> col = (Collection<ResponseType>)
-                    responseDeserializer.deserializeAsCollection(cac.getCollectionClass(), body, headers);
-            cac.onSuccess(col);
+            Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getCollectionClass();
+            cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body, headers));
         } else {
             ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
             resultCallback.onSuccess(result);
