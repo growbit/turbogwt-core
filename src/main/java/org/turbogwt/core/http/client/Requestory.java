@@ -43,6 +43,7 @@ public class Requestory {
     private MultipleParamStrategy defaultStrategy;
 
     public Requestory() {
+        defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
         serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
         serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
     }
