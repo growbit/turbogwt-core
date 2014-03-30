@@ -41,6 +41,7 @@ public interface Deserializer<T> {
     /**
      * Deserialize the plain text into an object of type T.
      *
+     * @param collectionType The class of the collection.
      * @param response  Http response body content.
      * @param headers   Http response headers.
      * @return The object deserialized.
