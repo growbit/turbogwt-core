@@ -28,7 +28,11 @@ public final class PersonJso extends JavaScriptObject {
     protected PersonJso() {
     }
 
-    public static native PersonJso create(int id, String name, double weight, Date birthday)/*-{
+    public static PersonJso create(int id, String name, double weight, Date birthday) {
+        return create(id, name, weight, birthday.getTime());
+    }
+
+    private static native PersonJso create(int id, String name, double weight, double birthday) /*-{
         return {id: id, name: name, weight: weight, birthday: birthday};
     }-*/;
 
