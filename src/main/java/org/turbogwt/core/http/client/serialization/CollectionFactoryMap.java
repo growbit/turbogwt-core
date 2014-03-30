@@ -32,7 +32,7 @@ import org.turbogwt.core.js.collections.client.JsMap;
  *
  * @author Danilo Reinert
  */
-public final class CollectionInitMap {
+public final class CollectionFactoryMap {
 
     /**
      * It is a simple class intended to create instances of some type.
