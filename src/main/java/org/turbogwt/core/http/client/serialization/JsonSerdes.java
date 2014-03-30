@@ -21,6 +21,10 @@ import java.util.Collection;
 import org.turbogwt.core.http.client.Headers;
 
 /**
+ * Base class for all Serdes that manipulates serialized JSON.
+ *
+ * @param <T>   Type of the object to be serialized/deserialized.
+ *
  * @author Danilo Reinert
  */
 public abstract class JsonSerdes<T> implements Serdes<T> {
@@ -28,8 +32,9 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     /**
      * Given a collection class, returns a new instance of it.
      *
-     * @param collectionType The class of the collection.
-     * @param <C> The type of the collection.
+     * @param collectionType    The class of the collection.
+     * @param <C>               The type of the collection.
+     *
      * @return A new instance to the collection.
      */
     public <C extends Collection<T>> C getCollectionInstance(Class<C> collectionType) {
@@ -37,7 +42,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
         if (col == null)
             throw new UnableToDeserializeException("Could not instantiate the given collection type.");
         return col;
-    };
+    }
 
     /**
      * Serialize a collection of T to plain text.
@@ -54,7 +59,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
         for (T t : c) {
             serialized.append(serialize(t, headers));
         }
-        serialized.setCharAt(serialized.length()-1, ']');
+        serialized.setCharAt(serialized.length() - 1, ']');
         return serialized.toString();
     }
 

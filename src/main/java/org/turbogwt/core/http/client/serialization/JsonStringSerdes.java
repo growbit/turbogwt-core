@@ -19,6 +19,8 @@ package org.turbogwt.core.http.client.serialization;
 import org.turbogwt.core.http.client.Headers;
 
 /**
+ * Serdes of JSON strings.
+ *
  * @author Danilo Reinert
  */
 public class JsonStringSerdes extends JsonValueSerdes<String> {
@@ -40,7 +42,7 @@ public class JsonStringSerdes extends JsonValueSerdes<String> {
     @Override
     public String deserialize(String response, Headers headers) {
         // Remove quotation marks from the content.
-        return response.substring(1, response.length()-1);
+        return response.substring(1, response.length() - 1);
     }
 
     /**

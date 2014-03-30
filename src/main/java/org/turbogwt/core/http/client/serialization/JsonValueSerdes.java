@@ -21,6 +21,10 @@ import java.util.Collection;
 import org.turbogwt.core.http.client.Headers;
 
 /**
+ * Base class for all Serdes that manipulates serialized JSON simple values.
+ *
+ * @param <T>   Type of the object to serialize/deserialize.
+ *
  * @author Danilo Reinert
  */
 public abstract class JsonValueSerdes<T> extends JsonSerdes<T> {
