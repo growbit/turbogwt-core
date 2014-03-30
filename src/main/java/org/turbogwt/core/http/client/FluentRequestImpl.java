@@ -364,6 +364,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request get(A callback) {
+        return send(RequestBuilder.GET, (String) null, callback);
+    }
+
+    @Override
     public Request get() {
         return send(RequestBuilder.GET, (String) null, null);
     }
@@ -379,7 +385,20 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
+    public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C data, A callback) {
+        return send(RequestBuilder.POST, data, callback);
+    }
+
+
+    @Override
     public Request post(AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.POST, (String) null, callback);
+    }
+
+    @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request post(A callback) {
         return send(RequestBuilder.POST, (String) null, callback);
     }
 
@@ -399,7 +418,20 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
+    public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request put(C data, A callback) {
+        return send(RequestBuilder.PUT, data, callback);
+    }
+
+
+    @Override
     public Request put(AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.PUT, (String) null, callback);
+    }
+
+    @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request put(A callback) {
         return send(RequestBuilder.PUT, (String) null, callback);
     }
 
@@ -414,12 +446,24 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request delete(A callback) {
+        return send(RequestBuilder.DELETE, (String) null, callback);
+    }
+
+    @Override
     public Request delete() {
         return send(RequestBuilder.DELETE, (String) null, null);
     }
 
     @Override
     public Request head(AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.HEAD, (String) null, callback);
+    }
+
+    @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request head(A callback) {
         return send(RequestBuilder.HEAD, (String) null, callback);
     }
 
@@ -448,7 +492,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     private <C extends Collection<RequestType>> Request send(RequestBuilder.Method method,
                                                              @Nullable C dataCollection,
-                                                             @Nullable AsyncCallback<ResponseType> resultCallback) {
+                                                             @Nullable AsyncCallback resultCallback) {
         String body = null;
         if (dataCollection != null) {
             // Serializer init was verified on construction
@@ -465,7 +509,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @param resultCallback    The user callback.
      */
     private Request send(RequestBuilder.Method method, @Nullable RequestType data,
-                         @Nullable AsyncCallback<ResponseType> resultCallback) {
+                         @Nullable AsyncCallback resultCallback) {
         String body = null;
         if (data != null) {
             // Serializer init was verified on construction
@@ -482,7 +526,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @param resultCallback    The user callback.
      */
     private Request send(RequestBuilder.Method method, @Nullable String body,
-                         @Nullable final AsyncCallback<ResponseType> resultCallback) {
+                         @Nullable final AsyncCallback resultCallback) {
         // Prepare callback for following request builder
         RequestCallback callback = new RequestCallback() {
             @Override
@@ -574,18 +618,35 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @param responseHeaders The headers from HTTP response.
      * @param resultCallback The user callback.
      */
+    @SuppressWarnings("unchecked")
     private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
-                                             AsyncCallback<ResponseType> resultCallback) {
+                                             AsyncCallback resultCallback) {
         if (resultCallback instanceof CollectionAsyncCallback) {
             CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
                     (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
-            @SuppressWarnings("unchecked")
             Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getCollectionClass();
             cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body, headers));
         } else {
             ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
             resultCallback.onSuccess(result);
         }
+    }
+
+    /**
+     * Performs deserialization of the HTTP body checking whether it should be deserialized into a Collection or a
+     * single Object.
+     *
+     * @param body The content from HTTP response.
+     * @param responseHeaders The headers from HTTP response.
+     * @param resultCallback The user callback.
+     */
+    @SuppressWarnings("unchecked")
+    private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
+                                           CollectionAsyncCallback<? extends Collection, ResponseType> resultCallback) {
+        CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
+                (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
+        Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getCollectionClass();
+        cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body, responseHeaders));
     }
 
     /**

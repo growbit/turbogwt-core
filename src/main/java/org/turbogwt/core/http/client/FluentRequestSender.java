@@ -241,4 +241,6 @@ public interface FluentRequestSender<RequestType, ResponseType> extends FluentRe
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
      */
     <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;
+
+    // TODO: Support directly setting serializer/deserializer?
 }

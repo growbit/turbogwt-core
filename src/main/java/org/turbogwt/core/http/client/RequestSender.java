@@ -33,13 +33,20 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request get(AsyncCallback<ResponseType> callback);
 
+    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request get(A callback);
+
     Request get();
 
     Request post(RequestType data, AsyncCallback<ResponseType> callback);
 
     <C extends Collection<RequestType>> Request post(C data, AsyncCallback<ResponseType> callback);
 
+    <C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C data, A callback);
+
     Request post(AsyncCallback<ResponseType> callback);
+
+    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request post(A callback);
 
     Request post();
 
@@ -47,15 +54,24 @@ public interface RequestSender<RequestType, ResponseType> {
 
     <C extends Collection<RequestType>> Request put(C data, AsyncCallback<ResponseType> callback);
 
+    <C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request put(C data, A callback);
+
     Request put(AsyncCallback<ResponseType> callback);
+
+    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request put(A callback);
 
     Request put();
 
     Request delete(AsyncCallback<ResponseType> callback);
 
+    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request delete(A callback);
+
     Request delete();
 
     Request head(AsyncCallback<ResponseType> callback);
+
+    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request head(A callback);
 
     Request head();
 }

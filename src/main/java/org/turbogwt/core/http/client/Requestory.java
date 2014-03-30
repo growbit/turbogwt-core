@@ -23,6 +23,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Collection;
 
 import org.turbogwt.core.http.client.serialization.Deserializer;
+import org.turbogwt.core.http.client.serialization.JsonStringSerdes;
 import org.turbogwt.core.http.client.serialization.OverlaySerdes;
 import org.turbogwt.core.http.client.serialization.Serdes;
 import org.turbogwt.core.http.client.serialization.SerdesManager;
@@ -44,6 +45,7 @@ public class Requestory {
 
     public Requestory() {
         defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
+        serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
         serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
         serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
     }
@@ -78,6 +80,12 @@ public class Requestory {
     /* GET */
     public <ResponseType> Request get(String uri, Class<ResponseType> responseType,
                                       AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
+    }
+
+    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request get(String uri, Class<ResponseType> responseType,
+                        A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
     }
     
