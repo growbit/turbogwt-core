@@ -27,7 +27,9 @@ import java.util.List;
 
 import org.turbogwt.core.http.client.mock.ResponseMock;
 import org.turbogwt.core.http.client.mock.ServerConnectionMock;
+import org.turbogwt.core.http.client.model.Person;
 import org.turbogwt.core.http.client.model.PersonJso;
+import org.turbogwt.core.http.client.serialization.JsonObjectSerdes;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 
@@ -169,6 +171,50 @@ public class FluentRequestImplTest extends GWTTestCase {
             public void onSuccess(List<PersonJso> result) {
                 JsArray<PersonJso> resultArray = ((JsArrayList<PersonJso>) result).asJsArray();
                 assertEquals(Overlays.stringify(persons), Overlays.stringify(resultArray));
+                callbackSuccessCalled[0] = true;
+            }
+        });
+
+        assertTrue(callbackSuccessCalled[0]);
+    }
+
+
+    public void testCustomObjectRequest() {
+        final Requestory requestory = new Requestory();
+        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
+
+            @Override
+            public Person mapFromOverlay(JavaScriptObject overlay, Headers headers) {
+                return new Person(Overlays.getPropertyAsInt(overlay, "id"),
+                        Overlays.getPropertyAsString(overlay, "name"),
+                        Overlays.getPropertyAsDouble(overlay, "weight"),
+                        new Date((long) Overlays.getPropertyAsDouble(overlay, "birthday")));
+            }
+
+            @Override
+            public String serialize(Person person, Headers headers) {
+                return "{" + "\"id\":" + person.getId() + ",\"name\":\"" + person.getName() + "\"," +
+                        "\"weight\":" + person.getWeight() + ",\"birthday\":" + person.getBirthday().getTime() + "}";
+            }
+        });
+
+        final String uri = "/person";
+
+        final Person person = new Person(1, "John Doe", 6.3, new Date(329356800));
+        final String serializedResponse = "{\"id\":1, \"name\":\"John Doe\", \"weight\":6.3, \"birthday\":329356800}";
+
+        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        requestory.get(uri, Person.class, new AsyncCallback<Person>() {
+            @Override
+            public void onFailure(Throwable caught) {
+            }
+
+            @Override
+            public void onSuccess(Person result) {
+                assertEquals(person, result);
                 callbackSuccessCalled[0] = true;
             }
         });

@@ -50,4 +50,43 @@ public class Person {
     public Date getBirthday() {
         return birthday;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Person)) {
+            return false;
+        }
+
+        final Person person = (Person) o;
+
+        if (id != person.id) {
+            return false;
+        }
+        if (Double.compare(person.weight, weight) != 0) {
+            return false;
+        }
+        if (!birthday.equals(person.birthday)) {
+            return false;
+        }
+        if (!name.equals(person.name)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + name.hashCode();
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + birthday.hashCode();
+        return result;
+    }
 }
