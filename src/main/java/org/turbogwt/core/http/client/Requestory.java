@@ -23,6 +23,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Collection;
 
 import org.turbogwt.core.http.client.serialization.Deserializer;
+import org.turbogwt.core.http.client.serialization.JsonBooleanSerdes;
+import org.turbogwt.core.http.client.serialization.JsonNumberSerdes;
 import org.turbogwt.core.http.client.serialization.JsonStringSerdes;
 import org.turbogwt.core.http.client.serialization.OverlaySerdes;
 import org.turbogwt.core.http.client.serialization.Serdes;
@@ -46,6 +48,8 @@ public class Requestory {
     public Requestory() {
         defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
         serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
+        serdesManager.registerSerdes(Number.class, JsonNumberSerdes.getInstance());
+        serdesManager.registerSerdes(Boolean.class, JsonBooleanSerdes.getInstance());
         serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
         serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
     }

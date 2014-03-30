@@ -19,41 +19,41 @@ package org.turbogwt.core.http.client.serialization;
 import org.turbogwt.core.http.client.Headers;
 
 /**
- * Serdes of JSON strings.
+ * Serdes of JSON booleans.
  *
  * @author Danilo Reinert
  */
-public class JsonStringSerdes extends JsonValueSerdes<String> {
+public class JsonBooleanSerdes extends JsonValueSerdes<Boolean> {
 
-    private static JsonStringSerdes INSTANCE = new JsonStringSerdes();
+    private static JsonBooleanSerdes INSTANCE = new JsonBooleanSerdes();
 
-    public static JsonStringSerdes getInstance() {
+    public static JsonBooleanSerdes getInstance() {
         return INSTANCE;
     }
 
     /**
-     * Deserialize the plain text into a String.
+     * Deserialize the plain text into a Boolean.
      *
      * @param response Http response body content.
      * @param headers  Http response headers.
      *
-     * @return The string deserialized.
+     * @return The object deserialized.
      */
     @Override
-    public String deserialize(String response, Headers headers) {
-        return response.substring(1, response.length() - 1);
+    public Boolean deserialize(String response, Headers headers) {
+        return Boolean.valueOf(response);
     }
 
     /**
-     * Serialize String to plain text.
+     * Serialize Boolean to plain text.
      *
-     * @param s       The string to be serialized.
+     * @param b       The boolean to be serialized.
      * @param headers Http headers from current request.
      *
-     * @return The string serialized.
+     * @return The object serialized.
      */
     @Override
-    public String serialize(String s, Headers headers) {
-        return "\"" + s + "\"";
+    public String serialize(Boolean b, Headers headers) {
+        return String.valueOf(b);
     }
 }
