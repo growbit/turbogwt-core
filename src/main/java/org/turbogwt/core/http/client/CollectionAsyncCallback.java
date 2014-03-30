@@ -23,7 +23,8 @@ import java.util.Collection;
 /**
  * Super class of all callbacks intended to receive result as collection of objects.
  *
- * @param <T> The parametrized type of the collection
+ * @param <T>   The parametrized type of the collection
+ * @param <C>   The type of the collection.
  *
  * @author Danilo Reinert
  */

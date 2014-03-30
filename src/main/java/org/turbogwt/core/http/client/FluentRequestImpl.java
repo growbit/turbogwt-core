@@ -390,7 +390,6 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         return send(RequestBuilder.POST, data, callback);
     }
 
-
     @Override
     public Request post(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.POST, (String) null, callback);
@@ -422,7 +421,6 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             A extends CollectionAsyncCallback<B, ResponseType>> Request put(C data, A callback) {
         return send(RequestBuilder.PUT, data, callback);
     }
-
 
     @Override
     public Request put(AsyncCallback<ResponseType> callback) {

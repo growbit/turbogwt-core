@@ -38,8 +38,8 @@ public interface FluentRequestSender<RequestType, ResponseType> extends FluentRe
      */
     @Override
     FluentRequestSender<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
-            throws IllegalArgumentException;
-    
+        throws IllegalArgumentException;
+
     /**
      * Set the URI scheme.
      *

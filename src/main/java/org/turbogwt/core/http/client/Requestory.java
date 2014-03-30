@@ -84,11 +84,10 @@ public class Requestory {
     }
 
     public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request get(String uri, Class<ResponseType> responseType,
-                        A callback) {
+            Request get(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
     }
-    
+
     public Request get(String uri) {
         return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).get();
     }
@@ -126,10 +125,10 @@ public class Requestory {
     }
 
     public <RequestType, C extends Collection<RequestType>, ResponseType> Request put(String uri,
-                                                                                       Class<RequestType> requestType,
-                                                                                       C dataCollection,
-                                                                                       Class<ResponseType> responseType,
-                                                                                       AsyncCallback<ResponseType> callback) {
+                                                                                      Class<RequestType> requestType,
+                                                                                      C dataCollection,
+                                                                                      Class<ResponseType> responseType,
+                                                                                 AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
                 .put(dataCollection, callback);
     }
@@ -187,8 +186,10 @@ public class Requestory {
         serdesManager.registerSerdes(type, serdes);
     }
 
-    private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType> createFluentRequestImpl
-            (Class<RequestType> requestType, Class<ResponseType> responseType, MultipleParamStrategy strategy) {
+    private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType>
+        createFluentRequestImpl(Class<RequestType> requestType,
+                                Class<ResponseType> responseType,
+                                MultipleParamStrategy strategy) {
         final FluentRequestImpl<RequestType, ResponseType> request = new
                 FluentRequestImpl<>(serdesManager, requestType, responseType);
         request.multipleParamStrategy(strategy);
