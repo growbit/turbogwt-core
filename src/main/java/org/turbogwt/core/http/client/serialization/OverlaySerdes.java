@@ -73,16 +73,18 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
     @Override
     public String serializeFromCollection(Collection<T> c, Headers headers) {
         if (c instanceof JsArrayList) {
-            return Overlays.stringify(((JsArrayList<T>)c).asJsArray());
+            return Overlays.stringify(((JsArrayList<T>) c).asJsArray());
         }
 
         if (c instanceof JavaScriptObject) {
-            return Overlays.stringify((JavaScriptObject)c);
+            return Overlays.stringify((JavaScriptObject) c);
         }
 
         @SuppressWarnings("unchecked")
         JsArray<T> jsArray = (JsArray<T>) JsArray.createArray();
-        for (T t : c) jsArray.push(t);
+        for (T t : c) {
+            jsArray.push(t);
+        }
         return Overlays.stringify(jsArray);
     }
 

@@ -46,7 +46,6 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.get(uri, Void.class, new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
-
             }
 
             @Override
@@ -72,7 +71,6 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.get(uri, String.class, new AsyncCallback<String>() {
             @Override
             public void onFailure(Throwable caught) {
-
             }
 
             @Override
@@ -99,7 +97,6 @@ public class FluentRequestImplTest extends GWTTestCase {
 
             @Override
             public void onFailure(Throwable caught) {
-
             }
 
             @Override

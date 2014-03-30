@@ -28,17 +28,22 @@ import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.http.client.ServerConnection;
 
 /**
+ * A mock of {@link ServerConnection}.
+ *
+ * You should add expected {@link Response}s to the underlying server stub with #responseFor
+ * in order to mock responses from server.
+ *
  * @author Danilo Reinert
  */
 public class ServerConnectionMock implements ServerConnection {
 
-    private static Map<String, Response> responseMap = new HashMap<>();
-
-    public static void responseFor(String uri, Response response) {
-        responseMap.put(uri, response);
-    }
+    private static Map<String, Response> serverStub = new HashMap<>();
 
     private boolean returnSuccess = true;
+
+    public static void responseFor(String uri, Response response) {
+        serverStub.put(uri, response);
+    }
 
     public boolean isReturnSuccess() {
         return returnSuccess;
@@ -52,7 +57,7 @@ public class ServerConnectionMock implements ServerConnection {
     public void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
             throws RequestException {
         if (returnSuccess) {
-            callback.onResponseReceived(null, responseMap.get(url));
+            callback.onResponseReceived(null, serverStub.get(url));
         } else {
             callback.onError(null, new RequestException("This is a mock exception."));
         }
@@ -62,7 +67,7 @@ public class ServerConnectionMock implements ServerConnection {
     public void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
                             String url, String data, RequestCallback callback) throws RequestException {
         if (returnSuccess) {
-            callback.onResponseReceived(null, responseMap.get(url));
+            callback.onResponseReceived(null, serverStub.get(url));
         } else {
             callback.onError(null, new RequestException("This is a mock exception."));
         }

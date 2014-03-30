@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * A mock of {@link com.google.gwt.http.client.Response}.
+ *
  * @author Danilo Reinert
  */
 public class ResponseMock extends Response {
@@ -83,6 +85,9 @@ public class ResponseMock extends Response {
         return text;
     }
 
+    /**
+     * A builder of {@link ResponseMock}.
+     */
     public static class Builder {
         private String text;
         private int statusCode;
