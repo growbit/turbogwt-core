@@ -21,9 +21,7 @@ import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsonUtils;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.js.client.Overlays;
@@ -57,15 +55,14 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
         JsArray<T> jsArray = JsonUtils.safeEval(response);
         if (collectionType.equals(List.class) || collectionType.equals(Collection.class)) {
             return (C) new JsArrayList<>(jsArray);
-        } else if (collectionType.equals(Set.class)) {
-            Set set = new HashSet(jsArray.length());
+        } else {
+            C col = getCollectionInstance(collectionType);
             for (int i = 0; i < jsArray.length(); i++) {
                 T t = jsArray.get(i);
-                set.add(t);
+                col.add(t);
             }
-            return (C) set;
+            return col;
         }
-        throw new UnableToDeserializeException("The class " + collectionType.getName() + " is not supported.");
     }
 
     @Override
@@ -87,5 +84,21 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
         JsArray<T> jsArray = (JsArray<T>) JsArray.createArray();
         for (T t : c) jsArray.push(t);
         return Overlays.stringify(jsArray);
+    }
+
+    /**
+     * Given a collection class, returns a new instance of it.
+     * You should override this method in order to additionally support other collection types.
+     * WARNING! If you override this method, you MUST call return super(), at the final.
+     *
+     * @param collectionType The class of the collection.
+     * @param <C> The type of the collection.
+     * @return A new instance to the collection.
+     */
+    protected <C extends Collection<T>> C getCollectionInstance(Class<C> collectionType) {
+        final CollectionInitMap.Factory<C> factory = CollectionInitMap.getFactory(collectionType);
+        if (factory == null)
+            throw new UnableToDeserializeException("Could not instantiate the given collection type.");
+        return factory.create();
     }
 }
