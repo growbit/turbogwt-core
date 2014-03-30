@@ -24,7 +24,7 @@ package org.turbogwt.core.http.client;
  *
  * @author Danilo Reinert
  */
-public interface AdvancedFluentRequest<RequestType, ResponseType> extends FluentRequest<RequestType, ResponseType>,
+public interface FluentRequestSender<RequestType, ResponseType> extends FluentRequest<RequestType, ResponseType>,
         RequestSender<RequestType, ResponseType> {
 
     /**
@@ -37,7 +37,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if strategy is null
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+    FluentRequestSender<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
             throws IllegalArgumentException;
     
     /**
@@ -50,7 +50,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if scheme is invalid
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException;
 
     /**
      * Set the URI host.
@@ -62,7 +62,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if host is invalid.
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> host(String host) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> host(String host) throws IllegalArgumentException;
 
     /**
      * Set the URI port.
@@ -74,7 +74,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if port is invalid
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> port(int port) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> port(int port) throws IllegalArgumentException;
 
     /**
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
@@ -85,7 +85,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return the updated AdvancedFluentRequest<RequestType, ResponseType>
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> path(String path);
+    FluentRequestSender<RequestType, ResponseType> path(String path);
 
     /**
      * Append path segments to the existing path. When constructing the final path, a '/' separator will be inserted
@@ -100,7 +100,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> segment(String... segments) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> segment(String... segments) throws IllegalArgumentException;
 
     /**
      * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
@@ -118,7 +118,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values)
+    FluentRequestSender<RequestType, ResponseType> matrixParam(String name, Object... values)
             throws IllegalArgumentException;
 
     /**
@@ -134,7 +134,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if name or values is null
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values)
+    FluentRequestSender<RequestType, ResponseType> queryParam(String name, Object... values)
             throws IllegalArgumentException;
 
     /**
@@ -145,7 +145,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return the updated AdvancedFluentRequest<RequestType, ResponseType>
      */
     @Override
-    AdvancedFluentRequest<RequestType, ResponseType> fragment(String fragment);
+    FluentRequestSender<RequestType, ResponseType> fragment(String fragment);
 
     /**
      * Sets a request header with the given name and value. If a header with the
@@ -158,7 +158,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws NullPointerException if header or value are null
      * @throws IllegalArgumentException if header or value are the empty string
      */
-    AdvancedFluentRequest<RequestType, ResponseType> header(String header, String value);
+    FluentRequestSender<RequestType, ResponseType> header(String header, String value);
 
     /**
      * Sets the user name that will be used in the request URL.
@@ -168,7 +168,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if the user is empty
      * @throws NullPointerException if the user is null
      */
-    AdvancedFluentRequest<RequestType, ResponseType> user(String user);
+    FluentRequestSender<RequestType, ResponseType> user(String user);
 
     /**
      * Sets the password to use in the request URL. This is ignored if there is no
@@ -179,7 +179,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @throws IllegalArgumentException if the password is empty
      * @throws NullPointerException if the password is null
      */
-    AdvancedFluentRequest<RequestType, ResponseType> password(String password);
+    FluentRequestSender<RequestType, ResponseType> password(String password);
 
     /**
      * Sets the number of milliseconds to wait for a request to complete. Should
@@ -196,7 +196,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      *
      * @throws IllegalArgumentException if the timeout value is negative
      */
-    AdvancedFluentRequest<RequestType, ResponseType> timeout(int timeoutMillis);
+    FluentRequestSender<RequestType, ResponseType> timeout(int timeoutMillis);
 
     /**
      * Set a callback to handle specific HTTP status code response.
@@ -210,7 +210,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @param statusCode    the unit, dozen or hundred expected on response's status code.
      * @param callback      the callback to handle informed code
      */
-    AdvancedFluentRequest<RequestType, ResponseType> on(int statusCode, SingleCallback callback);
+    FluentRequestSender<RequestType, ResponseType> on(int statusCode, SingleCallback callback);
 
     /**
      * Deserialize result to T.
@@ -220,7 +220,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return The new FluentRequest capable of deserializing T.
      * @throws IllegalArgumentException if no Deserializer is registered for type T.
      */
-    <T> AdvancedFluentRequest<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException;
+    <T> FluentRequestSender<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException;
 
     /**
      * Serialize request data from T.
@@ -230,7 +230,7 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return The new FluentRequest capable of serializing T.
      * @throws IllegalArgumentException if no Serializer is registered for type T.
      */
-    <T> AdvancedFluentRequest<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException;
+    <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException;
 
     /**
      * Serialize and Deserialize transmitting data from/to T.
@@ -240,5 +240,5 @@ public interface AdvancedFluentRequest<RequestType, ResponseType> extends Fluent
      * @return The new FluentRequest capable of de/serializing T.
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
      */
-    <T> AdvancedFluentRequest<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;
+    <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;
 }

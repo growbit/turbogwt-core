@@ -45,7 +45,7 @@ import org.turbogwt.core.js.collections.client.JsMap;
  *
  * @author Danilo Reinert
  */
-public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFluentRequest<RequestType, ResponseType> {
+public class FluentRequestImpl<RequestType, ResponseType> implements FluentRequestSender<RequestType, ResponseType> {
 
     private final SerdesManager serdesManager;
     private final Class<RequestType> requestType;
@@ -91,7 +91,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if strategy is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+    public FluentRequestSender<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
             throws IllegalArgumentException {
         uriBuilder.multipleParamStrategy(strategy);
         return this;
@@ -107,7 +107,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if scheme is invalid
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException {
+    public FluentRequestSender<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException {
         uriBuilder.scheme(scheme);
         return this;
     }
@@ -122,7 +122,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if host is invalid.
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> host(String host) throws IllegalArgumentException {
+    public FluentRequestSender<RequestType, ResponseType> host(String host) throws IllegalArgumentException {
         uriBuilder.host(host);
         return this;
     }
@@ -137,7 +137,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if port is invalid
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> port(int port) throws IllegalArgumentException {
+    public FluentRequestSender<RequestType, ResponseType> port(int port) throws IllegalArgumentException {
         uriBuilder.port(port);
         return this;
     }
@@ -151,7 +151,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @return the updated UriBuilder
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> path(String path) {
+    public FluentRequestSender<RequestType, ResponseType> path(String path) {
         uriBuilder.path(path);
         return this;
     }
@@ -169,7 +169,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> segment(String... segments)
+    public FluentRequestSender<RequestType, ResponseType> segment(String... segments)
             throws IllegalArgumentException {
         uriBuilder.segment(segments);
         return this;
@@ -191,7 +191,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values)
+    public FluentRequestSender<RequestType, ResponseType> matrixParam(String name, Object... values)
             throws IllegalArgumentException {
         uriBuilder.matrixParam(name, values);
         return this;
@@ -210,7 +210,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if name or values is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> queryParam(String name, Object... values)
+    public FluentRequestSender<RequestType, ResponseType> queryParam(String name, Object... values)
             throws IllegalArgumentException {
         uriBuilder.queryParam(name, values);
         return this;
@@ -224,7 +224,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @return the updated UriBuilder
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> fragment(String fragment) {
+    public FluentRequestSender<RequestType, ResponseType> fragment(String fragment) {
         uriBuilder.fragment(fragment);
         return this;
     }
@@ -237,7 +237,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @return The new FluentRequest capable of deserializing T.
      * @throws IllegalArgumentException if no Deserializer is registered for type T.
      */
-    public <T> AdvancedFluentRequest<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException {
+    public <T> FluentRequestSender<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<RequestType, T> newReq = new FluentRequestImpl<>(serdesManager, requestType, type);
         copyFieldsTo(newReq);
         return newReq;
@@ -251,7 +251,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @return The new FluentRequest capable of serializing T.
      * @throws IllegalArgumentException if no Serializer is registered for type T.
      */
-    public <T> AdvancedFluentRequest<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException {
+    public <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, ResponseType> newReq = new FluentRequestImpl<>(serdesManager, type, responseType);
         copyFieldsTo(newReq);
         return newReq;
@@ -265,7 +265,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @return The new FluentRequest capable of de/serializing T.
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
      */
-    public <T> AdvancedFluentRequest<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException {
+    public <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(serdesManager, type, type);
         copyFieldsTo(newReq);
         return newReq;
@@ -283,7 +283,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if header or value are the empty string
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> header(String header, String value) {
+    public FluentRequestSender<RequestType, ResponseType> header(String header, String value) {
         if (headers == null) headers = Headers.create();
         headers.set(header, value);
         return this;
@@ -298,7 +298,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws NullPointerException if the user is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> user(String user) {
+    public FluentRequestSender<RequestType, ResponseType> user(String user) {
         this.user = user;
         return this;
     }
@@ -313,7 +313,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws NullPointerException if the password is null
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> password(String password) {
+    public FluentRequestSender<RequestType, ResponseType> password(String password) {
         this.password = password;
         return this;
     }
@@ -334,7 +334,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @throws IllegalArgumentException if the timeout value is negative
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> timeout(int timeoutMillis) {
+    public FluentRequestSender<RequestType, ResponseType> timeout(int timeoutMillis) {
         this.timeout = timeoutMillis;
         return this;
     }
@@ -352,7 +352,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      * @param callback      the callback to handle informed code
      */
     @Override
-    public AdvancedFluentRequest<RequestType, ResponseType> on(int statusCode, SingleCallback callback) {
+    public FluentRequestSender<RequestType, ResponseType> on(int statusCode, SingleCallback callback) {
         if (mappedCallbacks == null) mappedCallbacks = JsMap.create();
         mappedCallbacks.set(String.valueOf(statusCode), callback);
         return this;
@@ -434,7 +434,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements AdvancedFlu
      *
      * @param uri The URI for requesting.
      */
-    protected AdvancedFluentRequest<RequestType, ResponseType> setUri(String uri) {
+    protected FluentRequestSender<RequestType, ResponseType> setUri(String uri) {
         this.uri = uri;
         return this;
     }
