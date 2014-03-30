@@ -29,6 +29,7 @@ public class HttpGwtTestSuite {
         GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
 
         suite.addTestSuite(UriBuilderImplTest.class);
+        suite.addTestSuite(FluentRequestImplTest.class);
 
         return suite;
     }
