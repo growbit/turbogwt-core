@@ -375,6 +375,16 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
+    public Request post(RequestType data) {
+        return send(RequestBuilder.POST, data, null);
+    }
+
+    @Override
+    public <C extends Collection<RequestType>> Request post(C dataCollection) {
+        return send(RequestBuilder.POST, dataCollection, null);
+    }
+
+    @Override
     public Request post(RequestType data, AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.POST, data, callback);
     }
@@ -387,6 +397,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     @Override
     public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
             A extends CollectionAsyncCallback<B, ResponseType>> Request post(C data, A callback) {
+        return send(RequestBuilder.POST, data, callback);
+    }
+
+    @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request post(RequestType data, A callback) {
         return send(RequestBuilder.POST, data, callback);
     }
 
@@ -407,18 +423,34 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
+    public Request put(RequestType data) {
+        return send(RequestBuilder.PUT, data, null);
+    }
+
+    @Override
+    public <C extends Collection<RequestType>> Request put(C dataCollection) {
+        return send(RequestBuilder.PUT, dataCollection, null);
+    }
+
+    @Override
     public Request put(RequestType data, AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.PUT, data, callback);
     }
 
     @Override
-    public <C extends Collection<RequestType>> Request put(C data, AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.PUT, data, callback);
+    public <C extends Collection<RequestType>> Request put(C dataCollection, AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.PUT, dataCollection, callback);
     }
 
     @Override
     public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request put(C data, A callback) {
+            A extends CollectionAsyncCallback<B, ResponseType>> Request put(C dataCollection, A callback) {
+        return send(RequestBuilder.PUT, dataCollection, callback);
+    }
+
+    @Override
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request put
+            (RequestType data, A callback) {
         return send(RequestBuilder.PUT, data, callback);
     }
 
