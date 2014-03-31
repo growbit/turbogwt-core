@@ -28,14 +28,35 @@ public class SerdesManager {
     private final JsMap<Deserializer<?>> deserializers = JsMap.create();
     private final JsMap<Serializer<?>> serializers = JsMap.create();
 
+    /**
+     * Register a deserializer of the given type.
+     *
+     * @param type          The class of the deserializer's type.
+     * @param deserializer  The deserializer of T.
+     * @param <T>           The type of the object to be deserialized.
+     */
     public <T> void registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
         deserializers.set(type.getName(), deserializer);
     }
 
+    /**
+     * Register a serializer of the given type.
+     *
+     * @param type          The class of the serializer's type.
+     * @param serializer  The serializer of T.
+     * @param <T>           The type of the object to be serialized.
+     */
     public <T> void registerSerializer(Class<T> type, Serializer<T> serializer) {
         serializers.set(type.getName(), serializer);
     }
 
+    /**
+     * Register a serializer/deserializer of the given type.
+     *
+     * @param type      The class of the serializer/deserializer's type.
+     * @param serdes    The serializer/deserializer of T.
+     * @param <T>       The type of the object to be serialized/deserialized.
+     */
     public <T> void registerSerdes(Class<T> type, Serdes<T> serdes) {
         registerDeserializer(type, serdes);
         registerSerializer(type, serdes);

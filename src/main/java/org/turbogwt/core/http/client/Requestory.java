@@ -33,7 +33,7 @@ import org.turbogwt.core.http.client.serialization.Serializer;
 import org.turbogwt.core.http.client.serialization.VoidSerdes;
 
 /**
- * This class is configurable {@link FluentRequest} factory.
+ * This class is a configurable {@link FluentRequest} factory.
  * Usually, you will use it as a singleton along your project.
  * <p/>
  * It provides a convenience API for building/executing HTTP Requests.
@@ -214,18 +214,43 @@ public class Requestory {
         return defaultStrategy;
     }
 
+    /**
+     * Set the default strategy to separate params with multiple values.
+     * You can use one of the constants provided at {@link MultipleParamStrategy} or implement a customized one.
+     *
+     * @param defaultStrategy   The {@link MultipleParamStrategy} to be initially set
+     *                          in all {@link FluentRequest}s created.
+     */
     public void setDefaultStrategy(MultipleParamStrategy defaultStrategy) {
         this.defaultStrategy = defaultStrategy;
     }
 
+    /**
+     * Register a deserializer of the given type.
+     *
+     * @param type          The class of the deserializer's type.
+     * @param deserializer  The deserializer of T.
+     */
     public <T> void registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
         serdesManager.registerDeserializer(type, deserializer);
     }
 
+    /**
+     * Register a serializer of the given type.
+     *
+     * @param type          The class of the serializer's type.
+     * @param serializer  The serializer of T.
+     */
     public <T> void registerSerializer(Class<T> type, Serializer<T> serializer) {
         serdesManager.registerSerializer(type, serializer);
     }
 
+    /**
+     * Register a serializer/deserializer of the given type.
+     *
+     * @param type      The class of the serializer/deserializer's type.
+     * @param serdes    The serializer/deserializer of T.
+     */
     public <T> void registerSerdes(Class<T> type, Serdes<T> serdes) {
         serdesManager.registerSerdes(type, serdes);
     }

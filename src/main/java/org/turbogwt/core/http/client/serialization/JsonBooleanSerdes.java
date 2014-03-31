@@ -32,7 +32,7 @@ public class JsonBooleanSerdes extends JsonValueSerdes<Boolean> {
     }
 
     /**
-     * Deserialize the plain text into a Boolean.
+     * Deserialize the plain text into a boolean.
      *
      * @param response Http response body content.
      * @param headers  Http response headers.
@@ -45,7 +45,7 @@ public class JsonBooleanSerdes extends JsonValueSerdes<Boolean> {
     }
 
     /**
-     * Serialize Boolean to plain text.
+     * Serialize boolean to plain text.
      *
      * @param b       The boolean to be serialized.
      * @param headers Http headers from current request.

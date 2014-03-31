@@ -32,7 +32,7 @@ import org.turbogwt.core.js.collections.client.JsMap;
  *
  * @author Danilo Reinert
  */
-public final class CollectionFactoryMap {
+public final class CollectionFactoryManager {
 
     /**
      * It is a simple class intended to create instances of some type.
@@ -93,11 +93,11 @@ public final class CollectionFactoryMap {
     /**
      * Map a {@link Factory} to some collection class.
      *
-     * @param type The type of the collection.
-     * @param factory The factory of the collection.
-     * @param <C> The type of the collection.
+     * @param type      The type of the collection.
+     * @param factory   The factory of the collection.
+     * @param <C>       The type of the collection.
      */
-    public static <C extends Collection> void addFactory(Class<C> type, Factory<C> factory) {
+    public static <C extends Collection> void registerFactory(Class<C> type, Factory<C> factory) {
         INITIALIZERS.set(type.getName(), factory);
     }
 
@@ -111,5 +111,4 @@ public final class CollectionFactoryMap {
         if (INITIALIZERS == null) init();
         return (Factory<C>) INITIALIZERS.get(type.getName(), null);
     }
-
 }
