@@ -112,6 +112,21 @@ public class Requestory {
                 .post(dataCollection, callback);
     }
 
+    public <RequestType, ResponseType, C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request post(String uri,
+                                                                             Class<RequestType> requestType,
+                                                                             C dataCollection,
+                                                                             Class<ResponseType> responseType,
+                                                                             A callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
+                .post(dataCollection, callback);
+    }
+
+    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request post(String uri, Class<ResponseType> responseType, A callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).post(callback);
+    }
+
     public <ResponseType> Request post(String uri, Class<ResponseType> responseType,
                                        AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).post(callback);
@@ -137,6 +152,21 @@ public class Requestory {
                 .put(dataCollection, callback);
     }
 
+    public <RequestType, ResponseType, C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request put(String uri,
+                                                                            Class<RequestType> requestType,
+                                                                            C dataCollection,
+                                                                            Class<ResponseType> responseType,
+                                                                            A callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
+                .put(dataCollection, callback);
+    }
+
+    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request put(String uri, Class<ResponseType> responseType, A callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
+    }
+
     public <ResponseType> Request put(String uri, Class<ResponseType> responseType,
                                        AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
@@ -152,6 +182,11 @@ public class Requestory {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
     }
 
+    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request delete(String uri, Class<ResponseType> responseType, A callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
+    }
+
     public Request delete(String uri) {
         return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).delete();
     }
@@ -159,6 +194,11 @@ public class Requestory {
     /* HEAD */
     public <ResponseType> Request head(String uri, Class<ResponseType> responseType,
                                       AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).head(callback);
+    }
+
+    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+            Request head(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).head(callback);
     }
 
