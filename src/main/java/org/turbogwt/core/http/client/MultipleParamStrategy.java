@@ -23,8 +23,8 @@ import com.google.gwt.http.client.URL;
  */
 public abstract class MultipleParamStrategy {
 
-    public static MultipleParamStrategy REPEATED_PARAM = new RepeatedParamStrategy();
-    public static MultipleParamStrategy COMMA_SEPARATED = new CommaSeparatedStrategy();
+    public static final MultipleParamStrategy REPEATED_PARAM = new RepeatedParamStrategy();
+    public static final MultipleParamStrategy COMMA_SEPARATED = new CommaSeparatedStrategy();
 
     /**
      * Construct URI part from gives values.
