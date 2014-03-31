@@ -35,7 +35,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    FluentRequest<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+    FluentRequestSender<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
             throws IllegalArgumentException;
 
     /**
@@ -48,7 +48,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @throws IllegalArgumentException if scheme is invalid
      */
     @Override
-    FluentRequest<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> scheme(String scheme) throws IllegalArgumentException;
 
     /**
      * Set the URI host.
@@ -60,7 +60,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @throws IllegalArgumentException if host is invalid.
      */
     @Override
-    FluentRequest<RequestType, ResponseType> host(String host) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> host(String host) throws IllegalArgumentException;
 
     /**
      * Set the URI port.
@@ -72,7 +72,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @throws IllegalArgumentException if port is invalid
      */
     @Override
-    FluentRequest<RequestType, ResponseType> port(int port) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> port(int port) throws IllegalArgumentException;
 
     /**
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
@@ -83,7 +83,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @return the updated FluentRequest<RequestType, ResponseType>
      */
     @Override
-    FluentRequest<RequestType, ResponseType> path(String path);
+    FluentRequestSender<RequestType, ResponseType> path(String path);
 
     /**
      * Append path segments to the existing path. When constructing the final path, a '/' separator will be inserted
@@ -98,7 +98,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
     @Override
-    FluentRequest<RequestType, ResponseType> segment(String... segments) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> segment(String... segments) throws IllegalArgumentException;
 
     /**
      * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
@@ -116,7 +116,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
     @Override
-    FluentRequest<RequestType, ResponseType> matrixParam(String name, Object... values) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> matrixParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
@@ -131,7 +131,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @throws IllegalArgumentException if name or values is null
      */
     @Override
-    FluentRequest<RequestType, ResponseType> queryParam(String name, Object... values) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> queryParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Set the URI fragment.
@@ -141,5 +141,5 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @return the updated FluentRequest<RequestType, ResponseType>
      */
     @Override
-    FluentRequest<RequestType, ResponseType> fragment(String fragment);
+    FluentRequestSender<RequestType, ResponseType> fragment(String fragment);
 }
