@@ -200,9 +200,13 @@ public class FluentRequestImplTest extends GWTTestCase {
             }
 
             @Override
-            public String serialize(Person person, Headers headers) {
-                return "{" + "\"id\":" + person.getId() + ",\"name\":\"" + person.getName() + "\"," +
-                        "\"weight\":" + person.getWeight() + ",\"birthday\":" + person.getBirthday().getTime() + "}";
+            public JavaScriptObject mapToOverlay(Person person, Headers headers) {
+                JavaScriptObject jso = JavaScriptObject.createObject();
+                Overlays.setValueToProperty(jso, "id", person.getId());
+                Overlays.setValueToProperty(jso, "name", person.getName());
+                Overlays.setValueToProperty(jso, "weight", person.getWeight());
+                Overlays.setValueToProperty(jso, "birthday", person.getBirthday().getTime());
+                return jso;
             }
         });
 
@@ -244,9 +248,13 @@ public class FluentRequestImplTest extends GWTTestCase {
             }
 
             @Override
-            public String serialize(Person person, Headers headers) {
-                return "{" + "\"id\":" + person.getId() + ",\"name\":\"" + person.getName() + "\"," +
-                        "\"weight\":" + person.getWeight() + ",\"birthday\":" + person.getBirthday().getTime() + "}";
+            public JavaScriptObject mapToOverlay(Person person, Headers headers) {
+                JavaScriptObject jso = JavaScriptObject.createObject();
+                Overlays.setValueToProperty(jso, "id", person.getId());
+                Overlays.setValueToProperty(jso, "name", person.getName());
+                Overlays.setValueToProperty(jso, "weight", person.getWeight());
+                Overlays.setValueToProperty(jso, "birthday", person.getBirthday().getTime());
+                return jso;
             }
         });
 
@@ -288,7 +296,14 @@ public class FluentRequestImplTest extends GWTTestCase {
             }
 
             @Override
+            public JavaScriptObject mapToOverlay(Person person, Headers headers) {
+                // Ignored, as #serialize was overridden in order to improve serialization performance.
+                return null;
+            }
+
+            @Override
             public String serialize(Person person, Headers headers) {
+                // Directly build json using string concatenation in order to improve performance.
                 return "{" + "\"id\":" + person.getId() + ", \"name\":\"" + person.getName() + "\", " +
                         "\"weight\":" + person.getWeight() + ", \"birthday\":" + person.getBirthday().getTime() + "}";
             }
