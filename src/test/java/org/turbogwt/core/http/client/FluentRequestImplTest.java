@@ -18,6 +18,8 @@ package org.turbogwt.core.http.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -321,5 +323,40 @@ public class FluentRequestImplTest extends GWTTestCase {
         assertEquals(serializedArray, ServerConnectionMock.getRequestData(uri));
     }
 
-    // TODO: test .on(code, callback)
+    public void testOnHttpCodeCallbackExecution() {
+        ServerConnectionMock.clearStub();
+        final Requestory requestory = new Requestory();
+
+        final String uri = "/on";
+
+        ServerConnectionMock.responseFor(uri, ResponseMock.of(null, 204, "Empty"));
+
+        final boolean[] callbacksCalled = new boolean[3];
+
+        requestory.request().path(uri).on(20, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                callbacksCalled[0] = true;
+            }
+        }).on(2, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                callbacksCalled[1] = true;
+            }
+        }).get(new AsyncCallback<Void>() {
+            @Override
+            public void onFailure(Throwable caught) {
+            }
+
+            @Override
+            public void onSuccess(Void result) {
+                callbacksCalled[2] = true;
+            }
+        });
+
+        // Most specific mapped code callback should be called
+        assertTrue(callbacksCalled[0]);
+        assertFalse(callbacksCalled[1]);
+        assertFalse(callbacksCalled[2]);
+    }
 }
