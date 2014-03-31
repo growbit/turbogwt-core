@@ -138,8 +138,8 @@ public class Requestory {
 
     /* PUT */
     public <RequestType, ResponseType> Request put(String uri, Class<RequestType> requestType, RequestType data,
-                                                    Class<ResponseType> responseType,
-                                                    AsyncCallback<ResponseType> callback) {
+                                                   Class<ResponseType> responseType,
+                                                   AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri).put(data, callback);
     }
 
@@ -168,7 +168,7 @@ public class Requestory {
     }
 
     public <ResponseType> Request put(String uri, Class<ResponseType> responseType,
-                                       AsyncCallback<ResponseType> callback) {
+                                      AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
     }
 
@@ -178,7 +178,7 @@ public class Requestory {
 
     /* DELETE */
     public <ResponseType> Request delete(String uri, Class<ResponseType> responseType,
-                                      AsyncCallback<ResponseType> callback) {
+                                         AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
     }
 
