@@ -24,7 +24,7 @@ package org.turbogwt.core.http.client;
  *
  * @author Danilo Reinert
  */
-public interface FluentRequest<RequestType, ResponseType> extends HasUri {
+public interface FluentRequest<RequestType, ResponseType> extends HasUriParts {
 
     /**
      * Set the strategy for appending parameters with multiple values.

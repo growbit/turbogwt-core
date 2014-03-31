@@ -30,7 +30,7 @@ package org.turbogwt.core.http.client;
  * legal characters and will not be encoded. Percent encoded values are also recognized where allowed and will not be
  * double encoded.</p>
  */
-public interface UriBuilder extends HasUri {
+public interface UriBuilder extends HasUriParts {
 
     /**
      * Set the strategy for appending parameters with multiple values.
