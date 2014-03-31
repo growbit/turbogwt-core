@@ -365,7 +365,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request get(A callback) {
+    Request get(A callback) {
         return send(RequestBuilder.GET, (String) null, callback);
     }
 
@@ -390,19 +390,19 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<RequestType>> Request post(C data, AsyncCallback<ResponseType> callback) {
-        return send(RequestBuilder.POST, data, callback);
+    public <C extends Collection<RequestType>> Request post(C dataCollection, AsyncCallback<ResponseType> callback) {
+        return send(RequestBuilder.POST, dataCollection, callback);
     }
 
     @Override
     public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C data, A callback) {
-        return send(RequestBuilder.POST, data, callback);
+            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C dataCollection, A callback) {
+        return send(RequestBuilder.POST, dataCollection, callback);
     }
 
     @Override
     public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request post(RequestType data, A callback) {
+    Request post(RequestType data, A callback) {
         return send(RequestBuilder.POST, data, callback);
     }
 
@@ -413,7 +413,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request post(A callback) {
+    Request post(A callback) {
         return send(RequestBuilder.POST, (String) null, callback);
     }
 
@@ -449,8 +449,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request put
-            (RequestType data, A callback) {
+    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    Request put(RequestType data, A callback) {
         return send(RequestBuilder.PUT, data, callback);
     }
 
@@ -461,7 +461,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request put(A callback) {
+    Request put(A callback) {
         return send(RequestBuilder.PUT, (String) null, callback);
     }
 
@@ -477,7 +477,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request delete(A callback) {
+    Request delete(A callback) {
         return send(RequestBuilder.DELETE, (String) null, callback);
     }
 
@@ -493,7 +493,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request head(A callback) {
+    Request head(A callback) {
         return send(RequestBuilder.HEAD, (String) null, callback);
     }
 

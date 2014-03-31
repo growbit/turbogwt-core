@@ -110,10 +110,23 @@ public class Requestory {
     }
 
     //===================================================================
-    // Request aliases
+    // Request shortcuts
     //===================================================================
 
-    /* GET */
+    //-------------------------------------------------------------------
+    // GET
+    //-------------------------------------------------------------------
+
+    /**
+     * Performs simple a GET request on the specified URI.
+     *
+     * @param uri               The uri for the request.
+     * @return  The launched {@link com.google.gwt.http.client.Request}.
+     */
+    public Request get(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).get();
+    }
+
     /**
      * Performs a GET request on the specified URI, returning a single ResponseType.
      *
@@ -143,21 +156,26 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request get(String uri, Class<ResponseType> responseType, A callback) {
+    Request get(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
     }
 
+    //-------------------------------------------------------------------
+    // POST
+    //-------------------------------------------------------------------
+
     /**
-     * Performs simple a GET request on the specified URI.
+     * Performs simple a POST request on the specified URI.
      *
      * @param uri               The uri for the request.
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public Request get(String uri) {
-        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).get();
+    public Request post(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).post();
     }
 
-    /* POST */
+    /* Post with DATA only */
+
     /**
      * Performs a POST request on the specified URI, sending a single RequestType.
      *
@@ -186,6 +204,8 @@ public class Requestory {
         return createFluentRequestImpl(requestType, Void.class, defaultStrategy).setUri(uri).post(dataCollection);
     }
 
+    /* Post with DATA and CALLBACK */
+
     /**
      * Performs a POST request on the specified URI, sending a single RequestType and returning a single ResponseType.
      *
@@ -205,30 +225,7 @@ public class Requestory {
     }
 
     /**
-     * Performs a POST request on the specified URI, sending a collection of RequestType
-     * and returning a single ResponseType.
-     *
-     * @param uri               The uri for the request.
-     * @param requestType       The class of the request type.
-     * @param dataCollection    The RequestType collection to send as the request content.
-     * @param responseType      The class of the response type.
-     * @param callback          The callback for retrieving a single instance of ResponseType.
-     * @param <RequestType>     The type of the request content.
-     * @param <C>               The collection type of the request content.
-     * @param <ResponseType>    The type of the response content.
-     * @return  The launched {@link com.google.gwt.http.client.Request}.
-     */
-    public <RequestType, C extends Collection<RequestType>, ResponseType> Request post(String uri,
-                                                                                       Class<RequestType> requestType,
-                                                                                       C dataCollection,
-                                                                                       Class<ResponseType> responseType,
-                                                                                 AsyncCallback<ResponseType> callback) {
-        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
-                .post(dataCollection, callback);
-    }
-
-    /**
-     * Performs a POST request on the specified URI, sending a collection of RequestType
+     * Performs a POST request on the specified URI, sending a single instance of RequestType
      * and returning a collection of ResponseType.
      *
      * @param uri               The uri for the request.
@@ -276,18 +273,29 @@ public class Requestory {
     }
 
     /**
-     * Performs a POST request on the specified URI, returning a collection of ResponseType.
+     * Performs a POST request on the specified URI, sending a collection of RequestType
+     * and returning a single ResponseType.
      *
      * @param uri               The uri for the request.
+     * @param requestType       The class of the request type.
+     * @param dataCollection    The RequestType collection to send as the request content.
      * @param responseType      The class of the response type.
-     * @param callback          The callback for retrieving a collection of ResponseType.
+     * @param callback          The callback for retrieving a single instance of ResponseType.
+     * @param <RequestType>     The type of the request content.
+     * @param <C>               The collection type of the request content.
      * @param <ResponseType>    The type of the response content.
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-            Request post(String uri, Class<ResponseType> responseType, A callback) {
-        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).post(callback);
+    public <RequestType, C extends Collection<RequestType>, ResponseType> Request post(String uri,
+                                                                                       Class<RequestType> requestType,
+                                                                                       C dataCollection,
+                                                                                       Class<ResponseType> responseType,
+                                                                                 AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
+                .post(dataCollection, callback);
     }
+
+    /* Post with CALLBACK only */
 
     /**
      * Performs a POST request on the specified URI, returning a single instance of ResponseType.
@@ -304,16 +312,35 @@ public class Requestory {
     }
 
     /**
-     * Performs simple a POST request on the specified URI.
+     * Performs a POST request on the specified URI, returning a collection of ResponseType.
+     *
+     * @param uri               The uri for the request.
+     * @param responseType      The class of the response type.
+     * @param callback          The callback for retrieving a collection of ResponseType.
+     * @param <ResponseType>    The type of the response content.
+     * @return  The launched {@link com.google.gwt.http.client.Request}.
+     */
+    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    Request post(String uri, Class<ResponseType> responseType, A callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).post(callback);
+    }
+
+    //-------------------------------------------------------------------
+    // PUT
+    //-------------------------------------------------------------------
+
+    /**
+     * Performs simple a PUT request on the specified URI.
      *
      * @param uri               The uri for the request.
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public Request post(String uri) {
-        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).post();
+    public Request put(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).put();
     }
 
-    /* PUT */
+    /* Put with DATA only */
+
     /**
      * Performs a PUT request on the specified URI, sending a single RequestType.
      *
@@ -338,9 +365,11 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <RequestType, C extends Collection<RequestType>> Request put(String uri, Class<RequestType> requestType,
-                                                                         C dataCollection) {
+                                                                        C dataCollection) {
         return createFluentRequestImpl(requestType, Void.class, defaultStrategy).setUri(uri).put(dataCollection);
     }
+
+    /* Put with DATA and CALLBACK */
 
     /**
      * Performs a PUT request on the specified URI, sending a single RequestType and returning a single ResponseType.
@@ -355,36 +384,13 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <RequestType, ResponseType> Request put(String uri, Class<RequestType> requestType, RequestType data,
-                                                    Class<ResponseType> responseType,
-                                                    AsyncCallback<ResponseType> callback) {
+                                                   Class<ResponseType> responseType,
+                                                   AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri).put(data, callback);
     }
 
     /**
-     * Performs a PUT request on the specified URI, sending a collection of RequestType
-     * and returning a single ResponseType.
-     *
-     * @param uri               The uri for the request.
-     * @param requestType       The class of the request type.
-     * @param dataCollection    The RequestType collection to send as the request content.
-     * @param responseType      The class of the response type.
-     * @param callback          The callback for retrieving a single instance of ResponseType.
-     * @param <RequestType>     The type of the request content.
-     * @param <C>               The collection type of the request content.
-     * @param <ResponseType>    The type of the response content.
-     * @return  The launched {@link com.google.gwt.http.client.Request}.
-     */
-    public <RequestType, C extends Collection<RequestType>, ResponseType> Request put(String uri,
-                                                                                       Class<RequestType> requestType,
-                                                                                       C dataCollection,
-                                                                                       Class<ResponseType> responseType,
-                                                                                 AsyncCallback<ResponseType> callback) {
-        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
-                .put(dataCollection, callback);
-    }
-
-    /**
-     * Performs a PUT request on the specified URI, sending a collection of RequestType
+     * Performs a PUT request on the specified URI, sending a single instance of RequestType
      * and returning a collection of ResponseType.
      *
      * @param uri               The uri for the request.
@@ -399,10 +405,10 @@ public class Requestory {
      */
     public <RequestType, ResponseType, C extends Collection<ResponseType>,
             A extends CollectionAsyncCallback<C, ResponseType>> Request put(String uri,
-                                                                             Class<RequestType> requestType,
-                                                                             RequestType data,
-                                                                             Class<ResponseType> responseType,
-                                                                             A callback) {
+                                                                            Class<RequestType> requestType,
+                                                                            RequestType data,
+                                                                            Class<ResponseType> responseType,
+                                                                            A callback) {
         return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri).put(data, callback);
     }
 
@@ -423,12 +429,51 @@ public class Requestory {
      */
     public <RequestType, ResponseType, C extends Collection<RequestType>, B extends Collection<ResponseType>,
             A extends CollectionAsyncCallback<B, ResponseType>> Request put(String uri,
-                                                                             Class<RequestType> requestType,
-                                                                             C dataCollection,
-                                                                             Class<ResponseType> responseType,
-                                                                             A callback) {
+                                                                            Class<RequestType> requestType,
+                                                                            C dataCollection,
+                                                                            Class<ResponseType> responseType,
+                                                                            A callback) {
         return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
                 .put(dataCollection, callback);
+    }
+
+    /**
+     * Performs a PUT request on the specified URI, sending a collection of RequestType
+     * and returning a single ResponseType.
+     *
+     * @param uri               The uri for the request.
+     * @param requestType       The class of the request type.
+     * @param dataCollection    The RequestType collection to send as the request content.
+     * @param responseType      The class of the response type.
+     * @param callback          The callback for retrieving a single instance of ResponseType.
+     * @param <RequestType>     The type of the request content.
+     * @param <C>               The collection type of the request content.
+     * @param <ResponseType>    The type of the response content.
+     * @return  The launched {@link com.google.gwt.http.client.Request}.
+     */
+    public <RequestType, C extends Collection<RequestType>, ResponseType> Request put(String uri,
+                                                                                      Class<RequestType> requestType,
+                                                                                      C dataCollection,
+                                                                                      Class<ResponseType> responseType,
+                                                                                 AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(requestType, responseType, defaultStrategy).setUri(uri)
+                .put(dataCollection, callback);
+    }
+
+    /* Put with CALLBACK only */
+
+    /**
+     * Performs a PUT request on the specified URI, returning a single instance of ResponseType.
+     *
+     * @param uri               The uri for the request.
+     * @param responseType      The class of the response type.
+     * @param callback          The callback for retrieving a single instance of ResponseType.
+     * @param <ResponseType>    The type of the response content.
+     * @return  The launched {@link com.google.gwt.http.client.Request}.
+     */
+    public <ResponseType> Request put(String uri, Class<ResponseType> responseType,
+                                      AsyncCallback<ResponseType> callback) {
+        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
     }
 
     /**
@@ -445,31 +490,20 @@ public class Requestory {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
     }
 
-    /**
-     * Performs a PUT request on the specified URI, returning a single instance of ResponseType.
-     *
-     * @param uri               The uri for the request.
-     * @param responseType      The class of the response type.
-     * @param callback          The callback for retrieving a single instance of ResponseType.
-     * @param <ResponseType>    The type of the response content.
-     * @return  The launched {@link com.google.gwt.http.client.Request}.
-     */
-    public <ResponseType> Request put(String uri, Class<ResponseType> responseType,
-                                       AsyncCallback<ResponseType> callback) {
-        return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
-    }
+    //-------------------------------------------------------------------
+    // DELETE
+    //-------------------------------------------------------------------
 
     /**
-     * Performs simple a PUT request on the specified URI.
+     * Performs simple a DELETE request on the specified URI.
      *
      * @param uri               The uri for the request.
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public Request put(String uri) {
-        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).put();
+    public Request delete(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).delete();
     }
 
-    /* DELETE */
     /**
      * Performs a DELETE request on the specified URI, returning a single ResponseType.
      *
@@ -480,7 +514,7 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <ResponseType> Request delete(String uri, Class<ResponseType> responseType,
-                                      AsyncCallback<ResponseType> callback) {
+                                         AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
     }
 
@@ -503,17 +537,20 @@ public class Requestory {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
     }
 
+    //-------------------------------------------------------------------
+    // HEAD
+    //-------------------------------------------------------------------
+
     /**
-     * Performs simple a DELETE request on the specified URI.
+     * Performs simple a HEAD request on the specified URI.
      *
      * @param uri               The uri for the request.
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public Request delete(String uri) {
-        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).delete();
+    public Request head(String uri) {
+        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).head();
     }
 
-    /* HEAD */
     /**
      * Performs a HEAD request on the specified URI, returning a single ResponseType.
      *
@@ -524,7 +561,7 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <ResponseType> Request head(String uri, Class<ResponseType> responseType,
-                                      AsyncCallback<ResponseType> callback) {
+                                       AsyncCallback<ResponseType> callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).head(callback);
     }
 
@@ -545,16 +582,6 @@ public class Requestory {
     public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
     Request head(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).head(callback);
-    }
-
-    /**
-     * Performs simple a HEAD request on the specified URI.
-     *
-     * @param uri               The uri for the request.
-     * @return  The launched {@link com.google.gwt.http.client.Request}.
-     */
-    public Request head(String uri) {
-        return createFluentRequestImpl(Void.class, Void.class, defaultStrategy).setUri(uri).head();
     }
 
     //===================================================================

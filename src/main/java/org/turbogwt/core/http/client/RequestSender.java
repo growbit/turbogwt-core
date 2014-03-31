@@ -31,63 +31,97 @@ import java.util.Collection;
  */
 public interface RequestSender<RequestType, ResponseType> {
 
-    /* GET */
+    //===================================================================
+    // GET
+    //===================================================================
     Request get();
 
     Request get(AsyncCallback<ResponseType> callback);
 
     <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request get(A callback);
 
-    /* POST */
+    //===================================================================
+    // POST
+    //===================================================================
     Request post();
+
+    //-------------------------------------------------------------------
+    // Post with DATA only
+    //-------------------------------------------------------------------
 
     Request post(RequestType data);
 
     <C extends Collection<RequestType>> Request post(C dataCollection);
 
+    //-------------------------------------------------------------------
+    // Post with DATA and CALLBACK
+    //-------------------------------------------------------------------
+
     Request post(RequestType data, AsyncCallback<ResponseType> callback);
-
-    <C extends Collection<RequestType>> Request post(C data, AsyncCallback<ResponseType> callback);
-
-    <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C data, A callback);
 
     <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
     Request post(RequestType data, A callback);
+
+    <C extends Collection<RequestType>, B extends Collection<ResponseType>,
+            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C dataCollection, A callback);
+
+    <C extends Collection<RequestType>> Request post(C dataCollection, AsyncCallback<ResponseType> callback);
+
+    //-------------------------------------------------------------------
+    // Post with CALLBACK only
+    //-------------------------------------------------------------------
 
     Request post(AsyncCallback<ResponseType> callback);
 
     <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request post(A callback);
 
-    /* PUT */
+    //===================================================================
+    // PUT
+    //===================================================================
     Request put();
+
+    //-------------------------------------------------------------------
+    // Put with DATA only
+    //-------------------------------------------------------------------
 
     Request put(RequestType data);
 
     <C extends Collection<RequestType>> Request put(C dataCollection);
 
+    //-------------------------------------------------------------------
+    // Put with DATA and CALLBACK
+    //-------------------------------------------------------------------
+
     Request put(RequestType data, AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<RequestType>> Request put(C dataCollection, AsyncCallback<ResponseType> callback);
+    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    Request put(RequestType data, A callback);
 
     <C extends Collection<RequestType>, B extends Collection<ResponseType>,
             A extends CollectionAsyncCallback<B, ResponseType>> Request put(C dataCollection, A callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
-    Request put(RequestType data, A callback);
+    <C extends Collection<RequestType>> Request put(C dataCollection, AsyncCallback<ResponseType> callback);
+
+    //-------------------------------------------------------------------
+    // Put with CALLBACK only
+    //-------------------------------------------------------------------
 
     Request put(AsyncCallback<ResponseType> callback);
 
     <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request put(A callback);
 
-    /* DELETE */
+    //===================================================================
+    // DELETE
+    //===================================================================
     Request delete();
 
     Request delete(AsyncCallback<ResponseType> callback);
 
     <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request delete(A callback);
 
-    /* HEAD */
+    //===================================================================
+    // HEAD
+    //===================================================================
     Request head();
 
     Request head(AsyncCallback<ResponseType> callback);
