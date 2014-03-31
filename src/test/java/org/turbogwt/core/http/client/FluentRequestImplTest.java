@@ -269,6 +269,57 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
-        assertEquals(ServerConnectionMock.getRequestData(uri), serializedRequest);
+        assertEquals(serializedRequest, ServerConnectionMock.getRequestData(uri));
     }
+
+    public void testCustomObjectArraySerializationDeserialization() {
+        ServerConnectionMock.clearStub();
+        final Requestory requestory = new Requestory();
+        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
+
+            @Override
+            public Person mapFromOverlay(JavaScriptObject overlay, Headers headers) {
+                return new Person(Overlays.getPropertyAsInt(overlay, "id"),
+                        Overlays.getPropertyAsString(overlay, "name"),
+                        Overlays.getPropertyAsDouble(overlay, "weight"),
+                        new Date((long) Overlays.getPropertyAsDouble(overlay, "birthday")));
+            }
+
+            @Override
+            public String serialize(Person person, Headers headers) {
+                return "{" + "\"id\":" + person.getId() + ", \"name\":\"" + person.getName() + "\", " +
+                        "\"weight\":" + person.getWeight() + ", \"birthday\":" + person.getBirthday().getTime() + "}";
+            }
+        });
+
+        final String uri = "/person";
+
+        final Person p1 = new Person(1, "John Doe", 6.3, new Date(329356800));
+        final Person p2 = new Person(2, "Alice", 5.87, new Date(355343600));
+        final List<Person> persons = Arrays.asList(p1, p2);
+
+        final String serializedArray = "[{\"id\":1, \"name\":\"John Doe\", \"weight\":6.3, \"birthday\":329356800},"
+                + "{\"id\":2, \"name\":\"Alice\", \"weight\":5.87, \"birthday\":355343600}]";
+
+        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedArray, 200, "OK"));
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        requestory.post(uri, Person.class, persons, Person.class, new ListAsyncCallback<Person>() {
+            @Override
+            public void onFailure(Throwable caught) {
+            }
+
+            @Override
+            public void onSuccess(List<Person> result) {
+                assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
+                callbackSuccessCalled[0] = true;
+            }
+        });
+
+        assertTrue(callbackSuccessCalled[0]);
+        assertEquals(serializedArray, ServerConnectionMock.getRequestData(uri));
+    }
+
+    // TODO: test .on(code, callback)
 }
