@@ -38,11 +38,25 @@ import org.turbogwt.core.http.client.ServerConnection;
 public class ServerConnectionMock implements ServerConnection {
 
     private static Map<String, Response> serverStub = new HashMap<>();
+    private static Map<String, String> requestData = new HashMap<>();
 
     private boolean returnSuccess = true;
 
     public static void responseFor(String uri, Response response) {
         serverStub.put(uri, response);
+    }
+
+    public static String getRequestData(String uri) {
+        return requestData.get(uri);
+    }
+
+    public static void clearStub() {
+        serverStub.clear();
+        requestData.clear();
+    }
+
+    private static String setRequestData(String uri, String data) {
+        return requestData.put(uri, data);
     }
 
     public boolean isReturnSuccess() {
@@ -56,6 +70,7 @@ public class ServerConnectionMock implements ServerConnection {
     @Override
     public void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
             throws RequestException {
+        setRequestData(url, data);
         if (returnSuccess) {
             callback.onResponseReceived(null, serverStub.get(url));
         } else {
@@ -66,6 +81,7 @@ public class ServerConnectionMock implements ServerConnection {
     @Override
     public void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
                             String url, String data, RequestCallback callback) throws RequestException {
+        setRequestData(url, data);
         if (returnSuccess) {
             callback.onResponseReceived(null, serverStub.get(url));
         } else {

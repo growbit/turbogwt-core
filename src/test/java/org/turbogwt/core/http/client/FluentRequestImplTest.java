@@ -44,6 +44,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testVoidRequest() {
+        ServerConnectionMock.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/void";
@@ -67,6 +68,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testStringRequest() {
+        ServerConnectionMock.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/string";
@@ -92,6 +94,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testStringArrayRequest() {
+        ServerConnectionMock.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/string-array";
@@ -118,6 +121,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testOverlayRequest() {
+        ServerConnectionMock.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/person-jso";
@@ -145,6 +149,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testOverlayArrayRequest() {
+        ServerConnectionMock.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/person-jso-array";
@@ -178,8 +183,8 @@ public class FluentRequestImplTest extends GWTTestCase {
         assertTrue(callbackSuccessCalled[0]);
     }
 
-
     public void testCustomObjectRequest() {
+        ServerConnectionMock.clearStub();
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
@@ -220,5 +225,50 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
+    }
+
+    public void testCustomObjectSerialization() {
+        ServerConnectionMock.clearStub();
+        final Requestory requestory = new Requestory();
+        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
+
+            @Override
+            public Person mapFromOverlay(JavaScriptObject overlay, Headers headers) {
+                return new Person(Overlays.getPropertyAsInt(overlay, "id"),
+                        Overlays.getPropertyAsString(overlay, "name"),
+                        Overlays.getPropertyAsDouble(overlay, "weight"),
+                        new Date((long) Overlays.getPropertyAsDouble(overlay, "birthday")));
+            }
+
+            @Override
+            public String serialize(Person person, Headers headers) {
+                return "{" + "\"id\":" + person.getId() + ",\"name\":\"" + person.getName() + "\"," +
+                        "\"weight\":" + person.getWeight() + ",\"birthday\":" + person.getBirthday().getTime() + "}";
+            }
+        });
+
+        final String uri = "/person";
+
+        final Person person = new Person(1, "John Doe", 6.3, new Date(329356800));
+        final String serializedRequest = "{\"id\":1,\"name\":\"John Doe\",\"weight\":6.3,\"birthday\":329356800}";
+
+        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedRequest, 200, "OK"));
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        requestory.post(uri, Person.class, person, Person.class, new AsyncCallback<Person>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(Person result) {
+                callbackSuccessCalled[0] = true;
+            }
+        });
+
+        assertTrue(callbackSuccessCalled[0]);
+        assertEquals(ServerConnectionMock.getRequestData(uri), serializedRequest);
     }
 }
