@@ -116,7 +116,8 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
     @Override
-    FluentRequestSender<RequestType, ResponseType> matrixParam(String name, Object... values) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> matrixParam(String name, Object... values)
+            throws IllegalArgumentException;
 
     /**
      * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
@@ -131,7 +132,8 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUri {
      * @throws IllegalArgumentException if name or values is null
      */
     @Override
-    FluentRequestSender<RequestType, ResponseType> queryParam(String name, Object... values) throws IllegalArgumentException;
+    FluentRequestSender<RequestType, ResponseType> queryParam(String name, Object... values)
+            throws IllegalArgumentException;
 
     /**
      * Set the URI fragment.
