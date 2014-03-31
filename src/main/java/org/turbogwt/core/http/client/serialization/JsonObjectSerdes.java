@@ -23,6 +23,7 @@ import com.google.gwt.core.client.JsonUtils;
 import java.util.Collection;
 
 import org.turbogwt.core.http.client.Headers;
+import org.turbogwt.core.js.client.Overlays;
 
 /**
  * Base class for all Serdes that manipulates serialized JSON objects.
@@ -34,7 +35,8 @@ import org.turbogwt.core.http.client.Headers;
 public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
 
     /**
-     * Map response deserialized to JavaScriptObject.
+     * Map response deserialized as JavaScriptObject to T.
+     *
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
      * @param overlay   The response deserialized to JavaScriptObject using
@@ -42,6 +44,16 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      * @return The object deserialized.
      */
     public abstract T mapFromOverlay(JavaScriptObject overlay, Headers headers);
+
+    /**
+     * Map T as JavaScriptObject to serialize using JSON.stringify.
+     *
+     * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
+     *
+     * @param t     The object deserialized.
+     * @return The overlay type representing the object.
+     */
+    public abstract JavaScriptObject mapToOverlay(T t, Headers headers);
 
     /**
      * Deserialize the plain text into an object of type T.
@@ -80,6 +92,19 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
         }
 
         return col;
+    }
+
+    /**
+     * Serialize T to plain text.
+     *
+     * @param t       The object to be serialized.
+     * @param headers Http headers from current request.
+     *
+     * @return The object serialized.
+     */
+    @Override
+    public String serialize(T t, Headers headers) {
+        return Overlays.stringify(mapToOverlay(t, headers));
     }
 
     protected boolean isObject(String text) {
