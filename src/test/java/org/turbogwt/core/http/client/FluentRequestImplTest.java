@@ -127,9 +127,9 @@ public class FluentRequestImplTest extends GWTTestCase {
         final String uri = "/person-jso";
 
         final PersonJso person = PersonJso.create(1, "John Doe", 6.3, new Date(329356800));
-        final String serializedResponse = "{ \"id\" : 1, \"name\":\"John Doe\",\"weight\" :6.3,  \"birthday\": 329356800}";
+        final String serializedResp = "{ \"id\" : 1, \"name\":\"John Doe\",\"weight\" :6.3,  \"birthday\": 329356800}";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
+        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -161,9 +161,10 @@ public class FluentRequestImplTest extends GWTTestCase {
         persons.push(p1);
         persons.push(p2);
 
-        final String serializedResponse = "[{\"id\": 1, \"name\": \"John Doe\", \"weight\": 6.3, \"birthday\": 329356800}, {\"id\": 2, \"name\": \"Alice\", \"weight\": 5.87, \"birthday\": 355343600}]";
+        final String serializedResp = "[{\"id\": 1, \"name\": \"John Doe\", \"weight\": 6.3, \"birthday\": 329356800},"
+                + "{\"id\": 2, \"name\": \"Alice\", \"weight\": 5.87, \"birthday\": 355343600}]";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
+        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -259,7 +260,6 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.post(uri, Person.class, person, Person.class, new AsyncCallback<Person>() {
             @Override
             public void onFailure(Throwable caught) {
-
             }
 
             @Override
