@@ -24,6 +24,8 @@
     <inherits name="org.turbogwt.core.js.collections.Collections"/>
     <inherits name="org.turbogwt.core.js.Js"/>
 
+    <inherits name="com.google.gwt.junit.JUnit"/>
+
     <source path="client"/>
 
     <replace-with class="org.turbogwt.core.http.client.UriBuilderImpl">

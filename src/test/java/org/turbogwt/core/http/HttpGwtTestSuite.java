@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http.client;
+package org.turbogwt.core.http;
 
 import com.google.gwt.junit.tools.GWTTestSuite;
 
 import junit.framework.Test;
+
+import org.turbogwt.core.http.client.FluentRequestImplTest;
+import org.turbogwt.core.http.client.UriBuilderImplTest;
 
 /**
  * @author Danilo Reinert
