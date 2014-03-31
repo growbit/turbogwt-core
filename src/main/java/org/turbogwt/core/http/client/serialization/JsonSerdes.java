@@ -57,7 +57,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
         if (c == null) return null;
         StringBuilder serialized = new StringBuilder("[");
         for (T t : c) {
-            serialized.append(serialize(t, headers));
+            serialized.append(serialize(t, headers)).append(',');
         }
         serialized.setCharAt(serialized.length() - 1, ']');
         return serialized.toString();
