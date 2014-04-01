@@ -49,7 +49,9 @@ import org.turbogwt.core.js.collections.client.JsMap;
 public class FluentRequestImpl<RequestType, ResponseType> implements FluentRequestSender<RequestType, ResponseType> {
 
     private final ServerConnectionFactory connectionFactory = GWT.create(ServerConnectionFactory.class);
+    // TODO: remove responsibility of SerdesManager
     private final SerdesManager serdesManager;
+    // TODO: remove responsibility of FilterManager
     private final FilterManager filterManager;
     private final Class<RequestType> requestType;
     private final Class<ResponseType> responseType;
