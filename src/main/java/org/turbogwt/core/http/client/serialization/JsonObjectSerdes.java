@@ -39,8 +39,8 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      *
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
-     * @param overlay   The response deserialized to JavaScriptObject using
-     *                  {@link com.google.gwt.core.client.JsonUtils#safeEval(String)}.
+     * @param overlay   The response deserialized to JavaScriptObject.
+     *
      * @return The object deserialized.
      */
     public abstract T mapFromOverlay(JavaScriptObject overlay, Headers headers);
@@ -51,6 +51,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
      * @param t     The object deserialized.
+     *
      * @return The overlay type representing the object.
      */
     public abstract JavaScriptObject mapToOverlay(T t, Headers headers);
