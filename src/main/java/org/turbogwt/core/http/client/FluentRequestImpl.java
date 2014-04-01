@@ -27,6 +27,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -49,6 +50,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     private final ServerConnectionFactory connectionFactory = GWT.create(ServerConnectionFactory.class);
     private final SerdesManager serdesManager;
+    private final FilterManager filterManager;
     private final Class<RequestType> requestType;
     private final Class<ResponseType> responseType;
     private final Serializer<RequestType> requestSerializer;
@@ -61,8 +63,10 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private String password;
     private int timeout;
 
-    public FluentRequestImpl(SerdesManager serdesManager, Class<RequestType> requestType,
-                             Class<ResponseType> responseType) throws NullPointerException, IllegalArgumentException {
+    public FluentRequestImpl(FilterManager filterManager, SerdesManager serdesManager,
+                             Class<RequestType> requestType, Class<ResponseType> responseType)
+            throws NullPointerException, IllegalArgumentException {
+        this.filterManager = filterManager;
         this.requestType = requestType;
         this.responseType = responseType;
         if (serdesManager == null) throw new NullPointerException("SerdesManager cannot be null.");
@@ -240,7 +244,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @throws IllegalArgumentException if no Deserializer is registered for type T
      */
     public <T> FluentRequestSender<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException {
-        FluentRequestImpl<RequestType, T> newReq = new FluentRequestImpl<>(serdesManager, requestType, type);
+        FluentRequestImpl<RequestType, T> newReq
+                = new FluentRequestImpl<>(filterManager, serdesManager, requestType, type);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -256,7 +261,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @throws IllegalArgumentException if no Serializer is registered for type T
      */
     public <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException {
-        FluentRequestImpl<T, ResponseType> newReq = new FluentRequestImpl<>(serdesManager, type, responseType);
+        FluentRequestImpl<T, ResponseType> newReq
+                = new FluentRequestImpl<>(filterManager, serdesManager, type, responseType);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -272,7 +278,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T
      */
     public <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException {
-        FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(serdesManager, type, type);
+        FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(filterManager, serdesManager, type, type);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -588,6 +594,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             public void onResponseReceived(Request request, Response response) {
                 final String code = String.valueOf(response.getStatusCode());
 
+                // Execute filters on this response
+                final List<ResponseFilter> filters = filterManager.getResponseFilters();
+                for (ResponseFilter filter : filters) {
+                    filter.filter(request, response);
+                }
+
                 // Check if the response matches any mapped status code
                 if (mappedCallbacks != null) {
                     JsArrayString codes = getMappedCodes();
@@ -630,6 +642,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
         // If the uri was not set via #setUri, then build it.
         if (uri == null) uri = uriBuilder.build();
+
+        // Execute filters on this request
+        final List<RequestFilter> filters = filterManager.getRequestFilters();
+        for (RequestFilter filter : filters) {
+            filter.filter(this);
+        }
 
         ServerConnection connection = connectionFactory.get();
 

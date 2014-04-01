@@ -16,8 +16,6 @@
 
 package org.turbogwt.core.http.client;
 
-import com.google.gwt.http.client.Request;
-
 /**
  * An extension interface implemented by request filters.
  * Request filters are intended to manipulate the request before it is sent to the server.
@@ -31,5 +29,5 @@ public interface RequestFilter {
      *
      * @param request   The request to be dispatched.
      */
-    void filter(Request request);
+    void filter(FluentRequestSender<?, ?> request);
 }

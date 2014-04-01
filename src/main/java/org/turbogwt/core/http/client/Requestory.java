@@ -43,6 +43,7 @@ import org.turbogwt.core.http.client.serialization.VoidSerdes;
 public class Requestory {
 
     private final SerdesManager serdesManager = new SerdesManager();
+    private final FilterManager filterManager = new FilterManager();
     private MultipleParamStrategy defaultStrategy;
 
     public Requestory() {
@@ -667,6 +668,28 @@ public class Requestory {
      */
     public <T> Registration registerSerdes(Class<T> type, Serdes<T> serdes) {
         return serdesManager.registerSerdes(type, serdes);
+    }
+
+    /**
+     * Register a request filter.
+     *
+     * @param requestFilter The request filter to be registered.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration.
+     */
+    public Registration registerRequestFilter(RequestFilter requestFilter) {
+        return filterManager.registerRequestFilter(requestFilter);
+    }
+
+    /**
+     * Register a response filter.
+     *
+     * @param responseFilter The response filter to be registered.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration.
+     */
+    public Registration registerResponseFilter(ResponseFilter responseFilter) {
+        return filterManager.registerResponseFilter(responseFilter);
     }
 
     private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType>
