@@ -28,7 +28,7 @@ import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 
 /**
- * Serializer of Overlay types.
+ * Serializer/Deserializer of Overlay types.
  *
  * @param <T> The overlay type of the data to be serialized.
  *

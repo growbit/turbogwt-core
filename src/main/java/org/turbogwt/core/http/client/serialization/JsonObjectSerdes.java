@@ -26,7 +26,7 @@ import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.js.client.Overlays;
 
 /**
- * Base class for all Serdes that manipulates serialized JSON objects.
+ * Base class for all SerDes that manipulates serialized JSON objects.
  *
  * @param <T>   Type of the object to serialize/deserialize.
  *
@@ -67,7 +67,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     public T deserialize(String response, Headers headers) {
         if (!isObject(response))
             throw new UnableToDeserializeException("Response content is not an object");
-        return mapFromOverlay(JsonUtils.safeEval(response), headers);
+        return mapFromOverlay(useSafeEval() ? JsonUtils.safeEval(response) : JsonUtils.unsafeEval(response), headers);
     }
 
     /**
@@ -80,8 +80,8 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      * @return The object deserialized.
      */
     @Override
-    public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response, Headers
-            headers) {
+    public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
+                                                               Headers headers) {
         if (!isArray(response)) throw new UnableToDeserializeException("Response content is not an array.");
 
         C col = getCollectionInstance(collectionType);
@@ -105,6 +105,25 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     @Override
     public String serialize(T t, Headers headers) {
         return Overlays.stringify(mapToOverlay(t, headers));
+    }
+
+    /**
+     * Verifies if the deserializer should evaluate the response safely.
+     * <p/>
+     * If this method returns <code>true</code>, then the deserializer will evaluate the response using
+     * {@link com.google.gwt.core.client.JsonUtils#safeEval(String)}, otherwise it will use
+     * {@link com.google.gwt.core.client.JsonUtils#unsafeEval(String)}.
+     * <p/>
+     * If you are completely sure you'll will always receive safe contents, then you can override it
+     * to return <code>false</code> and you'll benefit a faster deserialization.
+     * <p/>
+     * The default implementation is <code>true</code>.
+     *
+     * @return  <code>true</code> if you want to evaluate response safely,
+     *          or <code>false</code> to evaluate unsafely.
+     */
+    public boolean useSafeEval() {
+        return true;
     }
 
     protected boolean isObject(String text) {

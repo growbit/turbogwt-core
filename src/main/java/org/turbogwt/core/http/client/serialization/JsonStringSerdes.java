@@ -19,7 +19,7 @@ package org.turbogwt.core.http.client.serialization;
 import org.turbogwt.core.http.client.Headers;
 
 /**
- * Serdes of JSON strings.
+ * SerDes of JSON strings.
  *
  * @author Danilo Reinert
  */

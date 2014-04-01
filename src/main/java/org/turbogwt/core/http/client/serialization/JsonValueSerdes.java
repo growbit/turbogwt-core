@@ -21,7 +21,7 @@ import java.util.Collection;
 import org.turbogwt.core.http.client.Headers;
 
 /**
- * Base class for all Serdes that manipulates serialized JSON simple values.
+ * Base class for all SerDes that manipulates serialized JSON simple values.
  *
  * @param <T>   Type of the object to serialize/deserialize.
  *
