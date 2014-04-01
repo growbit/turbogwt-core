@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.turbogwt.core.http.client.Factory;
+import org.turbogwt.core.http.client.Registration;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 import org.turbogwt.core.js.collections.client.JsMap;
 
@@ -83,8 +84,16 @@ public final class CollectionFactoryManager {
      * @param factory   The factory of the collection.
      * @param <C>       The type of the collection.
      */
-    public static <C extends Collection> void registerFactory(Class<C> type, Factory<C> factory) {
-        INITIALIZERS.set(type.getName(), factory);
+    public static <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
+        final String typeName = type.getName();
+        INITIALIZERS.set(typeName, factory);
+
+        return new Registration() {
+            @Override
+            public void removeHandler() {
+                INITIALIZERS.remove(typeName);
+            }
+        };
     }
 
     /**
