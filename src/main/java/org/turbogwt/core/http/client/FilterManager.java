@@ -39,18 +39,38 @@ public class FilterManager {
      * Register a request filter.
      *
      * @param requestFilter The request filter to be registered.
+     *
+     * @return  The {@link Registration} object, which is capable of cancelling this registration
+     *          from this {@link FilterManager}.
      */
-    public void registerRequestFilter(RequestFilter requestFilter) {
+    public Registration registerRequestFilter(final RequestFilter requestFilter) {
         addRequestFilter(requestFilter);
+
+        return new Registration() {
+            @Override
+            public void removeHandler() {
+                removeRequestFilter(requestFilter);
+            }
+        };
     }
 
     /**
      * Register a response filter.
      *
      * @param responseFilter The response filter to be registered.
+     *
+     * @return  The {@link Registration} object, which is capable of cancelling this registration
+     *          from this {@link FilterManager}.
      */
-    public void registerResponseFilter(ResponseFilter responseFilter) {
+    public Registration registerResponseFilter(final ResponseFilter responseFilter) {
         addResponseFilter(responseFilter);
+
+        return new Registration() {
+            @Override
+            public void removeHandler() {
+                removeResponseFilter(responseFilter);
+            }
+        };
     }
 
     /**
