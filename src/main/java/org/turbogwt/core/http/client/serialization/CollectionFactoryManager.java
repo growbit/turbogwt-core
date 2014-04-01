@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.turbogwt.core.http.client.Factory;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 import org.turbogwt.core.js.collections.client.JsMap;
 
@@ -33,21 +34,6 @@ import org.turbogwt.core.js.collections.client.JsMap;
  * @author Danilo Reinert
  */
 public final class CollectionFactoryManager {
-
-    /**
-     * It is a simple class intended to create instances of some type.
-     *
-     * @param <T> Type of object to instantiate.
-     */
-    interface Factory<T> {
-
-        /**
-         * Instantiate T.
-         *
-         * @return a instance of T.
-         */
-        T get();
-    }
 
     private static JsMap<Factory<? extends Collection>> INITIALIZERS;
 

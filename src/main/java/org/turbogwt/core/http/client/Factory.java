@@ -17,16 +17,16 @@
 package org.turbogwt.core.http.client;
 
 /**
- * Factory of {@link ServerConnection}.
+ * It is a simple class intended to create instances of some type.
  *
- * @author Danilo Reinert
+ * @param <T> Type of object to instantiate.
  */
-public interface ServerConnectionFactory extends Factory<ServerConnection> {
+public interface Factory<T> {
 
     /**
-     * Retrieve an instance of {@link ServerConnection}.
+     * Instantiate T.
      *
-     * @return The ServerConnection instance.
+     * @return a instance of T.
      */
-    ServerConnection get();
+    T get();
 }
