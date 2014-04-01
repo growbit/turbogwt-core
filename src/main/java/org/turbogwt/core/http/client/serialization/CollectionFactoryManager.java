@@ -46,7 +46,7 @@ public final class CollectionFactoryManager {
          *
          * @return a instance of T.
          */
-        T create();
+        T get();
     }
 
     private static JsMap<Factory<? extends Collection>> INITIALIZERS;
@@ -55,7 +55,7 @@ public final class CollectionFactoryManager {
         INITIALIZERS = JsMap.create();
         final Factory<ArrayList> arrayListFactory = new Factory<ArrayList>() {
             @Override
-            public ArrayList create() {
+            public ArrayList get() {
                 return new ArrayList<>();
             }
         };
@@ -64,19 +64,19 @@ public final class CollectionFactoryManager {
         INITIALIZERS.set(ArrayList.class.getName(), arrayListFactory);
         INITIALIZERS.set(LinkedList.class.getName(), new Factory<LinkedList>() {
             @Override
-            public LinkedList create() {
+            public LinkedList get() {
                 return new LinkedList<>();
             }
         });
         INITIALIZERS.set(JsArrayList.class.getName(), new Factory<JsArrayList>() {
             @Override
-            public JsArrayList create() {
+            public JsArrayList get() {
                 return new JsArrayList();
             }
         });
         final Factory<HashSet> hashSetFactory = new Factory<HashSet>() {
             @Override
-            public HashSet create() {
+            public HashSet get() {
                 return new HashSet();
             }
         };
@@ -84,7 +84,7 @@ public final class CollectionFactoryManager {
         INITIALIZERS.set(HashSet.class.getName(), hashSetFactory);
         INITIALIZERS.set(TreeSet.class.getName(), new Factory<TreeSet>() {
             @Override
-            public TreeSet create() {
+            public TreeSet get() {
                 return new TreeSet();
             }
         });
