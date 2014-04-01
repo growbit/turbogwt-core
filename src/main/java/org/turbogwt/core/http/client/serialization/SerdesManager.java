@@ -16,6 +16,7 @@
 
 package org.turbogwt.core.http.client.serialization;
 
+import org.turbogwt.core.http.client.Registration;
 import org.turbogwt.core.js.collections.client.JsMap;
 
 /**
@@ -34,9 +35,20 @@ public class SerdesManager {
      * @param type          The class of the deserializer's type.
      * @param deserializer  The deserializer of T.
      * @param <T>           The type of the object to be deserialized.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration
+     *          to the {@link SerdesManager}.
      */
-    public <T> void registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
-        deserializers.set(type.getName(), deserializer);
+    public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
+        final String typeName = type.getName();
+        deserializers.set(typeName, deserializer);
+
+        return new Registration() {
+            @Override
+            public void removeHandler() {
+                deserializers.remove(typeName);
+            }
+        };
     }
 
     /**
@@ -45,9 +57,20 @@ public class SerdesManager {
      * @param type          The class of the serializer's type.
      * @param serializer  The serializer of T.
      * @param <T>           The type of the object to be serialized.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration
+     *          to the {@link SerdesManager}.
      */
-    public <T> void registerSerializer(Class<T> type, Serializer<T> serializer) {
-        serializers.set(type.getName(), serializer);
+    public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
+        final String typeName = type.getName();
+        serializers.set(typeName, serializer);
+
+        return new Registration() {
+            @Override
+            public void removeHandler() {
+                serializers.remove(typeName);
+            }
+        };
     }
 
     /**
@@ -56,10 +79,21 @@ public class SerdesManager {
      * @param type      The class of the serializer/deserializer's type.
      * @param serdes    The serializer/deserializer of T.
      * @param <T>       The type of the object to be serialized/deserialized.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration
+     *          to the {@link SerdesManager}.
      */
-    public <T> void registerSerdes(Class<T> type, Serdes<T> serdes) {
-        registerDeserializer(type, serdes);
-        registerSerializer(type, serdes);
+    public <T> Registration registerSerdes(Class<T> type, Serdes<T> serdes) {
+        final Registration desReg = registerDeserializer(type, serdes);
+        final Registration serReg = registerSerializer(type, serdes);
+
+        return new Registration() {
+            @Override
+            public void removeHandler() {
+                desReg.removeHandler();
+                serReg.removeHandler();
+            }
+        };
     }
 
     /**

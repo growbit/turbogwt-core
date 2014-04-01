@@ -40,8 +40,8 @@ public class FilterManager {
      *
      * @param requestFilter The request filter to be registered.
      *
-     * @return  The {@link Registration} object, which is capable of cancelling this registration
-     *          from this {@link FilterManager}.
+     * @return  The {@link Registration} object, capable of cancelling this registration
+     *          to the {@link FilterManager}.
      */
     public Registration registerRequestFilter(final RequestFilter requestFilter) {
         addRequestFilter(requestFilter);
@@ -59,8 +59,8 @@ public class FilterManager {
      *
      * @param responseFilter The response filter to be registered.
      *
-     * @return  The {@link Registration} object, which is capable of cancelling this registration
-     *          from this {@link FilterManager}.
+     * @return  The {@link Registration} object, capable of cancelling this registration
+     *          to the {@link FilterManager}.
      */
     public Registration registerResponseFilter(final ResponseFilter responseFilter) {
         addResponseFilter(responseFilter);

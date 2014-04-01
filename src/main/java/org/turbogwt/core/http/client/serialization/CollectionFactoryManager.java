@@ -83,6 +83,9 @@ public final class CollectionFactoryManager {
      * @param type      The type of the collection.
      * @param factory   The factory of the collection.
      * @param <C>       The type of the collection.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration
+     *          to the {@link CollectionFactoryManager}.
      */
     public static <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
         final String typeName = type.getName();
