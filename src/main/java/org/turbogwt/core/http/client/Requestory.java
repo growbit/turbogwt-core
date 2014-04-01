@@ -638,9 +638,11 @@ public class Requestory {
      *
      * @param type          The class of the deserializer's type.
      * @param deserializer  The deserializer of T.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration.
      */
-    public <T> void registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
-        serdesManager.registerDeserializer(type, deserializer);
+    public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
+        return serdesManager.registerDeserializer(type, deserializer);
     }
 
     /**
@@ -648,9 +650,11 @@ public class Requestory {
      *
      * @param type          The class of the serializer's type.
      * @param serializer  The serializer of T.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration.
      */
-    public <T> void registerSerializer(Class<T> type, Serializer<T> serializer) {
-        serdesManager.registerSerializer(type, serializer);
+    public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
+        return serdesManager.registerSerializer(type, serializer);
     }
 
     /**
@@ -658,9 +662,11 @@ public class Requestory {
      *
      * @param type      The class of the serializer/deserializer's type.
      * @param serdes    The serializer/deserializer of T.
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration.
      */
-    public <T> void registerSerdes(Class<T> type, Serdes<T> serdes) {
-        serdesManager.registerSerdes(type, serdes);
+    public <T> Registration registerSerdes(Class<T> type, Serdes<T> serdes) {
+        return serdesManager.registerSerdes(type, serdes);
     }
 
     private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType>

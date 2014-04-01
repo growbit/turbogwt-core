@@ -100,7 +100,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI scheme.
      *
-     * @param scheme the URI scheme. A null value will unset the URI scheme
+     * @param scheme the URI scheme; a null value will unset the URI scheme
      *
      * @return the updated FluentRequestSender
      *
@@ -115,7 +115,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI host.
      *
-     * @param host the URI host. A null value will unset the host component of the URI
+     * @param host the URI host; a null value will unset the host component of the URI
      *
      * @return the updated FluentRequestSender
      *
@@ -130,7 +130,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI port.
      *
-     * @param port the URI port, a negative value will unset an explicit port
+     * @param port the URI port; a negative value will unset an explicit port
      *
      * @return the updated FluentRequestSender
      *
@@ -146,7 +146,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
      * characters are preserved thus a single value can represent multiple URI path segments.
      *
-     * @param path the path. A null value will unset the path component of the URI
+     * @param path the path; a null value will unset the path component of the URI
      *
      * @return the updated FluentRequestSender
      */
