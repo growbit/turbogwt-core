@@ -697,7 +697,7 @@ public class Requestory {
                                 Class<ResponseType> responseType,
                                 MultipleParamStrategy strategy) {
         final FluentRequestImpl<RequestType, ResponseType> request = new
-                FluentRequestImpl<>(serdesManager, requestType, responseType);
+                FluentRequestImpl<>(filterManager, serdesManager, requestType, responseType);
         request.multipleParamStrategy(strategy);
         return request;
     }

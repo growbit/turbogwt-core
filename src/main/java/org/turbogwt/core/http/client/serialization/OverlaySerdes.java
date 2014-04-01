@@ -23,6 +23,7 @@ import com.google.gwt.core.client.JsonUtils;
 import java.util.Collection;
 import java.util.List;
 
+import org.turbogwt.core.http.client.Factory;
 import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
@@ -98,7 +99,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
      * @return A new instance to the collection.
      */
     protected <C extends Collection<T>> C getCollectionInstance(Class<C> collectionType) {
-        final CollectionFactoryManager.Factory<C> factory = CollectionFactoryManager.getFactory(collectionType);
+        final Factory<C> factory = CollectionFactoryManager.getFactory(collectionType);
         if (factory == null)
             throw new UnableToDeserializeException("Could not instantiate the given collection type.");
         return factory.get();
