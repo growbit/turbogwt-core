@@ -47,6 +47,7 @@ import org.turbogwt.core.js.collections.client.JsMap;
  */
 public class FluentRequestImpl<RequestType, ResponseType> implements FluentRequestSender<RequestType, ResponseType> {
 
+    private final ServerConnectionFactory connectionFactory = GWT.create(ServerConnectionFactory.class);
     private final SerdesManager serdesManager;
     private final Class<RequestType> requestType;
     private final Class<ResponseType> responseType;
@@ -606,7 +607,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         // If the uri was not set via #setUri, then build it.
         if (uri == null) uri = uriBuilder.build();
 
-        ServerConnection connection = GWT.create(ServerConnection.class);
+        ServerConnection connection = connectionFactory.get();
 
         try {
             connection.sendRequest(timeout, user, password, headers, method, uri, body, callback);
