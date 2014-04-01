@@ -84,10 +84,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the strategy for appending parameters with multiple values.
      *
+     * @param strategy the strategy
      *
-     * @param strategy the strategy.
-     *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if strategy is null
      */
@@ -101,9 +100,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI scheme.
      *
-     * @param scheme the URI scheme. A null value will unset the URI scheme.
+     * @param scheme the URI scheme. A null value will unset the URI scheme
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if scheme is invalid
      */
@@ -116,11 +115,11 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI host.
      *
-     * @param host the URI host. A null value will unset the host component of the URI.
+     * @param host the URI host. A null value will unset the host component of the URI
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
-     * @throws IllegalArgumentException if host is invalid.
+     * @throws IllegalArgumentException if host is invalid
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> host(String host) throws IllegalArgumentException {
@@ -131,9 +130,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI port.
      *
-     * @param port the URI port, a negative value will unset an explicit port.
+     * @param port the URI port, a negative value will unset an explicit port
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if port is invalid
      */
@@ -147,9 +146,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
      * characters are preserved thus a single value can represent multiple URI path segments.
      *
-     * @param path the path. A null value will unset the path component of the URI.
+     * @param path the path. A null value will unset the path component of the URI
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> path(String path) {
@@ -165,7 +164,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      *
      * @param segments the path segment values
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
@@ -186,7 +185,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @param values the matrix parameter value(s), each object will be converted to a {@code String} using its {@code
      *               toString()} method.
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if name or values is null
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
@@ -206,7 +205,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @param values the query parameter value(s), each object will be converted to a {@code String} using its {@code
      *               toString()} method.
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if name or values is null
      */
@@ -220,9 +219,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Set the URI fragment.
      *
-     * @param fragment the URI fragment. A null value will remove any existing fragment.
+     * @param fragment the URI fragment. A null value will remove any existing fragment
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequestSender
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> fragment(String fragment) {
@@ -233,10 +232,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Deserialize result to T.
      *
-     * @param type The class from T.
-     * @param <T> The type to be deserialized.
-     * @return The new FluentRequest capable of deserializing T.
-     * @throws IllegalArgumentException if no Deserializer is registered for type T.
+     * @param type The class from T
+     * @param <T> The type to be deserialized
+     *
+     * @return The new FluentRequest capable of deserializing T
+     *
+     * @throws IllegalArgumentException if no Deserializer is registered for type T
      */
     public <T> FluentRequestSender<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<RequestType, T> newReq = new FluentRequestImpl<>(serdesManager, requestType, type);
@@ -247,10 +248,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Serialize request data from T.
      *
-     * @param type The class from T.
-     * @param <T> The type to be serialized.
-     * @return The new FluentRequest capable of serializing T.
-     * @throws IllegalArgumentException if no Serializer is registered for type T.
+     * @param type The class from T
+     * @param <T> The type to be serialized
+     *
+     * @return The new FluentRequest capable of serializing T
+     *
+     * @throws IllegalArgumentException if no Serializer is registered for type T
      */
     public <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, ResponseType> newReq = new FluentRequestImpl<>(serdesManager, type, responseType);
@@ -261,10 +264,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Serialize and Deserialize transmitting data from/to T.
      *
-     * @param type The class from T.
-     * @param <T> The type to be de/serialized.
-     * @return The new FluentRequest capable of de/serializing T.
-     * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
+     * @param type The class from T
+     * @param <T> The type to be de/serialized
+     *
+     * @return The new FluentRequest capable of de/serializing T
+     *
+     * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T
      */
     public <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(serdesManager, type, type);
@@ -279,6 +284,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      *
      * @param header the name of the header
      * @param value the value of the header
+     *
+     * @return the updated FluentRequestSender
      *
      * @throws NullPointerException if header or value are null
      * @throws IllegalArgumentException if header or value are the empty string
@@ -295,6 +302,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      *
      * @param user user name to use
      *
+     * @return the updated FluentRequestSender
+     *
      * @throws IllegalArgumentException if the user is empty
      * @throws NullPointerException if the user is null
      */
@@ -309,6 +318,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * user specified.
      *
      * @param password password to use in the request URL
+     *
+     * @return the updated FluentRequestSender
      *
      * @throws IllegalArgumentException if the password is empty
      * @throws NullPointerException if the password is null
@@ -332,6 +343,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @param timeoutMillis number of milliseconds to wait before canceling the
      *          request, a value of zero disables timeouts
      *
+     * @return the updated FluentRequestSender
+     *
      * @throws IllegalArgumentException if the timeout value is negative
      */
     @Override
@@ -351,6 +364,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      *
      * @param statusCode    the unit, dozen or hundred expected on response's status code.
      * @param callback      the callback to handle informed code
+     *
+     * @return the updated FluentRequestSender
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> on(int statusCode, SingleCallback callback) {
@@ -507,7 +522,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Directly set URI for request.
      * It will override any uri in construction.
      *
-     * @param uri The URI for requesting.
+     * @param uri The URI for requesting
+     *
+     * @return the updated FluentRequestSender
      */
     protected FluentRequestSender<RequestType, ResponseType> setUri(String uri) {
         this.uri = uri;
@@ -518,8 +535,10 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Build request and send it.
      * If the request could not be sent then the returned {@link Request} is null and resultCallback#onError is called.
      *
-     * @param dataCollection              The data collection to be serialized and sent into the request body.
-     * @param resultCallback    The user callback.
+     * @param dataCollection    The data collection to be serialized and sent into the request body
+     * @param resultCallback    The user callback
+     *
+     * @return the sent request.
      */
     private <C extends Collection<RequestType>> Request send(RequestBuilder.Method method,
                                                              @Nullable C dataCollection,
@@ -536,8 +555,10 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Build request and send it.
      * If the request could not be sent then the returned {@link Request} is null and resultCallback#onError is called.
      *
-     * @param data              The data to be serialized and sent into the request body.
-     * @param resultCallback    The user callback.
+     * @param data              The data to be serialized and sent into the request body
+     * @param resultCallback    The user callback
+     *
+     * @return the sent request
      */
     private Request send(RequestBuilder.Method method, @Nullable RequestType data,
                          @Nullable AsyncCallback resultCallback) {
@@ -553,9 +574,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Build request and send it.
      * If the request could not be sent then the returned {@link Request} is null and resultCallback#onError is called.
      *
-     * @param body              The content to be sent in the request body.
-     * @param resultCallback    The user callback.
+     * @param body              The content to be sent in the request body
+     * @param resultCallback    The user callback
+     *
+     * @return the sent request
      */
+    @SuppressWarnings("unchecked")
     private Request send(RequestBuilder.Method method, @Nullable String body,
                          @Nullable final AsyncCallback resultCallback) {
         // Prepare callback for following request builder
@@ -623,7 +647,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Get the HTTP codes registered with special callbacks in order of priority from the most specific to the least.
      *
-     * @return The registered codes as an array of String.
+     * @return The registered codes as an array of String
      */
     private JsArrayString getMappedCodes() {
         JsArrayString codes = Overlays.getOwnPropertyNames(mappedCallbacks, true);
@@ -632,6 +656,13 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         return codes;
     }
 
+    /**
+     * Build a {@link Headers} object from response headers.
+     *
+     * @param response the response from server
+     *
+     * @return the headers
+     */
     private Headers mountHeadersFromResponse(Response response) {
         Headers responseHeaders = Headers.create();
         final Header[] responseHeaderArray = response.getHeaders();
@@ -645,9 +676,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Performs deserialization of the HTTP body checking whether it should be deserialized into a Collection or a
      * single Object.
      *
-     * @param body The content from HTTP response.
-     * @param responseHeaders The headers from HTTP response.
-     * @param resultCallback The user callback.
+     * @param body The content from HTTP response
+     * @param responseHeaders The headers from HTTP response
+     * @param resultCallback The user callback
      */
     @SuppressWarnings("unchecked")
     private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
@@ -667,9 +698,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * Performs deserialization of the HTTP body checking whether it should be deserialized into a Collection or a
      * single Object.
      *
-     * @param body The content from HTTP response.
-     * @param responseHeaders The headers from HTTP response.
-     * @param resultCallback The user callback.
+     * @param body The content from HTTP response
+     * @param responseHeaders The headers from HTTP response
+     * @param resultCallback The user callback
      */
     @SuppressWarnings("unchecked")
     private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
@@ -683,7 +714,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     /**
      * Copies all internal fields to a new {@link FluentRequestImpl} instance.
      *
-     * @param newReq The new instance.
+     * @param newReq The new instance
      */
     private void copyFieldsTo(FluentRequestImpl<?, ?> newReq) {
         newReq.uriBuilder = uriBuilder;
