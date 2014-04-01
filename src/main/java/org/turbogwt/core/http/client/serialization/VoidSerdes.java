@@ -37,8 +37,8 @@ public class VoidSerdes implements Serdes<Void> {
     }
 
     @Override
-    public <C extends Collection<Void>> C deserializeAsCollection(Class<C> collectionType, String response, Headers
-            headers) {
+    public <C extends Collection<Void>> C deserializeAsCollection(Class<C> collectionType, String response,
+                                                                  Headers headers) {
         return null;
     }
 

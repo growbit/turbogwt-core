@@ -39,8 +39,8 @@ public abstract class JsonValueSerdes<T> extends JsonSerdes<T> {
      * @return The object deserialized.
      */
     @Override
-    public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response, Headers
-            headers) {
+    public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
+                                                               Headers headers) {
         final String trimmedResponse = response.trim();
         if (!isArray(trimmedResponse)) throw new UnableToDeserializeException("Response content is not an array.");
 
