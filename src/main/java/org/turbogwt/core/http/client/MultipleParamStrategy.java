@@ -20,6 +20,8 @@ import com.google.gwt.http.client.URL;
 
 /**
  * Class that defines how multiple values will be appended to the URI along with its param name.
+ *
+ * @author Danilo Reinert
  */
 public abstract class MultipleParamStrategy {
 
