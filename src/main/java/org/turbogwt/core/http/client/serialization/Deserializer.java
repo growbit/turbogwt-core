@@ -34,6 +34,7 @@ public interface Deserializer<T> {
      *
      * @param response  Http response body content.
      * @param headers   Http response headers.
+     *
      * @return The object deserialized.
      */
     T deserialize(String response, Headers headers);
@@ -44,6 +45,7 @@ public interface Deserializer<T> {
      * @param collectionType The class of the collection.
      * @param response  Http response body content.
      * @param headers   Http response headers.
+     *
      * @return The object deserialized.
      */
     <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response, Headers headers);

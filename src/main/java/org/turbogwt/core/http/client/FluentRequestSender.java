@@ -107,7 +107,9 @@ public interface FluentRequestSender<RequestType, ResponseType> extends FluentRe
      *
      * @param type The class from T.
      * @param <T> The type to be serialized.
+     *
      * @return The new FluentRequest capable of serializing T.
+     *
      * @throws IllegalArgumentException if no Serializer is registered for type T.
      */
     <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException;
@@ -117,7 +119,9 @@ public interface FluentRequestSender<RequestType, ResponseType> extends FluentRe
      *
      * @param type The class from T.
      * @param <T> The type to be de/serialized.
+     *
      * @return The new FluentRequest capable of de/serializing T.
+     *
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T.
      */
     <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException;

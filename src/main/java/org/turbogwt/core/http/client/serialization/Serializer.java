@@ -34,6 +34,7 @@ public interface Serializer<T> {
      *
      * @param t         The object to be serialized.
      * @param headers   Http headers from current request.
+     *
      * @return The object serialized.
      */
     String serialize(T t, Headers headers);
@@ -43,6 +44,7 @@ public interface Serializer<T> {
      *
      * @param c        The collection of the object to be serialized.
      * @param headers   Http headers from current request.
+     *
      * @return The object serialized.
      */
     String serializeFromCollection(Collection<T> c, Headers headers);
