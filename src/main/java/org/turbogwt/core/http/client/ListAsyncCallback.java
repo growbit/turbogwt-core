@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * {@link ContainerAsyncCallback} for the {@link List} type.
  *
- * @param <T> The parametrized type of the List.
+ * @param <T> The parametrized type of the List
  *
  * @author Danilo Reinert
  */

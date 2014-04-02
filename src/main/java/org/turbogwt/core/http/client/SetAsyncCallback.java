@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * {@link ContainerAsyncCallback} for the {@link Set} type.
  *
- * @param <T> The parametrized type of the Set.
+ * @param <T> The parametrized type of the Set
  *
  * @author Danilo Reinert
  */

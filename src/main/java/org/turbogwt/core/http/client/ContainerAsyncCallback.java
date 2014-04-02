@@ -24,7 +24,7 @@ import java.util.Collection;
  * Super class of all callbacks intended to receive result as collection of objects.
  *
  * @param <T>   The parametrized type of the collection
- * @param <C>   The type of the collection.
+ * @param <C>   The type of the collection
  *
  * @author Danilo Reinert
  */
@@ -36,9 +36,7 @@ public abstract class ContainerAsyncCallback<C extends Collection<T>, T> impleme
      * IMPORTANT! You should override this method to return the specific class
      * you want to receive at #onSuccess.
      *
-     * @return The collection type which this callback expects.
+     * @return The collection type which this callback expects
      */
-    public Class<? super C> getContainerClass() {
-        return Collection.class;
-    }
+    public abstract Class<? super C> getContainerClass();
 }
