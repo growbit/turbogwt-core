@@ -18,12 +18,10 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
  * Base class for all SerDes that manipulates serialized JSON.
  *
- * @param <T>   Type of the object to be serialized/deserialized.
+ * @param <T>   Type of the object to be serialized/deserialized
  *
  * @author Danilo Reinert
  */
@@ -37,8 +35,8 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
      *
      * @return A new instance to the collection.
      */
-    public <C extends Collection<T>> C getCollectionInstance(Class<C> collectionType) {
-        final C col = CollectionFactoryManager.getFactory(collectionType).get();
+    public <C extends Collection<T>> C getCollectionInstance(DeserializationContext context, Class<C> collectionType) {
+        final C col = context.getCollectionFactoryManager().getFactory(collectionType).get();
         if (col == null)
             throw new UnableToDeserializeException("Could not instantiate the given collection type.");
         return col;
@@ -47,17 +45,17 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     /**
      * Serialize a collection of T to plain text.
      *
-     * @param c       The collection of the object to be serialized.
-     * @param headers Http headers from current request.
+     * @param c         The collection of the object to be serialized.
+     * @param context   Context of the serialization
      *
      * @return The object serialized.
      */
     @Override
-    public String serializeFromCollection(Collection<T> c, Headers headers) {
+    public String serializeFromCollection(Collection<T> c, SerializationContext context) {
         if (c == null) return null;
         StringBuilder serialized = new StringBuilder("[");
         for (T t : c) {
-            serialized.append(serialize(t, headers)).append(',');
+            serialized.append(serialize(t, context)).append(',');
         }
         serialized.setCharAt(serialized.length() - 1, ']');
         return serialized.toString();

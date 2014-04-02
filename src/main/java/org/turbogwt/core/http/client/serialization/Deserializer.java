@@ -18,8 +18,6 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
  * Performs deserialization of Types.
  *
@@ -32,21 +30,22 @@ public interface Deserializer<T> {
     /**
      * Deserialize the plain text into an object of type T.
      *
-     * @param response  Http response body content.
-     * @param headers   Http response headers.
+     * @param response  Http response body content
+     * @param context   Context of deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
-    T deserialize(String response, Headers headers);
+    T deserialize(String response, DeserializationContext context);
 
     /**
      * Deserialize the plain text into an object of type T.
      *
-     * @param collectionType The class of the collection.
-     * @param response  Http response body content.
-     * @param headers   Http response headers.
+     * @param collectionType    The class of the collection
+     * @param response          Http response body content
+     * @param context           Context of deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
-    <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response, Headers headers);
+    <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
+                                                        DeserializationContext context);
 }

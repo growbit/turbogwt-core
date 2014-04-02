@@ -31,9 +31,11 @@ import org.turbogwt.core.http.client.mock.ResponseMock;
 import org.turbogwt.core.http.client.mock.ServerConnectionMock;
 import org.turbogwt.core.http.client.model.Person;
 import org.turbogwt.core.http.client.model.PersonJso;
+import org.turbogwt.core.http.client.serialization.DeserializationContext;
 import org.turbogwt.core.http.client.serialization.JsonObjectSerdes;
 import org.turbogwt.core.http.client.serialization.JsonRecordReader;
 import org.turbogwt.core.http.client.serialization.JsonRecordWriter;
+import org.turbogwt.core.http.client.serialization.SerializationContext;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 
@@ -194,15 +196,15 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
             @Override
-            public Person mapFromOverlay(JsonRecordReader overlay, Headers headers) {
-                return new Person(overlay.readInteger("id"),
-                        overlay.readString("name"),
-                        overlay.readDouble("weight"),
-                        new Date(overlay.readLong("birthday")));
+            public Person mapFromOverlay(JsonRecordReader reader, DeserializationContext context) {
+                return new Person(reader.readInteger("id"),
+                        reader.readString("name"),
+                        reader.readDouble("weight"),
+                        new Date(reader.readLong("birthday")));
             }
 
             @Override
-            public void mapToOverlay(Person person, JsonRecordWriter writer, Headers headers) {
+            public void mapToOverlay(Person person, JsonRecordWriter writer, SerializationContext context) {
                 writer.writeInt("id", person.getId())
                         .writeString("name", person.getName())
                         .writeDouble("weight", person.getWeight())
@@ -240,15 +242,15 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
             @Override
-            public Person mapFromOverlay(JsonRecordReader overlay, Headers headers) {
-                return new Person(overlay.readInteger("id"),
-                        overlay.readString("name"),
-                        overlay.readDouble("weight"),
-                        new Date(overlay.readLong("birthday")));
+            public Person mapFromOverlay(JsonRecordReader reader, DeserializationContext context) {
+                return new Person(reader.readInteger("id"),
+                        reader.readString("name"),
+                        reader.readDouble("weight"),
+                        new Date(reader.readLong("birthday")));
             }
 
             @Override
-            public void mapToOverlay(Person person, JsonRecordWriter writer, Headers headers) {
+            public void mapToOverlay(Person person, JsonRecordWriter writer, SerializationContext context) {
                 writer.writeInt("id", person.getId())
                         .writeString("name", person.getName())
                         .writeDouble("weight", person.getWeight())
@@ -286,20 +288,20 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
             @Override
-            public Person mapFromOverlay(JsonRecordReader overlay, Headers headers) {
-                return new Person(overlay.readInteger("id"),
-                        overlay.readString("name"),
-                        overlay.readDouble("weight"),
-                        new Date(overlay.readLong("birthday")));
+            public Person mapFromOverlay(JsonRecordReader reader, DeserializationContext context) {
+                return new Person(reader.readInteger("id"),
+                        reader.readString("name"),
+                        reader.readDouble("weight"),
+                        new Date(reader.readLong("birthday")));
             }
 
             @Override
-            public void mapToOverlay(Person person, JsonRecordWriter writer, Headers headers) {
+            public void mapToOverlay(Person person, JsonRecordWriter writer, SerializationContext context) {
                 // Ignored, as #serialize was overridden in order to improve serialization performance.
             }
 
             @Override
-            public String serialize(Person person, Headers headers) {
+            public String serialize(Person person, SerializationContext context) {
                 // Directly build json using string concatenation in order to increase performance.
                 return "{" + "\"id\":" + person.getId() + ", \"name\":\"" + person.getName() + "\", " +
                         "\"weight\":" + person.getWeight() + ", \"birthday\":" + person.getBirthday().getTime() + "}";

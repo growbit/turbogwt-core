@@ -28,6 +28,10 @@ public final class JsonRecordWriter extends JavaScriptObject {
     protected JsonRecordWriter() {
     }
 
+    static JsonRecordWriter create() {
+        return (JsonRecordWriter) JavaScriptObject.createObject();
+    }
+
     public native JsonRecordWriter writeBoolean(String property, boolean value) /*-{
         this[property] = value;
         return this;

@@ -18,9 +18,10 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
+ * SerDes for Void type.
+ * Returns null for every method.
+ *
  * @author Danilo Reinert
  */
 public class VoidSerdes implements Serdes<Void> {
@@ -32,23 +33,23 @@ public class VoidSerdes implements Serdes<Void> {
     }
 
     @Override
-    public Void deserialize(String response, Headers headers) {
+    public Void deserialize(String response, DeserializationContext context) {
         return null;
     }
 
     @Override
     public <C extends Collection<Void>> C deserializeAsCollection(Class<C> collectionType, String response,
-                                                                  Headers headers) {
+                                                                  DeserializationContext context) {
         return null;
     }
 
     @Override
-    public String serialize(Void v, Headers headers) {
+    public String serialize(Void v, SerializationContext context) {
         return null;
     }
 
     @Override
-    public String serializeFromCollection(Collection<Void> c, Headers headers) {
+    public String serializeFromCollection(Collection<Void> c, SerializationContext context) {
         return null;
     }
 }

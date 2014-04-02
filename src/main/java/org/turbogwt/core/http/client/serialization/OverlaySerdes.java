@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.turbogwt.core.http.client.Factory;
-import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 
@@ -45,19 +44,19 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
     }
 
     @Override
-    public T deserialize(String response, Headers headers) {
+    public T deserialize(String response, DeserializationContext context) {
         return JsonUtils.safeEval(response);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
-                                                               Headers headers) {
+                                                               DeserializationContext context) {
         JsArray<T> jsArray = JsonUtils.safeEval(response);
         if (collectionType.equals(List.class) || collectionType.equals(Collection.class)) {
             return (C) new JsArrayList<>(jsArray);
         } else {
-            C col = getCollectionInstance(collectionType);
+            C col = getCollectionInstance(context, collectionType);
             for (int i = 0; i < jsArray.length(); i++) {
                 T t = jsArray.get(i);
                 col.add(t);
@@ -67,12 +66,12 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
     }
 
     @Override
-    public String serialize(T t, Headers headers) {
+    public String serialize(T t, SerializationContext context) {
         return Overlays.stringify(t);
     }
 
     @Override
-    public String serializeFromCollection(Collection<T> c, Headers headers) {
+    public String serializeFromCollection(Collection<T> c, SerializationContext context) {
         if (c instanceof JsArrayList) {
             return Overlays.stringify(((JsArrayList<T>) c).asJsArray());
         }
@@ -91,15 +90,15 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
 
     /**
      * Given a collection class, returns a new instance of it.
-     * You should override this method in order to additionally support other collection types.
-     * WARNING! If you override this method, you MUST call return super(), at the final.
      *
-     * @param collectionType The class of the collection.
-     * @param <C> The type of the collection.
+     * @param collectionType    The class of the collection.
+     * @param <C>               The type of the collection.
+     *
      * @return A new instance to the collection.
      */
-    protected <C extends Collection<T>> C getCollectionInstance(Class<C> collectionType) {
-        final Factory<C> factory = CollectionFactoryManager.getFactory(collectionType);
+    protected <C extends Collection<T>> C getCollectionInstance(DeserializationContext context,
+                                                                Class<C> collectionType) {
+        final Factory<C> factory = context.getCollectionFactoryManager().getFactory(collectionType);
         if (factory == null)
             throw new UnableToDeserializeException("Could not instantiate the given collection type.");
         return factory.get();

@@ -18,12 +18,10 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
  * Base class for all SerDes that manipulates serialized JSON simple values.
  *
- * @param <T>   Type of the object to serialize/deserialize.
+ * @param <T>   Type of the object to serialize/deserialize
  *
  * @author Danilo Reinert
  */
@@ -32,19 +30,19 @@ public abstract class JsonValueSerdes<T> extends JsonSerdes<T> {
     /**
      * Deserialize the plain text into an object of type T.
      *
-     * @param collectionType The class of the collection.
-     * @param response       Http response body content.
-     * @param headers        Http response headers.
+     * @param collectionType The class of the collection
+     * @param response       Http response body content
+     * @param context        Context of the deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
     @Override
     public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
-                                                               Headers headers) {
+                                                               DeserializationContext context) {
         final String trimmedResponse = response.trim();
         if (!isArray(trimmedResponse)) throw new UnableToDeserializeException("Response content is not an array.");
 
-        C col = getCollectionInstance(collectionType);
+        C col = getCollectionInstance(context, collectionType);
 
         int initialIndex = 1;
         final int lastIndex = trimmedResponse.length() - 1;
@@ -52,7 +50,7 @@ public abstract class JsonValueSerdes<T> extends JsonSerdes<T> {
             int finalIndex = trimmedResponse.indexOf(",", initialIndex);
             if (finalIndex == -1) finalIndex = trimmedResponse.indexOf("]", initialIndex);
             final String trimmedValue = trimmedResponse.substring(initialIndex, finalIndex).trim();
-            col.add(deserialize(trimmedValue, headers));
+            col.add(deserialize(trimmedValue, context));
             initialIndex = finalIndex + 1;
         }
 

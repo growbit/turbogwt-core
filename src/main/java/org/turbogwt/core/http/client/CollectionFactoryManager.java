@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http.client.serialization;
+package org.turbogwt.core.http.client;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,8 +24,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.turbogwt.core.http.client.Factory;
-import org.turbogwt.core.http.client.Registration;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 import org.turbogwt.core.js.collections.client.JsMap;
 
@@ -36,26 +34,26 @@ import org.turbogwt.core.js.collections.client.JsMap;
  */
 public final class CollectionFactoryManager {
 
-    private static JsMap<Factory<? extends Collection>> INITIALIZERS;
+    private final JsMap<Factory<? extends Collection>> factories;
 
-    private static void init() {
-        INITIALIZERS = JsMap.create();
+    public CollectionFactoryManager() {
+        factories = JsMap.create();
         final Factory<ArrayList> arrayListFactory = new Factory<ArrayList>() {
             @Override
             public ArrayList get() {
                 return new ArrayList<>();
             }
         };
-        INITIALIZERS.set(Collection.class.getName(), arrayListFactory);
-        INITIALIZERS.set(List.class.getName(), arrayListFactory);
-        INITIALIZERS.set(ArrayList.class.getName(), arrayListFactory);
-        INITIALIZERS.set(LinkedList.class.getName(), new Factory<LinkedList>() {
+        factories.set(Collection.class.getName(), arrayListFactory);
+        factories.set(List.class.getName(), arrayListFactory);
+        factories.set(ArrayList.class.getName(), arrayListFactory);
+        factories.set(LinkedList.class.getName(), new Factory<LinkedList>() {
             @Override
             public LinkedList get() {
                 return new LinkedList<>();
             }
         });
-        INITIALIZERS.set(JsArrayList.class.getName(), new Factory<JsArrayList>() {
+        factories.set(JsArrayList.class.getName(), new Factory<JsArrayList>() {
             @Override
             public JsArrayList get() {
                 return new JsArrayList();
@@ -67,9 +65,9 @@ public final class CollectionFactoryManager {
                 return new HashSet();
             }
         };
-        INITIALIZERS.set(Set.class.getName(), hashSetFactory);
-        INITIALIZERS.set(HashSet.class.getName(), hashSetFactory);
-        INITIALIZERS.set(TreeSet.class.getName(), new Factory<TreeSet>() {
+        factories.set(Set.class.getName(), hashSetFactory);
+        factories.set(HashSet.class.getName(), hashSetFactory);
+        factories.set(TreeSet.class.getName(), new Factory<TreeSet>() {
             @Override
             public TreeSet get() {
                 return new TreeSet();
@@ -80,21 +78,21 @@ public final class CollectionFactoryManager {
     /**
      * Map a {@link Factory} to some collection class.
      *
-     * @param type      The type of the collection.
-     * @param factory   The factory of the collection.
-     * @param <C>       The type of the collection.
+     * @param type      The type of the collection
+     * @param factory   The factory of the collection
+     * @param <C>       The type of the collection
      *
      * @return  The {@link Registration} object, capable of cancelling this registration
-     *          to the {@link CollectionFactoryManager}.
+     *          to the {@link CollectionFactoryManager}
      */
-    public static <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
+    public <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
         final String typeName = type.getName();
-        INITIALIZERS.set(typeName, factory);
+        factories.set(typeName, factory);
 
         return new Registration() {
             @Override
             public void removeHandler() {
-                INITIALIZERS.remove(typeName);
+                factories.remove(typeName);
             }
         };
     }
@@ -102,11 +100,10 @@ public final class CollectionFactoryManager {
     /**
      * Given collection some class, return its {@link Factory}.
      *
-     * @param <C> Collection type.
+     * @param <C> Collection type
      */
     @SuppressWarnings("unchecked")
-    public static <C extends Collection> Factory<C> getFactory(Class<C> type) {
-        if (INITIALIZERS == null) init();
-        return (Factory<C>) INITIALIZERS.get(type.getName(), null);
+    public <C extends Collection> Factory<C> getFactory(Class<C> type) {
+        return (Factory<C>) factories.get(type.getName(), null);
     }
 }

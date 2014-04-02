@@ -16,8 +16,6 @@
 
 package org.turbogwt.core.http.client.serialization;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
  * Serdes of JSON numbers.
  *
@@ -34,13 +32,13 @@ public class JsonNumberSerdes extends JsonValueSerdes<Number> {
     /**
      * Deserialize the plain text into a number.
      *
-     * @param response Http response body content.
-     * @param headers  Http response headers.
+     * @param response  Http response body content
+     * @param context   Context of the deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
     @Override
-    public Number deserialize(String response, Headers headers) {
+    public Number deserialize(String response, DeserializationContext context) {
         try {
             if (response.contains(".")) {
                 return Double.valueOf(response);
@@ -58,13 +56,13 @@ public class JsonNumberSerdes extends JsonValueSerdes<Number> {
     /**
      * Serialize T to plain text.
      *
-     * @param n       The number to be serialized.
-     * @param headers Http headers from current request.
+     * @param n         The number to be serialized
+     * @param context   Context of the serialization
      *
-     * @return The object serialized.
+     * @return The object serialized
      */
     @Override
-    public String serialize(Number n, Headers headers) {
+    public String serialize(Number n, SerializationContext context) {
         return String.valueOf(n);
     }
 }

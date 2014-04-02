@@ -44,6 +44,7 @@ public class Requestory {
 
     private final SerdesManager serdesManager = new SerdesManager();
     private final FilterManager filterManager = new FilterManager();
+    private final CollectionFactoryManager collectionFactoryManager = new CollectionFactoryManager();
     private MultipleParamStrategy defaultStrategy;
 
     public Requestory() {
@@ -692,12 +693,24 @@ public class Requestory {
         return filterManager.registerResponseFilter(responseFilter);
     }
 
+    /**
+     * Register a collection factory.
+     *
+     * @param collectionType    The class of the collection
+     * @param factory           The factory of the collection
+     *
+     * @return  The {@link Registration} object, capable of cancelling this registration.
+     */
+    public <C extends Collection> Registration registerCollectionFactoy(Class<C> collectionType, Factory<C> factory) {
+        return collectionFactoryManager.registerFactory(collectionType, factory);
+    }
+
     private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType>
         createFluentRequestImpl(Class<RequestType> requestType,
                                 Class<ResponseType> responseType,
                                 MultipleParamStrategy strategy) {
         final FluentRequestImpl<RequestType, ResponseType> request = new
-                FluentRequestImpl<>(filterManager, serdesManager, requestType, responseType);
+                FluentRequestImpl<>(filterManager, serdesManager, requestType, responseType, collectionFactoryManager);
         request.multipleParamStrategy(strategy);
         return request;
     }

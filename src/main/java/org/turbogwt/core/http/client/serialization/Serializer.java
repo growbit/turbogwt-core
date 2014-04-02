@@ -18,12 +18,10 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
  * Performs serialization of types.
  *
- * @param <T> The type it can serialize.
+ * @param <T> The type it can serialize
  *
  * @author Danilo Reinert
  */
@@ -32,20 +30,20 @@ public interface Serializer<T> {
     /**
      * Serialize T to plain text.
      *
-     * @param t         The object to be serialized.
-     * @param headers   Http headers from current request.
+     * @param t         The object to be serialized
+     * @param context   Context of the serialization
      *
      * @return The object serialized.
      */
-    String serialize(T t, Headers headers);
+    String serialize(T t, SerializationContext context);
 
     /**
      * Serialize a collection of T to plain text.
      *
-     * @param c        The collection of the object to be serialized.
-     * @param headers   Http headers from current request.
+     * @param c        The collection of the object to be serialized
+     * @param context   Context of the serialization
      *
      * @return The object serialized.
      */
-    String serializeFromCollection(Collection<T> c, Headers headers);
+    String serializeFromCollection(Collection<T> c, SerializationContext context);
 }

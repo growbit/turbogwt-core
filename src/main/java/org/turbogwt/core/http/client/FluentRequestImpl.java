@@ -31,8 +31,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.turbogwt.core.http.client.serialization.DeserializationContext;
 import org.turbogwt.core.http.client.serialization.Deserializer;
 import org.turbogwt.core.http.client.serialization.SerdesManager;
+import org.turbogwt.core.http.client.serialization.SerializationContext;
 import org.turbogwt.core.http.client.serialization.SerializationException;
 import org.turbogwt.core.http.client.serialization.Serializer;
 import org.turbogwt.core.js.client.Overlays;
@@ -53,6 +55,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private final SerdesManager serdesManager;
     // TODO: remove responsibility for manipulating FilterManager
     private final FilterManager filterManager;
+    // TODO: remove responsibility for manipulating CollectionFactoryManager
+    private final CollectionFactoryManager collectionFactoryManager;
     private final Class<RequestType> requestType;
     private final Class<ResponseType> responseType;
     private final Serializer<RequestType> requestSerializer;
@@ -66,12 +70,17 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private int timeout;
 
     public FluentRequestImpl(FilterManager filterManager, SerdesManager serdesManager,
-                             Class<RequestType> requestType, Class<ResponseType> responseType)
+                             Class<RequestType> requestType, Class<ResponseType> responseType,
+                             CollectionFactoryManager collectionFactoryManager)
             throws NullPointerException, IllegalArgumentException {
+        if (filterManager == null) throw new NullPointerException("FilterManager cannot be null.");
         this.filterManager = filterManager;
-        this.requestType = requestType;
-        this.responseType = responseType;
+
+        if (collectionFactoryManager == null) throw new NullPointerException("CollectionFactoryManager can't be null.");
+        this.collectionFactoryManager = collectionFactoryManager;
+
         if (serdesManager == null) throw new NullPointerException("SerdesManager cannot be null.");
+        this.serdesManager = serdesManager;
         try {
             this.requestSerializer = serdesManager.getSerializer(requestType);
         } catch (SerializationException e) {
@@ -83,7 +92,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             throw new IllegalArgumentException("Deserializer of ResponseType was not registered.", e);
         }
 
-        this.serdesManager = serdesManager;
+        this.requestType = requestType;
+        this.responseType = responseType;
+
         this.uriBuilder = GWT.create(UriBuilder.class);
     }
 
@@ -247,7 +258,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     public <T> FluentRequestSender<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<RequestType, T> newReq
-                = new FluentRequestImpl<>(filterManager, serdesManager, requestType, type);
+                = new FluentRequestImpl<>(filterManager, serdesManager, requestType, type, collectionFactoryManager);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -264,7 +275,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     public <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, ResponseType> newReq
-                = new FluentRequestImpl<>(filterManager, serdesManager, type, responseType);
+                = new FluentRequestImpl<>(filterManager, serdesManager, type, responseType, collectionFactoryManager);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -280,7 +291,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @throws IllegalArgumentException if no Deserializer or Serializer is registered for type T
      */
     public <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException {
-        FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(filterManager, serdesManager, type, type);
+        FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(filterManager, serdesManager, type, type,
+                collectionFactoryManager);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -554,7 +566,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         String body = null;
         if (dataCollection != null) {
             // Serializer init was verified on construction
-            body = requestSerializer.serializeFromCollection(dataCollection, Overlays.deepCopy(headers));
+            body = requestSerializer.serializeFromCollection(dataCollection, SerializationContext.of(headers));
         }
         return send(method, body, resultCallback);
     }
@@ -573,7 +585,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         String body = null;
         if (data != null) {
             // Serializer init was verified on construction
-            body = requestSerializer.serialize(data, Overlays.deepCopy(headers));
+            body = requestSerializer.serialize(data, SerializationContext.of(headers));
         }
         return send(method, body, resultCallback);
     }
@@ -707,28 +719,13 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
                     (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
             Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getCollectionClass();
-            cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body, headers));
+            cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body,
+                    DeserializationContext.of(responseHeaders, collectionFactoryManager)));
         } else {
-            ResponseType result = responseDeserializer.deserialize(body, responseHeaders);
+            ResponseType result = responseDeserializer.deserialize(body,
+                    DeserializationContext.of(responseHeaders, collectionFactoryManager));
             resultCallback.onSuccess(result);
         }
-    }
-
-    /**
-     * Performs deserialization of the HTTP body checking whether it should be deserialized into a Collection or a
-     * single Object.
-     *
-     * @param body The content from HTTP response
-     * @param responseHeaders The headers from HTTP response
-     * @param resultCallback The user callback
-     */
-    @SuppressWarnings("unchecked")
-    private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
-                                           CollectionAsyncCallback<? extends Collection, ResponseType> resultCallback) {
-        CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
-                (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
-        Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getCollectionClass();
-        cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body, responseHeaders));
     }
 
     /**

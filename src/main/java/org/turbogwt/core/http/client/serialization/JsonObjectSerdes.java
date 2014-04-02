@@ -22,7 +22,6 @@ import com.google.gwt.core.client.JsonUtils;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.js.client.Overlays;
 
 /**
@@ -39,59 +38,59 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      *
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
-     * @param reader   The response deserialized to JavaScriptObject.
-     * @param headers  Http response headers.
+     * @param reader    The evaluated response
+     * @param context   Context of the deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
-    public abstract T mapFromOverlay(JsonRecordReader reader, Headers headers);
+    public abstract T mapFromOverlay(JsonRecordReader reader, DeserializationContext context);
 
     /**
      * Map T as JavaScriptObject to serialize using JSON.stringify.
      *
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
-     * @param t         The object deserialized.
-     * @param writer    The JSON to be serialized
-     * @param headers   Http response headers.
+     * @param t         The object to be serialized
+     * @param writer    The serializing JSON
+     * @param context   Context of the serialization
      */
-    public abstract void mapToOverlay(T t, JsonRecordWriter writer, Headers headers);
+    public abstract void mapToOverlay(T t, JsonRecordWriter writer, SerializationContext context);
 
     /**
      * Deserialize the plain text into an object of type T.
      *
-     * @param response Http response body content.
-     * @param headers  Http response headers.
+     * @param response Http response body content
+     * @param context   Context of the deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
     @Override
-    public T deserialize(String response, Headers headers) {
+    public T deserialize(String response, DeserializationContext context) {
         if (!isObject(response))
             throw new UnableToDeserializeException("Response content is not an object");
         return mapFromOverlay((JsonRecordReader) (useSafeEval() ? JsonUtils.safeEval(response)
-                : JsonUtils.unsafeEval(response)), headers);
+                : JsonUtils.unsafeEval(response)), context);
     }
 
     /**
      * Deserialize the plain text into an object of type T.
      *
-     * @param collectionType The class of the collection.
-     * @param response       Http response body content.
-     * @param headers        Http response headers.
+     * @param collectionType The class of the collection
+     * @param response       Http response body content
+     * @param context        Context of the deserialization
      *
-     * @return The object deserialized.
+     * @return The object deserialized
      */
     @Override
     public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
-                                                               Headers headers) {
+                                                               DeserializationContext context) {
         if (!isArray(response)) throw new UnableToDeserializeException("Response content is not an array.");
 
-        C col = getCollectionInstance(collectionType);
+        C col = getCollectionInstance(context, collectionType);
         JsArray<JavaScriptObject> jsArray = JsonUtils.safeEval(response);
         for (int i = 0; i < jsArray.length(); i++) {
             JavaScriptObject jso = jsArray.get(i);
-            col.add(mapFromOverlay((JsonRecordReader) jso, headers));
+            col.add(mapFromOverlay((JsonRecordReader) jso, context));
         }
 
         return col;
@@ -100,15 +99,15 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     /**
      * Serialize T to plain text.
      *
-     * @param t       The object to be serialized.
-     * @param headers Http headers from current request.
+     * @param t         The object to be serialized
+     * @param context   Context of the deserialization
      *
-     * @return The object serialized.
+     * @return The object serialized
      */
     @Override
-    public String serialize(T t, Headers headers) {
-        final JavaScriptObject writer = JavaScriptObject.createObject();
-        mapToOverlay(t, (JsonRecordWriter) writer, headers);
+    public String serialize(T t, SerializationContext context) {
+        final JsonRecordWriter writer = JsonRecordWriter.create();
+        mapToOverlay(t, writer, context);
         return Overlays.stringify(writer);
     }
 
@@ -125,7 +124,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      * The default implementation is <code>true</code>.
      *
      * @return  <code>true</code> if you want to evaluate response safely,
-     *          or <code>false</code> to evaluate unsafely.
+     *          or <code>false</code> to evaluate unsafely
      */
     public boolean useSafeEval() {
         return true;

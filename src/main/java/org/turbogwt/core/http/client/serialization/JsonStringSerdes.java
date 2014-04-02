@@ -16,8 +16,6 @@
 
 package org.turbogwt.core.http.client.serialization;
 
-import org.turbogwt.core.http.client.Headers;
-
 /**
  * SerDes of JSON strings.
  *
@@ -34,26 +32,26 @@ public class JsonStringSerdes extends JsonValueSerdes<String> {
     /**
      * Deserialize the plain text into a String.
      *
-     * @param response Http response body content.
-     * @param headers  Http response headers.
+     * @param response  Http response body content
+     * @param context   Context of the deserialization
      *
-     * @return The string deserialized.
+     * @return The string deserialized
      */
     @Override
-    public String deserialize(String response, Headers headers) {
+    public String deserialize(String response, DeserializationContext context) {
         return response.substring(1, response.length() - 1);
     }
 
     /**
      * Serialize String to plain text.
      *
-     * @param s       The string to be serialized.
-     * @param headers Http headers from current request.
+     * @param s         The string to be serialized
+     * @param context   Context of the serialization
      *
-     * @return The string serialized.
+     * @return The string serialized
      */
     @Override
-    public String serialize(String s, Headers headers) {
+    public String serialize(String s, SerializationContext context) {
         return "\"" + s + "\"";
     }
 }

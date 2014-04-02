@@ -110,7 +110,7 @@ public class FilterManager {
         responseFilters.remove(responseFilter);
         updateResponseFiltersCopy();
     }
-    
+
     private void updateRequestFiltersCopy() {
         requestFiltersCopy = Collections.unmodifiableList(requestFilters);
     }
