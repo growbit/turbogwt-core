@@ -43,7 +43,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      *
      * @return The object deserialized
      */
-    public abstract T mapFromOverlay(JsonRecordReader reader, DeserializationContext context);
+    public abstract T readJson(JsonRecordReader reader, DeserializationContext context);
 
     /**
      * Map T as JavaScriptObject to serialize using JSON.stringify.
@@ -54,12 +54,12 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      * @param writer    The serializing JSON
      * @param context   Context of the serialization
      */
-    public abstract void mapToOverlay(T t, JsonRecordWriter writer, SerializationContext context);
+    public abstract void writeJson(T t, JsonRecordWriter writer, SerializationContext context);
 
     /**
      * Deserialize the plain text into an object of type T.
      *
-     * @param response Http response body content
+     * @param response  Http response body content
      * @param context   Context of the deserialization
      *
      * @return The object deserialized
@@ -68,7 +68,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     public T deserialize(String response, DeserializationContext context) {
         if (!isObject(response))
             throw new UnableToDeserializeException("Response content is not an object");
-        return mapFromOverlay((JsonRecordReader) (useSafeEval() ? JsonUtils.safeEval(response)
+        return readJson((JsonRecordReader) (useSafeEval() ? JsonUtils.safeEval(response)
                 : JsonUtils.unsafeEval(response)), context);
     }
 
@@ -90,7 +90,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
         JsArray<JavaScriptObject> jsArray = JsonUtils.safeEval(response);
         for (int i = 0; i < jsArray.length(); i++) {
             JavaScriptObject jso = jsArray.get(i);
-            col.add(mapFromOverlay((JsonRecordReader) jso, context));
+            col.add(readJson((JsonRecordReader) jso, context));
         }
 
         return col;
@@ -107,7 +107,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     @Override
     public String serialize(T t, SerializationContext context) {
         final JsonRecordWriter writer = JsonRecordWriter.create();
-        mapToOverlay(t, writer, context);
+        writeJson(t, writer, context);
         return Overlays.stringify(writer);
     }
 

@@ -196,7 +196,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
             @Override
-            public Person mapFromOverlay(JsonRecordReader reader, DeserializationContext context) {
+            public Person readJson(JsonRecordReader reader, DeserializationContext context) {
                 return new Person(reader.readInteger("id"),
                         reader.readString("name"),
                         reader.readDouble("weight"),
@@ -204,7 +204,7 @@ public class FluentRequestImplTest extends GWTTestCase {
             }
 
             @Override
-            public void mapToOverlay(Person person, JsonRecordWriter writer, SerializationContext context) {
+            public void writeJson(Person person, JsonRecordWriter writer, SerializationContext context) {
                 writer.writeInt("id", person.getId())
                         .writeString("name", person.getName())
                         .writeDouble("weight", person.getWeight())
@@ -242,7 +242,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
             @Override
-            public Person mapFromOverlay(JsonRecordReader reader, DeserializationContext context) {
+            public Person readJson(JsonRecordReader reader, DeserializationContext context) {
                 return new Person(reader.readInteger("id"),
                         reader.readString("name"),
                         reader.readDouble("weight"),
@@ -250,7 +250,7 @@ public class FluentRequestImplTest extends GWTTestCase {
             }
 
             @Override
-            public void mapToOverlay(Person person, JsonRecordWriter writer, SerializationContext context) {
+            public void writeJson(Person person, JsonRecordWriter writer, SerializationContext context) {
                 writer.writeInt("id", person.getId())
                         .writeString("name", person.getName())
                         .writeDouble("weight", person.getWeight())
@@ -288,7 +288,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
             @Override
-            public Person mapFromOverlay(JsonRecordReader reader, DeserializationContext context) {
+            public Person readJson(JsonRecordReader reader, DeserializationContext context) {
                 return new Person(reader.readInteger("id"),
                         reader.readString("name"),
                         reader.readDouble("weight"),
@@ -296,7 +296,7 @@ public class FluentRequestImplTest extends GWTTestCase {
             }
 
             @Override
-            public void mapToOverlay(Person person, JsonRecordWriter writer, SerializationContext context) {
+            public void writeJson(Person person, JsonRecordWriter writer, SerializationContext context) {
                 // Ignored, as #serialize was overridden in order to improve serialization performance.
             }
 
