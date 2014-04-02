@@ -39,22 +39,23 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      *
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
-     * @param overlay   The response deserialized to JavaScriptObject.
+     * @param reader   The response deserialized to JavaScriptObject.
+     * @param headers  Http response headers.
      *
      * @return The object deserialized.
      */
-    public abstract T mapFromOverlay(JavaScriptObject overlay, Headers headers);
+    public abstract T mapFromOverlay(JsonRecordReader reader, Headers headers);
 
     /**
      * Map T as JavaScriptObject to serialize using JSON.stringify.
      *
      * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
      *
-     * @param t     The object deserialized.
-     *
-     * @return The overlay type representing the object.
+     * @param t         The object deserialized.
+     * @param writer    The JSON to be serialized
+     * @param headers   Http response headers.
      */
-    public abstract JavaScriptObject mapToOverlay(T t, Headers headers);
+    public abstract void mapToOverlay(T t, JsonRecordWriter writer, Headers headers);
 
     /**
      * Deserialize the plain text into an object of type T.
@@ -68,7 +69,8 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     public T deserialize(String response, Headers headers) {
         if (!isObject(response))
             throw new UnableToDeserializeException("Response content is not an object");
-        return mapFromOverlay(useSafeEval() ? JsonUtils.safeEval(response) : JsonUtils.unsafeEval(response), headers);
+        return mapFromOverlay((JsonRecordReader) (useSafeEval() ? JsonUtils.safeEval(response)
+                : JsonUtils.unsafeEval(response)), headers);
     }
 
     /**
@@ -89,7 +91,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
         JsArray<JavaScriptObject> jsArray = JsonUtils.safeEval(response);
         for (int i = 0; i < jsArray.length(); i++) {
             JavaScriptObject jso = jsArray.get(i);
-            col.add(mapFromOverlay(jso, headers));
+            col.add(mapFromOverlay((JsonRecordReader) jso, headers));
         }
 
         return col;
@@ -105,7 +107,9 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      */
     @Override
     public String serialize(T t, Headers headers) {
-        return Overlays.stringify(mapToOverlay(t, headers));
+        final JavaScriptObject writer = JavaScriptObject.createObject();
+        mapToOverlay(t, (JsonRecordWriter) writer, headers);
+        return Overlays.stringify(writer);
     }
 
     /**
