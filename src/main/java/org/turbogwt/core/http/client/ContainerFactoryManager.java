@@ -28,15 +28,15 @@ import org.turbogwt.core.js.collections.client.JsArrayList;
 import org.turbogwt.core.js.collections.client.JsMap;
 
 /**
- * Static map from collection classes to their respectively {@link Factory}.
+ * Manager of container (collection) factories.
  *
  * @author Danilo Reinert
  */
-public final class CollectionFactoryManager {
+public final class ContainerFactoryManager {
 
     private final JsMap<Factory<? extends Collection>> factories;
 
-    public CollectionFactoryManager() {
+    public ContainerFactoryManager() {
         factories = JsMap.create();
         final Factory<ArrayList> arrayListFactory = new Factory<ArrayList>() {
             @Override
@@ -83,7 +83,7 @@ public final class CollectionFactoryManager {
      * @param <C>       The type of the collection
      *
      * @return  The {@link Registration} object, capable of cancelling this registration
-     *          to the {@link CollectionFactoryManager}
+     *          to the {@link ContainerFactoryManager}
      */
     public <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
         final String typeName = type.getName();

@@ -19,16 +19,16 @@ package org.turbogwt.core.http.client;
 import java.util.List;
 
 /**
- * {@link CollectionAsyncCallback} for the {@link List} type.
+ * {@link ContainerAsyncCallback} for the {@link List} type.
  *
  * @param <T> The parametrized type of the List.
  *
  * @author Danilo Reinert
  */
-public abstract class ListAsyncCallback<T> extends CollectionAsyncCallback<List<T>, T> {
+public abstract class ListAsyncCallback<T> extends ContainerAsyncCallback<List<T>, T> {
 
     @Override
-    public Class<List> getCollectionClass() {
+    public Class<List> getContainerClass() {
         return List.class;
     }
 }

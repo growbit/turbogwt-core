@@ -98,7 +98,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
      */
     protected <C extends Collection<T>> C getCollectionInstance(DeserializationContext context,
                                                                 Class<C> collectionType) {
-        final Factory<C> factory = context.getCollectionFactoryManager().getFactory(collectionType);
+        final Factory<C> factory = context.getContainerFactoryManager().getFactory(collectionType);
         if (factory == null)
             throw new UnableToDeserializeException("Could not instantiate the given collection type.");
         return factory.get();

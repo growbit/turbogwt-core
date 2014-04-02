@@ -28,7 +28,7 @@ import java.util.Collection;
  *
  * @author Danilo Reinert
  */
-public abstract class CollectionAsyncCallback<C extends Collection<T>, T> implements AsyncCallback<C> {
+public abstract class ContainerAsyncCallback<C extends Collection<T>, T> implements AsyncCallback<C> {
 
     /**
      * Returns the collection type which this callback expects.
@@ -38,7 +38,7 @@ public abstract class CollectionAsyncCallback<C extends Collection<T>, T> implem
      *
      * @return The collection type which this callback expects.
      */
-    public Class<? super C> getCollectionClass() {
+    public Class<? super C> getContainerClass() {
         return Collection.class;
     }
 }

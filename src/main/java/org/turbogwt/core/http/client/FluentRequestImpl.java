@@ -55,8 +55,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private final SerdesManager serdesManager;
     // TODO: remove responsibility for manipulating FilterManager
     private final FilterManager filterManager;
-    // TODO: remove responsibility for manipulating CollectionFactoryManager
-    private final CollectionFactoryManager collectionFactoryManager;
+    // TODO: remove responsibility for manipulating ContainerFactoryManager
+    private final ContainerFactoryManager containerFactoryManager;
     private final Class<RequestType> requestType;
     private final Class<ResponseType> responseType;
     private final Serializer<RequestType> requestSerializer;
@@ -71,13 +71,13 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     public FluentRequestImpl(FilterManager filterManager, SerdesManager serdesManager,
                              Class<RequestType> requestType, Class<ResponseType> responseType,
-                             CollectionFactoryManager collectionFactoryManager)
+                             ContainerFactoryManager containerFactoryManager)
             throws NullPointerException, IllegalArgumentException {
         if (filterManager == null) throw new NullPointerException("FilterManager cannot be null.");
         this.filterManager = filterManager;
 
-        if (collectionFactoryManager == null) throw new NullPointerException("CollectionFactoryManager can't be null.");
-        this.collectionFactoryManager = collectionFactoryManager;
+        if (containerFactoryManager == null) throw new NullPointerException("CollectionFactoryManager can't be null.");
+        this.containerFactoryManager = containerFactoryManager;
 
         if (serdesManager == null) throw new NullPointerException("SerdesManager cannot be null.");
         this.serdesManager = serdesManager;
@@ -258,7 +258,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     public <T> FluentRequestSender<RequestType, T> deserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<RequestType, T> newReq
-                = new FluentRequestImpl<>(filterManager, serdesManager, requestType, type, collectionFactoryManager);
+                = new FluentRequestImpl<>(filterManager, serdesManager, requestType, type, containerFactoryManager);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -275,7 +275,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     public <T> FluentRequestSender<T, ResponseType> serializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, ResponseType> newReq
-                = new FluentRequestImpl<>(filterManager, serdesManager, type, responseType, collectionFactoryManager);
+                = new FluentRequestImpl<>(filterManager, serdesManager, type, responseType, containerFactoryManager);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -292,7 +292,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     public <T> FluentRequestSender<T, T> serializeDeserializeAs(Class<T> type) throws IllegalArgumentException {
         FluentRequestImpl<T, T> newReq = new FluentRequestImpl<>(filterManager, serdesManager, type, type,
-                collectionFactoryManager);
+                containerFactoryManager);
         copyFieldsTo(newReq);
         return newReq;
     }
@@ -400,7 +400,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request get(A callback) {
         return send(RequestBuilder.GET, (String) null, callback);
     }
@@ -432,12 +432,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C dataCollection, A callback) {
+            A extends ContainerAsyncCallback<B, ResponseType>> Request post(C dataCollection, A callback) {
         return send(RequestBuilder.POST, dataCollection, callback);
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request post(RequestType data, A callback) {
         return send(RequestBuilder.POST, data, callback);
     }
@@ -448,7 +448,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request post(A callback) {
         return send(RequestBuilder.POST, (String) null, callback);
     }
@@ -480,12 +480,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
     @Override
     public <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request put(C dataCollection, A callback) {
+            A extends ContainerAsyncCallback<B, ResponseType>> Request put(C dataCollection, A callback) {
         return send(RequestBuilder.PUT, dataCollection, callback);
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request put(RequestType data, A callback) {
         return send(RequestBuilder.PUT, data, callback);
     }
@@ -496,7 +496,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request put(A callback) {
         return send(RequestBuilder.PUT, (String) null, callback);
     }
@@ -512,7 +512,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request delete(A callback) {
         return send(RequestBuilder.DELETE, (String) null, callback);
     }
@@ -528,7 +528,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     @Override
-    public <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request head(A callback) {
         return send(RequestBuilder.HEAD, (String) null, callback);
     }
@@ -715,15 +715,15 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     @SuppressWarnings("unchecked")
     private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
                                              AsyncCallback resultCallback) {
-        if (resultCallback instanceof CollectionAsyncCallback) {
-            CollectionAsyncCallback<Collection<ResponseType>, ResponseType> cac =
-                    (CollectionAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
-            Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getCollectionClass();
+        if (resultCallback instanceof ContainerAsyncCallback) {
+            ContainerAsyncCallback<Collection<ResponseType>, ResponseType> cac =
+                    (ContainerAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
+            Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getContainerClass();
             cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body,
-                    DeserializationContext.of(responseHeaders, collectionFactoryManager)));
+                    DeserializationContext.of(responseHeaders, containerFactoryManager)));
         } else {
             ResponseType result = responseDeserializer.deserialize(body,
-                    DeserializationContext.of(responseHeaders, collectionFactoryManager));
+                    DeserializationContext.of(responseHeaders, containerFactoryManager));
             resultCallback.onSuccess(result);
         }
     }

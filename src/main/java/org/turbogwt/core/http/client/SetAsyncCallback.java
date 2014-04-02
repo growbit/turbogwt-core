@@ -19,16 +19,16 @@ package org.turbogwt.core.http.client;
 import java.util.Set;
 
 /**
- * {@link CollectionAsyncCallback} for the {@link Set} type.
+ * {@link ContainerAsyncCallback} for the {@link Set} type.
  *
  * @param <T> The parametrized type of the Set.
  *
  * @author Danilo Reinert
  */
-public abstract class SetAsyncCallback<T> extends CollectionAsyncCallback<Set<T>, T> {
+public abstract class SetAsyncCallback<T> extends ContainerAsyncCallback<Set<T>, T> {
 
     @Override
-    public Class<Set> getCollectionClass() {
+    public Class<Set> getContainerClass() {
         return Set.class;
     }
 }

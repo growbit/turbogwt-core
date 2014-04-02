@@ -38,7 +38,7 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request get(AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request get(A callback);
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>> Request get(A callback);
 
     //===================================================================
     // POST
@@ -59,11 +59,11 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request post(RequestType data, AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request post(RequestType data, A callback);
 
     <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request post(C dataCollection, A callback);
+            A extends ContainerAsyncCallback<B, ResponseType>> Request post(C dataCollection, A callback);
 
     <C extends Collection<RequestType>> Request post(C dataCollection, AsyncCallback<ResponseType> callback);
 
@@ -73,7 +73,7 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request post(AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request post(A callback);
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>> Request post(A callback);
 
     //===================================================================
     // PUT
@@ -94,11 +94,11 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request put(RequestType data, AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request put(RequestType data, A callback);
 
     <C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request put(C dataCollection, A callback);
+            A extends ContainerAsyncCallback<B, ResponseType>> Request put(C dataCollection, A callback);
 
     <C extends Collection<RequestType>> Request put(C dataCollection, AsyncCallback<ResponseType> callback);
 
@@ -108,7 +108,7 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request put(AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request put(A callback);
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>> Request put(A callback);
 
     //===================================================================
     // DELETE
@@ -117,7 +117,7 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request delete(AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request delete(A callback);
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>> Request delete(A callback);
 
     //===================================================================
     // HEAD
@@ -126,5 +126,5 @@ public interface RequestSender<RequestType, ResponseType> {
 
     Request head(AsyncCallback<ResponseType> callback);
 
-    <C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>> Request head(A callback);
+    <C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>> Request head(A callback);
 }

@@ -44,7 +44,7 @@ public class Requestory {
 
     private final SerdesManager serdesManager = new SerdesManager();
     private final FilterManager filterManager = new FilterManager();
-    private final CollectionFactoryManager collectionFactoryManager = new CollectionFactoryManager();
+    private final ContainerFactoryManager collectionFactoryManager = new ContainerFactoryManager();
     private MultipleParamStrategy defaultStrategy;
 
     public Requestory() {
@@ -150,7 +150,7 @@ public class Requestory {
 
     /**
      * Performs a GET request on the specified URI, returning a collection of ResponseType.
-     * You should use some subclass of {@link CollectionAsyncCallback} for retrieving the expected values.
+     * You should use some subclass of {@link ContainerAsyncCallback} for retrieving the expected values.
      *
      * @see org.turbogwt.core.http.client.ListAsyncCallback
      * @see org.turbogwt.core.http.client.SetAsyncCallback
@@ -163,7 +163,7 @@ public class Requestory {
      *
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <ResponseType, C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request get(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).get(callback);
     }
@@ -252,7 +252,7 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <RequestType, ResponseType, C extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<C, ResponseType>> Request post(String uri,
+            A extends ContainerAsyncCallback<C, ResponseType>> Request post(String uri,
                                                                              Class<RequestType> requestType,
                                                                              RequestType data,
                                                                              Class<ResponseType> responseType,
@@ -277,7 +277,7 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <RequestType, ResponseType, C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request post(String uri,
+            A extends ContainerAsyncCallback<B, ResponseType>> Request post(String uri,
                                                                              Class<RequestType> requestType,
                                                                              C dataCollection,
                                                                              Class<ResponseType> responseType,
@@ -337,7 +337,7 @@ public class Requestory {
      *
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <ResponseType, C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request post(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).post(callback);
     }
@@ -426,7 +426,7 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <RequestType, ResponseType, C extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<C, ResponseType>> Request put(String uri,
+            A extends ContainerAsyncCallback<C, ResponseType>> Request put(String uri,
                                                                             Class<RequestType> requestType,
                                                                             RequestType data,
                                                                             Class<ResponseType> responseType,
@@ -451,7 +451,7 @@ public class Requestory {
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
     public <RequestType, ResponseType, C extends Collection<RequestType>, B extends Collection<ResponseType>,
-            A extends CollectionAsyncCallback<B, ResponseType>> Request put(String uri,
+            A extends ContainerAsyncCallback<B, ResponseType>> Request put(String uri,
                                                                             Class<RequestType> requestType,
                                                                             C dataCollection,
                                                                             Class<ResponseType> responseType,
@@ -511,7 +511,7 @@ public class Requestory {
      *
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <ResponseType, C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request put(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).put(callback);
     }
@@ -548,7 +548,7 @@ public class Requestory {
 
     /**
      * Performs a DELETE request on the specified URI, returning a collection of ResponseType.
-     * You should use some subclass of {@link CollectionAsyncCallback} for retrieving the expected values.
+     * You should use some subclass of {@link ContainerAsyncCallback} for retrieving the expected values.
      *
      * @see org.turbogwt.core.http.client.ListAsyncCallback
      * @see org.turbogwt.core.http.client.SetAsyncCallback
@@ -561,7 +561,7 @@ public class Requestory {
      *
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <ResponseType, C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request delete(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).delete(callback);
     }
@@ -598,7 +598,7 @@ public class Requestory {
 
     /**
      * Performs a HEAD request on the specified URI, returning a collection of ResponseType.
-     * You should use some subclass of {@link CollectionAsyncCallback} for retrieving the expected values.
+     * You should use some subclass of {@link ContainerAsyncCallback} for retrieving the expected values.
      *
      * @see org.turbogwt.core.http.client.ListAsyncCallback
      * @see org.turbogwt.core.http.client.SetAsyncCallback
@@ -611,7 +611,7 @@ public class Requestory {
      *
      * @return  The launched {@link com.google.gwt.http.client.Request}.
      */
-    public <ResponseType, C extends Collection<ResponseType>, A extends CollectionAsyncCallback<C, ResponseType>>
+    public <ResponseType, C extends Collection<ResponseType>, A extends ContainerAsyncCallback<C, ResponseType>>
     Request head(String uri, Class<ResponseType> responseType, A callback) {
         return createFluentRequestImpl(Void.class, responseType, defaultStrategy).setUri(uri).head(callback);
     }
