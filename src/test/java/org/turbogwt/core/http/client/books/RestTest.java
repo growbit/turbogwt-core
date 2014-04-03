@@ -61,7 +61,7 @@ public class RestTest extends GWTTestCase {
         requestory.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
             @Override
             public void onFailure(Throwable caught) {
-
+                // Ignored
             }
 
             @Override
@@ -94,7 +94,7 @@ public class RestTest extends GWTTestCase {
                 .path("server").segment("books").segment(1).get(new AsyncCallback<Book>() {
             @Override
             public void onFailure(Throwable caught) {
-
+                // Ignored
             }
 
             @Override
@@ -126,16 +126,16 @@ public class RestTest extends GWTTestCase {
         requestory.request(Book.class, Void.class)
                 .path("server").segment("books")
                 .post(data, new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        // Ignored
+                    }
 
-            }
-
-            @Override
-            public void onSuccess(Void result) {
-                callbacksCalled[0] = true;
-            }
-        });
+                    @Override
+                    public void onSuccess(Void result) {
+                        callbacksCalled[0] = true;
+                    }
+                });
 
         assertTrue(callbacksCalled[0]);
         assertEquals(expected, ServerConnectionMock.getRequestData(uri).getData());
@@ -162,7 +162,7 @@ public class RestTest extends GWTTestCase {
                 .put(data, new AsyncCallback<Void>() {
                     @Override
                     public void onFailure(Throwable caught) {
-
+                        // Ignored
                     }
 
                     @Override
