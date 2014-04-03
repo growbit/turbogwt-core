@@ -26,7 +26,7 @@ import java.util.List;
 import org.turbogwt.core.http.client.ListAsyncCallback;
 import org.turbogwt.core.http.client.Requestory;
 import org.turbogwt.core.http.client.mock.ResponseMock;
-import org.turbogwt.core.http.client.mock.ServerConnectionMock;
+import org.turbogwt.core.http.client.mock.ServerStub;
 
 /**
  * @author Danilo Reinert
@@ -39,7 +39,7 @@ public class RestTest extends GWTTestCase {
     }
 
     public void testGetAll() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
 
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
@@ -49,7 +49,7 @@ public class RestTest extends GWTTestCase {
         final String responseText = "[{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}"
                 + ", {\"id\":2, \"title\":\"Agile Software Development: Principles, Patterns, and Practices\", "
                 + "\"author\":\"Robert C. Martin\"}]";
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(responseText, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK"));
 
         final List<Book> expected = new ArrayList<>(2);
         expected.add(new Book(1, "RESTful Web Services", "Leonard Richardson"));
@@ -72,11 +72,11 @@ public class RestTest extends GWTTestCase {
         });
 
         assertTrue(callbacksCalled[0]);
-        assertEquals(RequestBuilder.GET, ServerConnectionMock.getRequestData(uri).getMethod());
+        assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
     }
 
     public void testGetOne() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
 
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
@@ -84,7 +84,7 @@ public class RestTest extends GWTTestCase {
         final String uri = "/server/books/1";
 
         final String responseText = "{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}";
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(responseText, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK"));
 
         final Book expected = new Book(1, "RESTful Web Services", "Leonard Richardson");
 
@@ -105,18 +105,18 @@ public class RestTest extends GWTTestCase {
         });
 
         assertTrue(callbacksCalled[0]);
-        assertEquals(RequestBuilder.GET, ServerConnectionMock.getRequestData(uri).getMethod());
+        assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
     }
 
     public void testCreate() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
 
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
 
         final String uri = "/server/books";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(null, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
 
         final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
 
@@ -138,19 +138,19 @@ public class RestTest extends GWTTestCase {
                 });
 
         assertTrue(callbacksCalled[0]);
-        assertEquals(expected, ServerConnectionMock.getRequestData(uri).getData());
-        assertEquals(RequestBuilder.POST, ServerConnectionMock.getRequestData(uri).getMethod());
+        assertEquals(expected, ServerStub.getRequestData(uri).getData());
+        assertEquals(RequestBuilder.POST, ServerStub.getRequestData(uri).getMethod());
     }
 
     public void testUpdate() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
 
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
 
         final String uri = "/server/books/1";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(null, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
 
         final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
 
@@ -172,23 +172,23 @@ public class RestTest extends GWTTestCase {
                 });
 
         assertTrue(callbacksCalled[0]);
-        assertEquals(expected, ServerConnectionMock.getRequestData(uri).getData());
-        assertEquals(RequestBuilder.PUT, ServerConnectionMock.getRequestData(uri).getMethod());
+        assertEquals(expected, ServerStub.getRequestData(uri).getData());
+        assertEquals(RequestBuilder.PUT, ServerStub.getRequestData(uri).getMethod());
     }
 
     public void testDelete() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
 
         final Requestory requestory = new Requestory();
 
         final String uri = "/server/books/1";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(null, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
 
         requestory.request() // The same as request(Void.class, Void.class)
                 .path("server").segment("books").segment(1)
                 .delete(); // You can optionally dismiss any server response
 
-        assertEquals(RequestBuilder.DELETE, ServerConnectionMock.getRequestData(uri).getMethod());
+        assertEquals(RequestBuilder.DELETE, ServerStub.getRequestData(uri).getMethod());
     }
 }

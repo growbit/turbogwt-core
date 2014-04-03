@@ -23,7 +23,7 @@
     <inherits name="org.turbogwt.core.js.Js"/>
     <inherits name="org.turbogwt.core.js.collections.Collections"/>
 
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java"/>
+    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
 
     <replace-with class="org.turbogwt.core.http.client.UriBuilderImpl">
         <when-type-is class="org.turbogwt.core.http.client.UriBuilder"/>

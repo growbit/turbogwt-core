@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.turbogwt.core.http.client.mock.ResponseMock;
-import org.turbogwt.core.http.client.mock.ServerConnectionMock;
+import org.turbogwt.core.http.client.mock.ServerStub;
 import org.turbogwt.core.http.client.model.Person;
 import org.turbogwt.core.http.client.model.PersonJso;
 import org.turbogwt.core.http.client.serialization.DeserializationContext;
@@ -50,11 +50,11 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testVoidRequest() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/void";
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(null, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -74,13 +74,13 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testStringRequest() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/string";
         final String response = "Some string response";
         final String serializedResponse = "\"Some string response\"";
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -100,13 +100,13 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testStringArrayRequest() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/string-array";
         final String[] response = {"Some", "string", "array", "response"};
         final String irregularStringArray = " [ \"Some\", \"string\" ,  \"array\", \"response\" ]  ";
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(irregularStringArray, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(irregularStringArray, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -127,7 +127,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testOverlayRequest() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/person-jso";
@@ -135,7 +135,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final PersonJso person = PersonJso.create(1, "John Doe", 6.3, new Date(329356800));
         final String serializedResp = "{ \"id\" : 1, \"name\":\"John Doe\",\"weight\" :6.3,  \"birthday\": 329356800}";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -155,7 +155,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testOverlayArrayRequest() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/person-jso-array";
@@ -170,7 +170,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final String serializedResp = "[{\"id\": 1, \"name\": \"John Doe\", \"weight\": 6.3, \"birthday\": 329356800},"
                 + "{\"id\": 2, \"name\": \"Alice\", \"weight\": 5.87, \"birthday\": 355343600}]";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -191,7 +191,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testCustomObjectRequest() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
@@ -217,7 +217,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final Person person = new Person(1, "John Doe", 6.3, new Date(329356800));
         final String serializedResponse = "{\"id\":1, \"name\":\"John Doe\", \"weight\":6.3, \"birthday\":329356800}";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(serializedResponse, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -237,7 +237,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     }
 
     public void testCustomObjectSerialization() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
@@ -263,7 +263,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final Person person = new Person(1, "John Doe", 6.3, new Date(329356800));
         final String serializedRequest = "{\"id\":1,\"name\":\"John Doe\",\"weight\":6.3,\"birthday\":329356800}";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedRequest, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(serializedRequest, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -279,11 +279,11 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
-        assertEquals(serializedRequest, ServerConnectionMock.getRequestData(uri).getData());
+        assertEquals(serializedRequest, ServerStub.getRequestData(uri).getData());
     }
 
     public void testCustomObjectArraySerializationDeserialization() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
 
@@ -317,7 +317,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final String serializedArray = "[{\"id\":1, \"name\":\"John Doe\", \"weight\":6.3, \"birthday\":329356800},"
                 + "{\"id\":2, \"name\":\"Alice\", \"weight\":5.87, \"birthday\":355343600}]";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(serializedArray, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(serializedArray, 200, "OK"));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -334,16 +334,16 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
-        assertEquals(serializedArray, ServerConnectionMock.getRequestData(uri).getData());
+        assertEquals(serializedArray, ServerStub.getRequestData(uri).getData());
     }
 
     public void testOnHttpCodeCallbackExecution() {
-        ServerConnectionMock.clearStub();
+        ServerStub.clearStub();
         final Requestory requestory = new Requestory();
 
         final String uri = "/on";
 
-        ServerConnectionMock.responseFor(uri, ResponseMock.of(null, 204, "Empty"));
+        ServerStub.responseFor(uri, ResponseMock.of(null, 204, "Empty"));
 
         final boolean[] callbacksCalled = new boolean[3];
 

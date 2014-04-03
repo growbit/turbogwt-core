@@ -21,9 +21,6 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.turbogwt.core.http.client.Headers;
 import org.turbogwt.core.http.client.ServerConnection;
 
@@ -37,42 +34,12 @@ import org.turbogwt.core.http.client.ServerConnection;
  */
 public class ServerConnectionMock implements ServerConnection {
 
-    private static Map<String, Response> serverStub = new HashMap<>();
-    private static Map<String, RequestMock> requestData = new HashMap<>();
-
-    private boolean returnSuccess = true;
-
-    public static void responseFor(String uri, Response response) {
-        serverStub.put(uri, response);
-    }
-
-    public static RequestMock getRequestData(String uri) {
-        return requestData.get(uri);
-    }
-
-    public static void clearStub() {
-        serverStub.clear();
-        requestData.clear();
-    }
-
-    private static RequestMock setRequestData(String uri, RequestMock requestMock) {
-        return requestData.put(uri, requestMock);
-    }
-
-    public boolean isReturnSuccess() {
-        return returnSuccess;
-    }
-
-    public void setReturnSuccess(boolean returnSuccess) {
-        this.returnSuccess = returnSuccess;
-    }
-
     @Override
     public void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
             throws RequestException {
-        setRequestData(url, new RequestMock(method, url, data));
-        if (returnSuccess) {
-            callback.onResponseReceived(null, serverStub.get(url));
+        ServerStub.setRequestData(url, new RequestMock(method, url, data));
+        if (ServerStub.isReturnSuccess()) {
+            callback.onResponseReceived(null, ServerStub.getResponseFor(url));
         } else {
             callback.onError(null, new RequestException("This is a mock exception."));
         }
@@ -81,9 +48,9 @@ public class ServerConnectionMock implements ServerConnection {
     @Override
     public void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
                             String url, String data, RequestCallback callback) throws RequestException {
-        setRequestData(url, new RequestMock(method, url, data));
-        if (returnSuccess) {
-            callback.onResponseReceived(null, serverStub.get(url));
+        ServerStub.setRequestData(url, new RequestMock(method, url, data));
+        if (ServerStub.isReturnSuccess()) {
+            callback.onResponseReceived(null, ServerStub.getResponseFor(url));
         } else {
             callback.onError(null, new RequestException("This is a mock exception."));
         }

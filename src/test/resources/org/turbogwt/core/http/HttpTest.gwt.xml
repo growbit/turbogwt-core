@@ -32,11 +32,11 @@
         <when-type-is class="org.turbogwt.core.http.client.UriBuilder"/>
     </replace-with>
 
-    <replace-with class="org.turbogwt.core.http.client.mock.ServerConnectionMock">
-        <when-type-is class="org.turbogwt.core.http.client.ServerConnection"/>
-    </replace-with>
-
     <replace-with class="org.turbogwt.core.http.client.ServerImpl">
         <when-type-is class="org.turbogwt.core.http.client.Server"/>
+    </replace-with>
+
+    <replace-with class="org.turbogwt.core.http.client.mock.ServerConnectionMock">
+        <when-type-is class="org.turbogwt.core.http.client.ServerConnection"/>
     </replace-with>
 </module>
