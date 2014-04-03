@@ -16,23 +16,17 @@
 
 package org.turbogwt.core.http.client;
 
-import com.google.gwt.core.client.GWT;
-
 /**
- * Default implementation of {@link ServerConnectionFactory}.
+ * Promotes communication with the backend.
  *
  * @author Danilo Reinert
  */
-public class ServerConnectionFactoryImpl implements ServerConnectionFactory {
-
-    private final ServerConnection singleton = GWT.create(ServerConnection.class);
+public interface Server {
 
     /**
-     * Retrieve a singleton instance of {@link ServerConnection} created via DeferredBinding.
+     * Retrieve an instance of {@link ServerConnection}.
      *
      * @return The ServerConnection instance.
      */
-    public ServerConnection get() {
-        return singleton;
-    }
+    ServerConnection getConnection();
 }

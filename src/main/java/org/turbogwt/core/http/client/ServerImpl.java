@@ -16,17 +16,23 @@
 
 package org.turbogwt.core.http.client;
 
+import com.google.gwt.core.client.GWT;
+
 /**
- * Factory of {@link ServerConnection}.
+ * Default implementation of {@link Server}.
  *
  * @author Danilo Reinert
  */
-public interface ServerConnectionFactory extends Factory<ServerConnection> {
+public class ServerImpl implements Server {
+
+    private final ServerConnection singleton = GWT.create(ServerConnection.class);
 
     /**
-     * Retrieve an instance of {@link ServerConnection}.
+     * Retrieve a singleton instance of {@link ServerConnection} created via DeferredBinding.
      *
      * @return The ServerConnection instance.
      */
-    ServerConnection get();
+    public ServerConnection getConnection() {
+        return singleton;
+    }
 }

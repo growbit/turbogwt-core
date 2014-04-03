@@ -50,7 +50,7 @@ import org.turbogwt.core.js.collections.client.JsMap;
  */
 public class FluentRequestImpl<RequestType, ResponseType> implements FluentRequestSender<RequestType, ResponseType> {
 
-    private final ServerConnectionFactory connectionFactory = GWT.create(ServerConnectionFactory.class);
+    private final Server server = GWT.create(Server.class);
     // TODO: remove responsibility for manipulating SerdesManager
     private final SerdesManager serdesManager;
     // TODO: remove responsibility for manipulating FilterManager
@@ -663,7 +663,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             filter.filter(this);
         }
 
-        ServerConnection connection = connectionFactory.get();
+        ServerConnection connection = server.getConnection();
 
         try {
             connection.sendRequest(timeout, user, password, headers, method, uri, body, callback);

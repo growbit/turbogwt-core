@@ -33,7 +33,7 @@
         <when-type-is class="org.turbogwt.core.http.client.ServerConnection"/>
     </replace-with>
 
-    <replace-with class="org.turbogwt.core.http.client.ServerConnectionFactoryImpl">
-        <when-type-is class="org.turbogwt.core.http.client.ServerConnectionFactory"/>
+    <replace-with class="org.turbogwt.core.http.client.ServerImpl">
+        <when-type-is class="org.turbogwt.core.http.client.Server"/>
     </replace-with>
 </module>
