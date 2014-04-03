@@ -121,6 +121,7 @@ requestory.request().path(uri)
         });
 ```
 
+Take a look at the [tests](https://github.com/growbit/turbogwt-core/tree/master/src/test/java/org/turbogwt/core/http/client) for more example and read the docs!
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
