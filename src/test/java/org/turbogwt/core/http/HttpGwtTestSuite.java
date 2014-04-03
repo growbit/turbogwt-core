@@ -22,6 +22,7 @@ import junit.framework.Test;
 
 import org.turbogwt.core.http.client.FluentRequestImplTest;
 import org.turbogwt.core.http.client.UriBuilderImplTest;
+import org.turbogwt.core.http.client.books.RestTest;
 
 /**
  * @author Danilo Reinert
@@ -33,6 +34,7 @@ public class HttpGwtTestSuite {
 
         suite.addTestSuite(UriBuilderImplTest.class);
         suite.addTestSuite(FluentRequestImplTest.class);
+        suite.addTestSuite(RestTest.class);
 
         return suite;
     }
