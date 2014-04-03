@@ -186,7 +186,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
     @Override
-    public FluentRequestSender<RequestType, ResponseType> segment(String... segments)
+    public FluentRequestSender<RequestType, ResponseType> segment(Object... segments)
             throws IllegalArgumentException {
         uriBuilder.segment(segments);
         return this;

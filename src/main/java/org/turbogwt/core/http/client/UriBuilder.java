@@ -107,7 +107,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
-    UriBuilder segment(String... segments) throws IllegalArgumentException;
+    UriBuilder segment(Object... segments) throws IllegalArgumentException;
 
     /**
      * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.

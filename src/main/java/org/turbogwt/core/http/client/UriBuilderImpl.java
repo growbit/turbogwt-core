@@ -152,11 +152,12 @@ public class UriBuilderImpl implements UriBuilder {
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
     @Override
-    public UriBuilder segment(String... segments) throws IllegalArgumentException {
+    public UriBuilder segment(Object... segments) throws IllegalArgumentException {
         assertNotNull(segments, "Segments cannot be null.");
         if (this.segments == null)
             this.segments = (JsArrayString) JsArrayString.createArray();
-        for (String segment : segments) {
+        for (Object o : segments) {
+            String segment = o.toString();
             assertNotNullOrEmpty(segment, "Segment cannot be null or empty.", false);
             this.segments.push(segment);
         }
