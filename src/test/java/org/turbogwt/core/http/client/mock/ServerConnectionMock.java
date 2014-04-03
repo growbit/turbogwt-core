@@ -38,7 +38,7 @@ import org.turbogwt.core.http.client.ServerConnection;
 public class ServerConnectionMock implements ServerConnection {
 
     private static Map<String, Response> serverStub = new HashMap<>();
-    private static Map<String, String> requestData = new HashMap<>();
+    private static Map<String, RequestMock> requestData = new HashMap<>();
 
     private boolean returnSuccess = true;
 
@@ -46,7 +46,7 @@ public class ServerConnectionMock implements ServerConnection {
         serverStub.put(uri, response);
     }
 
-    public static String getRequestData(String uri) {
+    public static RequestMock getRequestData(String uri) {
         return requestData.get(uri);
     }
 
@@ -55,8 +55,8 @@ public class ServerConnectionMock implements ServerConnection {
         requestData.clear();
     }
 
-    private static String setRequestData(String uri, String data) {
-        return requestData.put(uri, data);
+    private static RequestMock setRequestData(String uri, RequestMock requestMock) {
+        return requestData.put(uri, requestMock);
     }
 
     public boolean isReturnSuccess() {
@@ -70,7 +70,7 @@ public class ServerConnectionMock implements ServerConnection {
     @Override
     public void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
             throws RequestException {
-        setRequestData(url, data);
+        setRequestData(url, new RequestMock(method, url, data));
         if (returnSuccess) {
             callback.onResponseReceived(null, serverStub.get(url));
         } else {
@@ -81,7 +81,7 @@ public class ServerConnectionMock implements ServerConnection {
     @Override
     public void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
                             String url, String data, RequestCallback callback) throws RequestException {
-        setRequestData(url, data);
+        setRequestData(url, new RequestMock(method, url, data));
         if (returnSuccess) {
             callback.onResponseReceived(null, serverStub.get(url));
         } else {

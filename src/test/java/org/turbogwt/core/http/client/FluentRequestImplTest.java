@@ -279,7 +279,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
-        assertEquals(serializedRequest, ServerConnectionMock.getRequestData(uri));
+        assertEquals(serializedRequest, ServerConnectionMock.getRequestData(uri).getData());
     }
 
     public void testCustomObjectArraySerializationDeserialization() {
@@ -334,7 +334,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
-        assertEquals(serializedArray, ServerConnectionMock.getRequestData(uri));
+        assertEquals(serializedArray, ServerConnectionMock.getRequestData(uri).getData());
     }
 
     public void testOnHttpCodeCallbackExecution() {
@@ -347,26 +347,28 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbacksCalled = new boolean[3];
 
-        requestory.request().path(uri).on(20, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                callbacksCalled[0] = true;
-            }
-        }).on(2, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                callbacksCalled[1] = true;
-            }
-        }).get(new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(Void result) {
-                callbacksCalled[2] = true;
-            }
-        });
+        requestory.request().path(uri)
+                .on(20, new SingleCallback() {
+                    @Override
+                    public void onResponseReceived(Request request, Response response) {
+                        callbacksCalled[0] = true;
+                    }
+                })
+                .on(2, new SingleCallback() {
+                    @Override
+                    public void onResponseReceived(Request request, Response response) {
+                        callbacksCalled[1] = true;
+                    }
+                })
+                .get(new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                    }
+                    @Override
+                    public void onSuccess(Void result) {
+                        callbacksCalled[2] = true;
+                    }
+                });
 
         // Most specific mapped code callback should be called
         assertTrue(callbacksCalled[0]);
