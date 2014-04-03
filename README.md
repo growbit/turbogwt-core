@@ -11,7 +11,7 @@ Turbo GWT (*TurboG*) Core
 * [Overlays](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/client/Overlays.java) - Easy boxing and unboxing JS native values and much more.
 * [JsMap](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/client/JsMap.java) - Fast map from String to Objects.
  
-### **REQUESTORY** - TurboG HTTP module
+### *REQUESTORY* - TurboG HTTP module
 TurboG proposes a new fluent way of making http requests. It fits better the REST style communication. 
 Just look how simple you can get a book from server:
 
