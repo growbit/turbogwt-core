@@ -1,1 +1,5 @@
-org.turbogwt.core.client
+org.turbogwt.core.http.client
+org.turbogwt.core.http.client.serialization
+org.turbogwt.core.js.client
+org.turbogwt.core.js.collections.client
+org.turbogwt.core.providers.client
