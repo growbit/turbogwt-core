@@ -1,8 +1,8 @@
 Turbo GWT (*TurboG*) Core
 ==
-**Turbo GWT** is a suite of libs, inspired by famous Javascript MVVM frameworks like Knockout.js and Angular.js, intended to speed up development of GWT applications grounded on the MVP pattern.
+**Turbo GWT** is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
-**Turbo GWT Core** contains JavaScriptObject extensions intended to improve performance of any GWT application. These classes are reused across other TurboG modules.
+**Turbo GWT Core** contains JavaScriptObject extensions for performing common operations faster in production. These classes are reused across other TurboG modules. Also it offers a HTTP module, nicknamed *Requestory*, with a convenient API for making requests.
 
 ## Highlights
 
@@ -121,7 +121,15 @@ requestory.request().path(uri)
         });
 ```
 
-Take a look at the [tests](https://github.com/growbit/turbogwt-core/tree/master/src/test/java/org/turbogwt/core/http/client) for more example and read the docs!
+#### Extensible design
+All Requests are created by an underlying abstraction called Server. This Server interface is analogous to the JDBC Datasource and provides a new ServerConnection by calling getConnection(). This design allows you to determine how you want to communicate with your Server over all your application.
+
+E.g., suppose you are creating a mobile application and want to prevent data loss by poor connection. You can create a new implementation of Server that stores the data on the browser's phone if no internet connection is availble, and sync the data when the signal is back.
+
+The default implementation of Server (ServerImpl) creates the ServerConnectionImpl (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
+
+#### Finally
+Take a look at the [tests](https://github.com/growbit/turbogwt-core/tree/master/src/test/java/org/turbogwt/core/http/client) for more examples and read the [docs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)!
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
