@@ -25,21 +25,127 @@ import com.google.gwt.core.client.JavaScriptObject;
  * @param <T> Type of list values
  * @author Danilo Reinert
  */
-public class JsArray<T extends JavaScriptObject> extends com.google.gwt.core.client.JsArray<T> {
+public class JsArray<T> extends JavaScriptObject {
 
     protected JsArray() {
     }
 
+    public static <T> JsArray<T> fromArray(T... values) {
+        if (GWT.isScript()) {
+            return reinterpretCast(values);
+        } else {
+            JsArray<T> ret = create();
+            for (int i = 0, l = values.length; i < l; i++) {
+                ret.set(i, values[i]);
+            }
+            return ret;
+        }
+    }
+
     @SuppressWarnings("unchecked")
-    public static <T extends JavaScriptObject> JsArray<T> parseJavaScriptObject(JavaScriptObject jso) {
+    public static <T> JsArray<T> cast(JavaScriptObject jso) {
         return (JsArray<T>) jso;
     }
+
+    @SuppressWarnings("unchecked")
+    public static <T> JsArray<T> create() {
+        return (JsArray<T>) JavaScriptObject.createArray();
+    }
+
+    /**
+     * Gets the object at a given index.
+     *
+     * @param index the index to be retrieved
+     * @return the object at the given index, or <code>null</code> if none exists
+     */
+    public final native T get(int index) /*-{
+        return this[index];
+    }-*/;
+
+    /**
+     * Convert each element of the array to a String and join them with a comma
+     * separator. The value returned from this method may vary between browsers
+     * based on how JavaScript values are converted into strings.
+     */
+    public final String join() {
+        // As per JS spec
+        return join(",");
+    }
+
+    /**
+     * Convert each element of the array to a String and join them with a comma
+     * separator. The value returned from this method may vary between browsers
+     * based on how JavaScript values are converted into strings.
+     */
+    public final native String join(String separator) /*-{
+        return this.join(separator);
+    }-*/;
+
+    /**
+     * Gets the length of the array.
+     *
+     * @return the array length
+     */
+    public final native int length() /*-{
+        return this.length;
+    }-*/;
+
+    /**
+     * Pushes the given value onto the end of the array.
+     */
+    public final native void push(T value) /*-{
+        this[this.length] = value;
+    }-*/;
+
+    /**
+     * Sets the object value at a given index.
+     *
+     * If the index is out of bounds, the value will still be set. The array's
+     * length will be updated to encompass the bounds implied by the added object.
+     *
+     * @param index the index to be set
+     * @param value the object to be stored
+     */
+    public final native void set(int index, T value) /*-{
+        this[index] = value;
+    }-*/;
+
+    /**
+     * Reset the length of the array.
+     *
+     * @param newLength the new length of the array
+     */
+    public final native void setLength(int newLength) /*-{
+        this.length = newLength;
+    }-*/;
+
+    /**
+     * Shifts the first value off the array.
+     *
+     * @return the shifted value
+     */
+    public final native T shift() /*-{
+        return this.shift();
+    }-*/;
+
+    /**
+     * Shifts a value onto the beginning of the array.
+     *
+     * @param value the value to the stored
+     */
+    public final native void unshift(T value) /*-{
+        this.unshift(value);
+    }-*/;
 
     public final native void add(int index, T element) /*-{
         this.splice(index, 0, element)
     }-*/;
 
-    public final native JsArray<T> remove(int index, int quantity) /*-{
+    public final native JsArray<T> remove(int index) /*-{
+        return this.splice(index, 1)
+    }-*/;
+
+    public final native JsArray<T> splice(int index, int quantity) /*-{
         return this.splice(index, quantity)
     }-*/;
 
@@ -67,22 +173,35 @@ public class JsArray<T extends JavaScriptObject> extends com.google.gwt.core.cli
         return this.pop()
     }-*/;
 
+    @SuppressWarnings("unchecked")
     public final T[] toArray() {
         if (GWT.isScript()) {
             return reinterpretCast(slice(0));
         } else {
             int length = length();
-            @SuppressWarnings("unchecked")
-            T[] ret = (T[]) new JavaScriptObject[length];
-            for (int i = 0, l = length; i < l; i++) {
+            T nonNull = null;
+            for (int i = 0; i < length; i++) {
+                nonNull = get(i);
+                if (nonNull != null) break;
+            }
+            T[] ret;
+            if (nonNull instanceof JavaScriptObject) {
+                ret = (T[]) new JavaScriptObject[length];
+            } else {
+                ret = (T[]) new Object[length];
+            }
+            for (int i = 0; i < length; i++) {
                 ret[i] = get(i);
             }
             return ret;
         }
     }
 
-    private static native <T extends JavaScriptObject> T[] reinterpretCast(
-            com.google.gwt.core.client.JsArray<T> value) /*-{
+    private static native <T> T[] reinterpretCast(JsArray<T> value) /*-{
+        return value;
+    }-*/;
+
+    private static native <T> JsArray<T> reinterpretCast(T[] value) /*-{
         return value;
     }-*/;
 }

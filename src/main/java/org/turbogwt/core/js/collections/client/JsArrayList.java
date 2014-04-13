@@ -31,7 +31,7 @@ import java.util.NoSuchElementException;
  * @param <T> Type of list values
  * @author Danilo Reinert
  */
-public class JsArrayList<T extends JavaScriptObject> implements List<T> {
+public class JsArrayList<T> implements List<T> {
 
     private final JsArray<T> jsArray;
 
@@ -41,11 +41,20 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public JsArrayList(com.google.gwt.core.client.JsArray<T> jsArray) {
+    public JsArrayList(JsArray<T> jsArray) {
         this.jsArray = (JsArray<T>) (jsArray != null ? jsArray : JavaScriptObject.createArray());
     }
 
-    public com.google.gwt.core.client.JsArray<T> asJsArray() {
+    @SuppressWarnings("unchecked")
+    public JsArrayList(JavaScriptObject jsArray) {
+        this.jsArray = (JsArray<T>) (jsArray != null ? jsArray : JavaScriptObject.createArray());
+    }
+
+    public static <J extends JavaScriptObject> JsArrayList<J> create(com.google.gwt.core.client.JsArray<J> jsArray) {
+        return new JsArrayList<>(jsArray);
+    }
+
+    public JsArray<T> asJsArray() {
         return jsArray;
     }
 
@@ -196,10 +205,10 @@ public class JsArrayList<T extends JavaScriptObject> implements List<T> {
 
     @Override
     public List<T> subList(int i, int i2) {
-        return new JsArrayList<T>(subArray(i, i2));
+        return new JsArrayList<>(subArray(i, i2));
     }
 
-    public native com.google.gwt.core.client.JsArray<T> subArray(int i, int i2) /*-{
+    public native JsArray<T> subArray(int i, int i2) /*-{
         return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.slice(i, i2);
     }-*/;
 
