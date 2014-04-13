@@ -16,8 +16,6 @@
 
 package org.turbogwt.core.http.client;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.junit.client.GWTTestCase;
@@ -37,6 +35,7 @@ import org.turbogwt.core.http.client.serialization.JsonRecordReader;
 import org.turbogwt.core.http.client.serialization.JsonRecordWriter;
 import org.turbogwt.core.http.client.serialization.SerializationContext;
 import org.turbogwt.core.js.client.Overlays;
+import org.turbogwt.core.js.collections.client.JsArray;
 import org.turbogwt.core.js.collections.client.JsArrayList;
 
 /**
@@ -162,8 +161,8 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final PersonJso p1 = PersonJso.create(1, "John Doe", 6.3, new Date(329356800));
         final PersonJso p2 = PersonJso.create(2, "Alice", 5.87, new Date(355343600));
-        @SuppressWarnings("unchecked")
-        final JsArray<PersonJso> persons = (JsArray<PersonJso>) JavaScriptObject.createArray();
+
+        final JsArray<PersonJso> persons = JsArray.create();
         persons.push(p1);
         persons.push(p2);
 
