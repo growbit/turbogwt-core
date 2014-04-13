@@ -16,6 +16,8 @@
 
 package org.turbogwt.core.js.collections.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -36,8 +38,9 @@ public class JsArrayIterator<T> implements Iterator<T> {
         this.array = JsArray.fromArray(array);
     }
 
-    public JsArrayIterator(JsArray<T> array) {
-        this.array = array;
+    @SuppressWarnings("unchecked")
+    public JsArrayIterator(JavaScriptObject array) {
+        this.array = (JsArray<T>) array;
     }
 
     public boolean hasNext() {
