@@ -54,7 +54,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
                                                                DeserializationContext context) {
         JsArray<T> jsArray = JsonUtils.safeEval(response);
         if (collectionType.equals(List.class) || collectionType.equals(Collection.class)) {
-            return (C) jsArray;
+            return (C) JsArrayList.of(jsArray);
         } else {
             C col = getCollectionInstance(context, collectionType);
             for (int i = 0; i < jsArray.length(); i++) {
