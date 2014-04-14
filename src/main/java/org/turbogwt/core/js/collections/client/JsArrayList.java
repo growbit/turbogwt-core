@@ -50,6 +50,14 @@ public class JsArrayList<T> implements List<T> {
         this.jsArray = (JsArray<T>) (jsArray != null ? jsArray : JavaScriptObject.createArray());
     }
 
+    /**
+     * Wrap a {@link com.google.gwt.core.client.JsArray} into a {@link JsArrayList}.
+     *
+     * @param jsArray   The native array to wrap.
+     * @param <J>       The type of the array.
+     *
+     * @return  The wrapped list.
+     */
     public static <J extends JavaScriptObject> JsArrayList<J> of(com.google.gwt.core.client.JsArray<J> jsArray) {
         return new JsArrayList<>(jsArray);
     }
@@ -69,9 +77,9 @@ public class JsArrayList<T> implements List<T> {
     }
 
     @Override
-    public native boolean contains(Object o) /*-{
-        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.indexOf(o) > -1;
-    }-*/;
+    public boolean contains(Object o) {
+        return jsArray.indexOf(o) > -1;
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -109,7 +117,7 @@ public class JsArrayList<T> implements List<T> {
     public boolean containsAll(Collection<?> c) {
         boolean containsAll = true;
         for (Object o : c) {
-            int indexOfIt = jsArray.indexOf((JavaScriptObject) o);
+            int indexOfIt = jsArray.indexOf(o);
             if (indexOfIt == -1) {
                 containsAll = false;
                 break;
@@ -216,14 +224,14 @@ public class JsArrayList<T> implements List<T> {
     }-*/;
 
     @Override
-    public native int indexOf(Object o) /*-{
-        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.indexOf(o);
-    }-*/;
+    public int indexOf(Object o) {
+        return jsArray.indexOf(o);
+    }
 
     @Override
-    public native int lastIndexOf(Object o) /*-{
-        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.lastIndexOf(o);
-    }-*/;
+    public int lastIndexOf(Object o) {
+        return jsArray.lastIndexOf(o);
+    }
 
     @Override
     public ListIterator<T> listIterator() {
