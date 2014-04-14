@@ -18,7 +18,6 @@ package org.turbogwt.core.js.collections.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
-
 /**
  * @author Danilo Reinert
  */
@@ -33,8 +32,9 @@ public class JsArrayTest extends GWTTestCase {
 
     public void gwtSetUp() {
         list = JsArray.create();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.push("" + i);
+        }
     }
 
     public void testInsert() {
@@ -43,7 +43,6 @@ public class JsArrayTest extends GWTTestCase {
         assertEquals(list.length(), 4);
         assertEquals(list.get(1), "Insert");
     }
-
 
     public void testReplace() {
         assertEquals(list.length(), 3);
@@ -62,18 +61,12 @@ public class JsArrayTest extends GWTTestCase {
         assertEquals(list.length(), 2);
         compare(list, new String[] { "0", "2" });
     }
-    /*
-    public void testAddAll() {
-        System.out.println("Running testAddAll()");
-        list.addAll(Arrays.asList("An", "African", "Swallow"));
-        assertEquals(list.length(), 6);
-        compare(list, new String[] { "0", "1", "2", "An", "African", "Swallow" });
-    }
-    */
+
     private void compare(JsArray<String> lst, String[] strs) {
         Object[] array = lst.toArray();
         assertTrue("Arrays not the same length", array.length == strs.length);
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.length; i++) {
             assertEquals(strs[i], (String) array[i]);
+        }
     }
 }

@@ -26,7 +26,7 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
- * An implementation of {@link java.util.List} with an underlying {@link org.turbogwt.core.js.collections.client.JsArray}.
+ * An implementation of {@link java.util.List} wrapping a {@link org.turbogwt.core.js.collections.client.JsArray}.
  *
  * @param <T> Type of list values
  * @author Danilo Reinert
@@ -137,7 +137,7 @@ public class JsArrayList<T> implements List<T> {
     @SuppressWarnings("unchecked")
     public boolean addAll(int i, Collection<? extends T> c) {
         JsArray<T> right = jsArray.slice(i);
-        jsArray.splice(i, jsArray.length()-i);
+        jsArray.splice(i, jsArray.length() - i);
         jsArray.pushApply(JsArray.fromArray((T[]) c.toArray()));
         jsArray.pushApply(right);
         return true;

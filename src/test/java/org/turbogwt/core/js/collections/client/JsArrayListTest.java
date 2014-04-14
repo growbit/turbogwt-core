@@ -21,7 +21,6 @@ import com.google.gwt.junit.client.GWTTestCase;
 import java.util.Arrays;
 import java.util.List;
 
-
 /**
  * @author Danilo Reinert
  */
@@ -36,8 +35,9 @@ public class JsArrayListTest extends GWTTestCase {
 
     public void gwtSetUp() {
         list = new JsArrayList<>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add("" + i);
+        }
     }
 
     public void testInsert() {
@@ -46,7 +46,6 @@ public class JsArrayListTest extends GWTTestCase {
         assertEquals(list.size(), 4);
         assertEquals(list.get(1), "Insert");
     }
-
 
     public void testReplace() {
         assertEquals(list.size(), 3);
@@ -93,7 +92,8 @@ public class JsArrayListTest extends GWTTestCase {
     private void compare(List<String> lst, String[] strs) {
         Object[] array = lst.toArray();
         assertTrue("Arrays not the same size", array.length == strs.length);
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.length; i++) {
             assertEquals(strs[i], (String) array[i]);
+        }
     }
 }
