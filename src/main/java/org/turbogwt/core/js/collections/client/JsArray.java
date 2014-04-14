@@ -154,7 +154,9 @@ public class JsArray<T> extends JavaScriptObject {
             return splice(index, quantity);
         }
         if (elements.length > 1) {
-            return splice(index, quantity, JsArray.fromArray(elements));
+            // TODO: Check if the JsArray is being considered as one element.
+            final JsArray<T> elements1 = JsArray.fromArray(elements);
+            return splice(index, quantity, elements1);
         }
         return splice(index, quantity, elements[0]);
     }
@@ -163,6 +165,7 @@ public class JsArray<T> extends JavaScriptObject {
         return this.splice(index, quantity, element);
     }-*/;
 
+    // TODO: Check if the JsArray is being considered as one element.
     public final native JsArray<T> splice(int index, int quantity, JsArray<T> elements) /*-{
         return this.splice(index, quantity, elements);
     }-*/;
@@ -184,7 +187,16 @@ public class JsArray<T> extends JavaScriptObject {
     }-*/;
 
     public final native JsArray concat(JsArray<T> a) /*-{
-        return this.concat(a)
+        return this.concat(a);
+    }-*/;
+
+    /**
+     * Appends an array to current one.
+     *
+     * @param a Array to append.
+     */
+    public final native void pushApply(JsArray<T> a) /*-{
+        this.push.apply(this, a);
     }-*/;
 
     public final native T pop() /*-{

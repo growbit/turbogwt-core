@@ -119,23 +119,58 @@ public class JsArrayList<T> implements List<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean addAll(Collection<? extends T> c) {
-        throw new UnsupportedOperationException("addAll not supported by JsArrayList");
+        jsArray.pushApply(JsArray.fromArray((T[]) c.toArray()));
+        return true;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean addAll(int i, Collection<? extends T> c) {
-        throw new UnsupportedOperationException("addAll not supported by JsArrayList");
+        JsArray<T> right = jsArray.slice(i);
+        jsArray.splice(i, jsArray.length()-i);
+        jsArray.pushApply(JsArray.fromArray((T[]) c.toArray()));
+        jsArray.pushApply(right);
+        return true;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("removeAll not supported by JsArrayList");
+        boolean removed = false;
+        for (Object o : c) {
+            Iterator<T> it = iterator();
+            while (it.hasNext()) {
+                T t = it.next();
+                if (t.equals(o)) {
+                    it.remove();
+                    removed = true;
+                }
+            }
+        }
+        return removed;
     }
 
     @Override
-    public boolean retainAll(Collection<?> objects) {
-        throw new UnsupportedOperationException("retainAll not supported by JsArrayList");
+    public boolean retainAll(Collection<?> c) {
+        boolean changed = false;
+
+        Iterator<T> it = iterator();
+        while (it.hasNext()) {
+            T t = it.next();
+            boolean retain = false;
+            for (Object o : c) {
+                if (t.equals(o)) {
+                    retain = true;
+                }
+            }
+            if (!retain) {
+                it.remove();
+                changed = true;
+            }
+        }
+
+        return changed;
     }
 
     @Override
