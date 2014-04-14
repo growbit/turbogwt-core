@@ -26,7 +26,7 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
- * An implementation of {@link java.util.List} with an underlying {@link JsArray}.
+ * An implementation of {@link java.util.List} with an underlying {@link org.turbogwt.core.js.collections.client.JsArray}.
  *
  * @param <T> Type of list values
  * @author Danilo Reinert
@@ -166,7 +166,7 @@ public class JsArrayList<T> implements List<T> {
         if (i < -1 || i > jsArray.length()) {
             throw new IndexOutOfBoundsException("Index: " + i);
         }
-        jsArray.add(i, t);
+        jsArray.splice(i, t);
     }
 
     @Override

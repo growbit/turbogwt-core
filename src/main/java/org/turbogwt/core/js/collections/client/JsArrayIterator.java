@@ -61,7 +61,7 @@ public class JsArrayIterator<T> implements Iterator<T> {
             throw new IllegalStateException();
         }
         try {
-            array.remove(lastRet);
+            array.splice(lastRet);
             cursor = lastRet;
             lastRet = -1;
         } catch (IndexOutOfBoundsException ex) {

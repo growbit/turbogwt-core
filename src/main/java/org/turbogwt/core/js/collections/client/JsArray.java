@@ -137,24 +137,42 @@ public class JsArray<T> extends JavaScriptObject {
         this.unshift(value);
     }-*/;
 
-    public final native void add(int index, T element) /*-{
-        this.splice(index, 0, element)
+    public final native void splice(int index, T element) /*-{
+        this.splice(index, 0, element);
     }-*/;
 
-    public final native JsArray<T> remove(int index) /*-{
-        return this.splice(index, 1)
+    public final native JsArray<T> splice(int index) /*-{
+        return this.splice(index, 1);
     }-*/;
 
     public final native JsArray<T> splice(int index, int quantity) /*-{
-        return this.splice(index, quantity)
+        return this.splice(index, quantity);
     }-*/;
 
-    public final native int indexOf(JavaScriptObject search) /*-{
-        return this.indexOf(search)
+    public final JsArray<T> splice(int index, int quantity, T... elements) {
+        if (elements.length == 0) {
+            return splice(index, quantity);
+        }
+        if (elements.length > 1) {
+            return splice(index, quantity, JsArray.fromArray(elements));
+        }
+        return splice(index, quantity, elements[0]);
+    }
+
+    public final native JsArray<T> splice(int index, int quantity, T element) /*-{
+        return this.splice(index, quantity, element);
     }-*/;
 
-    public final native int lastIndexOf(JavaScriptObject search) /*-{
-        return this.lastIndexOf(search)
+    public final native JsArray<T> splice(int index, int quantity, JsArray<T> elements) /*-{
+        return this.splice(index, quantity, elements);
+    }-*/;
+
+    public final native int indexOf(Object search) /*-{
+        return this.indexOf(search);
+    }-*/;
+
+    public final native int lastIndexOf(Object search) /*-{
+        return this.lastIndexOf(search);
     }-*/;
 
     public final native JsArray<T> slice(int begin) /*-{
@@ -174,7 +192,7 @@ public class JsArray<T> extends JavaScriptObject {
     }-*/;
 
     @SuppressWarnings("unchecked")
-    public final T[] toArray() {
+    public final Object[] toArray() {
         if (GWT.isScript()) {
             return reinterpretCast(slice(0));
         } else {
