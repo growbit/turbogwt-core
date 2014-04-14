@@ -54,7 +54,7 @@ public class BookSerdes extends JsonObjectSerdes<Book> {
 
 One more configuration step: just remember to register your SerDes in the Requestory.
 <br />
-If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!"
+If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!
 
 Doing a POST is as simple as:
 
