@@ -18,6 +18,7 @@ package org.turbogwt.core.js.collections.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -64,14 +65,31 @@ public class JsArrayListTest extends GWTTestCase {
         assertEquals(list.size(), 2);
         compare(list, new String[] { "0", "2" });
     }
-    /*
+
     public void testAddAll() {
-        System.out.println("Running testAddAll()");
         list.addAll(Arrays.asList("An", "African", "Swallow"));
         assertEquals(list.size(), 6);
         compare(list, new String[] { "0", "1", "2", "An", "African", "Swallow" });
     }
-    */
+
+    public void testAddAllByIndex() {
+        list.addAll(1, Arrays.asList("An", "African", "Swallow"));
+        assertEquals(list.size(), 6);
+        compare(list, new String[] { "0", "An", "African", "Swallow", "1", "2" });
+    }
+
+    public void testRemoveAll() {
+        list.removeAll(Arrays.asList("0", "2"));
+        assertEquals(list.size(), 1);
+        compare(list, new String[] { "1" });
+    }
+
+    public void testRetainAll() {
+        list.retainAll(Arrays.asList("0", "2"));
+        assertEquals(list.size(), 2);
+        compare(list, new String[] { "0", "2" });
+    }
+
     private void compare(List<String> lst, String[] strs) {
         Object[] array = lst.toArray();
         assertTrue("Arrays not the same size", array.length == strs.length);
