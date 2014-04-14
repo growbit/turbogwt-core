@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Danilo Reinert
  */
-public class JsArrayListTest extends GWTTestCase {
+public class JsArrayListStringTest extends GWTTestCase {
 
     private List<String> list;
 
