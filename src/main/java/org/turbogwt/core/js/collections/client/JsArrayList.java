@@ -46,11 +46,11 @@ public class JsArrayList<T> implements List<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public JsArrayList(JavaScriptObject jsArray) {
+    private JsArrayList(JavaScriptObject jsArray) {
         this.jsArray = (JsArray<T>) (jsArray != null ? jsArray : JavaScriptObject.createArray());
     }
 
-    public static <J extends JavaScriptObject> JsArrayList<J> create(com.google.gwt.core.client.JsArray<J> jsArray) {
+    public static <J extends JavaScriptObject> JsArrayList<J> of(com.google.gwt.core.client.JsArray<J> jsArray) {
         return new JsArrayList<>(jsArray);
     }
 
