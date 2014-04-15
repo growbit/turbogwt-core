@@ -16,6 +16,8 @@
 
 package org.turbogwt.core.http.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
@@ -77,5 +79,16 @@ public class UnsuccessfulResponseException extends RequestException {
      */
     public String getReponseBody() {
         return response.getText();
+    }
+
+    /**
+     * Response's HTTP body as JSON.
+     *
+     * The text is evaluated using {@link com.google.gwt.core.client.JsonUtils#safeEval(String)}.
+     *
+     * @return The response's body text.
+     */
+    public JavaScriptObject getReponseAsJson() {
+        return JsonUtils.safeEval(response.getText());
     }
 }
