@@ -36,7 +36,25 @@ import org.turbogwt.core.http.client.serialization.VoidSerdes;
  * This class is a configurable {@link FluentRequest} factory.
  * Usually, you will use it as a singleton along your project.
  * <p/>
+ *
  * It provides a convenience API for building/executing HTTP Requests.
+ * <p/>
+ *
+ * You can register {@link RequestFilter}s with #registerRequestFilter, so the are executed over all your requests.
+ * The same for {@link ResponseFilter}.
+ * <p/>
+ *
+ * You can register custom {@link org.turbogwt.core.http.client.serialization.Serializer} with #registerSerializer.
+ * The same for {@link org.turbogwt.core.http.client.serialization.Deserializer}.
+ * If you want to support both serialization and deserialization for your custom object,
+ * register a {@link org.turbogwt.core.http.client.serialization.Serdes} with #registerSerdes.
+ * <p/>
+ *
+ * SerDes for {@link String}, {@link Number}, {@link Boolean}
+ * and {@link com.google.gwt.core.client.JavaScriptObject} are already provided.
+ * <p/>
+ *
+ * Define the way params with multiple values should be processed to form your URIs with #setDefaultStrategy.
  *
  * @author Danilo Reinert
  */
@@ -706,11 +724,11 @@ public class Requestory {
     }
 
     private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType>
-        createFluentRequestImpl(Class<RequestType> requestType,
-                                Class<ResponseType> responseType,
-                                MultipleParamStrategy strategy) {
-        final FluentRequestImpl<RequestType, ResponseType> request = new
-                FluentRequestImpl<>(filterManager, serdesManager, requestType, responseType, collectionFactoryManager);
+            createFluentRequestImpl(Class<RequestType> requestType,
+                                    Class<ResponseType> responseType,
+                                    MultipleParamStrategy strategy) {
+        final FluentRequestImpl<RequestType, ResponseType> request = new FluentRequestImpl<>(filterManager,
+                serdesManager, requestType, responseType, collectionFactoryManager);
         request.multipleParamStrategy(strategy);
         return request;
     }
