@@ -682,7 +682,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @return The registered codes as an array of String
      */
     private JsArrayString getMappedCodes() {
-        JsArrayString codes = Overlays.getOwnPropertyNames(mappedCallbacks, true);
+        JsArrayString codes = Overlays.getPropertyNames(mappedCallbacks, true);
         // Reverse order to check from most specific to generic
         codes = reverse(codes);
         return codes;

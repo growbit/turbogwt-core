@@ -280,7 +280,7 @@ public class UriBuilderImpl implements UriBuilder {
                     JsMap<Object[]> segmentParams = matrixParams.get(segment);
                     if (segmentParams != null) {
                         uri.append(";");
-                        JsArrayString params = Overlays.getOwnPropertyNames(segmentParams);
+                        JsArrayString params = Overlays.getPropertyNames(segmentParams);
                         for (int j = 0; j < params.length(); j++) {
                             String param = params.get(j);
                             uri.append(strategy.asUriPart(";", param, segmentParams.get(param))).append(';');
@@ -294,7 +294,7 @@ public class UriBuilderImpl implements UriBuilder {
         if (queryParams != null) {
             uri.append('?');
 
-            JsArrayString params = Overlays.getOwnPropertyNames(queryParams);
+            JsArrayString params = Overlays.getPropertyNames(queryParams);
             for (int i = 0; i < params.length(); i++) {
                 String param = params.get(i);
                 uri.append(strategy.asUriPart("&", param, queryParams.get(param))).append('&');

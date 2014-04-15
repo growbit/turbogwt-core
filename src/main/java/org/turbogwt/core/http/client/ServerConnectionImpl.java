@@ -45,7 +45,7 @@ public class ServerConnectionImpl implements ServerConnection {
         if (password != null) requestBuilder.setPassword(password);
         if (user != null && password != null) requestBuilder.setIncludeCredentials(true);
         if (headers != null) {
-            JsArrayString names = Overlays.getOwnPropertyNames(headers);
+            JsArrayString names = Overlays.getPropertyNames(headers);
             for (int i = 0; i < names.length(); i++) {
                 String header = names.get(i);
                 requestBuilder.setHeader(header, headers.get(header));
