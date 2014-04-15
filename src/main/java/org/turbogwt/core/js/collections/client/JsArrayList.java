@@ -145,18 +145,18 @@ public class JsArrayList<T> implements List<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        boolean removed = false;
+        boolean changed = false;
         for (Object o : c) {
             Iterator<T> it = iterator();
             while (it.hasNext()) {
                 T t = it.next();
                 if (t.equals(o)) {
                     it.remove();
-                    removed = true;
+                    changed = true;
                 }
             }
         }
-        return removed;
+        return changed;
     }
 
     @Override
@@ -170,6 +170,7 @@ public class JsArrayList<T> implements List<T> {
             for (Object o : c) {
                 if (t.equals(o)) {
                     retain = true;
+                    break;
                 }
             }
             if (!retain) {
