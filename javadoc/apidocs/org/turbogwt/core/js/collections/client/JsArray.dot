@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.core.js.collections.client.JsArray<T extends com.google.gwt.core.client.JavaScriptObject>
-	c1101 [label=<<table title="org.turbogwt.core.js.collections.client.JsArray" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsArray.html">
+	// org.turbogwt.core.js.collections.client.JsArray<T>
+	c1119 [label=<<table title="org.turbogwt.core.js.collections.client.JsArray" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsArray.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsArray&lt;T extends JavaScriptObject&gt; </td></tr>
+<tr><td align="center" balign="center"> JsArray&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsArray.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	//org.turbogwt.core.js.collections.client.JsArray<T extends com.google.gwt.core.client.JavaScriptObject> extends com.google.gwt.core.client.JsArray<T>
-	c1107:p -> c1101:p [dir=back,arrowtail=empty];
-	// com.google.gwt.core.client.JsArray<T extends com.google.gwt.core.client.JavaScriptObject>
-	c1107 [label=<<table title="com.google.gwt.core.client.JsArray" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JsArray.html">
+	//org.turbogwt.core.js.collections.client.JsArray<T> extends com.google.gwt.core.client.JavaScriptObject
+	c1125:p -> c1119:p [dir=back,arrowtail=empty];
+	// com.google.gwt.core.client.JavaScriptObject
+	c1125 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsArray&lt;T extends JavaScriptObject&gt; </td></tr>
+<tr><td align="center" balign="center"> JavaScriptObject </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JsArray.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html", fontname="arial", fontcolor="black", fontsize=10.0];
 }
 

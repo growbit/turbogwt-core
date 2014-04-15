@@ -11,7 +11,7 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.serialization.SerdesManager
-	c3164 [label=<<table title="org.turbogwt.core.http.client.serialization.SerdesManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SerdesManager.html">
+	c3278 [label=<<table title="org.turbogwt.core.http.client.serialization.SerdesManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SerdesManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SerdesManager </td></tr>
 		</table></td></tr>

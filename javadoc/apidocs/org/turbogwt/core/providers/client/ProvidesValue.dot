@@ -11,47 +11,47 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.providers.client.ProvidesValue<T, F>
-	c2759 [label=<<table title="org.turbogwt.core.providers.client.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesValue.html">
+	c2867 [label=<<table title="org.turbogwt.core.providers.client.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesValue.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesValue&lt;T, F&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesValue.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.providers.client.ProvidesText<T>
-	c2760 [label=<<table title="org.turbogwt.core.providers.client.ProvidesText" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesText.html">
+	c2868 [label=<<table title="org.turbogwt.core.providers.client.ProvidesText" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesText.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesText&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesText.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.providers.client.ProvidesNumber<T>
-	c2761 [label=<<table title="org.turbogwt.core.providers.client.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesNumber.html">
+	c2869 [label=<<table title="org.turbogwt.core.providers.client.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesNumber.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesNumber&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesNumber.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.providers.client.ProvidesDate<T>
-	c2762 [label=<<table title="org.turbogwt.core.providers.client.ProvidesDate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesDate.html">
+	c2870 [label=<<table title="org.turbogwt.core.providers.client.ProvidesDate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesDate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesDate&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesDate.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.providers.client.ProvidesBoolean<T>
-	c2763 [label=<<table title="org.turbogwt.core.providers.client.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesBoolean.html">
+	c2871 [label=<<table title="org.turbogwt.core.providers.client.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesBoolean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesBoolean&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesBoolean.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.providers.client.ProvidesText<T> implements org.turbogwt.core.providers.client.ProvidesValue<T, F>
-	c2759:p -> c2760:p [dir=back,arrowtail=empty,style=dashed];
+	c2867:p -> c2868:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.providers.client.ProvidesNumber<T> implements org.turbogwt.core.providers.client.ProvidesValue<T, F>
-	c2759:p -> c2761:p [dir=back,arrowtail=empty,style=dashed];
+	c2867:p -> c2869:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.providers.client.ProvidesDate<T> implements org.turbogwt.core.providers.client.ProvidesValue<T, F>
-	c2759:p -> c2762:p [dir=back,arrowtail=empty,style=dashed];
+	c2867:p -> c2870:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.providers.client.ProvidesBoolean<T> implements org.turbogwt.core.providers.client.ProvidesValue<T, F>
-	c2759:p -> c2763:p [dir=back,arrowtail=empty,style=dashed];
+	c2867:p -> c2871:p [dir=back,arrowtail=empty,style=dashed];
 }
 

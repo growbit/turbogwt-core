@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.ServerImpl
-	c3382 [label=<<table title="org.turbogwt.core.http.client.ServerImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerImpl.html">
+	c3500 [label=<<table title="org.turbogwt.core.http.client.ServerImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServerImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ServerImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.Server
-	c3385 [label=<<table title="org.turbogwt.core.http.client.Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Server.html">
+	c3503 [label=<<table title="org.turbogwt.core.http.client.Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Server.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Server </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Server.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.ServerImpl implements org.turbogwt.core.http.client.Server
-	c3385:p -> c3382:p [dir=back,arrowtail=empty,style=dashed];
+	c3503:p -> c3500:p [dir=back,arrowtail=empty,style=dashed];
 }
 

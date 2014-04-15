@@ -11,26 +11,26 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.MultipleParamStrategy
-	c2107 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultipleParamStrategy.html">
+	c2204 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultipleParamStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> MultipleParamStrategy </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./MultipleParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy
-	c2108 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.RepeatedParamStrategy.html">
+	c2205 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.RepeatedParamStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RepeatedParamStrategy </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MultipleParamStrategy.RepeatedParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy
-	c2109 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.CommaSeparatedStrategy.html">
+	c2206 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.CommaSeparatedStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CommaSeparatedStrategy </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MultipleParamStrategy.CommaSeparatedStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
-	c2107:p -> c2108:p [dir=back,arrowtail=empty];
+	c2204:p -> c2205:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
-	c2107:p -> c2109:p [dir=back,arrowtail=empty];
+	c2204:p -> c2206:p [dir=back,arrowtail=empty];
 }
 

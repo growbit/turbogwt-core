@@ -11,42 +11,42 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.serialization.JsonValueSerdes<T>
-	c2007 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonValueSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsonValueSerdes.html">
+	c2102 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonValueSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsonValueSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> JsonValueSerdes&lt;T&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonValueSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.JsonStringSerdes
-	c2008 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonStringSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonStringSerdes.html">
+	c2103 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonStringSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonStringSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsonStringSerdes </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonStringSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.JsonSerdes<T>
-	c2009 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonSerdes.html">
+	c2104 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> JsonSerdes&lt;T&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.JsonNumberSerdes
-	c2013 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonNumberSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonNumberSerdes.html">
+	c2108 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonNumberSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonNumberSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsonNumberSerdes </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonNumberSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.JsonBooleanSerdes
-	c2014 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonBooleanSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonBooleanSerdes.html">
+	c2109 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonBooleanSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonBooleanSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsonBooleanSerdes </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonBooleanSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.serialization.JsonValueSerdes<T> extends org.turbogwt.core.http.client.serialization.JsonSerdes<T>
-	c2009:p -> c2007:p [dir=back,arrowtail=empty];
+	c2104:p -> c2102:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.serialization.JsonStringSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.String>
-	c2007:p -> c2008:p [dir=back,arrowtail=empty];
+	c2102:p -> c2103:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.serialization.JsonNumberSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.Number>
-	c2007:p -> c2013:p [dir=back,arrowtail=empty];
+	c2102:p -> c2108:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.serialization.JsonBooleanSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.Boolean>
-	c2007:p -> c2014:p [dir=back,arrowtail=empty];
+	c2102:p -> c2109:p [dir=back,arrowtail=empty];
 }
 

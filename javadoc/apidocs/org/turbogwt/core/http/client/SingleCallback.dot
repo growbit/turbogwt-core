@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.SingleCallback
-	c3685 [label=<<table title="org.turbogwt.core.http.client.SingleCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SingleCallback.html">
+	c3808 [label=<<table title="org.turbogwt.core.http.client.SingleCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SingleCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> SingleCallback </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./SingleCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.SingleCallback implements com.google.gwt.http.client.RequestCallback
-	c3743:p -> c3685:p [dir=back,arrowtail=empty,style=dashed];
+	c3867:p -> c3808:p [dir=back,arrowtail=empty,style=dashed];
 	// com.google.gwt.http.client.RequestCallback
-	c3743 [label=<<table title="com.google.gwt.http.client.RequestCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/RequestCallback.html">
+	c3867 [label=<<table title="com.google.gwt.http.client.RequestCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/RequestCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RequestCallback </td></tr>

@@ -11,28 +11,28 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.UriBuilderImpl
-	c3928 [label=<<table title="org.turbogwt.core.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderImpl.html">
+	c4055 [label=<<table title="org.turbogwt.core.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UriBuilderImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilderImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.UriBuilder
-	c3929 [label=<<table title="org.turbogwt.core.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UriBuilder.html">
+	c4056 [label=<<table title="org.turbogwt.core.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UriBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> UriBuilder </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilder.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.HasUriParts
-	c3947 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HasUriParts.html">
+	c4074 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HasUriParts.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> HasUriParts </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HasUriParts.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.UriBuilderImpl implements org.turbogwt.core.http.client.UriBuilder
-	c3929:p -> c3928:p [dir=back,arrowtail=empty,style=dashed];
+	c4056:p -> c4055:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.UriBuilder implements org.turbogwt.core.http.client.HasUriParts
-	c3947:p -> c3929:p [dir=back,arrowtail=empty,style=dashed];
+	c4074:p -> c4056:p [dir=back,arrowtail=empty,style=dashed];
 }
 

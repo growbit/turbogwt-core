@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
-	c821 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
+	c834 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FluentRequestSender&lt;RequestType, ResponseType&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FluentRequestSender.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.FluentRequestImpl<RequestType, ResponseType>
-	c822 [label=<<table title="org.turbogwt.core.http.client.FluentRequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FluentRequestImpl.html">
+	c835 [label=<<table title="org.turbogwt.core.http.client.FluentRequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FluentRequestImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FluentRequestImpl&lt;RequestType, ResponseType&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FluentRequestImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.FluentRequestImpl<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
-	c821:p -> c822:p [dir=back,arrowtail=empty,style=dashed];
+	c834:p -> c835:p [dir=back,arrowtail=empty,style=dashed];
 }
 
