@@ -46,6 +46,11 @@ public class JsArrayList<T> implements List<T> {
     }
 
     @SuppressWarnings("unchecked")
+    public JsArrayList(T... array) {
+        this.jsArray = JsArray.fromArray(array);
+    }
+
+    @SuppressWarnings("unchecked")
     private JsArrayList(JavaScriptObject jsArray) {
         this.jsArray = (JsArray<T>) (jsArray != null ? jsArray : JavaScriptObject.createArray());
     }
@@ -214,15 +219,14 @@ public class JsArrayList<T> implements List<T> {
     }
 
     @Override
-    public native T remove(int i) /*-{
-        var a = this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray;
-        if (i >= a.length) {
-            return false;
+    public T remove(int i) {
+        if (i < 0 || i >= jsArray.length()) {
+            throw new IndexOutOfBoundsException(String.valueOf(i));
         }
-        var toReturn = a[i];
-        a.splice(i, 1);
+        T toReturn = jsArray.get(i);
+        jsArray.splice(i, 1);
         return toReturn;
-    }-*/;
+    }
 
     @Override
     public int indexOf(Object o) {
