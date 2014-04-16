@@ -18,7 +18,6 @@ package org.turbogwt.core.http.client.serialization;
 
 import org.turbogwt.core.http.client.ContainerFactoryManager;
 import org.turbogwt.core.http.client.Headers;
-import org.turbogwt.core.js.client.Overlays;
 
 /**
  * Context of deserialization.
@@ -36,7 +35,7 @@ public class DeserializationContext {
     }
 
     public static DeserializationContext of(Headers headers, ContainerFactoryManager collectionFactoryManager) {
-        return new DeserializationContext(Overlays.deepCopy(headers), collectionFactoryManager);
+        return new DeserializationContext(headers, collectionFactoryManager);
     }
 
     public Headers getHeaders() {

@@ -17,7 +17,6 @@
 package org.turbogwt.core.http.client.serialization;
 
 import org.turbogwt.core.http.client.Headers;
-import org.turbogwt.core.js.client.Overlays;
 
 /**
  * Context of serialization.
@@ -33,7 +32,7 @@ public class SerializationContext {
     }
 
     public static SerializationContext of(Headers headers) {
-        return new SerializationContext(Overlays.deepCopy(headers));
+        return new SerializationContext(headers);
     }
 
     public Headers getHeaders() {

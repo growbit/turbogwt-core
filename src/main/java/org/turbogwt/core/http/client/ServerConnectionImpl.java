@@ -16,12 +16,10 @@
 
 package org.turbogwt.core.http.client;
 
-import com.google.gwt.core.client.JsArrayString;
+import com.google.gwt.http.client.Header;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
-
-import org.turbogwt.core.js.client.Overlays;
 
 /**
  * Default implementation for {@link ServerConnection}.
@@ -45,10 +43,8 @@ public class ServerConnectionImpl implements ServerConnection {
         if (password != null) requestBuilder.setPassword(password);
         if (user != null && password != null) requestBuilder.setIncludeCredentials(true);
         if (headers != null) {
-            JsArrayString names = Overlays.getPropertyNames(headers);
-            for (int i = 0; i < names.length(); i++) {
-                String header = names.get(i);
-                requestBuilder.setHeader(header, headers.get(header));
+            for (Header header : headers) {
+                requestBuilder.setHeader(header.getName(), header.getValue());
             }
         }
         requestBuilder.sendRequest(data, callback);

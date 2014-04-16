@@ -16,31 +16,88 @@
 
 package org.turbogwt.core.http.client;
 
-import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.http.client.Header;
+
+import java.util.Iterator;
+
+import org.turbogwt.core.js.collections.client.JsArrayList;
+import org.turbogwt.core.js.collections.client.JsMapInteger;
 
 /**
  * Stores the headers from a HTTP request/response.
  *
  * @author Danilo Reinert
  */
-public class Headers extends JavaScriptObject {
+public class Headers implements Iterable<Header> {
+
+    private final JsArrayList<Header> headers;
+    private final JsMapInteger indexes = JsMapInteger.create();
 
     protected Headers() {
+        this.headers = new JsArrayList<>();
     }
 
-    protected static Headers create() {
-        return JavaScriptObject.createObject().cast();
+    protected Headers(Header... headers) {
+        this.headers = new JsArrayList<>(headers);
+        for (int i = 0; i < headers.length; i++) {
+            Header header = headers[i];
+            indexes.set(header.getName(), i);
+        }
     }
 
-    public final native boolean contains(String key) /*-{
-        return (key in this);
-    }-*/;
+    public boolean contains(String header) {
+        return indexes.contains(header);
+    }
 
-    public final native String get(String key) /*-{
-        return this[key];
-    }-*/;
+    public String getValue(String name) {
+        return headers.get(indexes.get(name)).getValue();
+    }
 
-    protected final native void set(String key, String value) /*-{
-        this[key] = value;
-    }-*/;
+    public Header get(String name) {
+        return headers.get(indexes.get(name));
+    }
+
+    @Override
+    public Iterator<Header> iterator() {
+        return headers.iterator();
+    }
+
+    /**
+     * Adds a header to this container and returns if the array has increased.
+     *
+     * @param header    The header to be added
+     *
+     * @return  {@code true} if there was not header set with the same header name, {@code false} otherwise
+     */
+    protected boolean add(Header header) {
+        int i = indexes.get(header.getName(), -1);
+
+        if (i > -1) {
+            headers.set(i, header);
+            return false;
+        }
+
+        indexes.set(header.getName(), headers.size());
+        headers.add(header);
+        return true;
+    }
+
+    /**
+     * If there's a header with the given name, then it is removed and {@code true} is returned.
+     *
+     * @param name  The name of the header to remove
+     *
+     * @return  If a header with the given name was removed
+     */
+    protected boolean remove(String name) {
+        int i = indexes.get(name, -1);
+
+        if (i > -1) {
+            indexes.remove(name);
+            headers.remove(i);
+            return true;
+        }
+
+        return false;
+    }
 }

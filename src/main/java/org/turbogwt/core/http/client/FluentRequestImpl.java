@@ -18,7 +18,6 @@ package org.turbogwt.core.http.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArrayString;
-import com.google.gwt.http.client.Header;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -312,8 +311,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> header(String header, String value) {
-        if (headers == null) headers = Headers.create();
-        headers.set(header, value);
+        if (headers == null) headers = new Headers();
+        headers.add(new SimpleHeader(header, value));
         return this;
     }
 
@@ -633,7 +632,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
                     final String body = response.getText();
                     if (resultCallback != null) {
                         if (body != null && !body.isEmpty()) {
-                            Headers responseHeaders = mountHeadersFromResponse(response);
+                            Headers responseHeaders = new Headers(response.getHeaders());
                             // Check AsyncCallback type in order to correctly deserialize
                             deserializeAndCallOnSuccess(body, responseHeaders, resultCallback);
                         } else {
@@ -686,22 +685,6 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         // Reverse order to check from most specific to generic
         codes = reverse(codes);
         return codes;
-    }
-
-    /**
-     * Build a {@link Headers} object from response headers.
-     *
-     * @param response the response from server
-     *
-     * @return the headers
-     */
-    private Headers mountHeadersFromResponse(Response response) {
-        Headers responseHeaders = Headers.create();
-        final Header[] responseHeaderArray = response.getHeaders();
-        for (Header header : responseHeaderArray) {
-            responseHeaders.set(header.getName(), header.getValue());
-        }
-        return responseHeaders;
     }
 
     /**
