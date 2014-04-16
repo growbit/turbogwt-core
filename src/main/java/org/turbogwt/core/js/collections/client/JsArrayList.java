@@ -50,21 +50,8 @@ public class JsArrayList<T> implements List<T> {
         this.jsArray = JsArray.fromArray(array);
     }
 
-    @SuppressWarnings("unchecked")
-    private JsArrayList(JavaScriptObject jsArray) {
-        this.jsArray = (JsArray<T>) (jsArray != null ? jsArray : JavaScriptObject.createArray());
-    }
-
-    /**
-     * Wrap a {@link com.google.gwt.core.client.JsArray} into a {@link JsArrayList}.
-     *
-     * @param jsArray   The native array to wrap.
-     * @param <J>       The type of the array.
-     *
-     * @return  The wrapped list.
-     */
-    public static <J extends JavaScriptObject> JsArrayList<J> of(com.google.gwt.core.client.JsArray<J> jsArray) {
-        return new JsArrayList<>(jsArray);
+    public <E extends JavaScriptObject> JsArrayList(com.google.gwt.core.client.JsArray<E> jsArray) {
+        this.jsArray = JsArray.cast(jsArray);
     }
 
     public JsArray<T> asJsArray() {

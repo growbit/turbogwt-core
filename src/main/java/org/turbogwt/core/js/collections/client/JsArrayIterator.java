@@ -38,9 +38,12 @@ public class JsArrayIterator<T> implements Iterator<T> {
         this.array = JsArray.fromArray(array);
     }
 
-    @SuppressWarnings("unchecked")
-    public JsArrayIterator(JavaScriptObject array) {
-        this.array = (JsArray<T>) array;
+    public JsArrayIterator(JsArray<T> array) {
+        this.array = array;
+    }
+
+    public <E extends JavaScriptObject> JsArrayIterator(com.google.gwt.core.client.JsArray<E> array) {
+        this.array = JsArray.cast(array);
     }
 
     public boolean hasNext() {
