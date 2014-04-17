@@ -60,9 +60,18 @@ public class QualityFactorHeader extends MultipleHeader {
 
     private final Value[] values;
 
-    public QualityFactorHeader(String name, QualityFactorHeader.Value... values) {
+    public QualityFactorHeader(String name, Value... values) {
         super(name, (Object[]) values);
         this.values = values;
+    }
+
+    public QualityFactorHeader(String name, String... values) {
+        super(name, (String[]) values);
+        this.values = new Value[values.length];
+        for (int i = 0; i < values.length; i++) {
+            String value = values[i];
+            this.values[i] = new Value(value);
+        }
     }
 
     public Value[] getQualityFactorValues() {
