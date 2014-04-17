@@ -64,6 +64,8 @@ public class Requestory {
     private final FilterManager filterManager = new FilterManager();
     private final ContainerFactoryManager collectionFactoryManager = new ContainerFactoryManager();
     private MultipleParamStrategy defaultStrategy;
+    private String defaultContentType = "application/json";
+    private String defaultAccept = "application/json";
 
     public Requestory() {
         defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
@@ -653,6 +655,14 @@ public class Requestory {
         this.defaultStrategy = defaultStrategy;
     }
 
+    public String getDefaultContentType() {
+        return defaultContentType;
+    }
+
+    public String getDefaultAccept() {
+        return defaultAccept;
+    }
+
     /**
      * Register a deserializer of the given type.
      *
@@ -730,6 +740,8 @@ public class Requestory {
         final FluentRequestImpl<RequestType, ResponseType> request = new FluentRequestImpl<>(filterManager,
                 serdesManager, requestType, responseType, collectionFactoryManager);
         request.multipleParamStrategy(strategy);
+        request.contentType(defaultContentType);
+        request.accept(defaultAccept);
         return request;
     }
 }

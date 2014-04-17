@@ -16,8 +16,13 @@
 
 package org.turbogwt.core.http.client.serialization;
 
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.turbogwt.core.http.client.AcceptHeader;
+import org.turbogwt.core.http.client.ContentTypeHeader;
+import org.turbogwt.core.http.client.QualityFactorHeader;
 import org.turbogwt.core.http.client.Registration;
-import org.turbogwt.core.js.collections.client.JsMap;
 
 /**
  * Manager for registering and retrieving Serializers and Deserializers.
@@ -26,8 +31,8 @@ import org.turbogwt.core.js.collections.client.JsMap;
  */
 public class SerdesManager {
 
-    private final JsMap<Deserializer<?>> deserializers = JsMap.create();
-    private final JsMap<Serializer<?>> serializers = JsMap.create();
+    private final Map<Key, Deserializer<?>> deserializers = new TreeMap<>();
+    private final Map<Key, Serializer<?>> serializers = new TreeMap<>();
 
     /**
      * Register a deserializer of the given type.
@@ -40,13 +45,23 @@ public class SerdesManager {
      *          to the {@link SerdesManager}.
      */
     public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
-        final String typeName = type.getName();
-        deserializers.set(typeName, deserializer);
+        final AcceptHeader accept = deserializer.accept();
+
+        final QualityFactorHeader.Value[] qualityFactorValues = accept.getQualityFactorValues();
+        final Key[] keys = new Key[qualityFactorValues.length];
+        int i = -1;
+        for (QualityFactorHeader.Value value : qualityFactorValues) {
+            final Key key = new Key(type, value.getValue(), value.getFactor());
+            deserializers.put(key, deserializer);
+            keys[++i] = key;
+        }
 
         return new Registration() {
             @Override
             public void removeHandler() {
-                deserializers.remove(typeName);
+                for (Key key : keys) {
+                    deserializers.remove(key);
+                }
             }
         };
     }
@@ -62,13 +77,23 @@ public class SerdesManager {
      *          to the {@link SerdesManager}.
      */
     public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
-        final String typeName = type.getName();
-        serializers.set(typeName, serializer);
+        final ContentTypeHeader contentType = serializer.contentType();
+
+        final QualityFactorHeader.Value[] qualityFactorValues = contentType.getQualityFactorValues();
+        final Key[] keys = new Key[qualityFactorValues.length];
+        int i = -1;
+        for (QualityFactorHeader.Value value : qualityFactorValues) {
+            final Key key = new Key(type, value.getValue(), value.getFactor());
+            serializers.put(key, serializer);
+            keys[++i] = key;
+        }
 
         return new Registration() {
             @Override
             public void removeHandler() {
-                serializers.remove(typeName);
+                for (Key key : keys) {
+                    serializers.remove(key);
+                }
             }
         };
     }
@@ -105,11 +130,15 @@ public class SerdesManager {
      * @throws SerializationException if no deserializer was registered for the class.
      */
     @SuppressWarnings("unchecked")
-    public <T> Deserializer<T> getDeserializer(Class<T> type) throws SerializationException {
-        if (!deserializers.contains(type.getName())) {
-            throw new SerializationException("There is no Deserializer registered for " + type.getName() + ".");
+    public <T> Deserializer<T> getDeserializer(Class<T> type, String contentType) throws SerializationException {
+        final Key key = new Key(type, contentType);
+
+        for (Key k : deserializers.keySet()) {
+            if (k.matches(key)) return (Deserializer<T>) deserializers.get(k);
         }
-        return (Deserializer<T>) deserializers.get(type.getName());
+
+        throw new SerializationException("There is no Deserializer registered for " + type.getName() +
+                " and content-type " + contentType + ".");
     }
 
     /**
@@ -121,10 +150,181 @@ public class SerdesManager {
      * @throws SerializationException if no serializer was registered for the class.
      */
     @SuppressWarnings("unchecked")
-    public <T> Serializer<T> getSerializer(Class<T> type) throws SerializationException {
-        if (!serializers.contains(type.getName())) {
-            throw new SerializationException("There is no Serializer registered for " + type.getName() + ".");
+    public <T> Serializer<T> getSerializer(Class<T> type, String contentType) throws SerializationException {
+        final Key key = new Key(type, contentType);
+
+        for (Key k : serializers.keySet()) {
+            if (k.matches(key)) return (Serializer<T>) serializers.get(k);
         }
-        return (Serializer<T>) serializers.get(type.getName());
+
+        throw new SerializationException("There is no Serializer registered for type " + type.getName() +
+                " and content-type " + contentType + ".");
+    }
+
+    private static class Key implements Comparable<Key> {
+
+        final Class<?> type;
+        final String contentType;
+        final double factor;
+
+        private Key(Class<?> type, String contentType) {
+            this.type = type;
+            this.contentType = contentType;
+            this.factor = 1.0;
+        }
+
+        private Key(Class<?> type, String contentType, double factor) {
+            this.type = type;
+            this.contentType = contentType;
+            this.factor = factor;
+        }
+
+        // TODO: test exhaustively
+        public boolean matches(Key key) {
+            if (!key.type.equals(this.type)) {
+                return false;
+            }
+
+            boolean matches;
+
+            final int thisSep = this.contentType.indexOf("/");
+            final int otherSep = key.contentType.indexOf("/");
+
+            String thisInitialPart = this.contentType.substring(0, thisSep);
+            String otherInitialPart = key.contentType.substring(0, otherSep);
+
+            if (thisInitialPart.contains("*")) {
+                matches = matchPartsSafely(thisInitialPart, otherInitialPart);
+            } else if (otherInitialPart.contains("*")) {
+                matches = matchPartsUnsafely(otherInitialPart, thisInitialPart);
+            } else {
+                matches = thisInitialPart.equals(otherInitialPart);
+            }
+
+            if (!matches) return false;
+
+            final String thisFinalPart = this.contentType.substring(thisSep + 1);
+            final String otherFinalPart = key.contentType.substring(otherSep + 1);
+
+            if (thisFinalPart.contains("*")) {
+                matches = matchPartsSafely(thisFinalPart, otherFinalPart);
+            } else if (otherFinalPart.contains("*")) {
+                matches = matchPartsUnsafely(otherFinalPart, thisFinalPart);
+            } else {
+                matches = thisFinalPart.equals(otherFinalPart);
+            }
+
+            return matches;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Key)) {
+                return false;
+            }
+
+            final Key key = (Key) o;
+
+            if (Double.compare(key.factor, factor) != 0) {
+                return false;
+            }
+            if (!contentType.equals(key.contentType)) {
+                return false;
+            }
+            if (!type.equals(key.type)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result;
+            long temp;
+            result = type.hashCode();
+            result = 31 * result + contentType.hashCode();
+            temp = Double.doubleToLongBits(factor);
+            result = 31 * result + (int) (temp ^ (temp >>> 32));
+            return result;
+        }
+
+        @Override
+        public int compareTo(Key key) {
+            int result = this.type.getSimpleName().compareTo(key.type.getSimpleName());
+
+            if (result == 0) {
+                final int thisSep = this.contentType.indexOf("/");
+                final int otherSep = key.contentType.indexOf("/");
+
+                String thisInitialPart = this.contentType.substring(0, thisSep);
+                String otherInitialPart = key.contentType.substring(0, otherSep);
+                result = thisInitialPart.compareTo(otherInitialPart);
+
+                // Invert the result if the winner contains wildcard
+                if ((result == -1 && thisInitialPart.contains("*")) || (result == 1 && otherInitialPart.contains("*")))
+                    result = -result;
+
+                if (result == 0) {
+                    String thisFinalPart = this.contentType.substring(thisSep + 1);
+                    String otherFinalPart = key.contentType.substring(otherSep + 1);
+                    result = thisFinalPart.compareTo(otherFinalPart);
+
+                    // Invert the result if the winner contains wildcard
+                    if ((result == -1 && thisFinalPart.contains("*")) || (result == 1 && otherFinalPart.contains("*")))
+                        result = -result;
+
+                    if (result == 0) {
+                        // Invert comparison because the greater the factor the greater the precedence.
+                        result = Double.compare(key.factor, this.factor);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private boolean matchPartsSafely(String left, String right) {
+            boolean matches = true;
+            final String rightCleaned = right.replace("*", "");
+            String[] parts = left.split("\\*");
+            final boolean otherEndsWithWildcard = right.endsWith("*");
+            final int otherCleanedLength = rightCleaned.length();
+            int i = 0;
+            for (String part : parts) {
+                if (i == otherCleanedLength && otherEndsWithWildcard) {
+                    break;
+                }
+                if (!part.isEmpty()) {
+                    int newIdx = rightCleaned.indexOf(part, i);
+                    if (newIdx == -1) {
+                        matches = false;
+                        break;
+                    }
+                    i = newIdx + part.length();
+                }
+            }
+            return matches;
+        }
+
+        private boolean matchPartsUnsafely(String left, String right) {
+            boolean matches = true;
+            String[] parts = left.split("\\*");
+            int i = 0;
+            for (String part : parts) {
+                if (!part.isEmpty()) {
+                    int newIdx = right.indexOf(part, i);
+                    if (newIdx == -1) {
+                        matches = false;
+                        break;
+                    }
+                    i = newIdx + part.length();
+                }
+            }
+            return matches;
+        }
     }
 }

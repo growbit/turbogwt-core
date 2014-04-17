@@ -27,11 +27,38 @@ package org.turbogwt.core.http.client;
 public interface FluentRequest<RequestType, ResponseType> extends HasUriParts {
 
     /**
+     * Set the content type of this request.
+     *
+     * @param contentType The content type of this request
+     *
+     * @return the updated FluentRequest
+     */
+    FluentRequestSender<RequestType, ResponseType> contentType(String contentType);
+
+    /**
+     * Set the content type accepted for the response.
+     *
+     * @param contentType The content type accepted for the response
+     *
+     * @return the updated FluentRequest
+     */
+    FluentRequestSender<RequestType, ResponseType> accept(String contentType);
+
+    /**
+     * Set the Accept header of the request.
+     *
+     * @param acceptHeader The accept header of the request.
+     *
+     * @return the updated FluentRequest
+     */
+    FluentRequestSender<RequestType, ResponseType> accept(AcceptHeader acceptHeader);
+
+    /**
      * Set the strategy for appending parameters with multiple values.
      *
-     * @param strategy the strategy.
+     * @param strategy the strategy
      *
-     * @return the updated UriBuilder
+     * @return the updated FluentRequest
      *
      * @throws IllegalArgumentException if strategy is null
      */

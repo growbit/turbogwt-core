@@ -25,6 +25,7 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -58,8 +59,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private final ContainerFactoryManager containerFactoryManager;
     private final Class<RequestType> requestType;
     private final Class<ResponseType> responseType;
-    private final Serializer<RequestType> requestSerializer;
-    private final Deserializer<ResponseType> responseDeserializer;
+
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
@@ -67,6 +67,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private String user;
     private String password;
     private int timeout;
+    private String contentType;
+    private AcceptHeader accept;
 
     public FluentRequestImpl(FilterManager filterManager, SerdesManager serdesManager,
                              Class<RequestType> requestType, Class<ResponseType> responseType,
@@ -80,21 +82,50 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
         if (serdesManager == null) throw new NullPointerException("SerdesManager cannot be null.");
         this.serdesManager = serdesManager;
-        try {
-            this.requestSerializer = serdesManager.getSerializer(requestType);
-        } catch (SerializationException e) {
-            throw new IllegalArgumentException("Serializer of RequestType was not registered.", e);
-        }
-        try {
-            this.responseDeserializer = serdesManager.getDeserializer(responseType);
-        } catch (SerializationException e) {
-            throw new IllegalArgumentException("Deserializer of ResponseType was not registered.", e);
-        }
 
         this.requestType = requestType;
         this.responseType = responseType;
 
         this.uriBuilder = GWT.create(UriBuilder.class);
+    }
+
+    /**
+     * Set the content type of this request.
+     *
+     * @param contentType The content type of this request
+     *
+     * @return the updated FluentRequest
+     */
+    @Override
+    public FluentRequestSender<RequestType, ResponseType> contentType(String contentType) {
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Set the content type accepted for the response.
+     *
+     * @param contentType The content type accepted for the response
+     *
+     * @return the updated FluentRequest
+     */
+    @Override
+    public FluentRequestSender<RequestType, ResponseType> accept(String contentType) {
+        this.accept = new AcceptHeader(contentType);
+        return this;
+    }
+
+    /**
+     * Set the Accept header of the request.
+     *
+     * @param acceptHeader The accept header of the request.
+     *
+     * @return the updated FluentRequest
+     */
+    @Override
+    public FluentRequestSender<RequestType, ResponseType> accept(AcceptHeader acceptHeader) {
+        this.accept = acceptHeader;
+        return this;
     }
 
     /**
@@ -565,7 +596,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         String body = null;
         if (dataCollection != null) {
             // Serializer init was verified on construction
-            body = requestSerializer.serializeFromCollection(dataCollection, SerializationContext.of(headers));
+            body = getSerializer().serializeFromCollection(dataCollection, SerializationContext.of(headers));
         }
         return send(method, body, resultCallback);
     }
@@ -584,7 +615,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         String body = null;
         if (data != null) {
             // Serializer init was verified on construction
-            body = requestSerializer.serialize(data, SerializationContext.of(headers));
+            body = getSerializer().serialize(data, SerializationContext.of(headers));
         }
         return send(method, body, resultCallback);
     }
@@ -705,10 +736,10 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             ContainerAsyncCallback<Collection<ResponseType>, ResponseType> cac =
                     (ContainerAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
             Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getContainerClass();
-            cac.onSuccess(responseDeserializer.deserializeAsCollection(collectionType, body,
+            cac.onSuccess(getDeserializer().deserializeAsCollection(collectionType, body,
                     DeserializationContext.of(responseHeaders, containerFactoryManager)));
         } else {
-            ResponseType result = responseDeserializer.deserialize(body,
+            ResponseType result = getDeserializer().deserialize(body,
                     DeserializationContext.of(responseHeaders, containerFactoryManager));
             resultCallback.onSuccess(result);
         }
@@ -732,7 +763,28 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private void ensureHeaders() {
         if (headers == null) {
             headers = new Headers();
-            headers.add(requestSerializer.contentType());
+            headers.add(new ContentTypeHeader(contentType));
+        }
+    }
+
+    private Deserializer<ResponseType> getDeserializer() {
+        try {
+            // Iterates over the accept header ordered by quality factors
+            for (QualityFactorHeader.Value value : accept) {
+                return serdesManager.getDeserializer(responseType, value.getValue());
+            }
+        } catch (SerializationException ignored) {
+        }
+        throw new IllegalArgumentException("Deserializer of ResponseType *" + responseType.getName() +
+                "* and content types *" + Arrays.toString(accept.getQualityFactorValues()) + "* was not registered.");
+    }
+
+    private Serializer<RequestType> getSerializer() {
+        try {
+            return serdesManager.getSerializer(requestType, contentType);
+        } catch (SerializationException e) {
+            throw new IllegalArgumentException("Serializer of RequestType *" + requestType.getName() +
+                    "* and content type *" + contentType + "* was not registered.", e);
         }
     }
 
