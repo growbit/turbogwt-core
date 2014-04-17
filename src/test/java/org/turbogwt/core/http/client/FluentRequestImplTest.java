@@ -16,6 +16,7 @@
 
 package org.turbogwt.core.http.client;
 
+import com.google.gwt.http.client.Header;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.junit.client.GWTTestCase;
@@ -25,6 +26,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.turbogwt.core.http.client.mock.RequestMock;
 import org.turbogwt.core.http.client.mock.ResponseMock;
 import org.turbogwt.core.http.client.mock.ServerStub;
 import org.turbogwt.core.http.client.model.Person;
@@ -123,6 +125,37 @@ public class FluentRequestImplTest extends GWTTestCase {
         });
 
         assertTrue(callbackSuccessCalled[0]);
+    }
+
+    public void testRequestHeaders() {
+        ServerStub.clearStub();
+        final Requestory requestory = new Requestory();
+
+        final String uri = "/person-jso";
+
+        final PersonJso person = PersonJso.create(1, "John Doe", 6.3, new Date(329356800));
+        final String serializedResp = "{ \"id\" : 1, \"name\":\"John Doe\",\"weight\" :6.3,  \"birthday\": 329356800}";
+
+        ServerStub.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK"));
+
+        requestory.request(PersonJso.class, PersonJso.class).path(uri).post(person);
+
+        // On #post execution, request mock should be set from Requestory
+        final RequestMock requestMock = ServerStub.getRequestData(uri);
+        assertNotNull(requestMock);
+        assertNotNull(requestMock.getHeaders());
+
+        boolean contentTypeHeaderOk = false;
+        boolean acceptHeaderOk = false;
+        for (Header header : requestMock.getHeaders()) {
+            if (header.getName().equals("Content-Type")) {
+                contentTypeHeaderOk = header.getValue().equals("application/json");
+            } else if (header.getName().equals("Accept")) {
+                acceptHeaderOk = header.getValue().equals("application/json");
+            }
+        }
+        assertTrue(contentTypeHeaderOk);
+        assertTrue(acceptHeaderOk);
     }
 
     public void testOverlayRequest() {

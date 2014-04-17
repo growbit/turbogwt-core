@@ -18,6 +18,10 @@ package org.turbogwt.core.http.client.mock;
 
 import com.google.gwt.http.client.RequestBuilder;
 
+import javax.annotation.Nullable;
+
+import org.turbogwt.core.http.client.Headers;
+
 /**
  * @author Danilo Reinert
  */
@@ -26,11 +30,17 @@ public class RequestMock {
     private final RequestBuilder.Method method;
     private final String url;
     private final String data;
+    private final Headers headers;
 
     public RequestMock(RequestBuilder.Method method, String url, String data) {
+        this(method, url, data, null);
+    }
+
+    public RequestMock(RequestBuilder.Method method, String url, String data, Headers headers) {
         this.method = method;
         this.url = url;
         this.data = data;
+        this.headers = headers;
     }
 
     public RequestBuilder.Method getMethod() {
@@ -43,5 +53,10 @@ public class RequestMock {
 
     public String getData() {
         return data;
+    }
+
+    @Nullable
+    public Headers getHeaders() {
+        return headers;
     }
 }

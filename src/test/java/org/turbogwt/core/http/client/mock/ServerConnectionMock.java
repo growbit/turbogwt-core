@@ -48,7 +48,7 @@ public class ServerConnectionMock implements ServerConnection {
     @Override
     public void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
                             String url, String data, RequestCallback callback) throws RequestException {
-        ServerStub.setRequestData(url, new RequestMock(method, url, data));
+        ServerStub.setRequestData(url, new RequestMock(method, url, data, headers));
         if (ServerStub.isReturnSuccess()) {
             callback.onResponseReceived(null, ServerStub.getResponseFor(url));
         } else {

@@ -764,6 +764,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         if (headers == null) {
             headers = new Headers();
             headers.add(new ContentTypeHeader(contentType));
+            headers.add(accept);
         }
     }
 
