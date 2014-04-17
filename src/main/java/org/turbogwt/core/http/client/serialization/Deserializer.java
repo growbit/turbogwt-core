@@ -28,6 +28,13 @@ import java.util.Collection;
 public interface Deserializer<T> {
 
     /**
+     * Method for accessing type of Objects this serializer can handle.
+     *
+     * @return The class which this deserializer can deserialize
+     */
+    Class<T> handledType();
+
+    /**
      * Deserialize the plain text into an object of type T.
      *
      * @param response  Http response body content

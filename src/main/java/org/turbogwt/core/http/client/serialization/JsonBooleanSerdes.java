@@ -25,6 +25,10 @@ public class JsonBooleanSerdes extends JsonValueSerdes<Boolean> {
 
     private static JsonBooleanSerdes INSTANCE = new JsonBooleanSerdes();
 
+    public JsonBooleanSerdes() {
+        super(Boolean.class);
+    }
+
     public static JsonBooleanSerdes getInstance() {
         return INSTANCE;
     }

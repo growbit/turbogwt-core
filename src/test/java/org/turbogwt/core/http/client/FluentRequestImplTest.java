@@ -192,7 +192,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     public void testCustomObjectRequest() {
         ServerStub.clearStub();
         final Requestory requestory = new Requestory();
-        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
+        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
             public Person readJson(JsonRecordReader reader, DeserializationContext context) {
@@ -238,7 +238,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     public void testCustomObjectSerialization() {
         ServerStub.clearStub();
         final Requestory requestory = new Requestory();
-        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
+        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
             public Person readJson(JsonRecordReader reader, DeserializationContext context) {
@@ -284,7 +284,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     public void testCustomObjectArraySerializationDeserialization() {
         ServerStub.clearStub();
         final Requestory requestory = new Requestory();
-        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>() {
+        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
             public Person readJson(JsonRecordReader reader, DeserializationContext context) {

@@ -33,6 +33,10 @@ import org.turbogwt.core.js.client.Overlays;
  */
 public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
 
+    public JsonObjectSerdes(Class<T> handledType) {
+        super(handledType);
+    }
+
     /**
      * Map response deserialized as JavaScriptObject to T.
      *

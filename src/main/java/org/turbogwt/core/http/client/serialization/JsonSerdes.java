@@ -27,6 +27,22 @@ import java.util.Collection;
  */
 public abstract class JsonSerdes<T> implements Serdes<T> {
 
+    private final Class<T> handledType;
+
+    protected JsonSerdes(Class<T> handledType) {
+        this.handledType = handledType;
+    }
+
+    /**
+     * Method for accessing type of Objects this serializer can handle.
+     *
+     * @return The class which this deserializer can deserialize
+     */
+    @Override
+    public Class<T> handledType() {
+        return handledType;
+    }
+
     /**
      * Given a collection class, returns a new instance of it.
      *

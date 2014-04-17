@@ -29,6 +29,10 @@ public class BookSerdes extends JsonObjectSerdes<Book> {
 
     private static BookSerdes INSTANCE = new BookSerdes();
 
+    public BookSerdes() {
+        super(Book.class);
+    }
+
     public static BookSerdes getInstance() {
         return INSTANCE;
     }

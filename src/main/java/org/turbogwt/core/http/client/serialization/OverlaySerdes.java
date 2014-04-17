@@ -43,6 +43,17 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
         return (OverlaySerdes<O>) INSTANCE;
     }
 
+    /**
+     * Method for accessing type of Objects this serializer can handle.
+     *
+     * @return The class which this deserializer can deserialize
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Class<T> handledType() {
+        return (Class<T>) JavaScriptObject.class;
+    }
+
     @Override
     public T deserialize(String response, DeserializationContext context) {
         return JsonUtils.safeEval(response);

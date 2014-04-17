@@ -28,6 +28,13 @@ import java.util.Collection;
 public interface Serializer<T> {
 
     /**
+     * Method for accessing type of Objects this deserializer can handle.
+     *
+     * @return The class which this serializer can serialize
+     */
+    Class<T> handledType();
+
+    /**
      * Serialize T to plain text.
      *
      * @param t         The object to be serialized

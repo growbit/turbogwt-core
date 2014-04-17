@@ -27,6 +27,10 @@ import java.util.Collection;
  */
 public abstract class JsonValueSerdes<T> extends JsonSerdes<T> {
 
+    public JsonValueSerdes(Class<T> handledType) {
+        super(handledType);
+    }
+
     /**
      * Deserialize the plain text into an object of type T.
      *

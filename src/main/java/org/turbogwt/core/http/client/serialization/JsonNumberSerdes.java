@@ -25,6 +25,10 @@ public class JsonNumberSerdes extends JsonValueSerdes<Number> {
 
     private static JsonNumberSerdes INSTANCE = new JsonNumberSerdes();
 
+    public JsonNumberSerdes() {
+        super(Number.class);
+    }
+
     public static JsonNumberSerdes getInstance() {
         return INSTANCE;
     }

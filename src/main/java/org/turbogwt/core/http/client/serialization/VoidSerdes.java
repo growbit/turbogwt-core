@@ -32,6 +32,16 @@ public class VoidSerdes implements Serdes<Void> {
         return INSTANCE;
     }
 
+    /**
+     * Method for accessing type of Objects this serializer can handle.
+     *
+     * @return The class which this deserializer can deserialize
+     */
+    @Override
+    public Class<Void> handledType() {
+        return Void.class;
+    }
+
     @Override
     public Void deserialize(String response, DeserializationContext context) {
         return null;
