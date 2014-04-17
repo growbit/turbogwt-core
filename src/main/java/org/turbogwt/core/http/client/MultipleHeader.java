@@ -33,8 +33,8 @@ public class MultipleHeader extends Header {
         this.name = name;
         this.values = new String[values.length];
         for (int i = 0; i < values.length; i++) {
-            Object value = values[i];
-            this.values[i] = value.toString();
+            Object v = values[i];
+            this.values[i] = v.toString();
         }
         this.value = mountValue(this.values);
     }
@@ -75,12 +75,12 @@ public class MultipleHeader extends Header {
     }
 
     protected String mountValue(String[] values) {
-        String value = "";
+        String mountedValue = "";
         String separator = "";
         for (String v : values) {
-            value += separator + v;
+            mountedValue += separator + v;
             separator = " , ";
         }
-        return value;
+        return mountedValue;
     }
 }

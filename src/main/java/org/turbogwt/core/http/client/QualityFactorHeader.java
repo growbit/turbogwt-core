@@ -23,6 +23,9 @@ package org.turbogwt.core.http.client;
  */
 public class QualityFactorHeader extends MultipleHeader {
 
+    /**
+     * Represents a HTTP Header value with relative quality factor associated.
+     */
     public class Value {
 
         private final double factor;
