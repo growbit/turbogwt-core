@@ -18,8 +18,6 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.AcceptHeader;
-
 /**
  * Performs deserialization of Types.
  *
@@ -41,7 +39,7 @@ public interface Deserializer<T> {
      *
      * @return The content type handled by this serializer.
      */
-    AcceptHeader accept();
+    String[] accept();
 
     /**
      * Deserialize the plain text into an object of type T.

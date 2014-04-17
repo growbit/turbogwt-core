@@ -23,8 +23,6 @@ import com.google.gwt.core.client.JsonUtils;
 import java.util.Collection;
 import java.util.List;
 
-import org.turbogwt.core.http.client.AcceptHeader;
-import org.turbogwt.core.http.client.ContentTypeHeader;
 import org.turbogwt.core.http.client.Factory;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsArrayList;
@@ -62,7 +60,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
      * @return The content type serialized.
      */
     @Override
-    public ContentTypeHeader contentType() {
+    public String[] contentType() {
         return JsonSerdes.CONTENT_TYPE_HEADER;
     }
 
@@ -72,7 +70,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
      * @return The content type handled by this serializer.
      */
     @Override
-    public AcceptHeader accept() {
+    public String[] accept() {
         return JsonSerdes.ACCEPT_HEADER;
     }
 

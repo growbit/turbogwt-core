@@ -18,8 +18,6 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.core.http.client.ContentTypeHeader;
-
 /**
  * Performs serialization of types.
  *
@@ -41,7 +39,7 @@ public interface Serializer<T> {
      *
      * @return The content type serialized.
      */
-    ContentTypeHeader contentType();
+    String[] contentType();
 
     /**
      * Serialize T to plain text.

@@ -19,9 +19,6 @@ package org.turbogwt.core.http.client.serialization;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.turbogwt.core.http.client.AcceptHeader;
-import org.turbogwt.core.http.client.ContentTypeHeader;
-import org.turbogwt.core.http.client.QualityFactorHeader;
 import org.turbogwt.core.http.client.Registration;
 
 /**
@@ -45,15 +42,13 @@ public class SerdesManager {
      *          to the {@link SerdesManager}.
      */
     public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
-        final AcceptHeader accept = deserializer.accept();
-
-        final QualityFactorHeader.Value[] qualityFactorValues = accept.getQualityFactorValues();
-        final Key[] keys = new Key[qualityFactorValues.length];
-        int i = -1;
-        for (QualityFactorHeader.Value value : qualityFactorValues) {
-            final Key key = new Key(type, value.getValue(), value.getFactor());
+        final String[] accept = deserializer.accept();
+        final Key[] keys = new Key[accept.length];
+        for (int i = 0; i < accept.length; i++) {
+            String pattern = accept[i];
+            final Key key = new Key(type, pattern);
             deserializers.put(key, deserializer);
-            keys[++i] = key;
+            keys[i] = key;
         }
 
         return new Registration() {
@@ -77,15 +72,13 @@ public class SerdesManager {
      *          to the {@link SerdesManager}.
      */
     public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
-        final ContentTypeHeader contentType = serializer.contentType();
-
-        final QualityFactorHeader.Value[] qualityFactorValues = contentType.getQualityFactorValues();
-        final Key[] keys = new Key[qualityFactorValues.length];
-        int i = -1;
-        for (QualityFactorHeader.Value value : qualityFactorValues) {
-            final Key key = new Key(type, value.getValue(), value.getFactor());
+        final String[] contentType = serializer.contentType();
+        final Key[] keys = new Key[contentType.length];
+        for (int i = 0; i < contentType.length; i++) {
+            String pattern = contentType[i];
+            final Key key = new Key(type, pattern);
             serializers.put(key, serializer);
-            keys[++i] = key;
+            keys[i] = key;
         }
 
         return new Registration() {
