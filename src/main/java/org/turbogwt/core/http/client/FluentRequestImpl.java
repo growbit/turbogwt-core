@@ -311,7 +311,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> header(String header, String value) {
-        if (headers == null) headers = new Headers();
+        ensureHeaders();
         headers.add(new SimpleHeader(header, value));
         return this;
     }
@@ -656,6 +656,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         // If the uri was not set via #setUri, then build it.
         if (uri == null) uri = uriBuilder.build();
 
+        // Ensure required fields
+        ensureHeaders();
+
         // Execute filters on this request
         final List<RequestFilter> filters = filterManager.getRequestFilters();
         for (RequestFilter filter : filters) {
@@ -724,6 +727,13 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         newReq.user = user;
         newReq.password = password;
         newReq.timeout = timeout;
+    }
+
+    private void ensureHeaders() {
+        if (headers == null) {
+            headers = new Headers();
+            headers.add(requestSerializer.contentType());
+        }
     }
 
     private static native JsArrayString reverse(JsArrayString array) /*-{
