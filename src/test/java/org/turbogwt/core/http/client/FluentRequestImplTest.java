@@ -31,6 +31,7 @@ import org.turbogwt.core.http.client.mock.ResponseMock;
 import org.turbogwt.core.http.client.mock.ServerStub;
 import org.turbogwt.core.http.client.model.Person;
 import org.turbogwt.core.http.client.model.PersonJso;
+import org.turbogwt.core.http.client.model.PersonSerdes;
 import org.turbogwt.core.http.client.serialization.DeserializationContext;
 import org.turbogwt.core.http.client.serialization.JsonObjectSerdes;
 import org.turbogwt.core.http.client.serialization.JsonRecordReader;
@@ -271,24 +272,7 @@ public class FluentRequestImplTest extends GWTTestCase {
     public void testCustomObjectSerialization() {
         ServerStub.clearStub();
         final Requestory requestory = new Requestory();
-        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
-
-            @Override
-            public Person readJson(JsonRecordReader reader, DeserializationContext context) {
-                return new Person(reader.readInteger("id"),
-                        reader.readString("name"),
-                        reader.readDouble("weight"),
-                        new Date(reader.readLong("birthday")));
-            }
-
-            @Override
-            public void writeJson(Person person, JsonRecordWriter writer, SerializationContext context) {
-                writer.writeInt("id", person.getId())
-                        .writeString("name", person.getName())
-                        .writeDouble("weight", person.getWeight())
-                        .writeDouble("birthday", person.getBirthday().getTime());
-            }
-        });
+        requestory.registerSerdes(Person.class, new PersonSerdes());
 
         final String uri = "/person";
 

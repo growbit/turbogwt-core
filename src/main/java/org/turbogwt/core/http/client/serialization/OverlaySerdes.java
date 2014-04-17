@@ -61,7 +61,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
      */
     @Override
     public String[] contentType() {
-        return JsonSerdes.CONTENT_TYPE_HEADER;
+        return JsonSerdes.CONTENT_TYPE_PATTERNS;
     }
 
     /**
@@ -71,7 +71,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
      */
     @Override
     public String[] accept() {
-        return JsonSerdes.ACCEPT_HEADER;
+        return JsonSerdes.ACCEPT_PATTERNS;
     }
 
     @Override

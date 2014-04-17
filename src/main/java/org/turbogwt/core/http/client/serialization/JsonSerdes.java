@@ -27,8 +27,8 @@ import java.util.Collection;
  */
 public abstract class JsonSerdes<T> implements Serdes<T> {
 
-    public static String[] ACCEPT_HEADER = new String[] { "application/json", "application/javascript" };
-    public static String[] CONTENT_TYPE_HEADER = new String[] { "application/json", "application/javascript" };
+    public static String[] ACCEPT_PATTERNS = new String[] { "application/json", "application/javascript" };
+    public static String[] CONTENT_TYPE_PATTERNS = new String[] { "application/json", "application/javascript" };
 
     private final Class<T> handledType;
 
@@ -53,7 +53,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
      */
     @Override
     public String[] accept() {
-        return ACCEPT_HEADER;
+        return ACCEPT_PATTERNS;
     }
 
     /**
@@ -63,7 +63,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
      */
     @Override
     public String[] contentType() {
-        return CONTENT_TYPE_HEADER;
+        return CONTENT_TYPE_PATTERNS;
     }
 
     /**

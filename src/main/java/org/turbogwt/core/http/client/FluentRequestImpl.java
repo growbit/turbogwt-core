@@ -776,7 +776,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             }
         } catch (SerializationException ignored) {
         }
-        throw new IllegalArgumentException("Deserializer of ResponseType *" + responseType.getName() +
+        throw new SerializationException("Deserializer of ResponseType *" + responseType.getName() +
                 "* and content types *" + Arrays.toString(accept.getQualityFactorValues()) + "* was not registered.");
     }
 
@@ -784,7 +784,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         try {
             return serdesManager.getSerializer(requestType, contentType);
         } catch (SerializationException e) {
-            throw new IllegalArgumentException("Serializer of RequestType *" + requestType.getName() +
+            throw new SerializationException("Serializer of RequestType *" + requestType.getName() +
                     "* and content type *" + contentType + "* was not registered.", e);
         }
     }

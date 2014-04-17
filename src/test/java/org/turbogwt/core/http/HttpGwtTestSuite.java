@@ -20,6 +20,7 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 
 import junit.framework.Test;
 
+import org.turbogwt.core.http.client.ContentTypeAcceptPatternsTest;
 import org.turbogwt.core.http.client.FluentRequestImplTest;
 import org.turbogwt.core.http.client.MultipleHeaderTest;
 import org.turbogwt.core.http.client.QualityFactorHeaderTest;
@@ -39,6 +40,7 @@ public class HttpGwtTestSuite {
 
         suite.addTestSuite(UriBuilderImplTest.class);
         suite.addTestSuite(FluentRequestImplTest.class);
+        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
         suite.addTestSuite(RestTest.class);
 
         return suite;
