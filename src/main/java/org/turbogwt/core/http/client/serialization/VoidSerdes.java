@@ -18,6 +18,9 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
+import org.turbogwt.core.http.client.AcceptHeader;
+import org.turbogwt.core.http.client.ContentTypeHeader;
+
 /**
  * SerDes for Void type.
  * Returns null for every method.
@@ -25,6 +28,9 @@ import java.util.Collection;
  * @author Danilo Reinert
  */
 public class VoidSerdes implements Serdes<Void> {
+
+    public static final ContentTypeHeader CONTENT_TYPE_HEADER = new ContentTypeHeader("*/*");
+    public static final AcceptHeader ACCEPT_HEADER = new AcceptHeader("*/*");
 
     private static VoidSerdes INSTANCE = new VoidSerdes();
 
@@ -40,6 +46,26 @@ public class VoidSerdes implements Serdes<Void> {
     @Override
     public Class<Void> handledType() {
         return Void.class;
+    }
+
+    /**
+     * Informs the content type this serializer serializes.
+     *
+     * @return The content type serialized.
+     */
+    @Override
+    public ContentTypeHeader contentType() {
+        return CONTENT_TYPE_HEADER;
+    }
+
+    /**
+     * Informs the content type this serializer handle.
+     *
+     * @return The content type handled by this serializer.
+     */
+    @Override
+    public AcceptHeader accept() {
+        return ACCEPT_HEADER;
     }
 
     @Override

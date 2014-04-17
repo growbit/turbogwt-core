@@ -18,6 +18,9 @@ package org.turbogwt.core.http.client.serialization;
 
 import java.util.Collection;
 
+import org.turbogwt.core.http.client.AcceptHeader;
+import org.turbogwt.core.http.client.ContentTypeHeader;
+
 /**
  * Base class for all SerDes that manipulates serialized JSON.
  *
@@ -26,6 +29,9 @@ import java.util.Collection;
  * @author Danilo Reinert
  */
 public abstract class JsonSerdes<T> implements Serdes<T> {
+
+    public static AcceptHeader ACCEPT_HEADER = new AcceptHeader("application/json", "application/javascript");
+    public static ContentTypeHeader CONTENT_TYPE_HEADER = new ContentTypeHeader("application/json");
 
     private final Class<T> handledType;
 
@@ -41,6 +47,26 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     @Override
     public Class<T> handledType() {
         return handledType;
+    }
+
+    /**
+     * Informs the content type this serializer handle.
+     *
+     * @return The content type handled by this serializer.
+     */
+    @Override
+    public AcceptHeader accept() {
+        return ACCEPT_HEADER;
+    }
+
+    /**
+     * Informs the content type this serializer serializes.
+     *
+     * @return The content type serialized.
+     */
+    @Override
+    public ContentTypeHeader contentType() {
+        return CONTENT_TYPE_HEADER;
     }
 
     /**
