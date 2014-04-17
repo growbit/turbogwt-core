@@ -79,7 +79,7 @@ public class MultipleHeader extends Header {
         String separator = "";
         for (String v : values) {
             mountedValue += separator + v;
-            separator = " , ";
+            separator = ", ";
         }
         return mountedValue;
     }

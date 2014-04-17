@@ -30,7 +30,7 @@ import org.turbogwt.core.js.collections.client.JsArrayTest;
 public class CollectionsGwtTestSuite {
 
     public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+        GWTTestSuite suite = new GWTTestSuite("Js.Collections Test Suite");
 
         suite.addTestSuite(JsArrayTest.class);
         suite.addTestSuite(JsArrayListStringTest.class);

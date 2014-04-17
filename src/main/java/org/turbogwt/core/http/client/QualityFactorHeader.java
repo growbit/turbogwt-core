@@ -26,13 +26,17 @@ public class QualityFactorHeader extends MultipleHeader {
     /**
      * Represents a HTTP Header value with relative quality factor associated.
      */
-    public class Value {
+    public static class Value {
 
         private final double factor;
         private final String value;
 
+        public Value(String value) {
+            this(1, value);
+        }
+
         public Value(double factor, String value) throws IllegalArgumentException {
-            if (factor > 1 || factor < 0)
+            if (factor > 1.0 || factor < 0.0)
                 throw new IllegalArgumentException("Factor must be between 0 and 1.");
             this.factor = factor;
             this.value = value;
@@ -56,7 +60,7 @@ public class QualityFactorHeader extends MultipleHeader {
 
     private final Value[] values;
 
-    public QualityFactorHeader(String name, Value... values) {
+    public QualityFactorHeader(String name, QualityFactorHeader.Value... values) {
         super(name, (Object[]) values);
         this.values = values;
     }

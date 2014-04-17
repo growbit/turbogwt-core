@@ -21,6 +21,8 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 import junit.framework.Test;
 
 import org.turbogwt.core.http.client.FluentRequestImplTest;
+import org.turbogwt.core.http.client.MultipleHeaderTest;
+import org.turbogwt.core.http.client.QualityFactorHeaderTest;
 import org.turbogwt.core.http.client.UriBuilderImplTest;
 import org.turbogwt.core.http.client.books.RestTest;
 
@@ -31,6 +33,9 @@ public class HttpGwtTestSuite {
 
     public static Test suite() {
         GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+
+        suite.addTestSuite(MultipleHeaderTest.class);
+        suite.addTestSuite(QualityFactorHeaderTest.class);
 
         suite.addTestSuite(UriBuilderImplTest.class);
         suite.addTestSuite(FluentRequestImplTest.class);
