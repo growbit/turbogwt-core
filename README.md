@@ -156,7 +156,7 @@ Turbo GWT Core is currently available at maven central.
 <dependency>
     <groupId>org.turbogwt.core</groupId>
     <artifactId>turbogwt-core</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
