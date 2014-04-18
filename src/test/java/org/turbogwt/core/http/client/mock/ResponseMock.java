@@ -46,8 +46,8 @@ public class ResponseMock extends Response {
         return new Builder();
     }
 
-    public static ResponseMock of(String text, int statusCode, String statusText) {
-        return new ResponseMock(text, statusCode, statusText, new Header[0]);
+    public static ResponseMock of(String text, int statusCode, String statusText, Header... headers) {
+        return new ResponseMock(text, statusCode, statusText, headers);
     }
 
     @Override

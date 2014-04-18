@@ -25,7 +25,6 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,6 +36,7 @@ import org.turbogwt.core.http.client.serialization.SerdesManager;
 import org.turbogwt.core.http.client.serialization.SerializationContext;
 import org.turbogwt.core.http.client.serialization.SerializationException;
 import org.turbogwt.core.http.client.serialization.Serializer;
+import org.turbogwt.core.http.client.serialization.UnableToDeserializeException;
 import org.turbogwt.core.js.client.Overlays;
 import org.turbogwt.core.js.collections.client.JsMap;
 
@@ -732,14 +732,25 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     @SuppressWarnings("unchecked")
     private void deserializeAndCallOnSuccess(String body, Headers responseHeaders,
                                              AsyncCallback resultCallback) {
+        final String responseContentType = responseHeaders.getValue("Content-Type");
+
+        Deserializer<ResponseType> deserializer;
+        try {
+            deserializer = serdesManager.getDeserializer(responseType, responseContentType);
+        } catch (SerializationException e) {
+            resultCallback.onFailure(new UnableToDeserializeException("Could not deserialize response of content-type *"
+                    + responseContentType + "*.", e));
+            return;
+        }
+
         if (resultCallback instanceof ContainerAsyncCallback) {
             ContainerAsyncCallback<Collection<ResponseType>, ResponseType> cac =
                     (ContainerAsyncCallback<Collection<ResponseType>, ResponseType>) resultCallback;
             Class<Collection<ResponseType>> collectionType = (Class<Collection<ResponseType>>) cac.getContainerClass();
-            cac.onSuccess(getDeserializer().deserializeAsCollection(collectionType, body,
+            cac.onSuccess(deserializer.deserializeAsCollection(collectionType, body,
                     DeserializationContext.of(responseHeaders, containerFactoryManager)));
         } else {
-            ResponseType result = getDeserializer().deserialize(body,
+            ResponseType result = deserializer.deserialize(body,
                     DeserializationContext.of(responseHeaders, containerFactoryManager));
             resultCallback.onSuccess(result);
         }
@@ -766,18 +777,6 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             headers.add(new ContentTypeHeader(contentType));
             headers.add(accept);
         }
-    }
-
-    private Deserializer<ResponseType> getDeserializer() {
-        try {
-            // Iterates over the accept header ordered by quality factors
-            for (QualityFactorHeader.Value value : accept) {
-                return serdesManager.getDeserializer(responseType, value.getValue());
-            }
-        } catch (SerializationException ignored) {
-        }
-        throw new SerializationException("Deserializer of ResponseType *" + responseType.getName() +
-                "* and content types *" + Arrays.toString(accept.getQualityFactorValues()) + "* was not registered.");
     }
 
     private Serializer<RequestType> getSerializer() {

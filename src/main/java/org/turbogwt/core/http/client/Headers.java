@@ -50,7 +50,10 @@ public class Headers implements Iterable<Header> {
     }
 
     public String getValue(String name) {
-        return headers.get(indexes.get(name)).getValue();
+        final int i = indexes.get(name, -1);
+        if (i == -1) return null;
+        final Header header = headers.get(i);
+        return header != null ? header.getValue() : null;
     }
 
     public Header get(String name) {

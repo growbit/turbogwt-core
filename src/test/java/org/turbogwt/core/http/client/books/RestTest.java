@@ -23,6 +23,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.turbogwt.core.http.client.ContentTypeHeader;
 import org.turbogwt.core.http.client.ListAsyncCallback;
 import org.turbogwt.core.http.client.Requestory;
 import org.turbogwt.core.http.client.mock.ResponseMock;
@@ -38,6 +39,56 @@ public class RestTest extends GWTTestCase {
         return "org.turbogwt.core.http.HttpTest";
     }
 
+    public void testCreate() {
+        ServerStub.clearStub();
+
+        final Requestory requestory = new Requestory();
+        requestory.registerSerdes(Book.class, BookSerdes.getInstance());
+
+        final String uri = "/server/books";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
+
+        final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
+
+        final boolean[] callbacksCalled = new boolean[1];
+        final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
+
+        requestory.request(Book.class, Void.class)
+                .path("server").segment("books")
+                .post(data, new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        // Ignored
+                    }
+
+                    @Override
+                    public void onSuccess(Void result) {
+                        callbacksCalled[0] = true;
+                    }
+                });
+
+        assertTrue(callbacksCalled[0]);
+        assertEquals(expected, ServerStub.getRequestData(uri).getData());
+        assertEquals(RequestBuilder.POST, ServerStub.getRequestData(uri).getMethod());
+    }
+
+    public void testDelete() {
+        ServerStub.clearStub();
+
+        final Requestory requestory = new Requestory();
+
+        final String uri = "/server/books/1";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
+
+        requestory.request() // The same as request(Void.class, Void.class)
+                .path("server").segment("books").segment(1)
+                .delete(); // You can optionally dismiss any server response
+
+        assertEquals(RequestBuilder.DELETE, ServerStub.getRequestData(uri).getMethod());
+    }
+
     public void testGetAll() {
         ServerStub.clearStub();
 
@@ -49,7 +100,8 @@ public class RestTest extends GWTTestCase {
         final String responseText = "[{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}"
                 + ", {\"id\":2, \"title\":\"Agile Software Development: Principles, Patterns, and Practices\", "
                 + "\"author\":\"Robert C. Martin\"}]";
-        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
+                new ContentTypeHeader("application/json")));
 
         final List<Book> expected = new ArrayList<>(2);
         expected.add(new Book(1, "RESTful Web Services", "Leonard Richardson"));
@@ -84,7 +136,8 @@ public class RestTest extends GWTTestCase {
         final String uri = "/server/books/1";
 
         final String responseText = "{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}";
-        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
+                new ContentTypeHeader("application/json")));
 
         final Book expected = new Book(1, "RESTful Web Services", "Leonard Richardson");
 
@@ -108,40 +161,6 @@ public class RestTest extends GWTTestCase {
         assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
     }
 
-    public void testCreate() {
-        ServerStub.clearStub();
-
-        final Requestory requestory = new Requestory();
-        requestory.registerSerdes(Book.class, BookSerdes.getInstance());
-
-        final String uri = "/server/books";
-
-        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
-
-        final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
-
-        final boolean[] callbacksCalled = new boolean[1];
-        final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
-
-        requestory.request(Book.class, Void.class)
-                .path("server").segment("books")
-                .post(data, new AsyncCallback<Void>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        // Ignored
-                    }
-
-                    @Override
-                    public void onSuccess(Void result) {
-                        callbacksCalled[0] = true;
-                    }
-                });
-
-        assertTrue(callbacksCalled[0]);
-        assertEquals(expected, ServerStub.getRequestData(uri).getData());
-        assertEquals(RequestBuilder.POST, ServerStub.getRequestData(uri).getMethod());
-    }
-
     public void testUpdate() {
         ServerStub.clearStub();
 
@@ -150,7 +169,7 @@ public class RestTest extends GWTTestCase {
 
         final String uri = "/server/books/1";
 
-        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
 
         final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
 
@@ -174,21 +193,5 @@ public class RestTest extends GWTTestCase {
         assertTrue(callbacksCalled[0]);
         assertEquals(expected, ServerStub.getRequestData(uri).getData());
         assertEquals(RequestBuilder.PUT, ServerStub.getRequestData(uri).getMethod());
-    }
-
-    public void testDelete() {
-        ServerStub.clearStub();
-
-        final Requestory requestory = new Requestory();
-
-        final String uri = "/server/books/1";
-
-        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK"));
-
-        requestory.request() // The same as request(Void.class, Void.class)
-                .path("server").segment("books").segment(1)
-                .delete(); // You can optionally dismiss any server response
-
-        assertEquals(RequestBuilder.DELETE, ServerStub.getRequestData(uri).getMethod());
     }
 }

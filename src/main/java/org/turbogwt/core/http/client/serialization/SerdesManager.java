@@ -124,6 +124,9 @@ public class SerdesManager {
      */
     @SuppressWarnings("unchecked")
     public <T> Deserializer<T> getDeserializer(Class<T> type, String contentType) throws SerializationException {
+        checkType(type);
+        checkContentType(contentType);
+
         final Key key = new Key(type, contentType);
 
         for (Key k : deserializers.keySet()) {
@@ -144,6 +147,9 @@ public class SerdesManager {
      */
     @SuppressWarnings("unchecked")
     public <T> Serializer<T> getSerializer(Class<T> type, String contentType) throws SerializationException {
+        checkType(type);
+        checkContentType(contentType);
+
         final Key key = new Key(type, contentType);
 
         for (Key k : serializers.keySet()) {
@@ -152,6 +158,18 @@ public class SerdesManager {
 
         throw new SerializationException("There is no Serializer registered for type " + type.getName() +
                 " and content-type " + contentType + ".");
+    }
+
+    private void checkContentType(String contentType) {
+        if (contentType == null) {
+            throw new SerializationException("Content type cannot be null.");
+        }
+    }
+
+    private <T> void checkType(Class<T> type) {
+        if (type == null) {
+            throw new SerializationException("Type cannot be null.");
+        }
     }
 
     private static class Key implements Comparable<Key> {
