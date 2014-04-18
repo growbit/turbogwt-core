@@ -121,6 +121,17 @@ requestory.request().path(uri)
         });
 ```
 
+Posting *Form Data* is like:
+
+```java
+FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
+
+requestory.request(FormParam.class, Void.class)
+        .path(uri)
+        .contentType("application/x-www-form-urlencoded")
+        .post(formData);
+```
+
 #### Extensible design
 All Requests are created by an underlying abstraction called Server. This Server interface is analogous to the JDBC Datasource and provides a new ServerConnection by calling getConnection(). This design allows you to determine how you want to communicate with your Server over all your application.
 
