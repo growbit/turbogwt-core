@@ -21,6 +21,8 @@ package org.turbogwt.core.http.client;
  */
 public class FormParam {
 
+    public static final String CONTENT_TYPE = "application/x-www-form-urlencoded";
+
     private final String name;
     private final Object[] values;
 

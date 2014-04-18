@@ -32,8 +32,6 @@ import org.turbogwt.core.js.collections.client.JsMapInteger;
  */
 public class FormData implements Collection<FormParam> {
 
-    public static final String CONTENT_TYPE = "application/x-www-form-urlencoded";
-
     private final List<FormParam> params;
     private MultipleParamStrategy multipleParamStrategy;
 
@@ -135,11 +133,14 @@ public class FormData implements Collection<FormParam> {
     /**
      * A builder of FormData.
      */
-    private static class Builder {
+    public static class Builder {
 
         private final JsArrayList<FormParam> params = new JsArrayList<>();
         private final JsMapInteger indexes = JsMapInteger.create();
         private MultipleParamStrategy multipleParamStrategy;
+
+        private Builder() {
+        }
 
         public Builder put(String name, Object... values) {
             int i = indexes.get(name, -1);

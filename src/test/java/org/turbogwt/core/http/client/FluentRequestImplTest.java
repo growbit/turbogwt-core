@@ -401,4 +401,20 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         assertTrue(callbackSuccessCalled[0]);
     }
+
+    public void testFormDataRequest() {
+        ServerStub.clearStub();
+        final Requestory requestory = new Requestory();
+
+        final String uri = "/form";
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("text/plain")));
+
+        final FormData formData = FormData.builder().put("name", "John Doe").put("age", 1, 2, 3.5).build();
+        final String serialized = "name=John+Doe&age=1&age=2&age=3.5";
+
+        requestory.request(FormParam.class, Void.class).path(uri).contentType(FormParam.CONTENT_TYPE).post(formData);
+
+        final RequestMock requestMock = ServerStub.getRequestData(uri);
+        assertEquals(serialized, requestMock.getData());
+    }
 }
