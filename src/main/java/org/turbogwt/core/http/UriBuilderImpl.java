@@ -19,8 +19,8 @@ package org.turbogwt.core.http;
 import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.http.client.URL;
 
-import org.turbogwt.core.js.client.Overlays;
-import org.turbogwt.core.js.collections.client.JsMap;
+import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.js.collections.JsMap;
 
 /**
  * Default implementation of {@link UriBuilder}.

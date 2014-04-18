@@ -15,34 +15,34 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.js.collections.client;
+package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * Map of String to String implemented on a JavaScriptObject.
+ * Map of String to native boolean implemented on a JavaScriptObject.
  *
  * @author Thomas Broyer
  */
-public class JsMapString extends JavaScriptObject {
+public class JsMapBoolean extends JavaScriptObject {
 
-    protected JsMapString() {
+    protected JsMapBoolean() {
     }
 
-    public static JsMapString create() {
+    public static JsMapBoolean create() {
         return JavaScriptObject.createObject().cast();
     }
 
-    public final native String get(String key) /*-{
+    public final native boolean get(String key) /*-{
         return this[key];
     }-*/;
 
-    public final native String get(String key, String defaultValue) /*-{
+    public final native boolean get(String key, boolean defaultValue) /*-{
         var ret = this[key];
         return ret != null ? ret : defaultValue;
     }-*/;
 
-    public final native void set(String key, String value) /*-{
+    public final native void set(String key, boolean value) /*-{
         this[key] = value;
     }-*/;
 

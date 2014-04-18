@@ -24,8 +24,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.turbogwt.core.http.Factory;
-import org.turbogwt.core.js.client.Overlays;
-import org.turbogwt.core.js.collections.client.JsArrayList;
+import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.js.collections.JsArrayList;
 
 /**
  * Serializer/Deserializer of Overlay types.

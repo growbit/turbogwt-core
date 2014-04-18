@@ -15,34 +15,34 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.js.collections.client;
+package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * Map of String to native integer implemented on a JavaScriptObject.
+ * Map of String to native number implemented on a JavaScriptObject.
  *
  * @author Thomas Broyer
  */
-public class JsMapInteger extends JavaScriptObject {
+public class JsMapNumber extends JavaScriptObject {
 
-    protected JsMapInteger() {
+    protected JsMapNumber() {
     }
 
-    public static JsMapInteger create() {
+    public static JsMapNumber create() {
         return JavaScriptObject.createObject().cast();
     }
 
-    public final native int get(String key) /*-{
+    public final native double get(String key) /*-{
         return this[key];
     }-*/;
 
-    public final native int get(String key, int defaultValue) /*-{
+    public final native double get(String key, double defaultValue) /*-{
         var ret = this[key];
         return ret != null ? ret : defaultValue;
     }-*/;
 
-    public final native void set(String key, int value) /*-{
+    public final native void set(String key, double value) /*-{
         this[key] = value;
     }-*/;
 

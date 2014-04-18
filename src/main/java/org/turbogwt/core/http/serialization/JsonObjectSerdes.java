@@ -22,7 +22,7 @@ import com.google.gwt.core.client.JsonUtils;
 
 import java.util.Collection;
 
-import org.turbogwt.core.js.client.Overlays;
+import org.turbogwt.core.js.Overlays;
 
 /**
  * Base class for all SerDes that manipulates serialized JSON objects.
@@ -40,7 +40,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     /**
      * Map response deserialized as JavaScriptObject to T.
      *
-     * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
+     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
      *
      * @param reader    The evaluated response
      * @param context   Context of the deserialization
@@ -52,7 +52,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     /**
      * Map T as JavaScriptObject to serialize using JSON.stringify.
      *
-     * You may use {@link org.turbogwt.core.js.client.Overlays} helper methods to easily perform this mapping.
+     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
      *
      * @param t         The object to be serialized
      * @param writer    The serializing JSON

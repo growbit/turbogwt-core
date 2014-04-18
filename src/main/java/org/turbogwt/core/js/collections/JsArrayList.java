@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.js.collections.client;
+package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -26,7 +26,7 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
- * An implementation of {@link java.util.List} wrapping a {@link org.turbogwt.core.js.collections.client.JsArray}.
+ * An implementation of {@link java.util.List} wrapping a {@link org.turbogwt.core.js.collections.JsArray}.
  *
  * @param <T> Type of list values
  * @author Danilo Reinert
@@ -97,7 +97,7 @@ public class JsArrayList<T> implements List<T> {
 
     @Override
     public native boolean remove(Object o) /*-{
-        var a = this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray;
+        var a = this.@org.turbogwt.core.js.collections.JsArrayList::jsArray;
         var i = a.indexOf(o);
         if (i == -1)
             return false;
@@ -176,7 +176,7 @@ public class JsArrayList<T> implements List<T> {
 
     @Override
     public native void clear() /*-{
-        this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.length = 0;
+        this.@org.turbogwt.core.js.collections.JsArrayList::jsArray.length = 0;
     }-*/;
 
     @Override
@@ -244,7 +244,7 @@ public class JsArrayList<T> implements List<T> {
     }
 
     public native JsArray<T> subArray(int i, int i2) /*-{
-        return this.@org.turbogwt.core.js.collections.client.JsArrayList::jsArray.slice(i, i2);
+        return this.@org.turbogwt.core.js.collections.JsArrayList::jsArray.slice(i, i2);
     }-*/;
 
     private class Itr implements Iterator<T> {

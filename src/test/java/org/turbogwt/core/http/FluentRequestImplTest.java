@@ -37,9 +37,9 @@ import org.turbogwt.core.http.serialization.JsonObjectSerdes;
 import org.turbogwt.core.http.serialization.JsonRecordReader;
 import org.turbogwt.core.http.serialization.JsonRecordWriter;
 import org.turbogwt.core.http.serialization.SerializationContext;
-import org.turbogwt.core.js.client.Overlays;
-import org.turbogwt.core.js.collections.client.JsArray;
-import org.turbogwt.core.js.collections.client.JsArrayList;
+import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.js.collections.JsArray;
+import org.turbogwt.core.js.collections.JsArrayList;
 
 /**
  * @author Danilo Reinert

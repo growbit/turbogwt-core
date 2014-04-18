@@ -37,8 +37,8 @@ import org.turbogwt.core.http.serialization.SerializationContext;
 import org.turbogwt.core.http.serialization.SerializationException;
 import org.turbogwt.core.http.serialization.Serializer;
 import org.turbogwt.core.http.serialization.UnableToDeserializeException;
-import org.turbogwt.core.js.client.Overlays;
-import org.turbogwt.core.js.collections.client.JsMap;
+import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.js.collections.JsMap;
 
 /**
  * Default implementation of fluent request.

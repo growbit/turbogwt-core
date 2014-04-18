@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.turbogwt.core.js.collections.client.JsArrayList;
-import org.turbogwt.core.js.collections.client.JsMap;
+import org.turbogwt.core.js.collections.JsArrayList;
+import org.turbogwt.core.js.collections.JsMap;
 
 /**
  * Manager of container (collection) factories.
