@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http;
+package org.turbogwt.core.util;
 
 /**
  * It is a simple class intended to create instances of some type.

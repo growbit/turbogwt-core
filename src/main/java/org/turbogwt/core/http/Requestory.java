@@ -33,6 +33,8 @@ import org.turbogwt.core.http.serialization.SerdesManager;
 import org.turbogwt.core.http.serialization.Serializer;
 import org.turbogwt.core.http.serialization.TextDeserializer;
 import org.turbogwt.core.http.serialization.VoidSerdes;
+import org.turbogwt.core.util.Factory;
+import org.turbogwt.core.util.Registration;
 
 /**
  * This class is a configurable {@link FluentRequest} factory.
@@ -675,7 +677,7 @@ public class Requestory {
      * @param type          The class of the deserializer's type.
      * @param deserializer  The deserializer of T.
      *
-     * @return  The {@link Registration} object, capable of cancelling this registration.
+     * @return  The {@link org.turbogwt.core.util.Registration} object, capable of cancelling this registration.
      */
     public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
         return serdesManager.registerDeserializer(type, deserializer);

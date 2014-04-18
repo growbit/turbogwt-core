@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.http;
+package org.turbogwt.core.util;
 
 import com.google.web.bindery.event.shared.HandlerRegistration;
 

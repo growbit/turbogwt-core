@@ -19,7 +19,7 @@ package org.turbogwt.core.http.serialization;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.turbogwt.core.http.Registration;
+import org.turbogwt.core.util.Registration;
 
 /**
  * Manager for registering and retrieving Serializers and Deserializers.

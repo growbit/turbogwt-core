@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.turbogwt.core.util.Registration;
+
 /**
  * A manager for {@link RequestFilter} and {@link ResponseFilter}.
  *
@@ -40,7 +42,7 @@ public class FilterManager {
      *
      * @param requestFilter The request filter to be registered.
      *
-     * @return  The {@link Registration} object, capable of cancelling this registration
+     * @return  The {@link org.turbogwt.core.util.Registration} object, capable of cancelling this registration
      *          to the {@link FilterManager}.
      */
     public Registration registerRequestFilter(final RequestFilter requestFilter) {

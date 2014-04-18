@@ -26,6 +26,8 @@ import java.util.TreeSet;
 
 import org.turbogwt.core.js.collections.JsArrayList;
 import org.turbogwt.core.js.collections.JsMap;
+import org.turbogwt.core.util.Factory;
+import org.turbogwt.core.util.Registration;
 
 /**
  * Manager of container (collection) factories.
@@ -82,7 +84,7 @@ public final class ContainerFactoryManager {
      * @param factory   The factory of the collection
      * @param <C>       The type of the collection
      *
-     * @return  The {@link Registration} object, capable of cancelling this registration
+     * @return  The {@link org.turbogwt.core.util.Registration} object, capable of cancelling this registration
      *          to the {@link ContainerFactoryManager}
      */
     public <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
