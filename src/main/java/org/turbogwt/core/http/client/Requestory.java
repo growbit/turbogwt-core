@@ -23,6 +23,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.Collection;
 
 import org.turbogwt.core.http.client.serialization.Deserializer;
+import org.turbogwt.core.http.client.serialization.FormParamSerializer;
 import org.turbogwt.core.http.client.serialization.JsonBooleanSerdes;
 import org.turbogwt.core.http.client.serialization.JsonNumberSerdes;
 import org.turbogwt.core.http.client.serialization.JsonStringSerdes;
@@ -65,17 +66,20 @@ public class Requestory {
     private final FilterManager filterManager = new FilterManager();
     private final ContainerFactoryManager collectionFactoryManager = new ContainerFactoryManager();
     private MultipleParamStrategy defaultStrategy;
-    private String defaultContentType = "application/json";
-    private String defaultAccept = "application/json";
+    private String defaultContentType;
+    private String defaultAccept;
 
     public Requestory() {
         defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
+        defaultContentType = "application/json";
+        defaultAccept = "application/json";
         serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
         serdesManager.registerSerdes(Number.class, JsonNumberSerdes.getInstance());
         serdesManager.registerSerdes(Boolean.class, JsonBooleanSerdes.getInstance());
         serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
         serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
         serdesManager.registerDeserializer(String.class, TextDeserializer.getInstance());
+        serdesManager.registerSerializer(FormParam.class, FormParamSerializer.getInstance());
     }
 
     //===================================================================

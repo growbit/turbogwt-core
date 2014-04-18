@@ -16,72 +16,151 @@
 
 package org.turbogwt.core.http.client;
 
-import org.turbogwt.core.js.collections.client.JsMap;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.turbogwt.core.js.collections.client.JsArrayList;
+import org.turbogwt.core.js.collections.client.JsMapInteger;
 
 /**
  * Stores form params and values.
  *
  * @author Danilo Reinert
  */
-public class FormData {
+public class FormData implements Collection<FormParam> {
 
-    private String contentType = "application/x-www-form-urlencoded";
-    private boolean encode = true;
-    private MultipleParamStrategy multipleParamStrategy = MultipleParamStrategy.REPEATED_PARAM;
-    private JsMap<Object> params = JsMap.create();
+    public static final String CONTENT_TYPE = "application/x-www-form-urlencoded";
 
-    private FormData() {
+    private final List<FormParam> params;
+    private MultipleParamStrategy multipleParamStrategy;
+
+    public FormData() {
+        this.params = new JsArrayList<>();
     }
 
-    public static FormData of() {
-        return new FormData();
+    public FormData(List<FormParam> paramList) {
+        this.params = paramList;
     }
 
-    public static FormData of(String contentType, boolean encode) {
-        return new FormData().contentType(contentType).encode(encode);
+    public FormData(FormParam... params) {
+        this.params = new JsArrayList<>(params);
     }
 
-    public static FormData of(String contentType, boolean encode, MultipleParamStrategy strategy) {
-        return new FormData().contentType(contentType).encode(encode).strategy(strategy);
+    /**
+     * Returns a builder of FormData.
+     *
+     * @return The FormData builder
+     */
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static FormData of(MultipleParamStrategy strategy) {
-        return new FormData().strategy(strategy);
+    public void setMultipleParamStrategy(MultipleParamStrategy multipleParamStrategy) {
+        this.multipleParamStrategy = multipleParamStrategy;
     }
 
-    public Object get(String param) {
-        return params.get(param);
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
+    @Nullable
     public MultipleParamStrategy getMultipleParamStrategy() {
         return multipleParamStrategy;
     }
 
-    public boolean isEncode() {
-        return encode;
+    @Override
+    public int size() {
+        return params.size();
     }
 
-    public FormData put(String name, Object... values) {
-        params.set(name, values);
-        return this;
+    @Override
+    public boolean isEmpty() {
+        return params.isEmpty();
     }
 
-    protected FormData contentType(String contentType) {
-        this.contentType = contentType;
-        return this;
+    @Override
+    public boolean contains(Object o) {
+        return params.contains(o);
     }
 
-    protected FormData encode(boolean encode) {
-        this.encode = encode;
-        return this;
+    @Override
+    public Iterator<FormParam> iterator() {
+        return params.iterator();
     }
 
-    protected FormData strategy(MultipleParamStrategy multipleParamStrategy) {
-        this.multipleParamStrategy = multipleParamStrategy;
-        return this;
+    @Override
+    public Object[] toArray() {
+        return params.toArray();
+    }
+
+    @Override
+    public <T> T[] toArray(T[] ts) {
+        return params.toArray(ts);
+    }
+
+    @Override
+    public boolean add(FormParam formParam) {
+        return params.add(formParam);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return params.remove(o);
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> objects) {
+        return params.containsAll(objects);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends FormParam> formParams) {
+        return params.addAll(formParams);
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> objects) {
+        return params.removeAll(objects);
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> objects) {
+        return params.retainAll(objects);
+    }
+
+    @Override
+    public void clear() {
+        params.clear();
+    }
+
+    /**
+     * A builder of FormData.
+     */
+    private static class Builder {
+
+        private final JsArrayList<FormParam> params = new JsArrayList<>();
+        private final JsMapInteger indexes = JsMapInteger.create();
+        private MultipleParamStrategy multipleParamStrategy;
+
+        public Builder put(String name, Object... values) {
+            int i = indexes.get(name, -1);
+            if (i > -1) {
+                params.set(i, new FormParam(name, values));
+            } else {
+                indexes.set(name, params.size());
+                params.add(new FormParam(name, values));
+            }
+            return this;
+        }
+
+        public Builder strategy(MultipleParamStrategy multipleParamStrategy) {
+            this.multipleParamStrategy = multipleParamStrategy;
+            return this;
+        }
+
+        public FormData build() {
+            final FormData data = new FormData(params);
+            data.setMultipleParamStrategy(multipleParamStrategy);
+            return data;
+        }
     }
 }
