@@ -30,6 +30,7 @@ import org.turbogwt.core.http.client.serialization.OverlaySerdes;
 import org.turbogwt.core.http.client.serialization.Serdes;
 import org.turbogwt.core.http.client.serialization.SerdesManager;
 import org.turbogwt.core.http.client.serialization.Serializer;
+import org.turbogwt.core.http.client.serialization.TextDeserializer;
 import org.turbogwt.core.http.client.serialization.VoidSerdes;
 
 /**
@@ -74,6 +75,7 @@ public class Requestory {
         serdesManager.registerSerdes(Boolean.class, JsonBooleanSerdes.getInstance());
         serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
         serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
+        serdesManager.registerDeserializer(String.class, TextDeserializer.getInstance());
     }
 
     //===================================================================
