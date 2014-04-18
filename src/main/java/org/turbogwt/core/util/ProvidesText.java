@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.turbogwt.core.providers;
+
+package org.turbogwt.core.util;
 
 import javax.annotation.Nullable;
 
@@ -22,8 +23,8 @@ import javax.annotation.Nullable;
  *
  * @author Danilo Reinert
  */
-public interface ProvidesBoolean<T> extends ProvidesValue<T, Boolean> {
+public interface ProvidesText<T> extends ProvidesValue<T, String> {
 
     @Nullable
-    Boolean getValue(T t);
+    String getValue(T t);
 }
