@@ -5,24 +5,24 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.SetAsyncCallback<T>
-	c3747 [label=<<table title="org.turbogwt.core.http.client.SetAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SetAsyncCallback.html">
+	c5070 [label=<<table title="org.turbogwt.core.http.client.SetAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SetAsyncCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> SetAsyncCallback&lt;T&gt; </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SetAsyncCallback&lt;T&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SetAsyncCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SetAsyncCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.ContainerAsyncCallback<C extends java.util.Collection<T>, T>
-	c3769 [label=<<table title="org.turbogwt.core.http.client.ContainerAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerAsyncCallback.html">
+	c5085 [label=<<table title="org.turbogwt.core.http.client.ContainerAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerAsyncCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> ContainerAsyncCallback&lt;C extends Collection&lt;T&gt;, T&gt; </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ContainerAsyncCallback&lt;C extends Collection&lt;T&gt;, T&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./ContainerAsyncCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ContainerAsyncCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.SetAsyncCallback<T> extends org.turbogwt.core.http.client.ContainerAsyncCallback<java.util.Set<T>, T>
-	c3769:p -> c3747:p [dir=back,arrowtail=empty];
+	c5085:p -> c5070:p [dir=back,arrowtail=empty];
 }
 

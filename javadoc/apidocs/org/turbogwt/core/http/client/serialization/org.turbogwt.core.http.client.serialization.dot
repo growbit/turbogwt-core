@@ -5,151 +5,167 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.core.http.client.serialization.VoidSerdes
-	c89 [label=<<table title="org.turbogwt.core.http.client.serialization.VoidSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./VoidSerdes.html">
+	// org.turbogwt.core.http.client.serialization.FormParamSerializer
+	c109 [label=<<table title="org.turbogwt.core.http.client.serialization.FormParamSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FormParamSerializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> VoidSerdes </td></tr>
+<tr><td align="center" balign="center"> FormParamSerializer </td></tr>
 		</table></td></tr>
-		</table>>, URL="./VoidSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./FormParamSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.UnableToSerializeException
-	c90 [label=<<table title="org.turbogwt.core.http.client.serialization.UnableToSerializeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnableToSerializeException.html">
+	c110 [label=<<table title="org.turbogwt.core.http.client.serialization.UnableToSerializeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnableToSerializeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnableToSerializeException </td></tr>
 		</table></td></tr>
-		</table>>, URL="./UnableToSerializeException.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./UnableToSerializeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonNumberSerdes
+	c111 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonNumberSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonNumberSerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsonNumberSerdes </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonNumberSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonRecordReader
+	c112 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonRecordReader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonRecordReader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsonRecordReader </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonRecordReader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonObjectSerdes<T>
+	c113 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonObjectSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonObjectSerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> JsonObjectSerdes&lt;T&gt; </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonObjectSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.OverlaySerdes<T extends com.google.gwt.core.client.JavaScriptObject>
+	c114 [label=<<table title="org.turbogwt.core.http.client.serialization.OverlaySerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OverlaySerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> OverlaySerdes&lt;T extends JavaScriptObject&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./OverlaySerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.UnableToDeserializeException
-	c91 [label=<<table title="org.turbogwt.core.http.client.serialization.UnableToDeserializeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnableToDeserializeException.html">
+	c115 [label=<<table title="org.turbogwt.core.http.client.serialization.UnableToDeserializeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnableToDeserializeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnableToDeserializeException </td></tr>
 		</table></td></tr>
-		</table>>, URL="./UnableToDeserializeException.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.Serializer<T>
-	c92 [label=<<table title="org.turbogwt.core.http.client.serialization.Serializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serializer.html">
+		</table>>, URL="./UnableToDeserializeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.VoidSerdes
+	c116 [label=<<table title="org.turbogwt.core.http.client.serialization.VoidSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./VoidSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Serializer&lt;T&gt; </td></tr>
+<tr><td align="center" balign="center"> VoidSerdes </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Serializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.SerializationException
-	c93 [label=<<table title="org.turbogwt.core.http.client.serialization.SerializationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SerializationException.html">
+		</table>>, URL="./VoidSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonRecordWriter
+	c117 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonRecordWriter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonRecordWriter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> SerializationException </td></tr>
+<tr><td align="center" balign="center"> JsonRecordWriter </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SerializationException.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./JsonRecordWriter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.TextDeserializer
+	c118 [label=<<table title="org.turbogwt.core.http.client.serialization.TextDeserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TextDeserializer.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> TextDeserializer </td></tr>
+		</table></td></tr>
+		</table>>, URL="./TextDeserializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonStringSerdes
+	c119 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonStringSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonStringSerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsonStringSerdes </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonStringSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonSerdes<T>
+	c120 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonSerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> JsonSerdes&lt;T&gt; </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonValueSerdes<T>
+	c121 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonValueSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonValueSerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> JsonValueSerdes&lt;T&gt; </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonValueSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.JsonBooleanSerdes
+	c122 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonBooleanSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonBooleanSerdes.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsonBooleanSerdes </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsonBooleanSerdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.DeserializationContext
+	c123 [label=<<table title="org.turbogwt.core.http.client.serialization.DeserializationContext" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeserializationContext.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> DeserializationContext </td></tr>
+		</table></td></tr>
+		</table>>, URL="./DeserializationContext.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.SerializationContext
-	c94 [label=<<table title="org.turbogwt.core.http.client.serialization.SerializationContext" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SerializationContext.html">
+	c124 [label=<<table title="org.turbogwt.core.http.client.serialization.SerializationContext" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SerializationContext.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SerializationContext </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SerializationContext.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.SerdesManager
-	c95 [label=<<table title="org.turbogwt.core.http.client.serialization.SerdesManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SerdesManager.html">
+		</table>>, URL="./SerializationContext.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.SerializationException
+	c125 [label=<<table title="org.turbogwt.core.http.client.serialization.SerializationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SerializationException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> SerdesManager </td></tr>
+<tr><td align="center" balign="center"> SerializationException </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SerdesManager.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SerializationException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.Serdes<T>
-	c96 [label=<<table title="org.turbogwt.core.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
+	c126 [label=<<table title="org.turbogwt.core.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serdes&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Serdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.OverlaySerdes<T extends com.google.gwt.core.client.JavaScriptObject>
-	c97 [label=<<table title="org.turbogwt.core.http.client.serialization.OverlaySerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OverlaySerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OverlaySerdes&lt;T extends JavaScriptObject&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./OverlaySerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonValueSerdes<T>
-	c98 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonValueSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonValueSerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> JsonValueSerdes&lt;T&gt; </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonValueSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonStringSerdes
-	c99 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonStringSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonStringSerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsonStringSerdes </td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonStringSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonSerdes<T>
-	c100 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonSerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> JsonSerdes&lt;T&gt; </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonRecordWriter
-	c101 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonRecordWriter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonRecordWriter.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsonRecordWriter </td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonRecordWriter.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonRecordReader
-	c102 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonRecordReader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonRecordReader.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsonRecordReader </td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonRecordReader.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonObjectSerdes<T>
-	c103 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonObjectSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonObjectSerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> JsonObjectSerdes&lt;T&gt; </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonObjectSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonNumberSerdes
-	c104 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonNumberSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonNumberSerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsonNumberSerdes </td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonNumberSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.JsonBooleanSerdes
-	c105 [label=<<table title="org.turbogwt.core.http.client.serialization.JsonBooleanSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonBooleanSerdes.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JsonBooleanSerdes </td></tr>
-		</table></td></tr>
-		</table>>, URL="./JsonBooleanSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Serdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.Deserializer<T>
-	c106 [label=<<table title="org.turbogwt.core.http.client.serialization.Deserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Deserializer.html">
+	c127 [label=<<table title="org.turbogwt.core.http.client.serialization.Deserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Deserializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Deserializer&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Deserializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.serialization.DeserializationContext
-	c107 [label=<<table title="org.turbogwt.core.http.client.serialization.DeserializationContext" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeserializationContext.html">
+		</table>>, URL="./Deserializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.Serializer<T>
+	c128 [label=<<table title="org.turbogwt.core.http.client.serialization.Serializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DeserializationContext </td></tr>
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Serializer&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./DeserializationContext.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	//org.turbogwt.core.http.client.serialization.VoidSerdes implements org.turbogwt.core.http.client.serialization.Serdes<T>
-	c96:p -> c89:p [dir=back,arrowtail=empty,style=dashed];
+		</table>>, URL="./Serializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.SerdesManager
+	c129 [label=<<table title="org.turbogwt.core.http.client.serialization.SerdesManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SerdesManager.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SerdesManager </td></tr>
+		</table></td></tr>
+		</table>>, URL="./SerdesManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.turbogwt.core.http.client.serialization.FormParamSerializer implements org.turbogwt.core.http.client.serialization.Serializer<T>
+	c128:p -> c109:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.serialization.UnableToSerializeException extends org.turbogwt.core.http.client.serialization.SerializationException
-	c93:p -> c90:p [dir=back,arrowtail=empty];
-	//org.turbogwt.core.http.client.serialization.UnableToDeserializeException extends org.turbogwt.core.http.client.serialization.SerializationException
-	c93:p -> c91:p [dir=back,arrowtail=empty];
-	//org.turbogwt.core.http.client.serialization.Serdes<T> implements org.turbogwt.core.http.client.serialization.Deserializer<T>
-	c106:p -> c96:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.serialization.Serdes<T> implements org.turbogwt.core.http.client.serialization.Serializer<T>
-	c92:p -> c96:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.serialization.OverlaySerdes<T extends com.google.gwt.core.client.JavaScriptObject> implements org.turbogwt.core.http.client.serialization.Serdes<T>
-	c96:p -> c97:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.serialization.JsonValueSerdes<T> extends org.turbogwt.core.http.client.serialization.JsonSerdes<T>
-	c100:p -> c98:p [dir=back,arrowtail=empty];
-	//org.turbogwt.core.http.client.serialization.JsonStringSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.String>
-	c98:p -> c99:p [dir=back,arrowtail=empty];
-	//org.turbogwt.core.http.client.serialization.JsonSerdes<T> implements org.turbogwt.core.http.client.serialization.Serdes<T>
-	c96:p -> c100:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.serialization.JsonObjectSerdes<T> extends org.turbogwt.core.http.client.serialization.JsonSerdes<T>
-	c100:p -> c103:p [dir=back,arrowtail=empty];
+	c125:p -> c110:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.serialization.JsonNumberSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.Number>
-	c98:p -> c104:p [dir=back,arrowtail=empty];
+	c121:p -> c111:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.serialization.JsonObjectSerdes<T> extends org.turbogwt.core.http.client.serialization.JsonSerdes<T>
+	c120:p -> c113:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.serialization.OverlaySerdes<T extends com.google.gwt.core.client.JavaScriptObject> implements org.turbogwt.core.http.client.serialization.Serdes<T>
+	c126:p -> c114:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.serialization.UnableToDeserializeException extends org.turbogwt.core.http.client.serialization.SerializationException
+	c125:p -> c115:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.serialization.VoidSerdes implements org.turbogwt.core.http.client.serialization.Serdes<T>
+	c126:p -> c116:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.serialization.TextDeserializer implements org.turbogwt.core.http.client.serialization.Deserializer<T>
+	c127:p -> c118:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.serialization.JsonStringSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.String>
+	c121:p -> c119:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.serialization.JsonSerdes<T> implements org.turbogwt.core.http.client.serialization.Serdes<T>
+	c126:p -> c120:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.serialization.JsonValueSerdes<T> extends org.turbogwt.core.http.client.serialization.JsonSerdes<T>
+	c120:p -> c121:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.serialization.JsonBooleanSerdes extends org.turbogwt.core.http.client.serialization.JsonValueSerdes<java.lang.Boolean>
-	c98:p -> c105:p [dir=back,arrowtail=empty];
+	c121:p -> c122:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.serialization.Serdes<T> implements org.turbogwt.core.http.client.serialization.Deserializer<T>
+	c127:p -> c126:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.serialization.Serdes<T> implements org.turbogwt.core.http.client.serialization.Serializer<T>
+	c128:p -> c126:p [dir=back,arrowtail=empty,style=dashed];
 }
 

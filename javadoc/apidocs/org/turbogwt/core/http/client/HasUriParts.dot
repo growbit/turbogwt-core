@@ -5,35 +5,35 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.UriBuilder
-	c939 [label=<<table title="org.turbogwt.core.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
+	c1574 [label=<<table title="org.turbogwt.core.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> UriBuilder </td></tr>
 		</table></td></tr>
-		</table>>, URL="./UriBuilder.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./UriBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.HasUriParts
-	c957 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HasUriParts.html">
+	c1579 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HasUriParts.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> HasUriParts </td></tr>
 		</table></td></tr>
-		</table>>, URL="./HasUriParts.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./HasUriParts.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
-	c960 [label=<<table title="org.turbogwt.core.http.client.FluentRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequest.html">
+	c1580 [label=<<table title="org.turbogwt.core.http.client.FluentRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FluentRequest&lt;RequestType, ResponseType&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./FluentRequest.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./FluentRequest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.UriBuilder implements org.turbogwt.core.http.client.HasUriParts
-	c957:p -> c939:p [dir=back,arrowtail=empty,style=dashed];
+	c1579:p -> c1574:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType> implements org.turbogwt.core.http.client.HasUriParts
-	c957:p -> c960:p [dir=back,arrowtail=empty,style=dashed];
+	c1579:p -> c1580:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -5,207 +5,267 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.core.http.client.UriBuilderImpl
-	c0 [label=<<table title="org.turbogwt.core.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderImpl.html">
+	// org.turbogwt.core.http.client.SimpleHeader
+	c0 [label=<<table title="org.turbogwt.core.http.client.SimpleHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SimpleHeader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> UriBuilderImpl </td></tr>
+<tr><td align="center" balign="center"> SimpleHeader </td></tr>
 		</table></td></tr>
-		</table>>, URL="./UriBuilderImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.UriBuilder
-	c1 [label=<<table title="org.turbogwt.core.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> UriBuilder </td></tr>
-		</table></td></tr>
-		</table>>, URL="./UriBuilder.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.UnsuccessfulResponseException
-	c2 [label=<<table title="org.turbogwt.core.http.client.UnsuccessfulResponseException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnsuccessfulResponseException.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> UnsuccessfulResponseException </td></tr>
-		</table></td></tr>
-		</table>>, URL="./UnsuccessfulResponseException.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.SingleCallback
-	c3 [label=<<table title="org.turbogwt.core.http.client.SingleCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SingleCallback.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> SingleCallback </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./SingleCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.SetAsyncCallback<T>
-	c4 [label=<<table title="org.turbogwt.core.http.client.SetAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SetAsyncCallback.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> SetAsyncCallback&lt;T&gt; </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./SetAsyncCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SimpleHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.ServerImpl
-	c5 [label=<<table title="org.turbogwt.core.http.client.ServerImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerImpl.html">
+	c1 [label=<<table title="org.turbogwt.core.http.client.ServerImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServerImpl </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ServerImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ServerImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.SetAsyncCallback<T>
+	c2 [label=<<table title="org.turbogwt.core.http.client.SetAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SetAsyncCallback.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SetAsyncCallback&lt;T&gt; </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./SetAsyncCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.ContentTypeHeader
+	c3 [label=<<table title="org.turbogwt.core.http.client.ContentTypeHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContentTypeHeader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ContentTypeHeader </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ContentTypeHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.UnsuccessfulResponseException
+	c4 [label=<<table title="org.turbogwt.core.http.client.UnsuccessfulResponseException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnsuccessfulResponseException.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> UnsuccessfulResponseException </td></tr>
+		</table></td></tr>
+		</table>>, URL="./UnsuccessfulResponseException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FormData
+	c5 [label=<<table title="org.turbogwt.core.http.client.FormData" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FormData.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> FormData </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FormData.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FormData.Builder
+	c6 [label=<<table title="org.turbogwt.core.http.client.FormData.Builder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FormData.Builder.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Builder </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FormData.Builder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.UriBuilderImpl
+	c7 [label=<<table title="org.turbogwt.core.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderImpl.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> UriBuilderImpl </td></tr>
+		</table></td></tr>
+		</table>>, URL="./UriBuilderImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.ServerConnectionImpl
-	c6 [label=<<table title="org.turbogwt.core.http.client.ServerConnectionImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnectionImpl.html">
+	c8 [label=<<table title="org.turbogwt.core.http.client.ServerConnectionImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnectionImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServerConnectionImpl </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ServerConnectionImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.ServerConnection
-	c7 [label=<<table title="org.turbogwt.core.http.client.ServerConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnection.html">
+		</table>>, URL="./ServerConnectionImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.ListAsyncCallback<T>
+	c9 [label=<<table title="org.turbogwt.core.http.client.ListAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ListAsyncCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ServerConnection </td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ListAsyncCallback&lt;T&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./ServerConnection.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.Server
-	c8 [label=<<table title="org.turbogwt.core.http.client.Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Server.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Server </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Server.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.ResponseFilter
-	c9 [label=<<table title="org.turbogwt.core.http.client.ResponseFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ResponseFilter.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ResponseFilter </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ResponseFilter.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.RequestSender<RequestType, ResponseType>
-	c10 [label=<<table title="org.turbogwt.core.http.client.RequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestSender.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> RequestSender&lt;RequestType, ResponseType&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./RequestSender.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ListAsyncCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.Requestory
-	c11 [label=<<table title="org.turbogwt.core.http.client.Requestory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Requestory.html">
+	c10 [label=<<table title="org.turbogwt.core.http.client.Requestory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Requestory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Requestory </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Requestory.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.RequestFilter
-	c12 [label=<<table title="org.turbogwt.core.http.client.RequestFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestFilter.html">
+		</table>>, URL="./Requestory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FormParam
+	c11 [label=<<table title="org.turbogwt.core.http.client.FormParam" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FormParam.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> RequestFilter </td></tr>
+<tr><td align="center" balign="center"> FormParam </td></tr>
 		</table></td></tr>
-		</table>>, URL="./RequestFilter.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.Registration
-	c13 [label=<<table title="org.turbogwt.core.http.client.Registration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Registration.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Registration </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Registration.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.MultipleParamStrategy
-	c14 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> MultipleParamStrategy </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./MultipleParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy
-	c15 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.RepeatedParamStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> RepeatedParamStrategy </td></tr>
-		</table></td></tr>
-		</table>>, URL="./MultipleParamStrategy.RepeatedParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy
-	c16 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.CommaSeparatedStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> CommaSeparatedStrategy </td></tr>
-		</table></td></tr>
-		</table>>, URL="./MultipleParamStrategy.CommaSeparatedStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.ListAsyncCallback<T>
-	c17 [label=<<table title="org.turbogwt.core.http.client.ListAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ListAsyncCallback.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> ListAsyncCallback&lt;T&gt; </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./ListAsyncCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.Headers
-	c18 [label=<<table title="org.turbogwt.core.http.client.Headers" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Headers.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Headers </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Headers.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.HasUriParts
-	c19 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HasUriParts.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> HasUriParts </td></tr>
-		</table></td></tr>
-		</table>>, URL="./HasUriParts.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
-	c20 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> FluentRequestSender&lt;RequestType, ResponseType&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FluentRequestSender.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.FluentRequestImpl<RequestType, ResponseType>
-	c21 [label=<<table title="org.turbogwt.core.http.client.FluentRequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> FluentRequestImpl&lt;RequestType, ResponseType&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FluentRequestImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
-	c22 [label=<<table title="org.turbogwt.core.http.client.FluentRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> FluentRequest&lt;RequestType, ResponseType&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FluentRequest.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.FilterManager
-	c23 [label=<<table title="org.turbogwt.core.http.client.FilterManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FilterManager.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> FilterManager </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FilterManager.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./FormParam.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.Factory<T>
-	c24 [label=<<table title="org.turbogwt.core.http.client.Factory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Factory.html">
+	c12 [label=<<table title="org.turbogwt.core.http.client.Factory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Factory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Factory&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Factory.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Factory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.ResponseFilter
+	c13 [label=<<table title="org.turbogwt.core.http.client.ResponseFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ResponseFilter.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> ResponseFilter </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ResponseFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.RequestFilter
+	c14 [label=<<table title="org.turbogwt.core.http.client.RequestFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestFilter.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> RequestFilter </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.Registration
+	c15 [label=<<table title="org.turbogwt.core.http.client.Registration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Registration.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Registration </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Registration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.ServerConnection
+	c16 [label=<<table title="org.turbogwt.core.http.client.ServerConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnection.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> ServerConnection </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ServerConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.ContainerAsyncCallback<C extends java.util.Collection<T>, T>
+	c17 [label=<<table title="org.turbogwt.core.http.client.ContainerAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerAsyncCallback.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ContainerAsyncCallback&lt;C extends Collection&lt;T&gt;, T&gt; </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./ContainerAsyncCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.MultipleParamStrategy
+	c18 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MultipleParamStrategy </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./MultipleParamStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy
+	c19 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.RepeatedParamStrategy.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RepeatedParamStrategy </td></tr>
+		</table></td></tr>
+		</table>>, URL="./MultipleParamStrategy.RepeatedParamStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy
+	c20 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.CommaSeparatedStrategy.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> CommaSeparatedStrategy </td></tr>
+		</table></td></tr>
+		</table>>, URL="./MultipleParamStrategy.CommaSeparatedStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.MultipleHeader
+	c21 [label=<<table title="org.turbogwt.core.http.client.MultipleHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleHeader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> MultipleHeader </td></tr>
+		</table></td></tr>
+		</table>>, URL="./MultipleHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.QualityFactorHeader
+	c22 [label=<<table title="org.turbogwt.core.http.client.QualityFactorHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QualityFactorHeader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> QualityFactorHeader </td></tr>
+		</table></td></tr>
+		</table>>, URL="./QualityFactorHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.QualityFactorHeader.Value
+	c23 [label=<<table title="org.turbogwt.core.http.client.QualityFactorHeader.Value" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QualityFactorHeader.Value.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Value </td></tr>
+		</table></td></tr>
+		</table>>, URL="./QualityFactorHeader.Value.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.AcceptHeader
+	c24 [label=<<table title="org.turbogwt.core.http.client.AcceptHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AcceptHeader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> AcceptHeader </td></tr>
+		</table></td></tr>
+		</table>>, URL="./AcceptHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.Headers
+	c25 [label=<<table title="org.turbogwt.core.http.client.Headers" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Headers.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Headers </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Headers.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.SingleCallback
+	c26 [label=<<table title="org.turbogwt.core.http.client.SingleCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SingleCallback.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SingleCallback </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./SingleCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.UriBuilder
+	c27 [label=<<table title="org.turbogwt.core.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> UriBuilder </td></tr>
+		</table></td></tr>
+		</table>>, URL="./UriBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.ContainerFactoryManager
-	c25 [label=<<table title="org.turbogwt.core.http.client.ContainerFactoryManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerFactoryManager.html">
+	c28 [label=<<table title="org.turbogwt.core.http.client.ContainerFactoryManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerFactoryManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ContainerFactoryManager </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ContainerFactoryManager.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.ContainerAsyncCallback<C extends java.util.Collection<T>, T>
-	c26 [label=<<table title="org.turbogwt.core.http.client.ContainerAsyncCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContainerAsyncCallback.html">
+		</table>>, URL="./ContainerFactoryManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FilterManager
+	c29 [label=<<table title="org.turbogwt.core.http.client.FilterManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FilterManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> ContainerAsyncCallback&lt;C extends Collection&lt;T&gt;, T&gt; </font></td></tr>
+<tr><td align="center" balign="center"> FilterManager </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ContainerAsyncCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	//org.turbogwt.core.http.client.UriBuilderImpl implements org.turbogwt.core.http.client.UriBuilder
-	c1:p -> c0:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.UriBuilder implements org.turbogwt.core.http.client.HasUriParts
-	c19:p -> c1:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.SetAsyncCallback<T> extends org.turbogwt.core.http.client.ContainerAsyncCallback<java.util.Set<T>, T>
-	c26:p -> c4:p [dir=back,arrowtail=empty];
+		</table>>, URL="./FilterManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.Server
+	c30 [label=<<table title="org.turbogwt.core.http.client.Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Server.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Server </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Server.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.RequestSender<RequestType, ResponseType>
+	c31 [label=<<table title="org.turbogwt.core.http.client.RequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestSender.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> RequestSender&lt;RequestType, ResponseType&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestSender.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.HasUriParts
+	c32 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HasUriParts.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> HasUriParts </td></tr>
+		</table></td></tr>
+		</table>>, URL="./HasUriParts.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
+	c33 [label=<<table title="org.turbogwt.core.http.client.FluentRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequest.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> FluentRequest&lt;RequestType, ResponseType&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FluentRequest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
+	c34 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> FluentRequestSender&lt;RequestType, ResponseType&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FluentRequestSender.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FluentRequestImpl<RequestType, ResponseType>
+	c35 [label=<<table title="org.turbogwt.core.http.client.FluentRequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestImpl.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> FluentRequestImpl&lt;RequestType, ResponseType&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FluentRequestImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.ServerImpl implements org.turbogwt.core.http.client.Server
-	c8:p -> c5:p [dir=back,arrowtail=empty,style=dashed];
+	c30:p -> c1:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.SetAsyncCallback<T> extends org.turbogwt.core.http.client.ContainerAsyncCallback<java.util.Set<T>, T>
+	c17:p -> c2:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.ContentTypeHeader extends org.turbogwt.core.http.client.QualityFactorHeader
+	c22:p -> c3:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.UriBuilderImpl implements org.turbogwt.core.http.client.UriBuilder
+	c27:p -> c7:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.ServerConnectionImpl implements org.turbogwt.core.http.client.ServerConnection
-	c7:p -> c6:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
-	c14:p -> c15:p [dir=back,arrowtail=empty];
-	//org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
-	c14:p -> c16:p [dir=back,arrowtail=empty];
+	c16:p -> c8:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.ListAsyncCallback<T> extends org.turbogwt.core.http.client.ContainerAsyncCallback<java.util.List<T>, T>
-	c26:p -> c17:p [dir=back,arrowtail=empty];
-	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
-	c22:p -> c20:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.RequestSender<RequestType, ResponseType>
-	c10:p -> c20:p [dir=back,arrowtail=empty,style=dashed];
-	//org.turbogwt.core.http.client.FluentRequestImpl<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
-	c20:p -> c21:p [dir=back,arrowtail=empty,style=dashed];
+	c17:p -> c9:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
+	c18:p -> c19:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
+	c18:p -> c20:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.QualityFactorHeader extends org.turbogwt.core.http.client.MultipleHeader
+	c21:p -> c22:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.AcceptHeader extends org.turbogwt.core.http.client.QualityFactorHeader
+	c22:p -> c24:p [dir=back,arrowtail=empty];
+	//org.turbogwt.core.http.client.UriBuilder implements org.turbogwt.core.http.client.HasUriParts
+	c32:p -> c27:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType> implements org.turbogwt.core.http.client.HasUriParts
-	c19:p -> c22:p [dir=back,arrowtail=empty,style=dashed];
+	c32:p -> c33:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
+	c33:p -> c34:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.RequestSender<RequestType, ResponseType>
+	c31:p -> c34:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.FluentRequestImpl<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
+	c34:p -> c35:p [dir=back,arrowtail=empty,style=dashed];
 }
 

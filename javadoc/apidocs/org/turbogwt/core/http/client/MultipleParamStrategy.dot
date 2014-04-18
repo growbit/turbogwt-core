@@ -5,32 +5,32 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.MultipleParamStrategy
-	c2204 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultipleParamStrategy.html">
+	c3110 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultipleParamStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> MultipleParamStrategy </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MultipleParamStrategy </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./MultipleParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MultipleParamStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy
-	c2205 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.RepeatedParamStrategy.html">
+	c3111 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.RepeatedParamStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RepeatedParamStrategy </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MultipleParamStrategy.RepeatedParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MultipleParamStrategy.RepeatedParamStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy
-	c2206 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.CommaSeparatedStrategy.html">
+	c3112 [label=<<table title="org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultipleParamStrategy.CommaSeparatedStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CommaSeparatedStrategy </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MultipleParamStrategy.CommaSeparatedStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MultipleParamStrategy.CommaSeparatedStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.MultipleParamStrategy.RepeatedParamStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
-	c2204:p -> c2205:p [dir=back,arrowtail=empty];
+	c3110:p -> c3111:p [dir=back,arrowtail=empty];
 	//org.turbogwt.core.http.client.MultipleParamStrategy.CommaSeparatedStrategy extends org.turbogwt.core.http.client.MultipleParamStrategy
-	c2204:p -> c2206:p [dir=back,arrowtail=empty];
+	c3110:p -> c3112:p [dir=back,arrowtail=empty];
 }
 

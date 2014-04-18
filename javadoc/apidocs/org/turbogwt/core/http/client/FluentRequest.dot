@@ -5,35 +5,35 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.HasUriParts
-	c771 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HasUriParts.html">
+	c1067 [label=<<table title="org.turbogwt.core.http.client.HasUriParts" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HasUriParts.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> HasUriParts </td></tr>
 		</table></td></tr>
-		</table>>, URL="./HasUriParts.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
-	c772 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> FluentRequestSender&lt;RequestType, ResponseType&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FluentRequestSender.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./HasUriParts.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
-	c774 [label=<<table title="org.turbogwt.core.http.client.FluentRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FluentRequest.html">
+	c1068 [label=<<table title="org.turbogwt.core.http.client.FluentRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FluentRequest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FluentRequest&lt;RequestType, ResponseType&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./FluentRequest.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
-	c774:p -> c772:p [dir=back,arrowtail=empty,style=dashed];
+		</table>>, URL="./FluentRequest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
+	c1069 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> FluentRequestSender&lt;RequestType, ResponseType&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FluentRequestSender.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType> implements org.turbogwt.core.http.client.HasUriParts
-	c771:p -> c774:p [dir=back,arrowtail=empty,style=dashed];
+	c1067:p -> c1068:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.FluentRequest<RequestType, ResponseType>
+	c1068:p -> c1069:p [dir=back,arrowtail=empty,style=dashed];
 }
 

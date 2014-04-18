@@ -5,26 +5,26 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.http.client.RequestSender<RequestType, ResponseType>
-	c3007 [label=<<table title="org.turbogwt.core.http.client.RequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestSender.html">
+	c4221 [label=<<table title="org.turbogwt.core.http.client.RequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestSender.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RequestSender&lt;RequestType, ResponseType&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./RequestSender.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./RequestSender.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType>
-	c3017 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
+	c4224 [label=<<table title="org.turbogwt.core.http.client.FluentRequestSender" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FluentRequestSender.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FluentRequestSender&lt;RequestType, ResponseType&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./FluentRequestSender.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./FluentRequestSender.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.http.client.FluentRequestSender<RequestType, ResponseType> implements org.turbogwt.core.http.client.RequestSender<RequestType, ResponseType>
-	c3007:p -> c3017:p [dir=back,arrowtail=empty,style=dashed];
+	c4221:p -> c4224:p [dir=back,arrowtail=empty,style=dashed];
 }
 

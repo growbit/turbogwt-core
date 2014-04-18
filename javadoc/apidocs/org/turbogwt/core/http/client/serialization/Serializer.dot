@@ -5,26 +5,34 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.core.http.client.serialization.Serializer<T>
-	c3463 [label=<<table title="org.turbogwt.core.http.client.serialization.Serializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Serializer.html">
+	// org.turbogwt.core.http.client.serialization.FormParamSerializer
+	c4739 [label=<<table title="org.turbogwt.core.http.client.serialization.FormParamSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FormParamSerializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Serializer&lt;T&gt; </td></tr>
+<tr><td align="center" balign="center"> FormParamSerializer </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Serializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./FormParamSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.http.client.serialization.Serdes<T>
-	c3467 [label=<<table title="org.turbogwt.core.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
+	c4756 [label=<<table title="org.turbogwt.core.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serdes&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Serdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Serdes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.http.client.serialization.Serializer<T>
+	c4758 [label=<<table title="org.turbogwt.core.http.client.serialization.Serializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Serializer.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Serializer&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Serializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.turbogwt.core.http.client.serialization.FormParamSerializer implements org.turbogwt.core.http.client.serialization.Serializer<T>
+	c4758:p -> c4739:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.http.client.serialization.Serdes<T> implements org.turbogwt.core.http.client.serialization.Serializer<T>
-	c3463:p -> c3467:p [dir=back,arrowtail=empty,style=dashed];
+	c4758:p -> c4756:p [dir=back,arrowtail=empty,style=dashed];
 }
 

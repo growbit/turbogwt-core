@@ -5,24 +5,24 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.js.collections.client.JsMapNumber
-	c1553 [label=<<table title="org.turbogwt.core.js.collections.client.JsMapNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsMapNumber.html">
+	c2272 [label=<<table title="org.turbogwt.core.js.collections.client.JsMapNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsMapNumber.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsMapNumber </td></tr>
 		</table></td></tr>
-		</table>>, URL="./JsMapNumber.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./JsMapNumber.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.js.collections.client.JsMapNumber extends com.google.gwt.core.client.JavaScriptObject
-	c1566:p -> c1553:p [dir=back,arrowtail=empty];
+	c2284:p -> c2272:p [dir=back,arrowtail=empty];
 	// com.google.gwt.core.client.JavaScriptObject
-	c1566 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
+	c2284 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JavaScriptObject </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
