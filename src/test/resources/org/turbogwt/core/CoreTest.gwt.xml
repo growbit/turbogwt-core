@@ -21,7 +21,6 @@
 
     <!-- Inherit the core Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.js.JsTest"/>
-    <inherits name="org.turbogwt.core.js.collections.CollectionsTest"/>
     <inherits name="org.turbogwt.core.http.HttpTest"/>
 
 </module>

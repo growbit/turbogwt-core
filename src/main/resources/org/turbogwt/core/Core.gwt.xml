@@ -21,9 +21,8 @@
 
     <!-- Inherit the core Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.js.Js"/>
-    <inherits name="org.turbogwt.core.js.collections.Collections"/>
+    <inherits name="org.turbogwt.core.util.Util"/>
     <inherits name="org.turbogwt.core.http.Http"/>
-    <inherits name="org.turbogwt.core.providers.Providers"/>
 
     <!--
     <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>

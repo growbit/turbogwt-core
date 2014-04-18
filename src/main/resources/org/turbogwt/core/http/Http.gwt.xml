@@ -21,7 +21,6 @@
     <inherits name="com.google.gwt.http.HTTP"/>
 
     <inherits name="org.turbogwt.core.js.Js"/>
-    <inherits name="org.turbogwt.core.js.collections.Collections"/>
 
     <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
 
