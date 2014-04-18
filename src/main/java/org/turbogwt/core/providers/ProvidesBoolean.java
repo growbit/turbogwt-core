@@ -13,22 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.turbogwt.core.providers;
 
-package org.turbogwt.core.http.client.serialization;
+import javax.annotation.Nullable;
 
 /**
+ * @param <T> Model type
+ *
  * @author Danilo Reinert
  */
-public class UnableToSerializeException extends SerializationException {
+public interface ProvidesBoolean<T> extends ProvidesValue<T, Boolean> {
 
-    public UnableToSerializeException() {
-    }
-
-    public UnableToSerializeException(String s) {
-        super(s);
-    }
-
-    public UnableToSerializeException(String s, Throwable throwable) {
-        super(s, throwable);
-    }
+    @Nullable
+    Boolean getValue(T t);
 }

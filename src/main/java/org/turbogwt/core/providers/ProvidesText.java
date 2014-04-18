@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.turbogwt.core.providers;
 
-package org.turbogwt.core.http.client;
+import javax.annotation.Nullable;
 
 /**
+ * @param <T> Model type
+ *
  * @author Danilo Reinert
  */
-public class ContentTypeHeader extends QualityFactorHeader {
+public interface ProvidesText<T> extends ProvidesValue<T, String> {
 
-    public ContentTypeHeader(Value... values) {
-        super("Content-Type", values);
-    }
-
-    public ContentTypeHeader(String... values) {
-        super("Content-Type", values);
-    }
+    @Nullable
+    String getValue(T t);
 }

@@ -13,22 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.turbogwt.core.providers;
 
-package org.turbogwt.core.http.client;
-
-import java.util.List;
+import javax.annotation.Nullable;
 
 /**
- * {@link ContainerAsyncCallback} for the {@link List} type.
- *
- * @param <T> The parametrized type of the List
+ * @param <T> Model type
  *
  * @author Danilo Reinert
  */
-public abstract class ListAsyncCallback<T> extends ContainerAsyncCallback<List<T>, T> {
+public interface ProvidesNumber<T> extends ProvidesValue<T, Number> {
 
-    @Override
-    public Class<List> getContainerClass() {
-        return List.class;
-    }
+    @Nullable
+    Number getValue(T t);
 }

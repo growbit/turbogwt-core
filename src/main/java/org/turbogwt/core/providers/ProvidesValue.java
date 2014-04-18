@@ -13,15 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.turbogwt.core.providers;
 
-package org.turbogwt.core.http.client.serialization;
+import javax.annotation.Nullable;
 
 /**
- * Performs serialization and deserialization of a type to/from plain text.
+ * A value provider of an object, usually calling some getter.
  *
- * @param <T> Type of serialization
+ * @param <T> Model type
+ * @param <F> Value type
  *
  * @author Danilo Reinert
  */
-public interface Serdes<T> extends Deserializer<T>, Serializer<T> {
+public interface ProvidesValue<T, F> {
+
+    /**
+     * Given a object, returns the value of a property. The property is known at compile time.
+     *
+     * @param t object to be accessed
+     *
+     * @return value of a property of the object
+     */
+    @Nullable
+    F getValue(T t);
 }

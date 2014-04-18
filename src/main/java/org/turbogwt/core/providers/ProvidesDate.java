@@ -13,22 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.turbogwt.core.providers;
 
-package org.turbogwt.core.http.client.serialization;
+import java.util.Date;
+
+import javax.annotation.Nullable;
 
 /**
+ * @param <T> Model type
+ *
  * @author Danilo Reinert
  */
-public class UnableToDeserializeException extends SerializationException {
+public interface ProvidesDate<T> extends ProvidesValue<T, Date> {
 
-    public UnableToDeserializeException() {
-    }
-
-    public UnableToDeserializeException(String s) {
-        super(s);
-    }
-
-    public UnableToDeserializeException(String s, Throwable throwable) {
-        super(s, throwable);
-    }
+    @Nullable
+    Date getValue(T t);
 }
