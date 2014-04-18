@@ -16,28 +16,22 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.Response;
 
 /**
+ * An extension interface implemented by response filters.
+ * Response filters are intended to manipulate the response before the code that invoked its request receives it.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public interface ResponseFilter {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
-
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
-    }
+    /**
+     * Filter method called after a response has been provided for a request.
+     *
+     * @param request   The original request.
+     * @param response  The received response.
+     */
+    void filter(Request request, Response response);
 }

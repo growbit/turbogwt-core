@@ -16,28 +16,23 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.gwt.core.client.GWT;
 
 /**
+ * Default implementation of {@link Server}.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public class ServerImpl implements Server {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+    private final ServerConnection singleton = GWT.create(ServerConnection.class);
 
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
+    /**
+     * Retrieve a singleton instance of {@link ServerConnection} created via DeferredBinding.
+     *
+     * @return The ServerConnection instance.
+     */
+    public ServerConnection getConnection() {
+        return singleton;
     }
 }

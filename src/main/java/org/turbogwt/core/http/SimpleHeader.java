@@ -16,28 +16,40 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.gwt.http.client.Header;
 
 /**
+ * Simple HTTP header with name and value.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public class SimpleHeader extends Header {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+    private final String name;
+    private final String value;
 
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
+    public SimpleHeader(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
 
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
+    /**
+     * Returns the name of the HTTP header.
+     *
+     * @return name of the HTTP header
+     */
+    @Override
+    public String getName() {
+        return name;
+    }
 
-        return suite;
+    /**
+     * Returns the value of the HTTP header.
+     *
+     * @return value of the HTTP header
+     */
+    @Override
+    public String getValue() {
+        return value;
     }
 }

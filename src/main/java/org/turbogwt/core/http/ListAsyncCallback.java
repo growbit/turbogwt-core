@@ -16,28 +16,19 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import java.util.List;
 
 /**
+ * {@link ContainerAsyncCallback} for the {@link List} type.
+ *
+ * @param <T> The parametrized type of the List
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public abstract class ListAsyncCallback<T> extends ContainerAsyncCallback<List<T>, T> {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
-
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
+    @Override
+    public Class<List> getContainerClass() {
+        return List.class;
     }
 }

@@ -16,28 +16,20 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
 
 /**
+ * Represents a connection with server-side.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public interface ServerConnection {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+    void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
+            throws RequestException;
 
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
-    }
+    void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
+                     String url, String data, RequestCallback callback) throws RequestException;
 }

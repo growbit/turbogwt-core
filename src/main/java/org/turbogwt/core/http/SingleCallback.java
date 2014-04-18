@@ -16,28 +16,25 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestCallback;
 
 /**
+ * Callback to handle responses from request without error handling.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public abstract class SingleCallback implements RequestCallback {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
-
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
+    /**
+     * This method is not used.
+     *
+     * @param request   the request object which has experienced the error condition, may be null if the request was
+     *                  never generated
+     * @param exception the error that was encountered
+     */
+    @Override
+    @Deprecated
+    public void onError(Request request, Throwable exception) {
     }
 }

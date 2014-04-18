@@ -26,13 +26,13 @@
 
     <inherits name="com.google.gwt.junit.JUnit"/>
 
-    <source path="client"/>
+    <source path=""/>
 
-    <replace-with class="org.turbogwt.core.http.client.UriBuilderImpl">
-        <when-type-is class="org.turbogwt.core.http.client.UriBuilder"/>
+    <replace-with class="org.turbogwt.core.http.UriBuilderImpl">
+        <when-type-is class="org.turbogwt.core.http.UriBuilder"/>
     </replace-with>
 
-    <replace-with class="org.turbogwt.core.http.client.mock.ServerStub">
-        <when-type-is class="org.turbogwt.core.http.client.Server"/>
+    <replace-with class="org.turbogwt.core.http.mock.ServerStub">
+        <when-type-is class="org.turbogwt.core.http.Server"/>
     </replace-with>
 </module>

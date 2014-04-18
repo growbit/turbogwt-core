@@ -16,28 +16,16 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
-
 /**
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public class AcceptHeader extends QualityFactorHeader {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+    public AcceptHeader(Value... values) {
+        super("Accept", values);
+    }
 
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
+    public AcceptHeader(String... values) {
+        super("Accept", values);
     }
 }

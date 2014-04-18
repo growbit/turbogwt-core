@@ -16,28 +16,18 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
-
 /**
+ * An extension interface implemented by request filters.
+ * Request filters are intended to manipulate the request before it is sent to the server.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public interface RequestFilter {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
-
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
-    }
+    /**
+     * Filter method called before a request has been dispatched to a client transport layer.
+     *
+     * @param request   The request to be dispatched.
+     */
+    void filter(FluentRequestSender<?, ?> request);
 }

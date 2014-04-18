@@ -16,28 +16,21 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.gwt.junit.client.GWTTestCase;
 
 /**
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public class MultipleHeaderTest extends GWTTestCase {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+    @Override
+    public String getModuleName() {
+        return "org.turbogwt.core.http.HttpTest";
+    }
 
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
+    public void testGetValue() {
+        final String expected = "a/b, x/y+z";
+        final MultipleHeader header = new MultipleHeader("name", "a/b", "x/y+z");
+        assertEquals(expected, header.getValue());
     }
 }

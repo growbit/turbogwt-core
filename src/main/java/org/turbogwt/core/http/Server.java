@@ -16,28 +16,17 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
-
 /**
+ * Promotes communication with the backend.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public interface Server {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
-
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
-    }
+    /**
+     * Retrieve an instance of {@link ServerConnection}.
+     *
+     * @return The ServerConnection instance.
+     */
+    ServerConnection getConnection();
 }

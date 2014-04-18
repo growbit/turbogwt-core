@@ -16,28 +16,26 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
-
 /**
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public class FormParam {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
+    public static final String CONTENT_TYPE = "application/x-www-form-urlencoded";
 
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
+    private final String name;
+    private final Object[] values;
 
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
+    public FormParam(String name, Object... values) {
+        this.name = name;
+        this.values = values;
+    }
 
-        return suite;
+    public String getName() {
+        return name;
+    }
+
+    public Object[] getValues() {
+        return values;
     }
 }

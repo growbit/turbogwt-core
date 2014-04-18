@@ -16,28 +16,21 @@
 
 package org.turbogwt.core.http;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
-import org.turbogwt.core.http.books.RestTest;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
+ * Registration objects returned when any kind of binding is performed, used to deregister.
+ * <p>
+ * It inherits from {@link com.google.web.bindery.event.shared.HandlerRegistration} in order to maintain compatibility.
+ *
  * @author Danilo Reinert
  */
-public class HttpGwtTestSuite {
+public interface Registration extends HandlerRegistration {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Http Test Suite");
-
-        suite.addTestSuite(MultipleHeaderTest.class);
-        suite.addTestSuite(QualityFactorHeaderTest.class);
-
-        suite.addTestSuite(UriBuilderImplTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
-        suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
-        suite.addTestSuite(RestTest.class);
-
-        return suite;
-    }
+    /**
+     * Deregisters the object associated with this registration if the object is still attached to the source manager.
+     * If the object is no longer attached to the source manager, this is a no-op.
+     */
+    @Override
+    void removeHandler();
 }
