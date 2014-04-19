@@ -20,6 +20,8 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a connection with server-side.
  *
@@ -30,6 +32,7 @@ public interface ServerConnection {
     void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
             throws RequestException;
 
-    void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
-                     String url, String data, RequestCallback callback) throws RequestException;
+    void sendRequest(int timeout, @Nullable String user, @Nullable String password, @Nullable Headers headers,
+                     RequestBuilder.Method method, String url, String data, RequestCallback callback)
+            throws RequestException;
 }
