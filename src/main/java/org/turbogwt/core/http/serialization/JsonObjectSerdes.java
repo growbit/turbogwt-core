@@ -38,9 +38,7 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     }
 
     /**
-     * Map response deserialized as JavaScriptObject to T.
-     *
-     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
+     * Recover an instance of T from deserialized JSON.
      *
      * @param reader    The evaluated response
      * @param context   Context of the deserialization
@@ -50,9 +48,8 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     public abstract T readJson(JsonRecordReader reader, DeserializationContext context);
 
     /**
-     * Map T as JavaScriptObject to serialize using JSON.stringify.
-     *
-     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
+     * Build a JSON using {@link JsonRecordWriter}.
+     * Later this JSON will be serialized using JSON#stringify.
      *
      * @param t         The object to be serialized
      * @param writer    The serializing JSON
@@ -72,8 +69,8 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     public T deserialize(String response, DeserializationContext context) {
         if (!isObject(response))
             throw new UnableToDeserializeException("Response content is not an object");
-        return readJson((JsonRecordReader) (useSafeEval() ? JsonUtils.safeEval(response)
-                : JsonUtils.unsafeEval(response)), context);
+        final JavaScriptObject deserialized = eval(response);
+        return readJson((JsonRecordReader) deserialized, context);
     }
 
     /**
@@ -91,12 +88,12 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
         if (!isArray(response)) throw new UnableToDeserializeException("Response content is not an array.");
 
         C col = getCollectionInstance(context, collectionType);
-        JsArray<JavaScriptObject> jsArray = JsonUtils.safeEval(response);
+        @SuppressWarnings("unchecked")
+        JsArray<JavaScriptObject> jsArray = (JsArray<JavaScriptObject>) eval(response);
         for (int i = 0; i < jsArray.length(); i++) {
             JavaScriptObject jso = jsArray.get(i);
             col.add(readJson((JsonRecordReader) jso, context));
         }
-
         return col;
     }
 
@@ -137,5 +134,9 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     protected boolean isObject(String text) {
         final String trim = text.trim();
         return trim.startsWith("{") && trim.endsWith("}");
+    }
+
+    protected JavaScriptObject eval(String response) {
+        return useSafeEval() ? JsonUtils.safeEval(response) : JsonUtils.unsafeEval(response);
     }
 }
