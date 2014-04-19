@@ -2,21 +2,21 @@ Turbo GWT (*TurboG*) Core
 ==
 **Turbo GWT** is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
-**Turbo GWT Core** contains JavaScriptObject extensions for performing common operations faster in production. These classes are reused across other TurboG modules. Also it offers a HTTP module, nicknamed *Requestory*, with a convenient API for making requests.
+**Turbo GWT Core** contains JavaScriptObject extensions for performing common operations faster in production. These classes are reused across other TurboG modules. Also it offers a HTTP module, nicknamed *Requestor*, with a convenient API for making requests.
 
 ## Highlights
 
 ### Native Utilities
-* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/client/JsArrayList.java) - List implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>JsArrayList.of(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
-* [Overlays](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/client/Overlays.java) - Easy boxing and unboxing JS native values and much more.
-* [JsMap](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/client/JsMap.java) - Fast map from String to Objects.
+* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - List implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>JsArrayList.of(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
+* [Overlays](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/Overlays.java) - Easy boxing and unboxing JS native values and much more.
+* [JsMap](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsMap.java) - Fast map from String to Objects.
  
-### *REQUESTORY* - TurboG HTTP module
+### *REQUESTOR* - TurboG HTTP module
 TurboG proposes a new fluent way of making http requests. It fits better the REST style communication. 
 Just look how simple you can get a book from server:
 
 ```java
-requestory.request(Void.class, Book.class)
+requestor.request(Void.class, Book.class)
         .path("server").segment("books").segment(1)
         .get(new AsyncCallback<Book>() {
             @Override
@@ -52,14 +52,14 @@ public class BookSerdes extends JsonObjectSerdes<Book> {
 }
 ```
 
-One more configuration step: just remember to register your SerDes in the Requestory.
+One more configuration step: just remember to register your SerDes in the Requestor.
 <br />
 If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!
 
 Doing a POST is as simple as:
 
 ```java 
-requestory.request(Book.class, Void.class).path("server").segment("books")
+requestor.request(Book.class, Void.class).path("server").segment("books")
         .post(new Book(1, "My Title", "My Author"), new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -73,11 +73,11 @@ requestory.request(Book.class, Void.class).path("server").segment("books")
         });
 ```
 
-If you are too lazy, Requestory provides **shortcut methods** to performing requests with only one method call. 
+If you are too lazy, Requestor provides **shortcut methods** to performing requests with only one method call. 
 The above could be done like this:
 
 ```java 
-requestory.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
+requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
         new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -94,7 +94,7 @@ requestory.post("/server/books", Book.class, new Book(1, "My Title", "My Author"
 With FluentRequests you can also set callbacks for specific responses, with specificity priority.
 
 ```java 
-requestory.request().path(uri)
+requestor.request().path(uri)
         .on(20, new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
@@ -126,7 +126,7 @@ Posting *Form Data* is like:
 ```java
 FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
 
-requestory.request(FormParam.class, Void.class)
+requestor.request(FormParam.class, Void.class)
         .path(uri)
         .contentType("application/x-www-form-urlencoded")
         .post(formData);
@@ -140,7 +140,7 @@ E.g., suppose you are creating a mobile application and want to prevent data los
 The default implementation of Server (ServerImpl) creates the ServerConnectionImpl (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
 
 #### Finally
-Take a look at the [tests](https://github.com/growbit/turbogwt-core/tree/master/src/test/java/org/turbogwt/core/http/client) for more examples and read the [docs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)!
+Take a look at the [tests](https://github.com/growbit/turbogwt-core/tree/master/src/test/java/org/turbogwt/core/http) for more examples and read the [docs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)!
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
