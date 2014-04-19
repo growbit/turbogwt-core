@@ -47,7 +47,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("*/*");
 
         prepareStub("application/json");
-        final Requestory requestory = getRequestory();
+        final Requestor requestory = getRequestory();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -75,7 +75,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("*/json");
 
         prepareStub("application/json");
-        final Requestory requestory = getRequestory();
+        final Requestor requestory = getRequestory();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -106,7 +106,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/*");
 
         prepareStub("application/json");
-        final Requestory requestory = getRequestory();
+        final Requestor requestory = getRequestory();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -137,7 +137,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/json");
 
         prepareStub("application/json");
-        Requestory requestory = getRequestory();
+        Requestor requestory = getRequestory();
 
         final boolean[] callbackCalled = new boolean[2];
 
@@ -189,7 +189,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/json");
 
         prepareStub("application/json");
-        Requestory requestory = getRequestory();
+        Requestor requestory = getRequestory();
 
         final boolean[] callbackCalled = new boolean[2];
 
@@ -241,7 +241,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("app/js");
 
         prepareStub("application/json");
-        Requestory requestory = getRequestory();
+        Requestor requestory = getRequestory();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
@@ -291,8 +291,8 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         assertFalse(callbackSuccessCalled[0]);
     }
 
-    private Requestory getRequestory() {
-        final Requestory requestory = new Requestory();
+    private Requestor getRequestory() {
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Person.class, personSerdes);
         return requestory;
     }

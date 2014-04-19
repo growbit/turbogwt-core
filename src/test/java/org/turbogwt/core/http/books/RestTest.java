@@ -25,7 +25,7 @@ import java.util.List;
 
 import org.turbogwt.core.http.ContentTypeHeader;
 import org.turbogwt.core.http.ListAsyncCallback;
-import org.turbogwt.core.http.Requestory;
+import org.turbogwt.core.http.Requestor;
 import org.turbogwt.core.http.mock.ResponseMock;
 import org.turbogwt.core.http.mock.ServerStub;
 
@@ -42,7 +42,7 @@ public class RestTest extends GWTTestCase {
     public void testCreate() {
         ServerStub.clearStub();
 
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
 
         final String uri = "/server/books";
@@ -76,7 +76,7 @@ public class RestTest extends GWTTestCase {
     public void testDelete() {
         ServerStub.clearStub();
 
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/server/books/1";
 
@@ -92,7 +92,7 @@ public class RestTest extends GWTTestCase {
     public void testGetAll() {
         ServerStub.clearStub();
 
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
 
         final String uri = "/server/books";
@@ -130,7 +130,7 @@ public class RestTest extends GWTTestCase {
     public void testGetOne() {
         ServerStub.clearStub();
 
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
 
         final String uri = "/server/books/1";
@@ -164,7 +164,7 @@ public class RestTest extends GWTTestCase {
     public void testUpdate() {
         ServerStub.clearStub();
 
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Book.class, BookSerdes.getInstance());
 
         final String uri = "/server/books/1";

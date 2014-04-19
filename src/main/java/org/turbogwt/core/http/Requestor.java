@@ -62,7 +62,7 @@ import org.turbogwt.core.util.Registration;
  *
  * @author Danilo Reinert
  */
-public class Requestory {
+public class Requestor {
 
     private final SerdesManager serdesManager = new SerdesManager();
     private final FilterManager filterManager = new FilterManager();
@@ -71,7 +71,7 @@ public class Requestory {
     private String defaultContentType;
     private String defaultAccept;
 
-    public Requestory() {
+    public Requestor() {
         defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
         defaultContentType = "application/json";
         defaultAccept = "application/json";

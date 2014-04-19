@@ -53,7 +53,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testCustomObjectArraySerializationDeserialization() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
@@ -109,7 +109,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testCustomObjectRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
@@ -156,7 +156,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testCustomObjectSerialization() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
         requestory.registerSerdes(Person.class, new PersonSerdes());
 
         final String uri = "/person";
@@ -186,7 +186,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testOnHttpCodeCallbackExecution() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/on";
 
@@ -227,7 +227,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testOverlayArrayRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/person-jso-array";
 
@@ -264,7 +264,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testOverlayRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/person-jso";
 
@@ -293,7 +293,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testRequestHeaders() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/person-jso";
 
@@ -325,7 +325,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testStringArrayRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/string-array";
         final String[] response = {"Some", "string", "array", "response"};
@@ -353,7 +353,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testStringRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/string";
         final String response = "Some string response";
@@ -380,7 +380,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testVoidRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/void";
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
@@ -404,7 +404,7 @@ public class FluentRequestImplTest extends GWTTestCase {
 
     public void testFormDataRequest() {
         ServerStub.clearStub();
-        final Requestory requestory = new Requestory();
+        final Requestor requestory = new Requestor();
 
         final String uri = "/form";
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("text/plain")));
