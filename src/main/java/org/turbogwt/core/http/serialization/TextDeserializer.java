@@ -23,7 +23,7 @@ import java.util.Collection;
  */
 public class TextDeserializer implements Deserializer<String> {
 
-    public static String[] ACCEPT_PATTERNS = new String[]{"text/plain"};
+    public static String[] ACCEPT_PATTERNS = new String[]{"text/plain", "*/*"};
 
     private static final TextDeserializer INSTANCE = new TextDeserializer();
 
