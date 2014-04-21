@@ -209,7 +209,7 @@ public class SerdesManager {
             } else if (otherInitialPart.contains("*")) {
                 matches = matchPartsUnsafely(otherInitialPart, thisInitialPart);
             } else {
-                matches = thisInitialPart.equals(otherInitialPart);
+                matches = thisInitialPart.equalsIgnoreCase(otherInitialPart);
             }
 
             if (!matches) return false;
@@ -222,7 +222,7 @@ public class SerdesManager {
             } else if (otherFinalPart.contains("*")) {
                 matches = matchPartsUnsafely(otherFinalPart, thisFinalPart);
             } else {
-                matches = thisFinalPart.equals(otherFinalPart);
+                matches = thisFinalPart.equalsIgnoreCase(otherFinalPart);
             }
 
             return matches;
@@ -300,8 +300,8 @@ public class SerdesManager {
 
         private boolean matchPartsSafely(String left, String right) {
             boolean matches = true;
-            final String rightCleaned = right.replace("*", "");
-            String[] parts = left.split("\\*");
+            final String rightCleaned = right.replace("*", "").toLowerCase();
+            String[] parts = left.toLowerCase().split("\\*");
             final boolean otherEndsWithWildcard = right.endsWith("*");
             final int otherCleanedLength = rightCleaned.length();
             int i = 0;
@@ -323,11 +323,12 @@ public class SerdesManager {
 
         private boolean matchPartsUnsafely(String left, String right) {
             boolean matches = true;
-            String[] parts = left.split("\\*");
+            String rightLower = right.toLowerCase();
+            String[] parts = left.toLowerCase().split("\\*");
             int i = 0;
             for (String part : parts) {
                 if (!part.isEmpty()) {
-                    int newIdx = right.indexOf(part, i);
+                    int newIdx = rightLower.indexOf(part, i);
                     if (newIdx == -1) {
                         matches = false;
                         break;
