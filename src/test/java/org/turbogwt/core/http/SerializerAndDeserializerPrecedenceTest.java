@@ -108,8 +108,7 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
     }
 
     private Requestor getRequestory() {
-        final Requestor requestory = new Requestor();
-        return requestory;
+        return new Requestor();
     }
 
     private void prepareStub(String responseContentType, String serializedResponse) {

@@ -84,10 +84,10 @@ public class SerdesManager {
      */
     public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
         final String typeName = type.getName();
-        JsArrayList<SerializerHolder> tDesList = serializers.get(typeName, null);
-        if (tDesList == null) {
-            tDesList = new JsArrayList<>();
-            serializers.set(typeName, tDesList);
+        JsArrayList<SerializerHolder> tSerList = serializers.get(typeName, null);
+        if (tSerList == null) {
+            tSerList = new JsArrayList<>();
+            serializers.set(typeName, tSerList);
         }
 
         final String[] contentType = serializer.contentType();
@@ -96,11 +96,11 @@ public class SerdesManager {
             String pattern = contentType[i];
             final Key key = new Key(type, pattern);
             final SerializerHolder holder = new SerializerHolder(key, serializer);
-            tDesList.add(holder);
+            tSerList.add(holder);
             holders[i] = holder;
         }
 
-        Collections.sort(tDesList);
+        Collections.sort(tSerList);
 
         return new Registration() {
             @Override
@@ -357,7 +357,7 @@ public class SerdesManager {
                 result = thisInitialPart.compareTo(otherInitialPart);
 
                 // Invert the result if the winner contains wildcard
-                if ((result == -1 && thisInitialPart.contains("*")) || (result == 1 && otherInitialPart.contains("*")))
+                if ((result < 0 && thisInitialPart.contains("*")) || (result > 0 && otherInitialPart.contains("*")))
                     result = -result;
 
                 if (result == 0) {
@@ -366,7 +366,7 @@ public class SerdesManager {
                     result = thisFinalPart.compareTo(otherFinalPart);
 
                     // Invert the result if the winner contains wildcard
-                    if ((result == -1 && thisFinalPart.contains("*")) || (result == 1 && otherFinalPart.contains("*")))
+                    if ((result < 0 && thisFinalPart.contains("*")) || (result > 0 && otherFinalPart.contains("*")))
                         result = -result;
 
                     if (result == 0) {
