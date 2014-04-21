@@ -20,16 +20,14 @@ import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.turbogwt.core.http.books.Book;
-import org.turbogwt.core.http.books.BookSerdes;
+import org.turbogwt.core.http.books.BookJsonSerdes;
 import org.turbogwt.core.http.books.BookXmlSerdes;
 import org.turbogwt.core.http.mock.ResponseMock;
 import org.turbogwt.core.http.mock.ServerStub;
 import org.turbogwt.core.http.serialization.Serdes;
-import org.turbogwt.core.http.serialization.SerializationException;
 
 /**
  * @author Danilo Reinert
@@ -66,7 +64,7 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
 
     final String bookArraySerializedAsJson = "[" + firstBookSerializedAsJson + "," + secondBookSerializedAsJson + "]";
 
-    final Serdes<Book> jsonSerdes = new BookSerdes();
+    final Serdes<Book> jsonSerdes = new BookJsonSerdes();
     final Serdes<Book> xmlSerdes = new BookXmlSerdes();
 
     @Override

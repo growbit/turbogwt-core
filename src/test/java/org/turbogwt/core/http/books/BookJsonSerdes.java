@@ -25,15 +25,15 @@ import org.turbogwt.core.http.serialization.SerializationContext;
 /**
  * @author Danilo Reinert
  */
-public class BookSerdes extends JsonObjectSerdes<Book> {
+public class BookJsonSerdes extends JsonObjectSerdes<Book> {
 
-    private static BookSerdes INSTANCE = new BookSerdes();
+    private static BookJsonSerdes INSTANCE = new BookJsonSerdes();
 
-    public BookSerdes() {
+    public BookJsonSerdes() {
         super(Book.class);
     }
 
-    public static BookSerdes getInstance() {
+    public static BookJsonSerdes getInstance() {
         return INSTANCE;
     }
 

@@ -17,7 +17,6 @@
 package org.turbogwt.core.http.books;
 
 import com.google.gwt.xml.client.Document;
-import com.google.gwt.xml.client.Node;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.Text;
 import com.google.gwt.xml.client.XMLParser;
@@ -173,7 +172,6 @@ public class BookXmlSerdes implements Serdes<Book> {
             String title = ((Text) titleNodes.item(i).getFirstChild()).getData();
             String author = ((Text) authorNodes.item(i).getFirstChild()).getData();
             books[i] = new Book(Integer.valueOf(id), title, author);
-
         }
 
         return books;
