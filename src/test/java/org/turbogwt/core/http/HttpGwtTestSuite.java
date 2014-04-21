@@ -36,6 +36,8 @@ public class HttpGwtTestSuite {
         suite.addTestSuite(UriBuilderImplTest.class);
         suite.addTestSuite(FluentRequestImplTest.class);
         suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
+        suite.addTestSuite(SerializerAndDeserializerMatchTest.class);
+        suite.addTestSuite(MultipleSerdesByClassTest.class);
         suite.addTestSuite(RestTest.class);
 
         return suite;

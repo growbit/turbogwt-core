@@ -16,9 +16,10 @@
 
 package org.turbogwt.core.http.serialization;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Collections;
 
+import org.turbogwt.core.js.collections.JsArrayList;
+import org.turbogwt.core.js.collections.JsMap;
 import org.turbogwt.core.util.Registration;
 
 /**
@@ -28,8 +29,8 @@ import org.turbogwt.core.util.Registration;
  */
 public class SerdesManager {
 
-    private final Map<Key, Deserializer<?>> deserializers = new TreeMap<>();
-    private final Map<Key, Serializer<?>> serializers = new TreeMap<>();
+    private final JsMap<JsArrayList<DeserializerHolder>> deserializers = JsMap.create();
+    private final JsMap<JsArrayList<SerializerHolder>> serializers = JsMap.create();
 
     /**
      * Register a deserializer of the given type.
@@ -42,20 +43,30 @@ public class SerdesManager {
      *          to the {@link SerdesManager}.
      */
     public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
+        final String typeName = type.getName();
+        JsArrayList<DeserializerHolder> tDesList = deserializers.get(typeName, null);
+        if (tDesList == null) {
+            tDesList = new JsArrayList<>();
+            deserializers.set(typeName, tDesList);
+        }
+
         final String[] accept = deserializer.accept();
-        final Key[] keys = new Key[accept.length];
+        final DeserializerHolder[] holders = new DeserializerHolder[accept.length];
         for (int i = 0; i < accept.length; i++) {
             String pattern = accept[i];
             final Key key = new Key(type, pattern);
-            deserializers.put(key, deserializer);
-            keys[i] = key;
+            final DeserializerHolder holder = new DeserializerHolder(key, deserializer);
+            tDesList.add(holder);
+            holders[i] = holder;
         }
+
+        Collections.sort(tDesList);
 
         return new Registration() {
             @Override
             public void removeHandler() {
-                for (Key key : keys) {
-                    deserializers.remove(key);
+                for (DeserializerHolder holder : holders) {
+                    deserializers.get(typeName).remove(holder);
                 }
             }
         };
@@ -72,20 +83,30 @@ public class SerdesManager {
      *          to the {@link SerdesManager}.
      */
     public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
+        final String typeName = type.getName();
+        JsArrayList<SerializerHolder> tDesList = serializers.get(typeName, null);
+        if (tDesList == null) {
+            tDesList = new JsArrayList<>();
+            serializers.set(typeName, tDesList);
+        }
+
         final String[] contentType = serializer.contentType();
-        final Key[] keys = new Key[contentType.length];
+        final SerializerHolder[] holders = new SerializerHolder[contentType.length];
         for (int i = 0; i < contentType.length; i++) {
             String pattern = contentType[i];
             final Key key = new Key(type, pattern);
-            serializers.put(key, serializer);
-            keys[i] = key;
+            final SerializerHolder holder = new SerializerHolder(key, serializer);
+            tDesList.add(holder);
+            holders[i] = holder;
         }
+
+        Collections.sort(tDesList);
 
         return new Registration() {
             @Override
             public void removeHandler() {
-                for (Key key : keys) {
-                    serializers.remove(key);
+                for (SerializerHolder holder : holders) {
+                    serializers.get(typeName).remove(holder);
                 }
             }
         };
@@ -129,8 +150,11 @@ public class SerdesManager {
 
         final Key key = new Key(type, contentType);
 
-        for (Key k : deserializers.keySet()) {
-            if (k.matches(key)) return (Deserializer<T>) deserializers.get(k);
+        JsArrayList<DeserializerHolder> holders = deserializers.get(type.getName(), null);
+        if (holders != null) {
+            for (DeserializerHolder holder : holders) {
+                if (holder.key.matches(key)) return (Deserializer<T>) holder.deserializer;
+            }
         }
 
         throw new SerializationException("There is no Deserializer registered for " + type.getName() +
@@ -152,8 +176,11 @@ public class SerdesManager {
 
         final Key key = new Key(type, contentType);
 
-        for (Key k : serializers.keySet()) {
-            if (k.matches(key)) return (Serializer<T>) serializers.get(k);
+        JsArrayList<SerializerHolder> holders = serializers.get(type.getName(), null);
+        if (holders != null) {
+            for (SerializerHolder holder : holders) {
+                if (holder.key.matches(key)) return (Serializer<T>) holder.serializer;
+            }
         }
 
         throw new SerializationException("There is no Serializer registered for type " + type.getName() +
@@ -169,6 +196,60 @@ public class SerdesManager {
     private <T> void checkType(Class<T> type) {
         if (type == null) {
             throw new SerializationException("Type cannot be null.");
+        }
+    }
+
+    private static class DeserializerHolder implements Comparable<DeserializerHolder> {
+
+        final Key key;
+        final Deserializer<?> deserializer;
+
+        private DeserializerHolder(Key key, Deserializer<?> deserializer) {
+            this.key = key;
+            this.deserializer = deserializer;
+        }
+
+        @Override
+        public int compareTo(DeserializerHolder deserializerHolder) {
+            return key.compareTo(deserializerHolder.key);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            final DeserializerHolder that = (DeserializerHolder) o;
+            return key.equals(that.key);
+        }
+
+        @Override
+        public int hashCode() {
+            return key.hashCode();
+        }
+    }
+
+    private static class SerializerHolder implements Comparable<SerializerHolder> {
+
+        final Key key;
+        final Serializer<?> serializer;
+
+        private SerializerHolder(Key key, Serializer<?> serializer) {
+            this.key = key;
+            this.serializer = serializer;
+        }
+
+        @Override
+        public int compareTo(SerializerHolder serializerHolder) {
+            return key.compareTo(serializerHolder.key);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            final SerializerHolder that = (SerializerHolder) o;
+            return key.equals(that.key);
+        }
+
+        @Override
+        public int hashCode() {
+            return key.hashCode();
         }
     }
 
@@ -239,13 +320,13 @@ public class SerdesManager {
 
             final Key key = (Key) o;
 
-            if (Double.compare(key.factor, factor) != 0) {
+            if (!type.equals(key.type)) {
                 return false;
             }
             if (!contentType.equals(key.contentType)) {
                 return false;
             }
-            if (!type.equals(key.type)) {
+            if (Double.compare(key.factor, factor) != 0) {
                 return false;
             }
 
@@ -337,6 +418,15 @@ public class SerdesManager {
                 }
             }
             return matches;
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "type:'" + type.getName() + '\'' +
+                    ", contentType:'" + contentType + '\'' +
+                    ", factor:" + factor +
+                    '}';
         }
     }
 }
