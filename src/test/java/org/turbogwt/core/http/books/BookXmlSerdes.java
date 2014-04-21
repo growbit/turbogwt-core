@@ -16,11 +16,18 @@
 
 package org.turbogwt.core.http.books;
 
+import com.google.gwt.xml.client.Document;
+import com.google.gwt.xml.client.Node;
+import com.google.gwt.xml.client.NodeList;
+import com.google.gwt.xml.client.XMLParser;
+import com.google.gwt.xml.client.impl.DOMParseException;
+
 import java.util.Collection;
 
 import org.turbogwt.core.http.serialization.DeserializationContext;
 import org.turbogwt.core.http.serialization.Serdes;
 import org.turbogwt.core.http.serialization.SerializationContext;
+import org.turbogwt.core.http.serialization.UnableToDeserializeException;
 
 /**
  * @author Danilo Reinert
@@ -101,7 +108,14 @@ public class BookXmlSerdes implements Serdes<Book> {
      */
     @Override
     public Book deserialize(String response, DeserializationContext context) {
-        return null;
+        Document xml;
+        try {
+            xml = XMLParser.parse(response);
+        } catch (DOMParseException e) {
+            throw new UnableToDeserializeException("Could not read response as xml.", e);
+        }
+
+        return parseXmlDocumentAsBook(xml);
     }
 
     /**
@@ -116,7 +130,27 @@ public class BookXmlSerdes implements Serdes<Book> {
     @Override
     public <C extends Collection<Book>> C deserializeAsCollection(Class<C> collectionType, String response,
                                                                   DeserializationContext context) {
-        return null;
+        C col;
+        try {
+            col = context.getContainerFactoryManager().getFactory(collectionType).get();
+        } catch (Exception e) {
+            throw new UnableToDeserializeException("There's not factory registered for type *" + collectionType + "*.");
+        }
+
+        Document xml;
+        try {
+            xml = XMLParser.parse(response);
+        } catch (DOMParseException e) {
+            throw new UnableToDeserializeException("Could not read response as xml.", e);
+        }
+
+        NodeList nodes = xml.getElementsByTagName("book");
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            col.add(parseXmlDocumentAsBook(node.getOwnerDocument()));
+        }
+
+        return col;
     }
 
     private StringBuilder buildXml(Book book) {
@@ -126,5 +160,12 @@ public class BookXmlSerdes implements Serdes<Book> {
         xmlBuilder.append("<author>").append(book.getAuthor()).append("</author>");
         xmlBuilder.append("</book>");
         return xmlBuilder;
+    }
+
+    private Book parseXmlDocumentAsBook(Document xml) {
+        String id = xml.getElementsByTagName("id").item(0).getNodeValue();
+        String title = xml.getElementsByTagName("title").item(0).getNodeValue();
+        String author = xml.getElementsByTagName("author").item(0).getNodeValue();
+        return new Book(Integer.valueOf(id), title, author);
     }
 }
