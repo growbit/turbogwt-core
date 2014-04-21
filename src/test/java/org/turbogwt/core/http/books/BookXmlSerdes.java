@@ -24,6 +24,7 @@ import com.google.gwt.xml.client.XMLParser;
 import com.google.gwt.xml.client.impl.DOMParseException;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.turbogwt.core.http.serialization.DeserializationContext;
 import org.turbogwt.core.http.serialization.Serdes;
@@ -81,7 +82,7 @@ public class BookXmlSerdes implements Serdes<Book> {
      */
     @Override
     public String serializeFromCollection(Collection<Book> c, SerializationContext context) {
-        StringBuilder xmlBuilder = new StringBuilder("<books type=\"array\">");
+        StringBuilder xmlBuilder = new StringBuilder("<books>");
         for (Book book : c) {
             xmlBuilder.append(buildXml(book));
         }
@@ -116,7 +117,7 @@ public class BookXmlSerdes implements Serdes<Book> {
             throw new UnableToDeserializeException("Could not read response as xml.", e);
         }
 
-        return parseXmlDocumentAsBook(xml);
+        return parseXmlDocumentAsBook(xml)[0];
     }
 
     /**
@@ -145,11 +146,7 @@ public class BookXmlSerdes implements Serdes<Book> {
             throw new UnableToDeserializeException("Could not read response as xml.", e);
         }
 
-        NodeList nodes = xml.getElementsByTagName("book");
-        for (int i = 0; i < nodes.getLength(); i++) {
-            Node node = nodes.item(i);
-            col.add(parseXmlDocumentAsBook(node.getOwnerDocument()));
-        }
+        Collections.addAll(col, parseXmlDocumentAsBook(xml));
 
         return col;
     }
@@ -163,10 +160,22 @@ public class BookXmlSerdes implements Serdes<Book> {
         return xmlBuilder;
     }
 
-    private Book parseXmlDocumentAsBook(Document xml) {
-        String id = ((Text)xml.getElementsByTagName("id").item(0).getFirstChild()).getData();
-        String title = ((Text)xml.getElementsByTagName("title").item(0).getFirstChild()).getData();
-        String author = ((Text)xml.getElementsByTagName("author").item(0).getFirstChild()).getData();
-        return new Book(Integer.valueOf(id), title, author);
+    private Book[] parseXmlDocumentAsBook(Document xml) {
+        final NodeList idNodes = xml.getElementsByTagName("id");
+        final NodeList titleNodes = xml.getElementsByTagName("title");
+        final NodeList authorNodes = xml.getElementsByTagName("author");
+
+        int length = idNodes.getLength();
+        Book[] books = new Book[length];
+
+        for (int i = 0; i < length; i++) {
+            String id = ((Text) idNodes.item(i).getFirstChild()).getData();
+            String title = ((Text) titleNodes.item(i).getFirstChild()).getData();
+            String author = ((Text) authorNodes.item(i).getFirstChild()).getData();
+            books[i] = new Book(Integer.valueOf(id), title, author);
+
+        }
+
+        return books;
     }
 }
