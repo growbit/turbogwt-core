@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.annotation.Nullable;
+
 import org.turbogwt.core.js.collections.JsArrayList;
 import org.turbogwt.core.js.collections.JsMap;
 import org.turbogwt.core.util.Factory;
@@ -105,6 +107,7 @@ public final class ContainerFactoryManager {
      * @param <C> Collection type
      */
     @SuppressWarnings("unchecked")
+    @Nullable
     public <C extends Collection> Factory<C> getFactory(Class<C> type) {
         return (Factory<C>) factories.get(type.getName(), null);
     }
