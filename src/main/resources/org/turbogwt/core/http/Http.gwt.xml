@@ -22,6 +22,7 @@
 
     <inherits name="org.turbogwt.core.js.Js"/>
     <inherits name="org.turbogwt.core.util.Util"/>
+    <inherits name="com.google.gwt.xml.XML"/>
 
     <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
 

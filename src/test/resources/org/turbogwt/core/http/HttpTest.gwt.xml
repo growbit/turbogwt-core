@@ -25,6 +25,7 @@
     <inherits name="org.turbogwt.core.util.Util"/>
 
     <inherits name="com.google.gwt.junit.JUnit"/>
+    <inherits name="com.google.gwt.xml.XML"/>
 
     <source path=""/>
 
