@@ -423,9 +423,9 @@ public class SerdesManager {
         @Override
         public String toString() {
             return "{" +
-                    "type:'" + type.getName() + '\'' +
-                    ", contentType:'" + contentType + '\'' +
-                    ", factor:" + factor +
+                    "type: '" + type.getName() + '\'' +
+                    ", contentType: '" + contentType + '\'' +
+                    ", factor: " + factor +
                     '}';
         }
     }
