@@ -27,7 +27,7 @@ public class JsArrayTest extends GWTTestCase {
 
     @Override
     public String getModuleName() {
-        return "org.turbogwt.core.js.jsTest";
+        return "org.turbogwt.core.js.JsTest";
     }
 
     public void gwtSetUp() {
