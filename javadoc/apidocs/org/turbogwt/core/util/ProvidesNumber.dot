@@ -11,20 +11,20 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.util.ProvidesValue<T, F>
-	c3743 [label=<<table title="org.turbogwt.core.util.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesValue.html">
+	c349 [label=<<table title="org.turbogwt.core.util.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesValue.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesValue&lt;T, F&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesValue.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.ProvidesNumber<T>
-	c3745 [label=<<table title="org.turbogwt.core.util.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesNumber.html">
+	c351 [label=<<table title="org.turbogwt.core.util.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesNumber.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesNumber&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesNumber.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.util.ProvidesNumber<T> implements org.turbogwt.core.util.ProvidesValue<T, F>
-	c3743:p -> c3745:p [dir=back,arrowtail=empty,style=dashed];
+	c349:p -> c351:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -1,5 +1,3 @@
-org.turbogwt.core.http
-org.turbogwt.core.http.serialization
 org.turbogwt.core.js
 org.turbogwt.core.js.collections
 org.turbogwt.core.util
