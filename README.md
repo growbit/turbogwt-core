@@ -2,7 +2,7 @@ Turbo GWT (*TurboG*) Core
 ==
 **Turbo GWT** is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
-**Turbo GWT Core** contains JavaScriptObject extensions for performing common operations faster in production. These classes are reused across other TurboG modules. Also it offers a HTTP module, nicknamed *Requestor*, with a convenient API for making requests.
+**Turbo GWT Core** contains JavaScriptObject extensions for performing common operations faster in production. These classes are reused across other TurboG modules.
 
 ## Highlights
 
@@ -31,7 +31,7 @@ Turbo GWT Core is currently available at maven central.
 <dependency>
     <groupId>org.turbogwt.core</groupId>
     <artifactId>turbogwt-core</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
