@@ -10,7 +10,7 @@ Turbo GWT (*TurboG*) Core
 * [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/Overlays.html) - Easy boxing and unboxing JS native values and much more.
 
 ### Native Collections
-* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - List implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>JsArrayList.of(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
+* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - List implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
 * [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArrayIterator.html) Iterator supporting JsArray.
 * [JsArray](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArray.html) New JsArray supporting any object type.
 * [JsMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsMap.html) - Fast map from String to Objects.
