@@ -7,15 +7,17 @@ Turbo GWT (*TurboG*) Core
 ## Highlights
 
 ### Native Utilities
-* [Overlays](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/Overlays.java) - Easy boxing and unboxing JS native values and much more.
+* [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/Overlays.html) - Easy boxing and unboxing JS native values and much more.
 
 ### Native Collections
 * [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - List implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>JsArrayList.of(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
-* [JsMap](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsMap.java) - Fast map from String to Objects.
+* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArrayIterator.html) Iterator supporting JsArray.
+* [JsArray](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArray.html) New JsArray supporting any object type.
+* [JsMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsMap.html) - Fast map from String to Objects.
 
 ### Misc
-* [Registration](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/util/Registration.java) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
-* Analogous to the ProvidesKey, there is a generic ProvidesValue and pre-defined value providers for Boolean, Date, Number and Text.
+* [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/Registration.html) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
+* Analogous to the ProvidesKey, there is a generic [ProvidesValue](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/ProvidesValue.html) and pre-defined value providers for Boolean, Date, Number and Text.
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
