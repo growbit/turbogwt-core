@@ -1,4 +1,4 @@
-Turbo GWT (*TurboG*) Core
+Turbo GWT (*TurboG*) Core [![Build Status](https://travis-ci.org/growbit/turbogwt-core.svg?branch=master)](https://travis-ci.org/growbit/turbogwt-core)
 ==
 [**Turbo GWT**](http://github.com/growbit/turbogwt) is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
