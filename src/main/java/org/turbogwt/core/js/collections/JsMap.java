@@ -30,9 +30,9 @@ public class JsMap<T> extends JavaScriptObject {
     protected JsMap() {
     }
 
-    public static <T> JsMap<T> create() {
-        return JavaScriptObject.createObject().cast();
-    }
+    public native static <T> JsMap<T> create() /*-{
+        return {$size: 0};
+    }-*/;
 
     public final native T get(String key) /*-{
         return this[key];
@@ -43,6 +43,7 @@ public class JsMap<T> extends JavaScriptObject {
     }-*/;
 
     public final native void set(String key, T value) /*-{
+        this.$size += 1;
         this[key] = value;
     }-*/;
 
@@ -51,6 +52,11 @@ public class JsMap<T> extends JavaScriptObject {
     }-*/;
 
     public final native void remove(String key) /*-{
+        this.$size -= 1;
         delete this[key];
+    }-*/;
+
+    public final native int size() /*-{
+        return this.$size;
     }-*/;
 }
