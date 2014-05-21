@@ -51,6 +51,16 @@ public class JsHashTable<T> extends JavaScriptObject {
         return false;
     }
 
+    public final native JsArray<T> values() /*-{
+        var v = [];
+        for (var key in this) v.push.apply(v, this[key]);
+        return v;
+    }-*/;
+
+    final native JsArray<T> get(String hashCode) /*-{
+        return this[hashCode];
+    }-*/;
+
     private void checkNotNull(Object o) {
         if (o == null) {
             throw new NullPointerException("This hashtable does not support null values");
