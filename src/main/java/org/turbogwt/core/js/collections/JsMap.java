@@ -43,7 +43,7 @@ public class JsMap<T> extends JavaScriptObject {
     }-*/;
 
     public final native void set(String key, T value) /*-{
-        this.$size += 1;
+        if (!this[key]) this.$size += 1;
         this[key] = value;
     }-*/;
 
@@ -52,7 +52,7 @@ public class JsMap<T> extends JavaScriptObject {
     }-*/;
 
     public final native void remove(String key) /*-{
-        this.$size -= 1;
+        if (this[key]) this.$size -= 1;
         delete this[key];
     }-*/;
 
