@@ -8,6 +8,16 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+/**
+ * A fast implementation of Set indexed with {@link Object#toString()}.
+ * <p/>
+ *
+ * This class indexes the objects by resorting to their toString method.<br>
+ * In order to use it, T should implement toString, so t.toString().equals(otherT.toString())
+ * is equivalent to t.equals(otherT).
+ *
+ * @param <T> Type of set values
+ */
 public class JsFastSet<T> implements Set<T> {
 
     private final JsMap<T> innerMap = JsMap.create();
