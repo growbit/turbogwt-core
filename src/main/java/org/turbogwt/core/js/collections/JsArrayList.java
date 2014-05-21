@@ -181,11 +181,7 @@ public class JsArrayList<T> implements List<T> {
 
     @Override
     public T get(int i) {
-        if (i > -1 && i < jsArray.length()) {
-            return jsArray.get(i);
-        } else {
-            return null;
-        }
+        return jsArray.get(i);
     }
 
     @Override
@@ -243,7 +239,7 @@ public class JsArrayList<T> implements List<T> {
         return new JsArrayList<>(subArray(i, i2));
     }
 
-    public native JsArray<T> subArray(int i, int i2) /*-{
+    private native JsArray<T> subArray(int i, int i2) /*-{
         return this.@org.turbogwt.core.js.collections.JsArrayList::jsArray.slice(i, i2);
     }-*/;
 

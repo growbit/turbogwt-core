@@ -40,6 +40,14 @@ public class JsArrayListStringTest extends GWTTestCase {
         }
     }
 
+    public void testGet() {
+        assertNull(list.get(-1));
+        assertEquals(list.get(0), "0");
+        assertEquals(list.get(1), "1");
+        assertEquals(list.get(2), "2");
+        assertNull(list.get(3));
+    }
+
     public void testInsert() {
         assertEquals(list.size(), 3);
         list.add(1, "Insert");
