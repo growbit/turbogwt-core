@@ -86,6 +86,13 @@ public class JsArrayList<T> implements List<T> {
     @Override
     @SuppressWarnings("unchecked")
     public <E> E[] toArray(E[] a) {
+        if (a != null && a.length >= jsArray.length()) {
+            for (int i = 0; i < jsArray.length(); i++) {
+                E e = (E) jsArray.get(i);
+                a[i] = e;
+            }
+            return a;
+        }
         return (E[]) jsArray.toArray();
     }
 
