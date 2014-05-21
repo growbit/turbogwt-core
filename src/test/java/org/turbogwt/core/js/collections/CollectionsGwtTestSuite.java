@@ -31,6 +31,8 @@ public class CollectionsGwtTestSuite {
         suite.addTestSuite(JsArrayTest.class);
         suite.addTestSuite(JsArrayListStringTest.class);
         suite.addTestSuite(JsArrayListObjectTest.class);
+        suite.addTestSuite(JsHashTableTest.class);
+        suite.addTestSuite(JsMapTest.class);
 
         return suite;
     }
