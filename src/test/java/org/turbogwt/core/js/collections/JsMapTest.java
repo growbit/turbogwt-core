@@ -19,8 +19,6 @@ package org.turbogwt.core.js.collections;
 import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.junit.client.GWTTestCase;
 
-import org.turbogwt.core.js.Native;
-
 /**
  * @author Danilo Reinert
  */
@@ -50,9 +48,16 @@ public class JsMapTest extends GWTTestCase {
     public void testReplace() {
         assertEquals(map.size(), 3);
         map.set("1", 20);
-        Native.log(map);
         assertEquals(map.size(), 3);
         assertEquals(map.get("1"), new Integer(20));
+    }
+
+    public void testClear() {
+        assertEquals(map.size(), 3);
+        map.clear();
+        assertEquals(map.size(), 0);
+        JsArrayString keys = map.keys();
+        assertEquals(keys.length(), 0);
     }
 
     public void testRemove() {
@@ -71,11 +76,12 @@ public class JsMapTest extends GWTTestCase {
         assertEquals(keys.get(2), "2");
     }
 
-    public void testClear() {
+    public void testValues() {
         assertEquals(map.size(), 3);
-        map.clear();
-        assertEquals(map.size(), 0);
-        JsArrayString keys = map.keys();
-        assertEquals(keys.length(), 0);
+        JsArray<Integer> values = map.values();
+        assertEquals(values.length(), 3);
+        assertEquals(values.get(0), new Integer(0));
+        assertEquals(values.get(1), new Integer(1));
+        assertEquals(values.get(2), new Integer(2));
     }
 }

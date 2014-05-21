@@ -33,7 +33,7 @@ public class JsMap<T> extends JavaScriptObject {
     protected JsMap() {
     }
 
-    public native static <T> JsMap<T> create() /*-{
+    public static native <T> JsMap<T> create() /*-{
         var o = {};
         Object.defineProperties(o, {__size__: {enumerable: false, writable: true, value: 0}});
         return o;
@@ -55,11 +55,12 @@ public class JsMap<T> extends JavaScriptObject {
 
     public final native void set(String key, T value) /*-{
         if (!this[key]) {
-            if (this.__size__) {
-                ++this.__size__;
-            } else {
-                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: 1}});
+            // Check if size hidden variable was initialized
+            if (!this.__size__) {
+                var size = Object.keys(this).length;
+                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: size}});
             }
+            ++this.__size__;
         }
         this[key] = value;
     }-*/;
@@ -70,20 +71,32 @@ public class JsMap<T> extends JavaScriptObject {
 
     public final native void remove(String key) /*-{
         if (this[key]) {
-            if (this.__size__) {
-                --this.__size__;
-            } else {
-                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: 0}});
+            // Check if size hidden variable was initialized
+            if (!this.__size__) {
+                var size = Object.keys(this).length;
+                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: size}});
             }
+            --this.__size__;
         }
         delete this[key];
     }-*/;
 
     public final native int size() /*-{
+        // Check if size hidden variable was initialized
+        if (!this.__size__) {
+            var size = Object.keys(this).length;
+            Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: size}});
+        }
         return this.__size__;
     }-*/;
 
     public final native JsArrayString keys() /*-{
         return Object.keys(this);
+    }-*/;
+
+    public final native JsArray<T> values() /*-{
+        var values = [];
+        for (var key in this) values.push(this[key]);
+        return values;
     }-*/;
 }
