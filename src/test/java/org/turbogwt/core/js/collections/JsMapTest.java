@@ -16,14 +16,17 @@
 
 package org.turbogwt.core.js.collections;
 
+import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.junit.client.GWTTestCase;
+
+import org.turbogwt.core.js.Native;
 
 /**
  * @author Danilo Reinert
  */
 public class JsMapTest extends GWTTestCase {
 
-    private JsMap<Integer> list;
+    private JsMap<Integer> map;
 
     @Override
     public String getModuleName() {
@@ -31,30 +34,48 @@ public class JsMapTest extends GWTTestCase {
     }
 
     public void gwtSetUp() {
-        list = JsMap.create();
+        map = JsMap.create();
         for (int i = 0; i < 3; i++) {
-            list.set("" + i, i);
+            map.set("" + i, i);
         }
     }
 
     public void testInsert() {
-        assertEquals(list.size(), 3);
-        list.set("4", 4);
-        assertEquals(list.size(), 4);
-        assertEquals(list.get("1"), new Integer(1));
+        assertEquals(map.size(), 3);
+        map.set("4", 4);
+        assertEquals(map.size(), 4);
+        assertEquals(map.get("1"), new Integer(1));
     }
 
     public void testReplace() {
-        assertEquals(list.size(), 3);
-        list.set("1", 20);
-        assertEquals(list.size(), 3);
-        assertEquals(list.get("1"), new Integer(20));
+        assertEquals(map.size(), 3);
+        map.set("1", 20);
+        Native.log(map);
+        assertEquals(map.size(), 3);
+        assertEquals(map.get("1"), new Integer(20));
     }
 
     public void testRemove() {
-        assertEquals(list.size(), 3);
-        list.remove("1");
-        list.remove("5"); // Should not affect size
-        assertEquals(list.size(), 2);
+        assertEquals(map.size(), 3);
+        map.remove("1");
+        map.remove("5"); // Should not affect size
+        assertEquals(map.size(), 2);
+    }
+
+    public void testKeys() {
+        assertEquals(map.size(), 3);
+        JsArrayString keys = map.keys();
+        assertEquals(keys.length(), 3);
+        assertEquals(keys.get(0), "0");
+        assertEquals(keys.get(1), "1");
+        assertEquals(keys.get(2), "2");
+    }
+
+    public void testClear() {
+        assertEquals(map.size(), 3);
+        map.clear();
+        assertEquals(map.size(), 0);
+        JsArrayString keys = map.keys();
+        assertEquals(keys.length(), 0);
     }
 }

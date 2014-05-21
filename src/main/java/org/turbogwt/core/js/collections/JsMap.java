@@ -18,12 +18,15 @@
 package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArrayString;
 
 /**
  * Map of String to Object implemented on a JavaScriptObject.
  *
  * @param <T> Type of mapped values
+ *
  * @author Thomas Broyer
+ * @author Danilo Reinert
  */
 public class JsMap<T> extends JavaScriptObject {
 
@@ -31,7 +34,15 @@ public class JsMap<T> extends JavaScriptObject {
     }
 
     public native static <T> JsMap<T> create() /*-{
-        return {$size: 0};
+        var o = {};
+        Object.defineProperties(o, {__size__: {enumerable: false, writable: true, value: 0}});
+        return o;
+    }-*/;
+
+    public final native void clear() /*-{
+        // Although not fast, it's safer than creating new objects
+        for (var key in this) delete this[key];
+        Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: 0}});
     }-*/;
 
     public final native T get(String key) /*-{
@@ -43,7 +54,13 @@ public class JsMap<T> extends JavaScriptObject {
     }-*/;
 
     public final native void set(String key, T value) /*-{
-        if (!this[key]) this.$size += 1;
+        if (!this[key]) {
+            if (this.__size__) {
+                ++this.__size__;
+            } else {
+                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: 1}});
+            }
+        }
         this[key] = value;
     }-*/;
 
@@ -52,11 +69,21 @@ public class JsMap<T> extends JavaScriptObject {
     }-*/;
 
     public final native void remove(String key) /*-{
-        if (this[key]) this.$size -= 1;
+        if (this[key]) {
+            if (this.__size__) {
+                --this.__size__;
+            } else {
+                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: 0}});
+            }
+        }
         delete this[key];
     }-*/;
 
     public final native int size() /*-{
-        return this.$size;
+        return this.__size__;
+    }-*/;
+
+    public final native JsArrayString keys() /*-{
+        return Object.keys(this);
     }-*/;
 }
