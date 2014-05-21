@@ -165,14 +165,7 @@ public class JsArrayList<T> implements List<T> {
         Iterator<T> it = iterator();
         while (it.hasNext()) {
             T t = it.next();
-            boolean retain = false;
-            for (Object o : c) {
-                if (t.equals(o)) {
-                    retain = true;
-                    break;
-                }
-            }
-            if (!retain) {
+            if (!c.contains(t)) {
                 it.remove();
                 changed = true;
             }
