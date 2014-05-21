@@ -6,30 +6,33 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-public class JsSafeSet<T> implements Set<T> {
+/**
+ * An implementation of Set underpinned by an array.
+ * <p/>
+ *
+ * This is not the fastest implementation of Set at all,
+ * but if you have an array and want to wrap in a set mainly for iteration purposes
+ * it is a good alternative.
+ *
+ * @param <T> Type of set values
+ */
+public class JsArraySet<T> implements Set<T> {
 
     private final JsArray<T> innerArray;
 
-    public JsSafeSet() {
+    public JsArraySet() {
         innerArray = JsArray.create();
     }
 
-    public JsSafeSet(Iterable<T> iterable) {
-        innerArray = JsArray.create();
-        for (T t : iterable) {
-            add(t);
-        }
-    }
-
-    public JsSafeSet(T[] array) {
+    public JsArraySet(T[] array) {
         innerArray = JsArray.fromArray(array);
     }
 
-    public <E extends JavaScriptObject> JsSafeSet(com.google.gwt.core.client.JsArray<E> jsArray) {
+    public <E extends JavaScriptObject> JsArraySet(com.google.gwt.core.client.JsArray<E> jsArray) {
         this.innerArray = JsArray.cast(jsArray);
     }
 
-    JsSafeSet(JavaScriptObject jsArray) {
+    JsArraySet(JavaScriptObject jsArray) {
         this.innerArray = JsArray.cast(jsArray);
     }
 
