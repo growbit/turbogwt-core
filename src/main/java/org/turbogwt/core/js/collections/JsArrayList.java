@@ -175,9 +175,9 @@ public class JsArrayList<T> implements List<T> {
     }
 
     @Override
-    public native void clear() /*-{
-        this.@org.turbogwt.core.js.collections.JsArrayList::jsArray.length = 0;
-    }-*/;
+    public void clear() {
+        jsArray.setLength(0);
+    }
 
     @Override
     public T get(int i) {
