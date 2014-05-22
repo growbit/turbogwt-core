@@ -3,6 +3,12 @@ package org.turbogwt.core.js.collections;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
 
+/**
+ * A hash table implemented on a javascript object.
+ * The object's properties are used to index the hash codes.
+ *
+ * @param <T> The type of the values
+ */
 public class JsHashTable<T> extends JavaScriptObject {
 
     protected JsHashTable() {
