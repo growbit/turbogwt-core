@@ -17,6 +17,10 @@
 package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArrayBoolean;
+import com.google.gwt.core.client.JsArrayInteger;
+import com.google.gwt.core.client.JsArrayNumber;
+import com.google.gwt.core.client.JsArrayString;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -43,6 +47,26 @@ public class JsArrayIterator<T> implements Iterator<T> {
     }
 
     public <E extends JavaScriptObject> JsArrayIterator(com.google.gwt.core.client.JsArray<E> array) {
+        this((JavaScriptObject) array);
+    }
+
+    public JsArrayIterator(JsArrayString array) {
+        this((JavaScriptObject) array);
+    }
+
+    public JsArrayIterator(JsArrayInteger array) {
+        this((JavaScriptObject) array);
+    }
+
+    public JsArrayIterator(JsArrayNumber array) {
+        this((JavaScriptObject) array);
+    }
+
+    public JsArrayIterator(JsArrayBoolean array) {
+        this((JavaScriptObject) array);
+    }
+
+    private JsArrayIterator(JavaScriptObject array) {
         this.array = JsArray.cast(array);
     }
 
