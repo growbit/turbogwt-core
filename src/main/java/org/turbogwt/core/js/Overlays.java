@@ -30,17 +30,53 @@ public final class Overlays {
     private Overlays() {
     }
 
-    public static native Boolean boxPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? @java.lang.Boolean::valueOf(Z)(jso[property]) : null;
+    public static native Integer boxPropertyAsInteger(JavaScriptObject jso, String property) /*-{
+        return jso[property] ? @java.lang.Integer::valueOf(I)(jso[property]) : null;
     }-*/;
 
     public static native Double boxPropertyAsDouble(JavaScriptObject jso, String property) /*-{
         return jso[property] ? @java.lang.Double::valueOf(D)(jso[property]) : null;
     }-*/;
 
-    public static native Integer boxPropertyAsInteger(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? @java.lang.Integer::valueOf(I)(jso[property]) : null;
+    public static native Long boxPropertyAsLong(JavaScriptObject jso, String property) /*-{
+        return jso[property] ? @java.lang.Long::valueOf(Ljava/lang/String;)(jso[property]+'') : null;
     }-*/;
+
+    public static native Boolean boxPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
+        return jso[property] ? @java.lang.Boolean::valueOf(Z)(jso[property]) : null;
+    }-*/;
+
+    public static void unboxValueToProperty(JavaScriptObject jso, String property, Integer value) {
+        if (value != null) {
+            setValueToProperty(jso, property, value.intValue());
+        } else {
+            setNullToProperty(jso, property);
+        }
+    }
+
+    public static void unboxValueToProperty(JavaScriptObject jso, String property, Double value) {
+        if (value != null) {
+            setValueToProperty(jso, property, value.doubleValue());
+        } else {
+            setNullToProperty(jso, property);
+        }
+    }
+
+    public static void unboxValueToProperty(JavaScriptObject jso, String property, Long value) {
+        if (value != null) {
+            setValueToProperty(jso, property, value.doubleValue());
+        } else {
+            setNullToProperty(jso, property);
+        }
+    }
+
+    public static void unboxValueToProperty(JavaScriptObject jso, String property, Boolean value) {
+        if (value != null) {
+            setValueToProperty(jso, property, value.booleanValue());
+        } else {
+            setNullToProperty(jso, property);
+        }
+    }
 
     @SuppressWarnings("unchecked")
     public static <T extends JavaScriptObject> T deepCopy(T obj) {
@@ -104,30 +140,6 @@ public final class Overlays {
     public static native String stringify(JavaScriptObject jso) /*-{
         return JSON.stringify(jso);
     }-*/;
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Double value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.doubleValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Integer value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.intValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Boolean value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.booleanValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
 
     private static native JavaScriptObject deepCopyNative(JavaScriptObject obj) /*-{
         if (obj == null) return obj;
