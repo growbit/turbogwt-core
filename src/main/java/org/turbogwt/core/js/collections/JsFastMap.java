@@ -33,7 +33,7 @@ import java.util.Set;
  *
  * @author Danilo Reinert
  */
-public class JsMapWrapper<T> implements Map<String, T> {
+public class JsFastMap<T> implements Map<String, T> {
 
     JsMap<T> innerMap = JsMap.create();
 
@@ -134,10 +134,10 @@ public class JsMapWrapper<T> implements Map<String, T> {
 
     private static class JsEntry<T> implements Entry<String, T> {
 
-        private final JsMapWrapper<T> map;
+        private final JsFastMap<T> map;
         private final String key;
 
-        private JsEntry(JsMapWrapper<T> map, String key) {
+        private JsEntry(JsFastMap<T> map, String key) {
             this.map = map;
             this.key = key;
         }
@@ -188,9 +188,9 @@ public class JsMapWrapper<T> implements Map<String, T> {
 
     private static class KeySet<T> extends JsArraySet<String> {
 
-        private final JsMapWrapper<T> map;
+        private final JsFastMap<T> map;
 
-        private KeySet(JsMapWrapper<T> map) {
+        private KeySet(JsFastMap<T> map) {
             super(map.innerMap.keys());
             this.map = map;
         }
@@ -219,9 +219,9 @@ public class JsMapWrapper<T> implements Map<String, T> {
 
     private static class ValueArray<T> extends JsArrayList<T> {
 
-        private final JsMapWrapper<T> map;
+        private final JsFastMap<T> map;
 
-        private ValueArray(JsMapWrapper<T> map) {
+        private ValueArray(JsFastMap<T> map) {
             super(map.innerMap.values());
             this.map = map;
         }
@@ -256,9 +256,9 @@ public class JsMapWrapper<T> implements Map<String, T> {
 
     private static class EntrySet<T> extends AbstractSet<Entry<String, T>> {
 
-        private final JsMapWrapper<T> map;
+        private final JsFastMap<T> map;
 
-        private EntrySet(JsMapWrapper<T> map) {
+        private EntrySet(JsFastMap<T> map) {
             this.map = map;
         }
 
