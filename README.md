@@ -59,11 +59,13 @@ With Overlays, you can avoid using JSNI for most common operations:
 ```
 
 ### Native Collections
-* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - List implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
-* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArrayIterator.html) - Iterator supporting JsArray.
-* [JsFastMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsFastMap.html) - Fast Map\<String, T\> implementation on a simple javascript object.
-* [JsFastSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsFastSet.html) - Fast Set implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
-* [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsHashSet.html) - Set implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsHashTable.html) (simple js object) using object properties to store the hash codes.
+In order to save memory usage, Turbo GWT Core provides common data structures implemented as lightweight as possible. They are also expected to be fast as js native properties are used when possible.
+
+* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
+* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArrayIterator.html) - **Iterator** supporting JsArray.
+* [JsFastMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsFastMap.html) - Fast **Map\<String, T\>** implementation on a simple javascript object.
+* [JsFastSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsFastSet.html) - Fast **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
+* [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then JsFastSet.
 
 ### Misc
 * [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/Registration.html) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
