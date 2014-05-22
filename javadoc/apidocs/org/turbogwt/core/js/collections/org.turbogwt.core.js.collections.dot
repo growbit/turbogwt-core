@@ -10,62 +10,86 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
+	// org.turbogwt.core.js.collections.JsMapString
+	c0 [label=<<table title="org.turbogwt.core.js.collections.JsMapString" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsMapString.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsMapString </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsMapString.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.js.collections.JsMapNumber
+	c1 [label=<<table title="org.turbogwt.core.js.collections.JsMapNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsMapNumber.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsMapNumber </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsMapNumber.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.js.collections.JsMapInteger
+	c2 [label=<<table title="org.turbogwt.core.js.collections.JsMapInteger" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsMapInteger.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsMapInteger </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsMapInteger.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.js.collections.JsMapBoolean
+	c3 [label=<<table title="org.turbogwt.core.js.collections.JsMapBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsMapBoolean.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JsMapBoolean </td></tr>
+		</table></td></tr>
+		</table>>, URL="./JsMapBoolean.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsMap<T>
-	c0 [label=<<table title="org.turbogwt.core.js.collections.JsMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsMap.html">
+	c4 [label=<<table title="org.turbogwt.core.js.collections.JsMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsMap.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsMap&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsMap.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsHashTable<T>
-	c1 [label=<<table title="org.turbogwt.core.js.collections.JsHashTable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsHashTable.html">
+	c5 [label=<<table title="org.turbogwt.core.js.collections.JsHashTable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsHashTable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsHashTable&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsHashTable.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsHashSet<T>
-	c2 [label=<<table title="org.turbogwt.core.js.collections.JsHashSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsHashSet.html">
+	c6 [label=<<table title="org.turbogwt.core.js.collections.JsHashSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsHashSet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsHashSet&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsHashSet.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsFastSet<T>
-	c3 [label=<<table title="org.turbogwt.core.js.collections.JsFastSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsFastSet.html">
+	c7 [label=<<table title="org.turbogwt.core.js.collections.JsFastSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsFastSet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsFastSet&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsFastSet.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsFastMap<T>
-	c4 [label=<<table title="org.turbogwt.core.js.collections.JsFastMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsFastMap.html">
+	c8 [label=<<table title="org.turbogwt.core.js.collections.JsFastMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsFastMap.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsFastMap&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsFastMap.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsArraySet<T>
-	c5 [label=<<table title="org.turbogwt.core.js.collections.JsArraySet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArraySet.html">
+	c9 [label=<<table title="org.turbogwt.core.js.collections.JsArraySet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArraySet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsArraySet&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsArraySet.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsArrays
-	c6 [label=<<table title="org.turbogwt.core.js.collections.JsArrays" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArrays.html">
+	c10 [label=<<table title="org.turbogwt.core.js.collections.JsArrays" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArrays.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsArrays </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsArrays.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsArrayList<T>
-	c7 [label=<<table title="org.turbogwt.core.js.collections.JsArrayList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArrayList.html">
+	c11 [label=<<table title="org.turbogwt.core.js.collections.JsArrayList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArrayList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsArrayList&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsArrayList.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsArrayIterator<T>
-	c8 [label=<<table title="org.turbogwt.core.js.collections.JsArrayIterator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArrayIterator.html">
+	c12 [label=<<table title="org.turbogwt.core.js.collections.JsArrayIterator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArrayIterator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsArrayIterator&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsArrayIterator.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.js.collections.JsArray<T>
-	c9 [label=<<table title="org.turbogwt.core.js.collections.JsArray" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArray.html">
+	c13 [label=<<table title="org.turbogwt.core.js.collections.JsArray" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsArray.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsArray&lt;T&gt; </td></tr>
 		</table></td></tr>

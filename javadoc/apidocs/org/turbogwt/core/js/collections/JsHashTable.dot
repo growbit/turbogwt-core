@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.js.collections.JsHashTable<T>
-	c264 [label=<<table title="org.turbogwt.core.js.collections.JsHashTable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsHashTable.html">
+	c320 [label=<<table title="org.turbogwt.core.js.collections.JsHashTable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsHashTable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsHashTable&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsHashTable.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.js.collections.JsHashTable<T> extends com.google.gwt.core.client.JavaScriptObject
-	c282:p -> c264:p [dir=back,arrowtail=empty];
+	c338:p -> c320:p [dir=back,arrowtail=empty];
 	// com.google.gwt.core.client.JavaScriptObject
-	c282 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
+	c338 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JavaScriptObject </td></tr>
 		</table></td></tr>

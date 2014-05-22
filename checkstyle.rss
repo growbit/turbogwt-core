@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2014</copyright>
     <item>
-      <title>File: 25,
+      <title>File: 29,
              Errors: 0,
-             Warnings: 2,
+             Warnings: 6,
              Infos: 0
       </title>
             <link>http://turbogwt.org/checkstyle.html</link>
@@ -172,6 +172,34 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapNumber.java">org/turbogwt/core/js/collections/JsMapNumber.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapString.java">org/turbogwt/core/js/collections/JsMapString.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.Native.java">org/turbogwt/core/js/Native.java</a>
                 </td>
                 <td>
@@ -242,6 +270,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapInteger.java">org/turbogwt/core/js/collections/JsMapInteger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayListStringTest.java">org/turbogwt/core/js/collections/JsArrayListStringTest.java</a>
                 </td>
                 <td>
@@ -249,6 +291,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapBoolean.java">org/turbogwt/core/js/collections/JsMapBoolean.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0

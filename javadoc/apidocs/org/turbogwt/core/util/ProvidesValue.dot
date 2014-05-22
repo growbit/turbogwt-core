@@ -11,47 +11,47 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.util.ProvidesValue<T, F>
-	c430 [label=<<table title="org.turbogwt.core.util.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesValue.html">
+	c614 [label=<<table title="org.turbogwt.core.util.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesValue.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesValue&lt;T, F&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesValue.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.ProvidesText<T>
-	c431 [label=<<table title="org.turbogwt.core.util.ProvidesText" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesText.html">
+	c615 [label=<<table title="org.turbogwt.core.util.ProvidesText" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesText.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesText&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesText.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.ProvidesNumber<T>
-	c432 [label=<<table title="org.turbogwt.core.util.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesNumber.html">
+	c616 [label=<<table title="org.turbogwt.core.util.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesNumber.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesNumber&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesNumber.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.ProvidesDate<T>
-	c433 [label=<<table title="org.turbogwt.core.util.ProvidesDate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesDate.html">
+	c617 [label=<<table title="org.turbogwt.core.util.ProvidesDate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesDate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesDate&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesDate.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.ProvidesBoolean<T>
-	c434 [label=<<table title="org.turbogwt.core.util.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesBoolean.html">
+	c618 [label=<<table title="org.turbogwt.core.util.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesBoolean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesBoolean&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesBoolean.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.util.ProvidesText<T> implements org.turbogwt.core.util.ProvidesValue<T, F>
-	c430:p -> c431:p [dir=back,arrowtail=empty,style=dashed];
+	c614:p -> c615:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.util.ProvidesNumber<T> implements org.turbogwt.core.util.ProvidesValue<T, F>
-	c430:p -> c432:p [dir=back,arrowtail=empty,style=dashed];
+	c614:p -> c616:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.util.ProvidesDate<T> implements org.turbogwt.core.util.ProvidesValue<T, F>
-	c430:p -> c433:p [dir=back,arrowtail=empty,style=dashed];
+	c614:p -> c617:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.util.ProvidesBoolean<T> implements org.turbogwt.core.util.ProvidesValue<T, F>
-	c430:p -> c434:p [dir=back,arrowtail=empty,style=dashed];
+	c614:p -> c618:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.js.collections.JsArrayIterator<T>
-	c129 [label=<<table title="org.turbogwt.core.js.collections.JsArrayIterator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsArrayIterator.html">
+	c157 [label=<<table title="org.turbogwt.core.js.collections.JsArrayIterator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsArrayIterator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsArrayIterator&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsArrayIterator.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.js.collections.JsArrayIterator<T> implements java.util.Iterator<E>
-	c140:p -> c129:p [dir=back,arrowtail=empty,style=dashed];
+	c168:p -> c157:p [dir=back,arrowtail=empty,style=dashed];
 	// java.util.Iterator<E>
-	c140 [label=<<table title="java.util.Iterator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/util/Iterator.html">
+	c168 [label=<<table title="java.util.Iterator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/util/Iterator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Iterator&lt;E&gt; </td></tr>
