@@ -18,6 +18,7 @@ package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+import java.util.AbstractList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -29,9 +30,10 @@ import java.util.NoSuchElementException;
  * An implementation of {@link java.util.List} wrapping a {@link org.turbogwt.core.js.collections.JsArray}.
  *
  * @param <T> Type of list values
+ *
  * @author Danilo Reinert
  */
-public class JsArrayList<T> implements List<T> {
+public class JsArrayList<T> extends AbstractList<T> {
 
     private final JsArray<T> jsArray;
 
@@ -61,11 +63,6 @@ public class JsArrayList<T> implements List<T> {
     @Override
     public int size() {
         return jsArray.length();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return jsArray.length() == 0;
     }
 
     @Override
@@ -105,11 +102,7 @@ public class JsArrayList<T> implements List<T> {
     @Override
     public native boolean remove(Object o) /*-{
         var a = this.@org.turbogwt.core.js.collections.JsArrayList::jsArray;
-        var i = a.indexOf(o);
-        if (i == -1)
-            return false;
-        a.splice(i, 1);
-        return true;
+        return a.splice(a.indexOf(o), 1).length > 0;
     }-*/;
 
     @Override
@@ -161,7 +154,6 @@ public class JsArrayList<T> implements List<T> {
     @Override
     public boolean retainAll(Collection<?> c) {
         boolean changed = false;
-
         Iterator<T> it = iterator();
         while (it.hasNext()) {
             T t = it.next();
@@ -170,7 +162,6 @@ public class JsArrayList<T> implements List<T> {
                 changed = true;
             }
         }
-
         return changed;
     }
 
@@ -186,26 +177,26 @@ public class JsArrayList<T> implements List<T> {
 
     @Override
     public T set(int i, T t) {
-        if (i < -1 || i > jsArray.length()) {
+        if (i < -1 || i > jsArray.length())
             throw new IndexOutOfBoundsException("Index: " + i);
-        }
+
         jsArray.set(i, t);
         return t;
     }
 
     @Override
     public void add(int i, T t) {
-        if (i < -1 || i > jsArray.length()) {
+        if (i < -1 || i > jsArray.length())
             throw new IndexOutOfBoundsException("Index: " + i);
-        }
+
         jsArray.splice(i, t);
     }
 
     @Override
     public T remove(int i) {
-        if (i < 0 || i >= jsArray.length()) {
+        if (i < 0 || i >= jsArray.length())
             throw new IndexOutOfBoundsException(String.valueOf(i));
-        }
+
         T toReturn = jsArray.get(i);
         jsArray.splice(i, 1);
         return toReturn;
