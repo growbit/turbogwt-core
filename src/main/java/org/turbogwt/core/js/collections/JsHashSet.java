@@ -2,11 +2,10 @@ package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JsArrayString;
 
-import java.util.Collection;
+import java.util.AbstractSet;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 /**
  * An implementation of Set based on {@link JsHashTable}.
@@ -17,7 +16,7 @@ import java.util.Set;
  *
  * @param <T> Type of set values
  */
-public class JsHashSet<T> implements Set<T> {
+public class JsHashSet<T> extends AbstractSet<T> {
 
     private final JsHashTable<T> hashTable = JsHashTable.create();
     private int size;
@@ -34,11 +33,6 @@ public class JsHashSet<T> implements Set<T> {
     @Override
     public int size() {
         return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     @Override
@@ -76,7 +70,9 @@ public class JsHashSet<T> implements Set<T> {
     public boolean add(T t) {
         checkNotNull(t);
 
-        if (contains(t)) return false;
+        if (contains(t)) {
+            return false;
+        }
 
         ++size;
         hashTable.put(t);
@@ -89,46 +85,6 @@ public class JsHashSet<T> implements Set<T> {
         checkNotNull(o);
         --size;
         return hashTable.remove((T) o);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> objects) {
-        for (Object object : objects) {
-            if (!contains(object)) return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> ts) {
-        boolean hasChanged = false;
-        for (T t : ts) {
-            if (add(t)) hasChanged = true;
-        }
-        return hasChanged;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> objects) {
-        boolean hasChanged = false;
-
-        for (T t : this) {
-            if (!objects.contains(t)) {
-                remove(t);
-                hasChanged = true;
-            }
-        }
-
-        return hasChanged;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> objects) {
-        boolean hasChanged = false;
-        for (Object o : objects) {
-            if (remove(o)) hasChanged = true;
-        }
-        return hasChanged;
     }
 
     @Override

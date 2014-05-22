@@ -2,23 +2,23 @@ package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JsArrayString;
 
-import java.util.Collection;
+import java.util.AbstractSet;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 /**
  * A fast implementation of Set indexed with {@link Object#toString()}.
  * <p/>
  *
- * This class indexes the objects by resorting to their toString method.<br>
- * In order to use it, T should implement toString, so t.toString().equals(otherT.toString())
- * is equivalent to t.equals(otherT).
+ * This class indexes the objects by resorting to their toString method.
+ * <br>
+ * In order to use it, T should implement toString,
+ * so t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
  *
  * @param <T> Type of set values
  */
-public class JsFastSet<T> implements Set<T> {
+public class JsFastSet<T> extends AbstractSet<T> {
 
     private final JsMap<T> innerMap = JsMap.create();
 
@@ -37,24 +37,8 @@ public class JsFastSet<T> implements Set<T> {
     }
 
     @Override
-    public boolean isEmpty() {
-        return innerMap.size() == 0;
-    }
-
-    @Override
     public boolean contains(Object o) {
-        /*
-        JsArrayString keys = innerMap.keys();
-        for (int i = 0; i < keys.length(); i++) {
-            String key = keys.get(i);
-            T t = innerMap.get(key);
-            if (t.equals(o)) return true;
-        }
-        return false;
-        */
-
         checkNotNull(o);
-
         return innerMap.get(o.toString()) != null;
     }
 
@@ -86,8 +70,9 @@ public class JsFastSet<T> implements Set<T> {
     public boolean add(T t) {
         checkNotNull(t);
 
-        if (contains(t))
+        if (contains(t)) {
             return false;
+        }
 
         innerMap.set(t.toString(), t);
         return true;
@@ -106,55 +91,14 @@ public class JsFastSet<T> implements Set<T> {
     }
 
     @Override
-    public boolean containsAll(Collection<?> objects) {
-        for (Object object : objects) {
-            if (!contains(object)) return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> ts) {
-        boolean hasChanged = false;
-        for (T t : ts) {
-            if (add(t))
-                hasChanged = true;
-        }
-        return hasChanged;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> objects) {
-        boolean hasChanged = false;
-
-        for (T t : this) {
-            if (!objects.contains(t)) {
-                remove(t);
-                hasChanged = true;
-            }
-        }
-
-        return hasChanged;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> objects) {
-        boolean hasChanged = false;
-        for (Object o : objects) {
-            if (remove(o)) {
-                hasChanged = true;
-            }
-        }
-        return hasChanged;
-    }
-
-    @Override
     public void clear() {
         innerMap.clear();
     }
 
     private void checkNotNull(Object o) {
-        if (o == null) throw new NullPointerException("This Set does not support null values");
+        if (o == null) {
+            throw new NullPointerException("This Set does not support null values");
+        }
     }
 
     private class Itr implements Iterator<T> {
