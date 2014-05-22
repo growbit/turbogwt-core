@@ -52,8 +52,8 @@ public final class Overlays {
     }
 
     public static native JsArrayString getPropertyNames(JavaScriptObject jso, boolean sorted) /*-{
-        if (sorted) return Object.getOwnPropertyNames(jso).sort();
-        return Object.getOwnPropertyNames(jso);
+        if (sorted) return Object.keys(jso).sort();
+        return Object.keys(jso);
     }-*/;
 
     public static native boolean getPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
