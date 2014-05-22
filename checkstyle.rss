@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2014</copyright>
     <item>
-      <title>File: 22,
+      <title>File: 25,
              Errors: 0,
-             Warnings: 6,
+             Warnings: 2,
              Infos: 0
       </title>
             <link>http://turbogwt.org/checkstyle.html</link>
@@ -60,7 +60,189 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapTest.java">org/turbogwt/core/js/collections/JsMapTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsHashSet.java">org/turbogwt/core/js/collections/JsHashSet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayListObjectTest.java">org/turbogwt/core/js/collections/JsArrayListObjectTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsHashTableTest.java">org/turbogwt/core/js/collections/JsHashTableTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsFastMap.java">org/turbogwt/core/js/collections/JsFastMap.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.ProvidesValue.java">org/turbogwt/core/util/ProvidesValue.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayTest.java">org/turbogwt/core/js/collections/JsArrayTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.Factory.java">org/turbogwt/core/util/Factory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.Native.java">org/turbogwt/core/js/Native.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.ProvidesNumber.java">org/turbogwt/core/util/ProvidesNumber.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArray.java">org/turbogwt/core/js/collections/JsArray.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsHashTable.java">org/turbogwt/core/js/collections/JsHashTable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayIterator.java">org/turbogwt/core/js/collections/JsArrayIterator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayListStringTest.java">org/turbogwt/core/js/collections/JsArrayListStringTest.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +284,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.ProvidesValue.java">org/turbogwt/core/util/ProvidesValue.java</a>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArraySet.java">org/turbogwt/core/js/collections/JsArraySet.java</a>
                 </td>
                 <td>
                   0
@@ -130,20 +312,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayTest.java">org/turbogwt/core/js/collections/JsArrayTest.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMap.java">org/turbogwt/core/js/collections/JsMap.java</a>
                 </td>
                 <td>
@@ -151,76 +319,6 @@ under the License.
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.Factory.java">org/turbogwt/core/util/Factory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapNumber.java">org/turbogwt/core/js/collections/JsMapNumber.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapString.java">org/turbogwt/core/js/collections/JsMapString.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.Native.java">org/turbogwt/core/js/Native.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.ProvidesNumber.java">org/turbogwt/core/util/ProvidesNumber.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -242,49 +340,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArray.java">org/turbogwt/core/js/collections/JsArray.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.util.ProvidesBoolean.java">org/turbogwt/core/util/ProvidesBoolean.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayIterator.java">org/turbogwt/core/js/collections/JsArrayIterator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.CollectionsGwtTestSuite.java">org/turbogwt/core/js/collections/CollectionsGwtTestSuite.java</a>
                 </td>
                 <td>
                   0
@@ -312,21 +368,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapInteger.java">org/turbogwt/core/js/collections/JsMapInteger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsArrayListStringTest.java">org/turbogwt/core/js/collections/JsArrayListStringTest.java</a>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.CollectionsGwtTestSuite.java">org/turbogwt/core/js/collections/CollectionsGwtTestSuite.java</a>
                 </td>
                 <td>
                   0
@@ -340,13 +382,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsMapBoolean.java">org/turbogwt/core/js/collections/JsMapBoolean.java</a>
+                  <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.js.collections.JsFastSet.java">org/turbogwt/core/js/collections/JsFastSet.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0

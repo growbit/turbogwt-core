@@ -11,7 +11,7 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.js.Overlays
-	c292 [label=<<table title="org.turbogwt.core.js.Overlays" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Overlays.html">
+	c332 [label=<<table title="org.turbogwt.core.js.Overlays" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Overlays.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Overlays </td></tr>
 		</table></td></tr>
