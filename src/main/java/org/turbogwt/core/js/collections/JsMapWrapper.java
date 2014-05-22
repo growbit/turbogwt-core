@@ -19,8 +19,12 @@ package org.turbogwt.core.js.collections;
 
 import com.google.gwt.core.client.JsArrayString;
 
+import java.util.AbstractSet;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
@@ -32,7 +36,6 @@ import java.util.Set;
  */
 public class JsMapWrapper<T> implements Map<String, T> {
 
-    // TODO: IMPLEMENT UNIT TESTS
     JsMap<T> innerMap = JsMap.create();
 
     @Override
@@ -113,20 +116,17 @@ public class JsMapWrapper<T> implements Map<String, T> {
 
     @Override
     public Set<String> keySet() {
-        // TODO: implement a new set extending this one, reflecting all operations to the map
-        return new JsSafeSet<>(innerMap.keys());
+        return new KeySet<>(this);
     }
 
     @Override
     public Collection<T> values() {
-        // TODO: implement a new collection extending this one, reflecting all operations to the map
-        return new JsArrayList<>(innerMap.values());
+        return new ValueArray<>(this);
     }
 
     @Override
     public Set<Entry<String, T>> entrySet() {
-        // TODO: implement a new set extending this one, reflecting all operations to the map
-        return null;
+        return new EntrySet<>(this);
     }
 
     private void checkNotNull(Object o) {
@@ -156,6 +156,188 @@ public class JsMapWrapper<T> implements Map<String, T> {
         @Override
         public T setValue(T t) {
             return map.put(key, t);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Entry)) {
+                return false;
+            }
+
+            final Entry<String, T> entry = (Entry<String, T>) o;
+
+            if (!key.equals(entry.getKey())) {
+                return false;
+            }
+            if (!getValue().equals(entry.getValue())) {
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = getValue().hashCode();
+            result = 31 * result + key.hashCode();
+            return result;
+        }
+    }
+
+    private static class KeySet<T> extends JsArraySet<String> {
+
+        private final JsMapWrapper<T> map;
+
+        private KeySet(JsMapWrapper<T> map) {
+            super(map.innerMap.keys());
+            this.map = map;
+        }
+
+        @Override
+        public void clear() {
+            super.clear();
+            map.clear();
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            return super.remove(o) && map.remove(o) != null;
+        }
+
+        @Override
+        public boolean add(String s) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends String> strings) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    private static class ValueArray<T> extends JsArrayList<T> {
+
+        private final JsMapWrapper<T> map;
+
+        private ValueArray(JsMapWrapper<T> map) {
+            super(map.innerMap.values());
+            this.map = map;
+        }
+
+        @Override
+        public void clear() {
+            super.clear();
+            map.clear();
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public boolean remove(Object o) {
+            return super.remove(o) && map.remove(map.innerMap.keyOf((T) o)) != null;
+        }
+
+        @Override
+        public boolean add(T t) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends T> c) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean addAll(int i, Collection<? extends T> c) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    private static class EntrySet<T> extends AbstractSet<Entry<String, T>> {
+
+        private final JsMapWrapper<T> map;
+
+        private EntrySet(JsMapWrapper<T> map) {
+            this.map = map;
+        }
+
+        @Override
+        public void clear() {
+            map.clear();
+        }
+
+        @Override
+        public int size() {
+            return map.size();
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return map.isEmpty();
+        }
+
+        @Override
+        public boolean contains(Object o) {
+            Entry<String, T> entry = (Entry<String, T>) o;
+            return map.containsKey(entry.getKey());
+        }
+
+        @Override
+        public Iterator<Entry<String, T>> iterator() {
+            return new Itr();
+        }
+
+        @Override
+        public boolean add(Entry<String, T> tJsEntry) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            Entry<String, T> entry = (Entry<String, T>) o;
+            return map.remove(entry.getKey()) != null;
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends Entry<String, T>> entries) {
+            throw new UnsupportedOperationException();
+        }
+
+        private class Itr implements Iterator<Entry<String, T>> {
+
+            private JsArrayString keys = map.innerMap.keys();
+            private int cursor;       // index of next element to return
+            private int lastRet = -1; // index of last element returned; -1 if no such
+
+            public boolean hasNext() {
+                return cursor != keys.length();
+            }
+
+            @Override
+            public Entry<String, T> next() {
+                int i = cursor;
+                if (i >= keys.length()) {
+                    throw new NoSuchElementException();
+                }
+                cursor = i + 1;
+                return new JsEntry<>(map, keys.get(lastRet = i));
+            }
+
+            @Override
+            public void remove() {
+                if (lastRet < 0) {
+                    throw new IllegalStateException();
+                }
+                try {
+                    map.remove(keys.get(lastRet));
+                    cursor = lastRet;
+                    lastRet = -1;
+                } catch (IndexOutOfBoundsException ex) {
+                    throw new ConcurrentModificationException();
+                }
+            }
         }
     }
 }

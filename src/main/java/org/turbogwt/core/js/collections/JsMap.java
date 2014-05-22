@@ -90,6 +90,16 @@ public class JsMap<T> extends JavaScriptObject {
         return this.__size__;
     }-*/;
 
+    public final String keyOf(T t) {
+        // TODO: improve by implementing in JSNI directly
+        JsArrayString keys = keys();
+        for (int i = 0; i < keys.length(); i++) {
+            String key = keys.get(i);
+            if (get(key).equals(t)) return key;
+        }
+        return null;
+    }
+
     public final native JsArrayString keys() /*-{
         return Object.keys(this);
     }-*/;
