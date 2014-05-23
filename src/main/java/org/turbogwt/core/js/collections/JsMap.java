@@ -35,14 +35,14 @@ public class JsMap<T> extends JavaScriptObject {
 
     public static native <T> JsMap<T> create() /*-{
         var o = {};
-        Object.defineProperties(o, {__size__: {enumerable: false, writable: true, value: 0}});
+        Object.defineProperties(o, {__props__: {enumerable: false, writable: true, value: []}});
         return o;
     }-*/;
 
     public final native void clear() /*-{
         // Although not fast, it's safer than creating new objects
         for (var key in this) delete this[key];
-        Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: 0}});
+        Object.defineProperties(this, {__props__: {enumerable: false, writable: true, value: []}});
     }-*/;
 
     public final native T get(String key) /*-{
@@ -53,60 +53,64 @@ public class JsMap<T> extends JavaScriptObject {
         return this[key] || defaultValue;
     }-*/;
 
-    public final native void set(String key, T value) /*-{
-        if (!this[key]) {
-            // Check if size hidden variable was initialized
-            if (!this.__size__) {
-                var size = Object.keys(this).length;
-                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: size}});
-            }
-            ++this.__size__;
-        }
-        this[key] = value;
-    }-*/;
+    public final void set(String key, T value) {
+        checkNotNull(key);
+        checkNotNull(value);
+        set0(key, value);
+    }
 
     public final native boolean contains(String key) /*-{
         return (key in this);
     }-*/;
 
     public final native void remove(String key) /*-{
-        if (this[key]) {
-            // Check if size hidden variable was initialized
-            if (!this.__size__) {
-                var size = Object.keys(this).length;
-                Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: size}});
-            }
-            --this.__size__;
+        if (!this.__props__)
+            Object.defineProperties(this, {__props__: {enumerable: false, writable: true, value: Object.keys(this)}});
+        var i = this.__props__.indexOf(key);
+        if (~i) {
+            this.__props__.splice(i, 1);
+            delete this[key];
         }
-        delete this[key];
     }-*/;
 
     public final native int size() /*-{
-        // Check if size hidden variable was initialized
-        if (!this.__size__) {
-            var size = Object.keys(this).length;
-            Object.defineProperties(this, {__size__: {enumerable: false, writable: true, value: size}});
-        }
-        return this.__size__;
+        if (!this.__props__)
+            Object.defineProperties(this, {__props__: {enumerable: false, writable: true, value: Object.keys(this)}});
+        return this.__props__.length;
     }-*/;
 
     public final String keyOf(T t) {
-        // TODO: improve by implementing in JSNI directly
-        JsArrayString keys = keys();
-        for (int i = 0; i < keys.length(); i++) {
-            String key = keys.get(i);
-            if (get(key).equals(t)) return key;
-        }
-        return null;
+        checkNotNull(t);
+        return keyOf0(t);
     }
 
     public final native JsArrayString keys() /*-{
-        return Object.keys(this);
+        return this.__props__;
     }-*/;
 
     public final native JsArray<T> values() /*-{
         var values = [];
         for (var key in this) values.push(this[key]);
         return values;
+    }-*/;
+
+    private void checkNotNull(Object o) {
+        if (o == null) throw new NullPointerException("This map does not accept null keys or values.");
+    }
+
+    private native String keyOf0(T t) /*-{
+        for (var key in this)
+            if (t.@java.lang.Object::equals(Ljava/lang/Object;)(this[key])) return key;
+        return null;
+    }-*/;
+
+    private native void set0(String key, T value) /*-{
+        if (!this[key]) {
+            if (!this.__props__)
+                Object.defineProperties(this, {__props__: {enumerable: false, writable: true,
+                    value: Object.keys(this)}});
+            this.__props__.push(key);
+        }
+        this[key] = value;
     }-*/;
 }

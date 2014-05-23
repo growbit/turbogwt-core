@@ -84,4 +84,13 @@ public class JsMapTest extends GWTTestCase {
         assertEquals(values.get(1), new Integer(1));
         assertEquals(values.get(2), new Integer(2));
     }
+
+    public void testKeyOf() {
+        assertEquals(map.size(), 3);
+        assertNull(map.keyOf(-1));
+        assertEquals(map.keyOf(0), "0");
+        assertEquals(map.keyOf(1), "1");
+        assertEquals(map.keyOf(2), "2");
+        assertNull(map.keyOf(3));
+    }
 }
