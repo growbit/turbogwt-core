@@ -58,7 +58,7 @@ With Overlays, you can avoid using JSNI for most common operations:
     }
 ```
 
-### Native Collections
+### Lightweight Collections (Overlay Compliant)
 In order to save memory usage, Turbo GWT Core provides common data structures implemented as lightweight as possible. They are also expected to be fast as js native properties are used when possible.
 
 * [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
