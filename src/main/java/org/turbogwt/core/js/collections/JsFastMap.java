@@ -59,7 +59,6 @@ public class JsFastMap<T> implements Map<String, T> {
     @Override
     public boolean containsValue(Object o) {
         checkNotNull(o);
-        assert o instanceof String : "Key should be of type String";
 
         JsArrayString keys = innerMap.keys();
         for (int i = 0; i < keys.length(); i++) {
