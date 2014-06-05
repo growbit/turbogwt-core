@@ -36,14 +36,14 @@ import java.util.NoSuchElementException;
  *
  * @author Danilo Reinert
  */
-public class JsFastSet<T> extends AbstractSet<T> {
+public class LightSet<T> extends AbstractSet<T> {
 
     private final JsMap<T> innerMap = JsMap.create();
 
-    public JsFastSet() {
+    public LightSet() {
     }
 
-    public JsFastSet(Iterable<T> iterable) {
+    public LightSet(Iterable<T> iterable) {
         for (T t : iterable) {
             add(t);
         }

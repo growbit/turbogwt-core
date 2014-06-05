@@ -33,7 +33,7 @@ import java.util.Set;
  *
  * @author Danilo Reinert
  */
-public class JsFastMap<T> implements Map<String, T> {
+public class LightMap<T> implements Map<String, T> {
 
     JsMap<T> innerMap = JsMap.create();
 
@@ -133,10 +133,10 @@ public class JsFastMap<T> implements Map<String, T> {
 
     private static class JsEntry<T> implements Entry<String, T> {
 
-        private final JsFastMap<T> map;
+        private final LightMap<T> map;
         private final String key;
 
-        private JsEntry(JsFastMap<T> map, String key) {
+        private JsEntry(LightMap<T> map, String key) {
             this.map = map;
             this.key = key;
         }
@@ -187,9 +187,9 @@ public class JsFastMap<T> implements Map<String, T> {
 
     private static class KeySet<T> extends JsArraySet<String> {
 
-        private final JsFastMap<T> map;
+        private final LightMap<T> map;
 
-        private KeySet(JsFastMap<T> map) {
+        private KeySet(LightMap<T> map) {
             super(map.innerMap.keys());
             this.map = map;
         }
@@ -218,9 +218,9 @@ public class JsFastMap<T> implements Map<String, T> {
 
     private static class ValueArray<T> extends JsArrayList<T> {
 
-        private final JsFastMap<T> map;
+        private final LightMap<T> map;
 
-        private ValueArray(JsFastMap<T> map) {
+        private ValueArray(LightMap<T> map) {
             super(map.innerMap.values());
             this.map = map;
         }
@@ -255,9 +255,9 @@ public class JsFastMap<T> implements Map<String, T> {
 
     private static class EntrySet<T> extends AbstractSet<Entry<String, T>> {
 
-        private final JsFastMap<T> map;
+        private final LightMap<T> map;
 
-        private EntrySet(JsFastMap<T> map) {
+        private EntrySet(LightMap<T> map) {
             this.map = map;
         }
 
