@@ -7,7 +7,7 @@ Turbo GWT (*TurboG*) Core [![Build Status](https://travis-ci.org/growbit/turbogw
 ## Highlights
 
 ### Native Utilities
-* [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/Overlays.html) - Easy boxing and unboxing JS native values and more.
+* [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/client/Overlays.html) - Easy boxing and unboxing JS native values and more.
  
 With Overlays, you can avoid using JSNI for most common operations:
 ```java
@@ -61,15 +61,15 @@ With Overlays, you can avoid using JSNI for most common operations:
 ### Lightweight Collections (Overlay Compliant)
 In order to save memory usage, Turbo GWT Core provides common data structures implemented as lightweight as possible. They are also expected to be fast as js native properties are used when possible.
 
-* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/js/collections/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
-* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsArrayIterator.html) - **Iterator** supporting JsArray.
-* [JsFastMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsFastMap.html) - Fast **Map\<String, T\>** implementation on a simple javascript object.
-* [JsFastSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsFastSet.html) - Fast **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
-* [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/js/collections/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then JsFastSet.
+* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/collections/client/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
+* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsArrayIterator.html) - **Iterator** supporting JsArray.
+* [LighttMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightMap.html) - Lightweight **Map\<String, T\>** implementation on a simple javascript object.
+* [LightSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightSet.html) - Lightweight **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
+* [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then LightSet.
 
 ### Misc
-* [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/Registration.html) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
-* [ProvidesValue](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/ProvidesValue.html) - Analogous to the ProvidesKey, there is a generic ProvidesValue and pre-defined value providers for Boolean, Date, Number and Text.
+* [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/shared/Registration.html) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
+* [ProvidesValue](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/shared/ProvidesValue.html) - Analogous to the ProvidesKey, there is a generic ProvidesValue and pre-defined value providers for Boolean, Date, Number and Text.
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
