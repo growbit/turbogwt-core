@@ -24,6 +24,8 @@ import com.google.gwt.core.client.JsArrayString;
  * The object's properties are used to index the hash codes.
  *
  * @param <T> The type of the values
+ *
+ * @author Danilo Reinert
  */
 public class JsHashTable<T> extends JavaScriptObject {
 

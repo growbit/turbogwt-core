@@ -31,6 +31,8 @@ import java.util.NoSuchElementException;
  * In order to use it, the values must implement hashCode consistently.
  *
  * @param <T> Type of set values
+ *
+ * @author Danilo Reinert
  */
 public class JsHashSet<T> extends AbstractSet<T> {
 

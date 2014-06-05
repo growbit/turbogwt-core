@@ -30,6 +30,8 @@ import java.util.Iterator;
  * it is a good alternative.
  *
  * @param <T> Type of set values
+ *
+ * @author Danilo Reinert
  */
 public class JsArraySet<T> extends AbstractSet<T> {
 

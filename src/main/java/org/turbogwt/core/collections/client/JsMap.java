@@ -1,5 +1,4 @@
 /*
- * Copyright 2009 Thomas Broyer
  * Copyright 2014 Grow Bit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +24,6 @@ import com.google.gwt.core.client.JsArrayString;
  *
  * @param <T> Type of mapped values
  *
- * @author Thomas Broyer
  * @author Danilo Reinert
  */
 public class JsMap<T> extends JavaScriptObject {
@@ -49,11 +47,7 @@ public class JsMap<T> extends JavaScriptObject {
         return this[key];
     }-*/;
 
-    public final native T get(String key, T defaultValue) /*-{
-        return this[key] || defaultValue;
-    }-*/;
-
-    public final void set(String key, T value) {
+    public final void put(String key, T value) {
         checkNotNull(key);
         checkNotNull(value);
         set0(key, value);
@@ -99,8 +93,12 @@ public class JsMap<T> extends JavaScriptObject {
     }
 
     private native String keyOf0(T t) /*-{
-        for (var key in this)
-            if (t.@java.lang.Object::equals(Ljava/lang/Object;)(this[key])) return key;
+        for (var key in this) {
+            // CHECKSTYLE:OFF
+            if (@org.turbogwt.core.collections.client.JsMap::equalsBridge(Ljava/lang/Object;Ljava/lang/Object;)(t, this[key]))
+                return key;
+            // CHECKSTYLE:ON
+        }
         return null;
     }-*/;
 
@@ -113,4 +111,14 @@ public class JsMap<T> extends JavaScriptObject {
         }
         this[key] = value;
     }-*/;
+
+    /**
+     * Bridge method from JSNI that keeps us from having to make polymorphic calls
+     * in JSNI. By putting the polymorphism in Java code, the compiler can do a
+     * better job of optimizing in most cases. (Copied from GWT source)
+     */
+    @SuppressWarnings("unused")
+    private static boolean equalsBridge(Object o1, Object o2) {
+        return o1.equals(o2);
+    }
 }

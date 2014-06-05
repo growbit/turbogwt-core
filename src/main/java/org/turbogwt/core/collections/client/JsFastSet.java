@@ -33,6 +33,8 @@ import java.util.NoSuchElementException;
  * so t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
  *
  * @param <T> Type of set values
+ *
+ * @author Danilo Reinert
  */
 public class JsFastSet<T> extends AbstractSet<T> {
 
@@ -90,7 +92,7 @@ public class JsFastSet<T> extends AbstractSet<T> {
             return false;
         }
 
-        innerMap.set(t.toString(), t);
+        innerMap.put(t.toString(), t);
         return true;
     }
 

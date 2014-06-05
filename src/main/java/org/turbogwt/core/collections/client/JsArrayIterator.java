@@ -30,6 +30,7 @@ import java.util.NoSuchElementException;
  * Iterator implemented under {@link JsArray}.
  *
  * @param <T> Type of iterators values
+ *
  * @author Danilo Reinert
  */
 public class JsArrayIterator<T> implements Iterator<T> {

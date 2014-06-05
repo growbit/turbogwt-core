@@ -34,20 +34,20 @@ public class JsMapTest extends GWTTestCase {
     public void gwtSetUp() {
         map = JsMap.create();
         for (int i = 0; i < 3; i++) {
-            map.set("" + i, i);
+            map.put("" + i, i);
         }
     }
 
     public void testInsert() {
         assertEquals(map.size(), 3);
-        map.set("4", 4);
+        map.put("4", 4);
         assertEquals(map.size(), 4);
         assertEquals(map.get("1"), new Integer(1));
     }
 
     public void testReplace() {
         assertEquals(map.size(), 3);
-        map.set("1", 20);
+        map.put("1", 20);
         assertEquals(map.size(), 3);
         assertEquals(map.get("1"), new Integer(20));
     }

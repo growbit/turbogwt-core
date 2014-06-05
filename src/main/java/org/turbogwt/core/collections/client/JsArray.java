@@ -23,6 +23,7 @@ import com.google.gwt.core.client.JavaScriptObject;
  * A more featured extension of {@link com.google.gwt.core.client.JsArray}.
  *
  * @param <T> Type of list values
+ *
  * @author Danilo Reinert
  */
 public class JsArray<T> extends JavaScriptObject {

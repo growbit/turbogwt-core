@@ -84,7 +84,7 @@ public class JsFastMap<T> implements Map<String, T> {
         checkNotNull(t);
 
         T old = innerMap.get(s);
-        innerMap.set(s, t);
+        innerMap.put(s, t);
         return old;
     }
 
