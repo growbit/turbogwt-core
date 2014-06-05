@@ -63,7 +63,7 @@ In order to save memory usage, Turbo GWT Core provides common data structures im
 
 * [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/collections/client/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
 * [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsArrayIterator.html) - **Iterator** supporting JsArray.
-* [LighttMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightMap.html) - Lightweight **Map\<String, T\>** implementation on a simple javascript object.
+* [LightMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightMap.html) - Lightweight **Map\<String, T\>** implementation on a simple javascript object.
 * [LightSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightSet.html) - Lightweight **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
 * [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then LightSet.
 
