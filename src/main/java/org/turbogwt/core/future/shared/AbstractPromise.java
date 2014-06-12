@@ -40,6 +40,7 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
 
     protected final List<DoneCallback<D>> doneCallbacks = new ArrayList<DoneCallback<D>>();
     protected final List<FailCallback<F>> failCallbacks = new ArrayList<FailCallback<F>>();
+    protected final List<ProgressCallback<P>> progressCallbacks = new ArrayList<ProgressCallback<P>>();
     protected final List<AlwaysCallback<D, F>> alwaysCallbacks = new ArrayList<AlwaysCallback<D, F>>();
 
     protected D resolveResult;
@@ -105,6 +106,20 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
         callback.onFail(rejected);
     }
 
+    protected void triggerProgress(P progress) {
+        for (ProgressCallback<P> callback : progressCallbacks) {
+            try {
+                triggerProgress(callback, progress);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "an uncaught exception occured in a ProgressCallback", e);
+            }
+        }
+    }
+
+    protected void triggerProgress(ProgressCallback<P> callback, P progress) {
+        callback.onProgress(progress);
+    }
+
     protected void triggerAlways(State state, D resolve, F reject) {
         for (AlwaysCallback<D, F> callback : alwaysCallbacks) {
             try {
@@ -121,6 +136,12 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
 
     protected void triggerAlways(AlwaysCallback<D, F> callback, State state, D resolve, F reject) {
         callback.onAlways(state, resolve, reject);
+    }
+
+    @Override
+    public Promise<D, F, P> progress(ProgressCallback<P> callback) {
+        progressCallbacks.add(callback);
+        return this;
     }
 
     @Override

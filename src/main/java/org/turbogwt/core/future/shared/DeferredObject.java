@@ -54,10 +54,10 @@ package org.turbogwt.core.future.shared;
  *
  * @author Ray Tsang
  */
-public class DeferredObject<D, F> extends AbstractPromise<D, F> implements Deferred<D, F> {
+public class DeferredObject<D, F, P> extends AbstractPromise<D, F, P> implements Deferred<D, F, P> {
 
     @Override
-    public Deferred<D, F> resolve(final D resolve) {
+    public Deferred<D, F, P> resolve(final D resolve) {
         synchronized (this) {
             if (!isPending())
                 throw new IllegalStateException("Deferred object already finished, cannot resolve again");
@@ -75,7 +75,18 @@ public class DeferredObject<D, F> extends AbstractPromise<D, F> implements Defer
     }
 
     @Override
-    public Deferred<D, F> reject(final F reject) {
+    public Deferred<D, F, P> notify(final P progress) {
+        synchronized (this) {
+            if (!isPending())
+                throw new IllegalStateException("Deferred object already finished, cannot notify progress");
+
+            triggerProgress(progress);
+        }
+        return this;
+    }
+
+    @Override
+    public Deferred<D, F, P> reject(final F reject) {
         synchronized (this) {
             if (!isPending())
                 throw new IllegalStateException("Deferred object already finished, cannot reject again");
@@ -91,7 +102,7 @@ public class DeferredObject<D, F> extends AbstractPromise<D, F> implements Defer
         return this;
     }
 
-    public Promise<D, F> promise() {
+    public Promise<D, F, P> promise() {
         return this;
     }
 }
