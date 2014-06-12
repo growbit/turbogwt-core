@@ -15,16 +15,19 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.future.shared;
+package org.turbogwt.core.future.shared.impl;
+
+import org.turbogwt.core.future.shared.Deferred;
+import org.turbogwt.core.future.shared.Promise;
 
 /**
- * An implementation of {@link Deferred} interface.
+ * An implementation of {@link org.turbogwt.core.future.shared.Deferred} interface.
  *
  * <pre>
  * <code>
- * final {@link Deferred} deferredObject = new {@link DeferredObject}
+ * final {@link org.turbogwt.core.future.shared.Deferred} deferredObject = new {@link DeferredObject}
  *
- * {@link Promise} promise = deferredObject.promise();
+ * {@link org.turbogwt.core.future.shared.Promise} promise = deferredObject.promise();
  * promise
  *   .done(new DoneCallback() { ... })
  *   .fail(new FailCallback() { ... })
@@ -46,8 +49,8 @@ package org.turbogwt.core.future.shared;
  * </code>
  * </pre>
  *
- * @see DoneCallback
- * @see FailCallback
+ * @see org.turbogwt.core.future.shared.DoneCallback
+ * @see org.turbogwt.core.future.shared.FailCallback
  *
  * @param <D> Type of DoneCallback
  * @param <F> Type of FailCallback

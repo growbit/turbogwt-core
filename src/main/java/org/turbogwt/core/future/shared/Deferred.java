@@ -22,7 +22,7 @@ package org.turbogwt.core.future.shared;
  * Subsequently, this will allow Promise observers to listen in on the event
  * (done, fail, progress).
  *
- * @see DeferredObject
+ * @see org.turbogwt.core.future.shared.impl.DeferredObject
  * @author Ray Tsang
  *
  * @param <D>
@@ -37,7 +37,7 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      *
      * <pre>
      * <code>
-     * {@link Deferred} deferredObject = new {@link DeferredObject}();
+     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.DeferredObject}();
      * {@link Promise} promise = deferredObject.promise();
      * promise.done(new {@link DoneCallback}() {
      *   public void onDone(Object result) {
@@ -62,7 +62,7 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      *
      * <pre>
      * <code>
-     * {@link Deferred} deferredObject = new {@link DeferredObject}();
+     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.DeferredObject}();
      * {@link Promise} promise = deferredObject.promise();
      * promise.fail(new {@link FailCallback}() {
      *   public void onFail(Object result) {
@@ -94,7 +94,7 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      *
      * <pre>
      * <code>
-     * {@link Deferred} deferredObject = new {@link DeferredObject}();
+     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.DeferredObject}();
      * {@link Promise} promise = deferredObject.promise();
      * promise.progress(new {@link ProgressCallback}() {
      *   public void onProgress(Object progress) {

@@ -15,15 +15,21 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.future.shared;
+package org.turbogwt.core.future.shared.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.turbogwt.core.future.shared.AlwaysCallback;
+import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.core.future.shared.FailCallback;
+import org.turbogwt.core.future.shared.ProgressCallback;
+import org.turbogwt.core.future.shared.Promise;
+
 /**
- * Abstract implementation of {@link Promise}.
+ * Abstract implementation of {@link org.turbogwt.core.future.shared.Promise}.
  *
  * @param <D>
  *     The type of the result received when the promise is done
