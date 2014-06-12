@@ -48,6 +48,10 @@ package org.turbogwt.core.future.shared;
  *
  * @see DoneCallback
  * @see FailCallback
+ *
+ * @param <D> Type of DoneCallback
+ * @param <F> Type of FailCallback
+ *
  * @author Ray Tsang
  */
 public class DeferredObject<D, F> extends AbstractPromise<D, F> implements Deferred<D, F> {

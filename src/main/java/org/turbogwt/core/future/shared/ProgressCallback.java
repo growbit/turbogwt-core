@@ -18,13 +18,12 @@
 package org.turbogwt.core.future.shared;
 
 /**
- * @see Deferred#resolve(Object)
- * @see Promise#done(DoneCallback)
+ * @see Deferred#notify(Object)
+ * @see Promise#progress(ProgressCallback)
+ * @author Ray Tsang
  *
- * @author Danilo Reinert
- *
- * @param <D> Type of result received on callback.
+ * @param <P>
  */
-public interface DoneCallback<D> {
-    void onDone(final D result);
+public interface ProgressCallback<P> {
+    void onProgress(final P progress);
 }

@@ -25,5 +25,5 @@ package org.turbogwt.core.future.shared;
  * @param <F>
  */
 public interface FailCallback<F> {
-    public void onFail(final F result);
+    void onFail(final F result);
 }

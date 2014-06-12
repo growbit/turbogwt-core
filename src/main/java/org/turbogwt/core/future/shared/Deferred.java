@@ -30,7 +30,8 @@ package org.turbogwt.core.future.shared;
  * @param <F>
  *            Type used for {@link #reject(Object)}
  */
-public interface Deferred<D, F> extends Promise<D, F> {
+public interface Deferred<D, F, P> extends Promise<D, F, P> {
+
     /**
      * This should be called when a task has completed successfully.
      *
@@ -40,7 +41,7 @@ public interface Deferred<D, F> extends Promise<D, F> {
      * {@link Promise} promise = deferredObject.promise();
      * promise.done(new {@link DoneCallback}() {
      *   public void onDone(Object result) {
-     *   	// Done!
+     *       // Done!
      *   }
      * });
      *
@@ -53,7 +54,7 @@ public interface Deferred<D, F> extends Promise<D, F> {
      * @param resolve
      * @return
      */
-    Deferred<D, F> resolve(final D resolve);
+    Deferred<D, F, P> resolve(final D resolve);
 
     /**
      * This should be called when a task has completed unsuccessfully,
@@ -65,7 +66,7 @@ public interface Deferred<D, F> extends Promise<D, F> {
      * {@link Promise} promise = deferredObject.promise();
      * promise.fail(new {@link FailCallback}() {
      *   public void onFail(Object result) {
-     *   	// Failed :(
+     *     // Failed :(
      *   }
      * });
      *
@@ -75,15 +76,40 @@ public interface Deferred<D, F> extends Promise<D, F> {
      * </code>
      * </pre>
      *
-     * @param resolve
+     * @param reject
      * @return
      */
-    Deferred<D, F> reject(final F reject);
+    Deferred<D, F, P> reject(final F reject);
 
     /**
      * Return an {@link Promise} instance (i.e., an observer).  You can register callbacks in this observer.
      *
      * @return
      */
-    Promise<D, F> promise();
+    Promise<D, F, P> promise();
+
+    /**
+     * This should be called when a task is still executing and progress had been made,
+     * E.g., during a file download, notify the download progress.
+     *
+     * <pre>
+     * <code>
+     * {@link Deferred} deferredObject = new {@link DeferredObject}();
+     * {@link Promise} promise = deferredObject.promise();
+     * promise.progress(new {@link ProgressCallback}() {
+     *   public void onProgress(Object progress) {
+     *       // Failed :(
+     *   }
+     * });
+     *
+     * // another thread using the same deferredObject
+     * deferredObject.reject("100%");
+     *
+     * </code>
+     * </pre>
+     *
+     * @param progress
+     * @return
+     */
+    Deferred<D, F, P> notify(final P progress);
 }

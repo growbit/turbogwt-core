@@ -28,8 +28,8 @@ package org.turbogwt.core.future.shared;
  * Deferred deferredObject = new DeferredObject();
  * Promise promise = deferredObject.promise();
  * promise.done(new DoneCallback() {
- *   public void onDone(Object result) {
- *   	// Done!
+ *   void onDone(Object result) {
+ *       // Done!
  *   }
  * });
  *
@@ -49,8 +49,14 @@ package org.turbogwt.core.future.shared;
  *            Type used for {@link #done(DoneCallback)}
  * @param <F>
  *            Type used for {@link #fail(FailCallback)}
+ * @param <P>
+ *     The type of the progress notification
  */
-public interface Promise<D, F> {
+public interface Promise<D, F, P> {
+
+    /**
+     * State of a Promise
+     */
     public enum State {
         /**
          * The Promise is still pending - it could be created, submitted for execution,
@@ -75,25 +81,25 @@ public interface Promise<D, F> {
         RESOLVED
     }
 
-    public State state();
+    State state();
 
     /**
      * @see State#PENDING
      * @return
      */
-    public boolean isPending();
+    boolean isPending();
 
     /**
      * @see State#RESOLVED
      * @return
      */
-    public boolean isResolved();
+    boolean isResolved();
 
     /**
      * @see State#REJECTED
      * @return
      */
-    public boolean isRejected();
+    boolean isRejected();
 
     /**
      * This method will register {@link DoneCallback} so that when a Deferred object
@@ -105,7 +111,7 @@ public interface Promise<D, F> {
      * <pre>
      * <code>
      * promise.progress(new DoneCallback(){
-     * 	 public void onDone(Object done) {
+     *   void onDone(Object done) {
      *     ...
      *   }
      * });
@@ -116,7 +122,7 @@ public interface Promise<D, F> {
      * @param callback
      * @return
      */
-    public Promise<D, F> done(DoneCallback<D> callback);
+    Promise<D, F, P> done(DoneCallback<D> callback);
 
     /**
      * This method will register {@link FailCallback} so that when a Deferred object
@@ -128,7 +134,7 @@ public interface Promise<D, F> {
      * <pre>
      * <code>
      * promise.fail(new FaillCallback(){
-     * 	 public void onFail(Object rejection) {
+     *   void onFail(Object rejection) {
      *     ...
      *   }
      * });
@@ -139,7 +145,7 @@ public interface Promise<D, F> {
      * @param callback
      * @return
      */
-    public Promise<D, F> fail(FailCallback<F> callback);
+    Promise<D, F, P> fail(FailCallback<F> callback);
 
     /**
      * This method will register {@link AlwaysCallback} so that when it's always triggered
@@ -151,7 +157,7 @@ public interface Promise<D, F> {
      * <pre>
      * <code>
      * promise.always(new AlwaysCallback(){
-     * 	 public void onAlways(State state, Object result, Object rejection) {
+     *   void onAlways(State state, Object result, Object rejection) {
      *     if (state == State.RESOLVED) {
      *       // do something w/ result
      *     } else {
@@ -167,6 +173,29 @@ public interface Promise<D, F> {
      * @param callback
      * @return
      */
-    public Promise<D, F> always(AlwaysCallback<D, F> callback);
+     Promise<D, F, P> always(AlwaysCallback<D, F> callback);
+
+    /**
+     * This method will register {@link ProgressCallback} so that when a Deferred object
+     * is notified of progress ({@link Deferred#notify(Object)}), {@link ProgressCallback} will be triggered.
+     *
+     * You can register multiple {@link ProgressCallback} by calling the method multiple times.
+     * The order of callback trigger is based on the order you call this method.
+     *
+     * <pre>
+     * <code>
+     * promise.progress(new ProgressCallback(){
+     *   public void onProgress(Object progress) {
+     *     // e.g., update progress in the GUI while the background task is still running.
+     *   }
+     * });
+     * </code>
+     * </pre>
+     *
+     * @see Deferred#notify(Object)
+     * @param callback
+     * @return
+     */
+    Promise<D, F, P> progress(ProgressCallback<P> callback);
 
 }

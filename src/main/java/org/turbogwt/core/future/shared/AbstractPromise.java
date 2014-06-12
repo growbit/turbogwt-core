@@ -29,8 +29,11 @@ import java.util.logging.Logger;
  *     The type of the result received when the promise is done
  * @param <F>
  *     The type of the result received when the promise failed
+ * @param <P>
+ *     The type of the progress notification
  */
-public abstract class AbstractPromise<D, F> implements Promise<D, F> {
+public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
+
     protected final Logger log = Logger.getLogger(String.valueOf(AbstractPromise.class));
 
     protected volatile State state = State.PENDING;
@@ -48,7 +51,7 @@ public abstract class AbstractPromise<D, F> implements Promise<D, F> {
     }
 
     @Override
-    public Promise<D, F> done(DoneCallback<D> callback) {
+    public Promise<D, F, P> done(DoneCallback<D> callback) {
         synchronized (this) {
             doneCallbacks.add(callback);
             if (isResolved()) triggerDone(callback, resolveResult);
@@ -57,7 +60,7 @@ public abstract class AbstractPromise<D, F> implements Promise<D, F> {
     }
 
     @Override
-    public Promise<D, F> fail(FailCallback<F> callback) {
+    public Promise<D, F, P> fail(FailCallback<F> callback) {
         synchronized (this) {
             failCallbacks.add(callback);
             if (isRejected()) triggerFail(callback, rejectResult);
@@ -66,7 +69,7 @@ public abstract class AbstractPromise<D, F> implements Promise<D, F> {
     }
 
     @Override
-    public Promise<D, F> always(AlwaysCallback<D, F> callback) {
+    public Promise<D, F, P> always(AlwaysCallback<D, F> callback) {
         synchronized (this) {
             alwaysCallbacks.add(callback);
             if (!isPending()) triggerAlways(callback, state, resolveResult, rejectResult);
