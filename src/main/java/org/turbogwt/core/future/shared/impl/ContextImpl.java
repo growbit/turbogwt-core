@@ -15,14 +15,25 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.future.shared;
+package org.turbogwt.core.future.shared.impl;
+
+import org.turbogwt.core.future.shared.Context;
+import org.turbogwt.core.future.shared.Promise;
 
 /**
- * @see Promise#always(AlwaysCallback)
- * @param <D>
- * @param <R>
- * @param <C>
+ * Default implementatio of {@link org.turbogwt.core.future.shared.Context}.
+ * It provides only the {@link org.turbogwt.core.future.shared.Promise.State}.
  */
-public interface AlwaysCallback<D, R, C extends Context> {
-    void onAlways(final C context, final D resolved, final R rejected);
+public class ContextImpl implements Context {
+
+    private final Promise.State state;
+
+    public ContextImpl(Promise.State state) {
+        this.state = state;
+    }
+
+    @Override
+    public Promise.State getState() {
+        return state;
+    }
 }

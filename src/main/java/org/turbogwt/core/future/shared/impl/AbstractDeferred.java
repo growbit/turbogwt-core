@@ -17,6 +17,7 @@
 
 package org.turbogwt.core.future.shared.impl;
 
+import org.turbogwt.core.future.shared.Context;
 import org.turbogwt.core.future.shared.Deferred;
 import org.turbogwt.core.future.shared.Promise;
 
@@ -25,7 +26,7 @@ import org.turbogwt.core.future.shared.Promise;
  *
  * <pre>
  * <code>
- * final {@link org.turbogwt.core.future.shared.Deferred} deferredObject = new {@link DeferredObject}
+ * final {@link org.turbogwt.core.future.shared.Deferred} deferredObject = new {@link AbstractDeferred}
  *
  * {@link org.turbogwt.core.future.shared.Promise} promise = deferredObject.promise();
  * promise
@@ -57,10 +58,11 @@ import org.turbogwt.core.future.shared.Promise;
  *
  * @author Ray Tsang
  */
-public class DeferredObject<D, F, P> extends AbstractPromise<D, F, P> implements Deferred<D, F, P> {
+public abstract class AbstractDeferred<D, F, P, C extends Context> extends AbstractPromise<D, F, P, C>
+        implements Deferred<D, F, P, C> {
 
     @Override
-    public Deferred<D, F, P> resolve(final D resolve) {
+    public Deferred<D, F, P, C> resolve(final D resolve) {
         synchronized (this) {
             if (!isPending())
                 throw new IllegalStateException("Deferred object already finished, cannot resolve again");
@@ -71,14 +73,14 @@ public class DeferredObject<D, F, P> extends AbstractPromise<D, F, P> implements
             try {
                 triggerDone(resolve);
             } finally {
-                triggerAlways(state, resolve, null);
+                triggerAlways(getContext(), resolve, null);
             }
         }
         return this;
     }
 
     @Override
-    public Deferred<D, F, P> notify(final P progress) {
+    public Deferred<D, F, P, C> notify(final P progress) {
         synchronized (this) {
             if (!isPending())
                 throw new IllegalStateException("Deferred object already finished, cannot notify progress");
@@ -89,7 +91,7 @@ public class DeferredObject<D, F, P> extends AbstractPromise<D, F, P> implements
     }
 
     @Override
-    public Deferred<D, F, P> reject(final F reject) {
+    public Deferred<D, F, P, C> reject(final F reject) {
         synchronized (this) {
             if (!isPending())
                 throw new IllegalStateException("Deferred object already finished, cannot reject again");
@@ -99,13 +101,13 @@ public class DeferredObject<D, F, P> extends AbstractPromise<D, F, P> implements
             try {
                 triggerFail(reject);
             } finally {
-                triggerAlways(state, null, reject);
+                triggerAlways(getContext(), null, reject);
             }
         }
         return this;
     }
 
-    public Promise<D, F, P> promise() {
+    public Promise<D, F, P, C> promise() {
         return this;
     }
 }

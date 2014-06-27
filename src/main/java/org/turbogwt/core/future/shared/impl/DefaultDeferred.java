@@ -15,14 +15,21 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.future.shared;
+package org.turbogwt.core.future.shared.impl;
+
+import org.turbogwt.core.future.shared.Context;
 
 /**
- * @see Promise#always(AlwaysCallback)
+ * Default implementation for {@link org.turbogwt.core.future.shared.Deferred}.
+ *
  * @param <D>
- * @param <R>
- * @param <C>
+ * @param <F>
+ * @param <P>
  */
-public interface AlwaysCallback<D, R, C extends Context> {
-    void onAlways(final C context, final D resolved, final R rejected);
+public class DefaultDeferred<D, F, P> extends AbstractDeferred<D, F, P, Context> {
+
+    @Override
+    protected Context getContext() {
+        return new ContextImpl(state);
+    }
 }

@@ -51,8 +51,10 @@ package org.turbogwt.core.future.shared;
  *            Type used for {@link #fail(FailCallback)}
  * @param <P>
  *     The type of the progress notification
+ * @param <C>
+ *     The type of the context info on always callback
  */
-public interface Promise<D, F, P> {
+public interface Promise<D, F, P, C extends Context> {
 
     /**
      * State of a Promise
@@ -122,7 +124,7 @@ public interface Promise<D, F, P> {
      * @param callback
      * @return
      */
-    Promise<D, F, P> done(DoneCallback<D> callback);
+    Promise<D, F, P, C> done(DoneCallback<D> callback);
 
     /**
      * This method will register {@link FailCallback} so that when a Deferred object
@@ -145,7 +147,7 @@ public interface Promise<D, F, P> {
      * @param callback
      * @return
      */
-    Promise<D, F, P> fail(FailCallback<F> callback);
+    Promise<D, F, P, C> fail(FailCallback<F> callback);
 
     /**
      * This method will register {@link AlwaysCallback} so that when it's always triggered
@@ -173,7 +175,7 @@ public interface Promise<D, F, P> {
      * @param callback
      * @return
      */
-     Promise<D, F, P> always(AlwaysCallback<D, F> callback);
+     Promise<D, F, P, C> always(AlwaysCallback<D, F, C> callback);
 
     /**
      * This method will register {@link ProgressCallback} so that when a Deferred object
@@ -196,6 +198,6 @@ public interface Promise<D, F, P> {
      * @param callback
      * @return
      */
-    Promise<D, F, P> progress(ProgressCallback<P> callback);
+    Promise<D, F, P, C> progress(ProgressCallback<P> callback);
 
 }

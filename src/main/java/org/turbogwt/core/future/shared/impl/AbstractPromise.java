@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.turbogwt.core.future.shared.AlwaysCallback;
+import org.turbogwt.core.future.shared.Context;
 import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.core.future.shared.FailCallback;
 import org.turbogwt.core.future.shared.ProgressCallback;
@@ -37,8 +38,10 @@ import org.turbogwt.core.future.shared.Promise;
  *     The type of the result received when the promise failed
  * @param <P>
  *     The type of the progress notification
+ * @param <C>
+ *     The type of the context information for always callback
  */
-public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
+public abstract class AbstractPromise<D, F, P, C extends Context> implements Promise<D, F, P, C> {
 
     protected final Logger log = Logger.getLogger(String.valueOf(AbstractPromise.class));
 
@@ -47,10 +50,12 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
     protected final List<DoneCallback<D>> doneCallbacks = new ArrayList<DoneCallback<D>>();
     protected final List<FailCallback<F>> failCallbacks = new ArrayList<FailCallback<F>>();
     protected final List<ProgressCallback<P>> progressCallbacks = new ArrayList<ProgressCallback<P>>();
-    protected final List<AlwaysCallback<D, F>> alwaysCallbacks = new ArrayList<AlwaysCallback<D, F>>();
+    protected final List<AlwaysCallback<D, F, C>> alwaysCallbacks = new ArrayList<AlwaysCallback<D, F, C>>();
 
     protected D resolveResult;
     protected F rejectResult;
+
+    protected abstract C getContext();
 
     @Override
     public State state() {
@@ -58,7 +63,7 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
     }
 
     @Override
-    public Promise<D, F, P> done(DoneCallback<D> callback) {
+    public Promise<D, F, P, C> done(DoneCallback<D> callback) {
         synchronized (this) {
             doneCallbacks.add(callback);
             if (isResolved()) triggerDone(callback, resolveResult);
@@ -67,7 +72,7 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
     }
 
     @Override
-    public Promise<D, F, P> fail(FailCallback<F> callback) {
+    public Promise<D, F, P, C> fail(FailCallback<F> callback) {
         synchronized (this) {
             failCallbacks.add(callback);
             if (isRejected()) triggerFail(callback, rejectResult);
@@ -76,10 +81,10 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
     }
 
     @Override
-    public Promise<D, F, P> always(AlwaysCallback<D, F> callback) {
+    public Promise<D, F, P, C> always(AlwaysCallback<D, F, C> callback) {
         synchronized (this) {
             alwaysCallbacks.add(callback);
-            if (!isPending()) triggerAlways(callback, state, resolveResult, rejectResult);
+            if (!isPending()) triggerAlways(callback, getContext(), resolveResult, rejectResult);
         }
         return this;
     }
@@ -126,26 +131,22 @@ public abstract class AbstractPromise<D, F, P> implements Promise<D, F, P> {
         callback.onProgress(progress);
     }
 
-    protected void triggerAlways(State state, D resolve, F reject) {
-        for (AlwaysCallback<D, F> callback : alwaysCallbacks) {
+    protected void triggerAlways(C context, D resolve, F reject) {
+        for (AlwaysCallback<D, F, C> callback : alwaysCallbacks) {
             try {
-                triggerAlways(callback, state, resolve, reject);
+                triggerAlways(callback, context, resolve, reject);
             } catch (Exception e) {
                 log.log(Level.SEVERE, "an uncaught exception occured in a AlwaysCallback", e);
             }
         }
-
-        synchronized (this) {
-            this.notifyAll();
-        }
     }
 
-    protected void triggerAlways(AlwaysCallback<D, F> callback, State state, D resolve, F reject) {
-        callback.onAlways(state, resolve, reject);
+    protected void triggerAlways(AlwaysCallback<D, F, C> callback, C context, D resolve, F reject) {
+        callback.onAlways(context, resolve, reject);
     }
 
     @Override
-    public Promise<D, F, P> progress(ProgressCallback<P> callback) {
+    public Promise<D, F, P, C> progress(ProgressCallback<P> callback) {
         progressCallbacks.add(callback);
         return this;
     }

@@ -18,11 +18,9 @@
 package org.turbogwt.core.future.shared;
 
 /**
- * @see Promise#always(AlwaysCallback)
- * @param <D>
- * @param <R>
- * @param <C>
+ * Context information for {@link AlwaysCallback}.
  */
-public interface AlwaysCallback<D, R, C extends Context> {
-    void onAlways(final C context, final D resolved, final R rejected);
+public interface Context {
+
+    Promise.State getState();
 }

@@ -22,7 +22,7 @@ package org.turbogwt.core.future.shared;
  * Subsequently, this will allow Promise observers to listen in on the event
  * (done, fail, progress).
  *
- * @see org.turbogwt.core.future.shared.impl.DeferredObject
+ * @see org.turbogwt.core.future.shared.impl.AbstractDeferred
  * @author Ray Tsang
  *
  * @param <D>
@@ -30,14 +30,14 @@ package org.turbogwt.core.future.shared;
  * @param <F>
  *            Type used for {@link #reject(Object)}
  */
-public interface Deferred<D, F, P> extends Promise<D, F, P> {
+public interface Deferred<D, F, P, C extends Context> extends Promise<D, F, P, C> {
 
     /**
      * This should be called when a task has completed successfully.
      *
      * <pre>
      * <code>
-     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.DeferredObject}();
+     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.AbstractDeferred}();
      * {@link Promise} promise = deferredObject.promise();
      * promise.done(new {@link DoneCallback}() {
      *   public void onDone(Object result) {
@@ -54,7 +54,7 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      * @param resolve
      * @return
      */
-    Deferred<D, F, P> resolve(final D resolve);
+    Deferred<D, F, P, C> resolve(final D resolve);
 
     /**
      * This should be called when a task has completed unsuccessfully,
@@ -62,7 +62,7 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      *
      * <pre>
      * <code>
-     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.DeferredObject}();
+     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.AbstractDeferred}();
      * {@link Promise} promise = deferredObject.promise();
      * promise.fail(new {@link FailCallback}() {
      *   public void onFail(Object result) {
@@ -79,14 +79,14 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      * @param reject
      * @return
      */
-    Deferred<D, F, P> reject(final F reject);
+    Deferred<D, F, P, C> reject(final F reject);
 
     /**
      * Return an {@link Promise} instance (i.e., an observer).  You can register callbacks in this observer.
      *
      * @return
      */
-    Promise<D, F, P> promise();
+    Promise<D, F, P, C> promise();
 
     /**
      * This should be called when a task is still executing and progress had been made,
@@ -94,7 +94,7 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      *
      * <pre>
      * <code>
-     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.DeferredObject}();
+     * {@link Deferred} deferredObject = new {@link org.turbogwt.core.future.shared.impl.AbstractDeferred}();
      * {@link Promise} promise = deferredObject.promise();
      * promise.progress(new {@link ProgressCallback}() {
      *   public void onProgress(Object progress) {
@@ -111,5 +111,5 @@ public interface Deferred<D, F, P> extends Promise<D, F, P> {
      * @param progress
      * @return
      */
-    Deferred<D, F, P> notify(final P progress);
+    Deferred<D, F, P, C> notify(final P progress);
 }
