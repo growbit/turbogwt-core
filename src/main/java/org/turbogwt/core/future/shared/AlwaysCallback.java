@@ -17,6 +17,8 @@
 
 package org.turbogwt.core.future.shared;
 
+import javax.annotation.Nullable;
+
 /**
  * @see Promise#always(AlwaysCallback)
  * @param <D>
@@ -24,5 +26,5 @@ package org.turbogwt.core.future.shared;
  * @param <C>
  */
 public interface AlwaysCallback<D, R, C extends Context> {
-    void onAlways(final C context, final D resolved, final R rejected);
+    void onAlways(final C context, @Nullable final D resolved, @Nullable final R rejected);
 }
