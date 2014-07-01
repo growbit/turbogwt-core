@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Thomas Broyer
+ * Copyright 2013 Ray Tsang
  * Copyright 2014 Grow Bit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

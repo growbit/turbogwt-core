@@ -21,7 +21,7 @@ import org.turbogwt.core.future.shared.Context;
 import org.turbogwt.core.future.shared.Promise;
 
 /**
- * Default implementatio of {@link org.turbogwt.core.future.shared.Context}.
+ * Default implementation of {@link org.turbogwt.core.future.shared.Context}.
  * It provides only the {@link org.turbogwt.core.future.shared.Promise.State}.
  */
 public class ContextImpl implements Context {

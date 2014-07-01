@@ -19,8 +19,11 @@ package org.turbogwt.core.future.shared;
 
 /**
  * Context information for {@link AlwaysCallback}.
+ *
+ * @see Promise#always(AlwaysCallback)
+ *
+ * @author Danilo Reinert
  */
 public interface Context {
-
     Promise.State getState();
 }

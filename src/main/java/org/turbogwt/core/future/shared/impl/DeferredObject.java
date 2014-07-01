@@ -26,7 +26,7 @@ import org.turbogwt.core.future.shared.Context;
  * @param <F>
  * @param <P>
  */
-public class DefaultDeferred<D, F, P> extends AbstractDeferred<D, F, P, Context> {
+public class DeferredObject<D, F, P> extends AbstractDeferred<D, F, P, Context> {
 
     @Override
     protected Context getContext() {

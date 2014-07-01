@@ -44,15 +44,16 @@ package org.turbogwt.core.future.shared;
  * @see Deferred#notify(Object)
  *
  * @author Ray Tsang
+ * @author Danilo Reinert
  *
  * @param <D>
  *            Type used for {@link #done(DoneCallback)}
  * @param <F>
  *            Type used for {@link #fail(FailCallback)}
  * @param <P>
- *     The type of the progress notification
+ *            The type of the progress notification
  * @param <C>
- *     The type of the context info on always callback
+ *            The type of the context info on always callback
  */
 public interface Promise<D, F, P, C extends Context> {
 
@@ -159,8 +160,8 @@ public interface Promise<D, F, P, C extends Context> {
      * <pre>
      * <code>
      * promise.always(new AlwaysCallback(){
-     *   void onAlways(State state, Object result, Object rejection) {
-     *     if (state == State.RESOLVED) {
+     *   void onAlways(Context context, Object result, Object rejection) {
+     *     if (context.getState() == State.RESOLVED) {
      *       // do something w/ result
      *     } else {
      *       // do something w/ rejection

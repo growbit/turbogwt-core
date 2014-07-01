@@ -23,12 +23,18 @@ package org.turbogwt.core.future.shared;
  * (done, fail, progress).
  *
  * @see org.turbogwt.core.future.shared.impl.AbstractDeferred
+ *
  * @author Ray Tsang
+ * @author Danilo Reinert
  *
  * @param <D>
  *            Type used for {@link #resolve(Object)}
  * @param <F>
  *            Type used for {@link #reject(Object)}
+ * @param <P>
+ *            Type used for {@link #notify(Object)}
+ * @param <C>
+ *            Type used for {@link AlwaysCallback}
  */
 public interface Deferred<D, F, P, C extends Context> extends Promise<D, F, P, C> {
 

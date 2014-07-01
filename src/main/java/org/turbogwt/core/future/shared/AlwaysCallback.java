@@ -17,14 +17,18 @@
 
 package org.turbogwt.core.future.shared;
 
-import javax.annotation.Nullable;
-
 /**
+ * Callback always executed in promises.
+ *
  * @see Promise#always(AlwaysCallback)
+ *
  * @param <D>
  * @param <R>
  * @param <C>
+ *
+ * @author Ray Tsang
+ * @author Danilo Reinert
  */
 public interface AlwaysCallback<D, R, C extends Context> {
-    void onAlways(final C context, @Nullable final D resolved, @Nullable final R rejected);
+    void onAlways(final C context, final D resolved, final R rejected);
 }

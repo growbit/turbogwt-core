@@ -18,10 +18,12 @@
 package org.turbogwt.core.future.shared;
 
 /**
+ * Callback executed when a promise succeeds.
+ *
  * @see Deferred#resolve(Object)
  * @see Promise#done(DoneCallback)
  *
- * @author Danilo Reinert
+ * @author Ray Tsang
  *
  * @param <D> Type of result received on callback.
  */

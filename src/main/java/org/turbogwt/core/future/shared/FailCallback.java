@@ -18,8 +18,11 @@
 package org.turbogwt.core.future.shared;
 
 /**
+ * Callback executed when a promise fails.
+ *
  * @see Deferred#reject(Object)
  * @see Promise#fail(FailCallback)
+ *
  * @author Ray Tsang
  *
  * @param <F>
