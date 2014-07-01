@@ -16,30 +16,23 @@
 
 package org.turbogwt.core.util.client;
 
-import javax.annotation.Nullable;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * Utility methods derived from browser's native JS.
+ * Utility methods derived from browser's console.
  *
  * @author Danilo Reinert
  */
-public final class Native {
+public final class Console {
 
-    private Native() {
+    private Console() {
     }
 
-    public static native boolean isNumeric(@Nullable String text) /*-{
-        if (text) {
-            return !isNaN(text);
-        }
-        return false;
+    public static native void log(JavaScriptObject jso) /*-{
+        $wnd.console.log(jso);
     }-*/;
 
-    public static native String toFixed(double number) /*-{
-        return number.toFixed();
-    }-*/;
-
-    public static native String toFixed(double number, int fractionalDigits) /*-{
-        return number.toFixed(fractionalDigits);
+    public static native void log(String text) /*-{
+        $wnd.console.log(text);
     }-*/;
 }
