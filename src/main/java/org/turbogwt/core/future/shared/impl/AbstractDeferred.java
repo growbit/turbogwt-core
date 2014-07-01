@@ -55,6 +55,8 @@ import org.turbogwt.core.future.shared.Promise;
  *
  * @param <D> Type of DoneCallback
  * @param <F> Type of FailCallback
+ * @param <P> Type of ProgressCallback
+ * @param <C> Type of Context
  *
  * @author Ray Tsang
  */
