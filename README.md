@@ -17,7 +17,36 @@ In order to save memory usage, Turbo GWT Core provides common data structures im
 
 ### Promises
 Turbo GWT Core contains a Promise API to easily use promises for varied cases. It is hosted in the future module.
-[Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) extends this API to enable the use of promises with http requests.
+[Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) extends this API to enable the use of promises with http requests. The basic usage is as follows:
+
+```java
+Deferred deferred = new DeferredObject();
+Promise promise = deferred.promise();
+promise.done(new DoneCallback() {
+  public void onDone(Object result) {
+    ...
+  }
+}).fail(new FailCallback() {
+  public void onFail(Object rejection) {
+    ...
+  }
+}).progress(new ProgressCallback() {
+  public void onProgress(Object progress) {
+    ...
+  }
+}).always(new AlwaysCallback() {
+  public void onAlways(State state, Object result, Object rejection) {
+    ...
+  }
+});
+```
+With the reference to deferred object, you can then trigger actions/updates:
+
+```java
+deferred.resolve("done");
+deferred.reject("oops");
+deferred.progress("100%");
+```
 
 ### Native Utilities
 * [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/client/Overlays.html) - Easy boxing and unboxing JS native values and more.
