@@ -37,7 +37,7 @@ promise.done(new DoneCallback() {
     ...
   }
 }).always(new AlwaysCallback() {
-  public void onAlways(State state, Object result, Object rejection) {
+  public void onAlways(Context context, Object result, Object rejection) {
     ...
   }
 });
