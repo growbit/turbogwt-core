@@ -6,6 +6,19 @@ Turbo GWT (*TurboG*) Core [![Build Status](https://travis-ci.org/growbit/turbogw
 
 ## Highlights
 
+### Lightweight Collections (Overlay Compliant)
+In order to save memory usage, Turbo GWT Core provides common data structures implemented as lightweight as possible. They are also expected to be fast as js native properties are used when possible.
+
+* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/collections/client/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
+* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsArrayIterator.html) - **Iterator** supporting JsArray.
+* [LightMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightMap.html) - Lightweight **Map\<String, T\>** implementation on a simple javascript object.
+* [LightSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightSet.html) - Lightweight **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
+* [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then LightSet.
+
+### Promises
+Turbo GWT Core contains a Promise API to easily use promises for varied cases. It is hosted in the future module.
+[Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) extends this API to enable the use of promises with http requests.
+
 ### Native Utilities
 * [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/client/Overlays.html) - Easy boxing and unboxing JS native values and more.
  
@@ -32,10 +45,6 @@ With Overlays, you can avoid using JSNI for most common operations:
             return Overlays.boxPropertyAsDouble(this, "weight");
         }
 
-        public Boolean isActive() {
-            return Overlays.boxPropertyAsBoolean(this, "active");
-        }
-
         public void setId(Long id) {
             Overlays.unboxValueToProperty(this, "id", id);
         }
@@ -51,21 +60,8 @@ With Overlays, you can avoid using JSNI for most common operations:
         public void setWeight(Double weight) {
             Overlays.unboxValueToProperty(this, "weight", weight);
         }
-
-        public void setActive(Boolean active) {
-            Overlays.unboxValueToProperty(this, "active", active);
-        }
     }
 ```
-
-### Lightweight Collections (Overlay Compliant)
-In order to save memory usage, Turbo GWT Core provides common data structures implemented as lightweight as possible. They are also expected to be fast as js native properties are used when possible.
-
-* [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/collections/client/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
-* [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsArrayIterator.html) - **Iterator** supporting JsArray.
-* [LightMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightMap.html) - Lightweight **Map\<String, T\>** implementation on a simple javascript object.
-* [LightSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightSet.html) - Lightweight **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
-* [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then LightSet.
 
 ### Misc
 * [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/shared/Registration.html) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
@@ -91,6 +87,7 @@ Turbo GWT Core is currently available at maven central.
 
 ## Thanks to
 * [Thomas Broyer](https://plus.google.com/u/0/+ThomasBroyer) for contributing with [JsCollections](http://code.google.com/p/gwt-in-the-air/source/browse/#svn%2Ftrunk%2Fsrc%2Fnet%2Fltgt%2Fgwt%2Fjscollections%2Fclient%253Fstate%253Dclosed).
+* [Ray Tsang](https://www.flickr.com/photos/saturnism/) for contributing with [JDeferred](https://github.com/jdeferred/jdeferred).
 
 ## License
 Turbo GWT Core is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
