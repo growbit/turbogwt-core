@@ -1,3 +1,5 @@
 org.turbogwt.core.collections.client
+org.turbogwt.core.future.shared
+org.turbogwt.core.future.shared.impl
 org.turbogwt.core.util.client
 org.turbogwt.core.util.shared

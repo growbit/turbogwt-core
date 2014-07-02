@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.collections.client.LightMap<T>
-	c412 [label=<<table title="org.turbogwt.core.collections.client.LightMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LightMap.html">
+	c1065 [label=<<table title="org.turbogwt.core.collections.client.LightMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LightMap.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LightMap&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LightMap.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.collections.client.LightMap<T> implements java.util.Map<K, V>
-	c434:p -> c412:p [dir=back,arrowtail=empty,style=dashed];
+	c1100:p -> c1065:p [dir=back,arrowtail=empty,style=dashed];
 	// java.util.Map<K, V>
-	c434 [label=<<table title="java.util.Map" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/util/Map.html">
+	c1100 [label=<<table title="java.util.Map" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/util/Map.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Map&lt;K, V&gt; </td></tr>
