@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.turbogwt.core.future.shared;
 
 /**
@@ -28,5 +27,5 @@ package org.turbogwt.core.future.shared;
  * @param <F>
  */
 public interface FailCallback<F> {
-    void onFail(final F result);
+    void onFail(F result);
 }

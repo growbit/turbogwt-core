@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.turbogwt.core.future.shared;
 
 /**
@@ -25,5 +24,5 @@ package org.turbogwt.core.future.shared;
  * @param <P>
  */
 public interface ProgressCallback<P> {
-    void onProgress(final P progress);
+    void onProgress(P progress);
 }

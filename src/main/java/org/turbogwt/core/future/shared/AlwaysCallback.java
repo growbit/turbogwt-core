@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.turbogwt.core.future.shared;
 
 /**
@@ -24,11 +23,10 @@ package org.turbogwt.core.future.shared;
  *
  * @param <D>
  * @param <R>
- * @param <C>
  *
  * @author Ray Tsang
  * @author Danilo Reinert
  */
-public interface AlwaysCallback<D, R, C extends Context> {
-    void onAlways(final C context, final D resolved, final R rejected);
+public interface AlwaysCallback<D, R> {
+    void onAlways(Promise.State state, D resolved, R rejected);
 }
