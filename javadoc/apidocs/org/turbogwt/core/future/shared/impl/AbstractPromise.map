@@ -1,8 +1,2 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../Promise.html" title="org.turbogwt.core.future.shared.Promise" alt="" coords="16,10,259,54"/>
-<area shape="rect" id="node1" href="../Promise.html" title="&lt;TABLE&gt;" alt="" coords="5,5,269,59"/>
-<area shape="rect" id="node2_1" href="./AbstractPromise.html" title="org.turbogwt.core.future.shared.impl.AbstractPromise" alt="" coords="328,19,619,45"/>
-<area shape="rect" id="node2" href="./AbstractPromise.html" title="&lt;TABLE&gt;" alt="" coords="317,8,629,56"/>
-<area shape="rect" id="node3_2" href="./AbstractDeferred.html" title="org.turbogwt.core.future.shared.impl.AbstractDeferred" alt="" coords="689,19,981,45"/>
-<area shape="rect" id="node3" href="./AbstractDeferred.html" title="&lt;TABLE&gt;" alt="" coords="678,8,991,56"/>
 </map>

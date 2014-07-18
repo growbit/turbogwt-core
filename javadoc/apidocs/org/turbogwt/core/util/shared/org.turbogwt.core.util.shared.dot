@@ -11,61 +11,61 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.util.shared.Registration
-	c173 [label=<<table title="org.turbogwt.core.util.shared.Registration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Registration.html">
+	c158 [label=<<table title="org.turbogwt.core.util.shared.Registration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Registration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Registration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Registration.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c174 [label=<<table title="org.turbogwt.core.util.shared.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesValue.html">
+	c159 [label=<<table title="org.turbogwt.core.util.shared.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesValue.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesValue&lt;T, F&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesValue.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.ProvidesText<T>
-	c175 [label=<<table title="org.turbogwt.core.util.shared.ProvidesText" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesText.html">
+	c160 [label=<<table title="org.turbogwt.core.util.shared.ProvidesText" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesText.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesText&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesText.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.ProvidesNumber<T>
-	c176 [label=<<table title="org.turbogwt.core.util.shared.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesNumber.html">
+	c161 [label=<<table title="org.turbogwt.core.util.shared.ProvidesNumber" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesNumber.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesNumber&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesNumber.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.ProvidesDate<T>
-	c177 [label=<<table title="org.turbogwt.core.util.shared.ProvidesDate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesDate.html">
+	c162 [label=<<table title="org.turbogwt.core.util.shared.ProvidesDate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesDate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesDate&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesDate.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.ProvidesBoolean<T>
-	c178 [label=<<table title="org.turbogwt.core.util.shared.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesBoolean.html">
+	c163 [label=<<table title="org.turbogwt.core.util.shared.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesBoolean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesBoolean&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProvidesBoolean.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.Factory<T>
-	c179 [label=<<table title="org.turbogwt.core.util.shared.Factory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Factory.html">
+	c164 [label=<<table title="org.turbogwt.core.util.shared.Factory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Factory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Factory&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Factory.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.util.shared.ProvidesText<T> implements org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c174:p -> c175:p [dir=back,arrowtail=empty,style=dashed];
+	c159:p -> c160:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.util.shared.ProvidesNumber<T> implements org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c174:p -> c176:p [dir=back,arrowtail=empty,style=dashed];
+	c159:p -> c161:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.util.shared.ProvidesDate<T> implements org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c174:p -> c177:p [dir=back,arrowtail=empty,style=dashed];
+	c159:p -> c162:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.core.util.shared.ProvidesBoolean<T> implements org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c174:p -> c178:p [dir=back,arrowtail=empty,style=dashed];
+	c159:p -> c163:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.collections.client.JsMapBoolean
-	c921 [label=<<table title="org.turbogwt.core.collections.client.JsMapBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsMapBoolean.html">
+	c747 [label=<<table title="org.turbogwt.core.collections.client.JsMapBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsMapBoolean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JsMapBoolean </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsMapBoolean.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.collections.client.JsMapBoolean extends com.google.gwt.core.client.JavaScriptObject
-	c952:p -> c921:p [dir=back,arrowtail=empty];
+	c775:p -> c747:p [dir=back,arrowtail=empty];
 	// com.google.gwt.core.client.JavaScriptObject
-	c952 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
+	c775 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JavaScriptObject </td></tr>
 		</table></td></tr>

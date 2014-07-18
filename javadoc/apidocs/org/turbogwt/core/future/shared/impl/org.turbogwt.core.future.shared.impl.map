@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DeferredObject.html" title="org.turbogwt.core.future.shared.impl.DeferredObject" alt="" coords="739,88,904,115"/>
-<area shape="rect" id="node1" href="./DeferredObject.html" title="&lt;TABLE&gt;" alt="" coords="728,77,915,125"/>
-<area shape="rect" id="node2_1" href="./ContextImpl.html" title="org.turbogwt.core.future.shared.impl.ContextImpl" alt="" coords="117,16,206,43"/>
-<area shape="rect" id="node2" href="./ContextImpl.html" title="&lt;TABLE&gt;" alt="" coords="106,5,217,53"/>
-<area shape="rect" id="node3_2" href="./AbstractPromise.html" title="org.turbogwt.core.future.shared.impl.AbstractPromise" alt="" coords="16,88,307,115"/>
-<area shape="rect" id="node3" href="./AbstractPromise.html" title="&lt;TABLE&gt;" alt="" coords="5,77,317,125"/>
-<area shape="rect" id="node4_3" href="./AbstractDeferred.html" title="org.turbogwt.core.future.shared.impl.AbstractDeferred" alt="" coords="377,88,669,115"/>
-<area shape="rect" id="node4" href="./AbstractDeferred.html" title="&lt;TABLE&gt;" alt="" coords="366,77,679,125"/>
+<area shape="rect" id="node1_0" href="./DeferredObject.html" title="org.turbogwt.core.future.shared.impl.DeferredObject" alt="" coords="264,16,429,43"/>
+<area shape="rect" id="node1" href="./DeferredObject.html" title="&lt;TABLE&gt;" alt="" coords="253,5,440,53"/>
+<area shape="rect" id="node2_1" href="./AbstractPromise.html" title="org.turbogwt.core.future.shared.impl.AbstractPromise" alt="" coords="17,16,194,43"/>
+<area shape="rect" id="node2" href="./AbstractPromise.html" title="&lt;TABLE&gt;" alt="" coords="6,5,205,53"/>
 </map>

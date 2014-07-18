@@ -11,7 +11,7 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.util.client.Console
-	c358 [label=<<table title="org.turbogwt.core.util.client.Console" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Console.html">
+	c295 [label=<<table title="org.turbogwt.core.util.client.Console" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Console.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Console </td></tr>
 		</table></td></tr>
