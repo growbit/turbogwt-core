@@ -24,13 +24,17 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A fast implementation of Set indexed with {@link Object#toString()}.
+ * A fast implementation of Set indexed by a String representation of the object.
  * <p/>
  *
- * This class indexes the objects by resorting to their toString method.
+ * This class indexes objects by resorting to {@link Object#toString()}.
  * <br>
- * In order to use it, T should implement toString,
- * so t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
+ * Additionally, you can provide a implementation of {@link AsString} to generate the string representation.
+ * <br>
+ * In order to use it correctly, T should implement toString,
+ * so that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
+ * <br>
+ * The same is expected for the {@link AsString} behavior when provided.
  *
  * @param <T> Type of set values
  *
@@ -38,12 +42,31 @@ import java.util.NoSuchElementException;
  */
 public class LightSet<T> extends AbstractSet<T> {
 
+    private final AsString<T> asString;
+
+    public interface AsString<T> {
+        String asString(T t);
+    }
+
     private final JsMap<T> innerMap = JsMap.create();
 
     public LightSet() {
+        this.asString = null;
     }
 
     public LightSet(Iterable<T> iterable) {
+        this.asString = null;
+        for (T t : iterable) {
+            add(t);
+        }
+    }
+
+    public LightSet(AsString<T> asString) {
+        this.asString = asString;
+    }
+
+    public LightSet(Iterable<T> iterable, AsString<T> asString) {
+        this.asString = asString;
         for (T t : iterable) {
             add(t);
         }
@@ -57,7 +80,7 @@ public class LightSet<T> extends AbstractSet<T> {
     @Override
     public boolean contains(Object o) {
         checkNotNull(o);
-        return innerMap.get(o.toString()) != null;
+        return innerMap.get(asString(o)) != null;
     }
 
     @Override
@@ -92,7 +115,7 @@ public class LightSet<T> extends AbstractSet<T> {
             return false;
         }
 
-        innerMap.put(t.toString(), t);
+        innerMap.put(asString(t), t);
         return true;
     }
 
@@ -101,7 +124,7 @@ public class LightSet<T> extends AbstractSet<T> {
         checkNotNull(o);
 
         if (contains(o)) {
-            innerMap.remove(o.toString());
+            innerMap.remove(asString(o));
             return true;
         }
 
@@ -111,6 +134,15 @@ public class LightSet<T> extends AbstractSet<T> {
     @Override
     public void clear() {
         innerMap.clear();
+    }
+
+    @SuppressWarnings("unchecked")
+    private String asString(Object o) {
+        try {
+            return asString != null ? asString.asString((T) o) : o.toString();
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException("The provided object is not a instance of the type of this Set.", e);
+        }
     }
 
     private void checkNotNull(Object o) {
