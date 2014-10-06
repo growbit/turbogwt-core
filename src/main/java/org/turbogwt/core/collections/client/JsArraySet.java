@@ -23,7 +23,7 @@ import java.util.Iterator;
 
 /**
  * An implementation of Set underpinned by an array.
- * <p/>
+ * <p>
  *
  * This is not the fastest implementation of Set at all,
  * but if you have an array and want to wrap in a set mainly for iteration purposes
@@ -65,7 +65,7 @@ public class JsArraySet<T> extends AbstractSet<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new JsArrayIterator<>(innerArray);
+        return new JsArrayIterator<T>(innerArray);
     }
 
     @Override

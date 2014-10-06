@@ -22,11 +22,13 @@ package org.turbogwt.core.future.shared;
  * @see Promise#always(AlwaysCallback)
  *
  * @param <D>
- * @param <R>
+ *            Type of the resolved object
+ * @param <F>
+ *            Type of the rejected object
  *
  * @author Ray Tsang
  * @author Danilo Reinert
  */
-public interface AlwaysCallback<D, R> {
-    void onAlways(Promise.State state, D resolved, R rejected);
+public interface AlwaysCallback<D, F> {
+    void onAlways(Promise.State state, D resolved, F rejected);
 }

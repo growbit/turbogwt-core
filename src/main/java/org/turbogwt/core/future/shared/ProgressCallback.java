@@ -21,7 +21,7 @@ package org.turbogwt.core.future.shared;
  * @see Promise#progress(ProgressCallback)
  * @author Ray Tsang
  *
- * @param <P>
+ * @param <P> The type of progress object
  */
 public interface ProgressCallback<P> {
     void onProgress(P progress);

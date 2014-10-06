@@ -19,7 +19,7 @@ package org.turbogwt.core.future.shared;
 /**
  * Promise interface to observe when some action has occurred on the corresponding {@link Deferred} object.
  *
- * A promise object should be obtained from {@link Deferred#promise()), or
+ * A promise object should be obtained from {@link Deferred#promise()}, or
  * by using DeferredManager.
  *
  * <pre>
@@ -85,19 +85,19 @@ public interface Promise<D, F, P> {
 
     /**
      * @see State#PENDING
-     * @return
+     * @return {@code true} if is pending, {@code false} otherwise
      */
     boolean isPending();
 
     /**
      * @see State#RESOLVED
-     * @return
+     * @return {@code true} if is resolved, {@code false} otherwise
      */
     boolean isResolved();
 
     /**
      * @see State#REJECTED
-     * @return
+     * @return {@code true} if is rejected, {@code false} otherwise
      */
     boolean isRejected();
 
@@ -119,8 +119,8 @@ public interface Promise<D, F, P> {
      * </pre>
      *
      * @see Deferred#resolve(Object)
-     * @param callback
-     * @return
+     * @param callback The callback to be executed when the promise is done
+     * @return The current promise
      */
     Promise<D, F, P> done(DoneCallback<D> callback);
 
@@ -142,8 +142,8 @@ public interface Promise<D, F, P> {
      * </pre>
      *
      * @see Deferred#reject(Object)
-     * @param callback
-     * @return
+     * @param callback The callback to be executed when the promise has failed
+     * @return The current promise
      */
     Promise<D, F, P> fail(FailCallback<F> callback);
 
@@ -170,8 +170,8 @@ public interface Promise<D, F, P> {
      *
      * @see Deferred#resolve(Object)
      * @see Deferred#reject(Object)
-     * @param callback
-     * @return
+     * @param callback The callback to be executed when the promise is done or failed
+     * @return The current promise
      */
      Promise<D, F, P> always(AlwaysCallback<D, F> callback);
 
@@ -193,8 +193,8 @@ public interface Promise<D, F, P> {
      * </pre>
      *
      * @see Deferred#notify(Object)
-     * @param callback
-     * @return
+     * @param callback The callback to be executed when a progress notification is sent
+     * @return The current promise
      */
     Promise<D, F, P> progress(ProgressCallback<P> callback);
 

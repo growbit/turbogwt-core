@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 
 /**
  * A fast implementation of Set indexed by a String representation of the object.
- * <p/>
+ * <p>
  *
  * This class indexes objects by resorting to {@link Object#toString()}.
  * <br>

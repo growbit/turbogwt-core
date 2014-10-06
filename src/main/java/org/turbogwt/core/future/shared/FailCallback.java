@@ -24,7 +24,7 @@ package org.turbogwt.core.future.shared;
  *
  * @author Ray Tsang
  *
- * @param <F>
+ * @param <F> The type of the rejected object
  */
 public interface FailCallback<F> {
     void onFail(F result);

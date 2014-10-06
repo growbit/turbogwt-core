@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 
 /**
  * An implementation of Set based on {@link JsHashTable}.
- * <p/>
+ * <p>
  *
  * This class indexes the objects by resorting to their hashCode method.<br>
  * In order to use it, the values must implement hashCode consistently.
@@ -133,7 +133,7 @@ public class JsHashSet<T> extends AbstractSet<T> {
             }
 
             if (!bucketItr.hasNext()) {
-                bucketItr = new JsArrayIterator<>(hashTable.get(keys.get(cursor)));
+                bucketItr = new JsArrayIterator<T>(hashTable.get(keys.get(cursor)));
                 cursor = i + 1;
             }
 

@@ -32,18 +32,9 @@ import org.turbogwt.core.future.shared.Promise;
  *   .fail(new FailCallback() { ... })
  *   .progress(new ProgressCallback() { ... });
  *
- * {@link Runnable} runnable = new {@link Runnable}() {
- *   public void run() {
- *     int sum = 0;
- *     for (int i = 0; i < 100; i++) {
- *       // something that takes time
- *       sum += i;
- *       deferredObject.notify(i);
- *     }
- *     deferredObject.resolve(sum);
- *   }
- * }
- * // submit the task to run
+ * deferredObject.notify(someNotificationObject);
+ * deferredObject.resolve(someSuccessObject);
+ * deferredObject.reject(someFailObject);
  *
  * </code>
  * </pre>

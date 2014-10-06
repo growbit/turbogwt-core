@@ -67,6 +67,7 @@ public class JsArray<T> extends JavaScriptObject {
      * Convert each element of the array to a String and join them with a comma
      * separator. The value returned from this method may vary between browsers
      * based on how JavaScript values are converted into strings.
+     * @return the string representation of joined array
      */
     public final String join() {
         // As per JS spec
@@ -77,6 +78,9 @@ public class JsArray<T> extends JavaScriptObject {
      * Convert each element of the array to a String and join them with a comma
      * separator. The value returned from this method may vary between browsers
      * based on how JavaScript values are converted into strings.
+     *
+     * @param separator the string to place between elments of the array
+     * @return the string representation of joined array
      */
     public final native String join(String separator) /*-{
         return this.join(separator);
@@ -93,6 +97,8 @@ public class JsArray<T> extends JavaScriptObject {
 
     /**
      * Pushes the given value onto the end of the array.
+     *
+     * @param value the element to push into the array
      */
     public final native void push(T value) /*-{
         this[this.length] = value;
