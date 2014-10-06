@@ -5,24 +5,24 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.collections.client.LightSet<T>
-	c912 [label=<<table title="org.turbogwt.core.collections.client.LightSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LightSet.html">
+	c941 [label=<<table title="org.turbogwt.core.collections.client.LightSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LightSet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LightSet&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./LightSet.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./LightSet.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.collections.client.LightSet<T> extends java.util.AbstractSet<T>
-	c945:p -> c912:p [dir=back,arrowtail=empty];
+	c973:p -> c941:p [dir=back,arrowtail=empty];
 	// java.util.AbstractSet<E>
-	c945 [label=<<table title="java.util.AbstractSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/util/AbstractSet.html">
+	c973 [label=<<table title="java.util.AbstractSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/util/AbstractSet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> AbstractSet&lt;E&gt; </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSet&lt;E&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/util/AbstractSet.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/util/AbstractSet.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

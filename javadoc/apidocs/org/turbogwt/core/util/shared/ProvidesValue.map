@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ProvidesValue.html" title="org.turbogwt.core.util.shared.ProvidesValue" alt="" coords="16,129,157,173"/>
-<area shape="rect" id="node1" href="./ProvidesValue.html" title="&lt;TABLE&gt;" alt="" coords="5,123,168,178"/>
-<area shape="rect" id="node2_1" href="./ProvidesText.html" title="org.turbogwt.core.util.shared.ProvidesText" alt="" coords="239,10,356,54"/>
-<area shape="rect" id="node2" href="./ProvidesText.html" title="&lt;TABLE&gt;" alt="" coords="228,5,367,59"/>
-<area shape="rect" id="node3_2" href="./ProvidesNumber.html" title="org.turbogwt.core.util.shared.ProvidesNumber" alt="" coords="229,89,366,133"/>
-<area shape="rect" id="node3" href="./ProvidesNumber.html" title="&lt;TABLE&gt;" alt="" coords="218,83,377,138"/>
-<area shape="rect" id="node4_3" href="./ProvidesDate.html" title="org.turbogwt.core.util.shared.ProvidesDate" alt="" coords="237,167,357,211"/>
-<area shape="rect" id="node4" href="./ProvidesDate.html" title="&lt;TABLE&gt;" alt="" coords="227,162,368,217"/>
-<area shape="rect" id="node5_4" href="./ProvidesBoolean.html" title="org.turbogwt.core.util.shared.ProvidesBoolean" alt="" coords="227,246,367,290"/>
-<area shape="rect" id="node5" href="./ProvidesBoolean.html" title="&lt;TABLE&gt;" alt="" coords="217,241,378,295"/>
+<area shape="rect" id="node1_0" href="./ProvidesValue.html" title="org.turbogwt.core.util.shared.ProvidesValue" alt="" coords="17,129,162,173"/>
+<area shape="rect" id="node1" href="./ProvidesValue.html" title="&lt;TABLE&gt;" alt="" coords="6,123,173,178"/>
+<area shape="rect" id="node2_1" href="./ProvidesText.html" title="org.turbogwt.core.util.shared.ProvidesText" alt="" coords="243,10,365,54"/>
+<area shape="rect" id="node2" href="./ProvidesText.html" title="&lt;TABLE&gt;" alt="" coords="233,5,375,59"/>
+<area shape="rect" id="node3_2" href="./ProvidesNumber.html" title="org.turbogwt.core.util.shared.ProvidesNumber" alt="" coords="233,89,375,133"/>
+<area shape="rect" id="node3" href="./ProvidesNumber.html" title="&lt;TABLE&gt;" alt="" coords="223,83,385,138"/>
+<area shape="rect" id="node4_3" href="./ProvidesDate.html" title="org.turbogwt.core.util.shared.ProvidesDate" alt="" coords="242,167,366,211"/>
+<area shape="rect" id="node4" href="./ProvidesDate.html" title="&lt;TABLE&gt;" alt="" coords="231,162,377,217"/>
+<area shape="rect" id="node5_4" href="./ProvidesBoolean.html" title="org.turbogwt.core.util.shared.ProvidesBoolean" alt="" coords="233,246,375,290"/>
+<area shape="rect" id="node5" href="./ProvidesBoolean.html" title="&lt;TABLE&gt;" alt="" coords="222,241,386,295"/>
 </map>

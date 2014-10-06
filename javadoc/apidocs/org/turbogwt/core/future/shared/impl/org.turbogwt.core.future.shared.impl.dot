@@ -5,24 +5,24 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.future.shared.impl.DeferredObject<D, F, P>
-	c87 [label=<<table title="org.turbogwt.core.future.shared.impl.DeferredObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeferredObject.html">
+	c90 [label=<<table title="org.turbogwt.core.future.shared.impl.DeferredObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeferredObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DeferredObject&lt;D, F, P&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./DeferredObject.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./DeferredObject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.future.shared.impl.AbstractPromise<D, F, P>
-	c88 [label=<<table title="org.turbogwt.core.future.shared.impl.AbstractPromise" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractPromise.html">
+	c91 [label=<<table title="org.turbogwt.core.future.shared.impl.AbstractPromise" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractPromise.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> AbstractPromise&lt;D, F, P&gt; </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractPromise&lt;D, F, P&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractPromise.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractPromise.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.future.shared.impl.DeferredObject<D, F, P> extends org.turbogwt.core.future.shared.impl.AbstractPromise<D, F, P>
-	c88:p -> c87:p [dir=back,arrowtail=empty];
+	c91:p -> c90:p [dir=back,arrowtail=empty];
 }
 

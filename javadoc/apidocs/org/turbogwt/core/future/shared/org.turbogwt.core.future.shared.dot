@@ -5,61 +5,61 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.core.future.shared.Promise<D, F, P>
-	c47 [label=<<table title="org.turbogwt.core.future.shared.Promise" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Promise.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Promise&lt;D, F, P&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Promise.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.future.shared.Promise.State
-	c48 [label=<<table title="org.turbogwt.core.future.shared.Promise.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Promise.State.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> State </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Promise.State.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.future.shared.ProgressCallback<P>
-	c49 [label=<<table title="org.turbogwt.core.future.shared.ProgressCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProgressCallback.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ProgressCallback&lt;P&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ProgressCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.future.shared.FailCallback<F>
-	c50 [label=<<table title="org.turbogwt.core.future.shared.FailCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FailCallback.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> FailCallback&lt;F&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FailCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.future.shared.DoneCallback<D>
-	c51 [label=<<table title="org.turbogwt.core.future.shared.DoneCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoneCallback.html">
+	c49 [label=<<table title="org.turbogwt.core.future.shared.DoneCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoneCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DoneCallback&lt;D&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./DoneCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./DoneCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.future.shared.AlwaysCallback<D, F>
+	c50 [label=<<table title="org.turbogwt.core.future.shared.AlwaysCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AlwaysCallback.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> AlwaysCallback&lt;D, F&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./AlwaysCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.future.shared.FailCallback<F>
+	c51 [label=<<table title="org.turbogwt.core.future.shared.FailCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FailCallback.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> FailCallback&lt;F&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./FailCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.future.shared.Deferred<D, F, P>
 	c52 [label=<<table title="org.turbogwt.core.future.shared.Deferred" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Deferred.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Deferred&lt;D, F, P&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Deferred.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.core.future.shared.AlwaysCallback<D, R>
-	c53 [label=<<table title="org.turbogwt.core.future.shared.AlwaysCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AlwaysCallback.html">
+		</table>>, URL="./Deferred.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.future.shared.Promise<D, F, P>
+	c53 [label=<<table title="org.turbogwt.core.future.shared.Promise" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Promise.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> AlwaysCallback&lt;D, R&gt; </td></tr>
+<tr><td align="center" balign="center"> Promise&lt;D, F, P&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AlwaysCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Promise.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.future.shared.Promise.State
+	c54 [label=<<table title="org.turbogwt.core.future.shared.Promise.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Promise.State.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
+<tr><td align="center" balign="center"> State </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Promise.State.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.core.future.shared.ProgressCallback<P>
+	c55 [label=<<table title="org.turbogwt.core.future.shared.ProgressCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProgressCallback.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> ProgressCallback&lt;P&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ProgressCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.future.shared.Deferred<D, F, P> implements org.turbogwt.core.future.shared.Promise<D, F, P>
-	c47:p -> c52:p [dir=back,arrowtail=empty,style=dashed];
+	c53:p -> c52:p [dir=back,arrowtail=empty,style=dashed];
 }
 

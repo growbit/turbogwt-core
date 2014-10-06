@@ -5,26 +5,26 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c1138 [label=<<table title="org.turbogwt.core.util.shared.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesValue.html">
+	c1207 [label=<<table title="org.turbogwt.core.util.shared.ProvidesValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProvidesValue.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesValue&lt;T, F&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ProvidesValue.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ProvidesValue.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.core.util.shared.ProvidesBoolean<T>
-	c1142 [label=<<table title="org.turbogwt.core.util.shared.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesBoolean.html">
+	c1211 [label=<<table title="org.turbogwt.core.util.shared.ProvidesBoolean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProvidesBoolean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProvidesBoolean&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ProvidesBoolean.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ProvidesBoolean.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.core.util.shared.ProvidesBoolean<T> implements org.turbogwt.core.util.shared.ProvidesValue<T, F>
-	c1138:p -> c1142:p [dir=back,arrowtail=empty,style=dashed];
+	c1207:p -> c1211:p [dir=back,arrowtail=empty,style=dashed];
 }
 

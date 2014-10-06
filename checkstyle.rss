@@ -28,7 +28,7 @@ under the License.
       <title>File: 40,
              Errors: 0,
              Warnings: 13,
-             Infos: 0
+             Infos: 1
       </title>
             <link>http://turbogwt.org/checkstyle.html</link>
       <description>
@@ -357,7 +357,7 @@ under the License.
                   <a href="http://turbogwt.org/checkstyle.html#org.turbogwt.core.collections.client.LightSet.java">org/turbogwt/core/collections/client/LightSet.java</a>
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0

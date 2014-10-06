@@ -1,16 +1,16 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Promise.html" title="org.turbogwt.core.future.shared.Promise" alt="" coords="30,403,157,447"/>
-<area shape="rect" id="node1" href="./Promise.html" title="&lt;TABLE&gt;" alt="" coords="19,398,167,453"/>
-<area shape="rect" id="node6_1" href="./Deferred.html" title="org.turbogwt.core.future.shared.Deferred" alt="" coords="241,403,367,447"/>
-<area shape="rect" id="node6" href="./Deferred.html" title="&lt;TABLE&gt;" alt="" coords="230,398,378,453"/>
-<area shape="rect" id="node2_2" href="./Promise.State.html" title="org.turbogwt.core.future.shared.Promise.State" alt="" coords="41,325,146,369"/>
-<area shape="rect" id="node2" href="./Promise.State.html" title="&lt;TABLE&gt;" alt="" coords="30,319,157,374"/>
-<area shape="rect" id="node3_3" href="./ProgressCallback.html" title="org.turbogwt.core.future.shared.ProgressCallback" alt="" coords="19,246,167,290"/>
-<area shape="rect" id="node3" href="./ProgressCallback.html" title="&lt;TABLE&gt;" alt="" coords="9,241,178,295"/>
-<area shape="rect" id="node4_4" href="./FailCallback.html" title="org.turbogwt.core.future.shared.FailCallback" alt="" coords="35,167,151,211"/>
-<area shape="rect" id="node4" href="./FailCallback.html" title="&lt;TABLE&gt;" alt="" coords="25,162,162,217"/>
-<area shape="rect" id="node5_5" href="./DoneCallback.html" title="org.turbogwt.core.future.shared.DoneCallback" alt="" coords="31,89,156,133"/>
-<area shape="rect" id="node5" href="./DoneCallback.html" title="&lt;TABLE&gt;" alt="" coords="20,83,167,138"/>
-<area shape="rect" id="node7_6" href="./AlwaysCallback.html" title="org.turbogwt.core.future.shared.AlwaysCallback" alt="" coords="16,10,171,54"/>
-<area shape="rect" id="node7" href="./AlwaysCallback.html" title="&lt;TABLE&gt;" alt="" coords="5,5,181,59"/>
+<area shape="rect" id="node1_0" href="./DoneCallback.html" title="org.turbogwt.core.future.shared.DoneCallback" alt="" coords="30,403,159,447"/>
+<area shape="rect" id="node1" href="./DoneCallback.html" title="&lt;TABLE&gt;" alt="" coords="19,398,170,453"/>
+<area shape="rect" id="node2_1" href="./AlwaysCallback.html" title="org.turbogwt.core.future.shared.AlwaysCallback" alt="" coords="16,325,173,369"/>
+<area shape="rect" id="node2" href="./AlwaysCallback.html" title="&lt;TABLE&gt;" alt="" coords="5,319,184,374"/>
+<area shape="rect" id="node3_2" href="./FailCallback.html" title="org.turbogwt.core.future.shared.FailCallback" alt="" coords="36,246,153,290"/>
+<area shape="rect" id="node3" href="./FailCallback.html" title="&lt;TABLE&gt;" alt="" coords="25,241,164,295"/>
+<area shape="rect" id="node4_3" href="./Deferred.html" title="org.turbogwt.core.future.shared.Deferred" alt="" coords="243,167,373,211"/>
+<area shape="rect" id="node4" href="./Deferred.html" title="&lt;TABLE&gt;" alt="" coords="233,162,383,217"/>
+<area shape="rect" id="node5_4" href="./Promise.html" title="org.turbogwt.core.future.shared.Promise" alt="" coords="31,167,159,211"/>
+<area shape="rect" id="node5" href="./Promise.html" title="&lt;TABLE&gt;" alt="" coords="20,162,169,217"/>
+<area shape="rect" id="node6_5" href="./Promise.State.html" title="org.turbogwt.core.future.shared.Promise.State" alt="" coords="42,89,147,133"/>
+<area shape="rect" id="node6" href="./Promise.State.html" title="&lt;TABLE&gt;" alt="" coords="31,83,158,138"/>
+<area shape="rect" id="node7_6" href="./ProgressCallback.html" title="org.turbogwt.core.future.shared.ProgressCallback" alt="" coords="20,10,169,54"/>
+<area shape="rect" id="node7" href="./ProgressCallback.html" title="&lt;TABLE&gt;" alt="" coords="9,5,180,59"/>
 </map>
