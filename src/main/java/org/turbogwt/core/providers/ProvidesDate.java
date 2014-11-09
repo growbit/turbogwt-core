@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.util;
+package org.turbogwt.core.providers;
 
-import com.google.gwt.core.client.JavaScriptObject;
+import java.util.Date;
+
+import javax.annotation.Nullable;
 
 /**
- * Utility methods derived from browser's console.
+ * @param <T> Model type
  *
  * @author Danilo Reinert
  */
-public final class Console {
+public interface ProvidesDate<T> extends ProvidesValue<T, Date> {
 
-    private Console() {
-    }
-
-    public static native void log(JavaScriptObject jso) /*-{
-        $wnd.console.log(jso);
-    }-*/;
-
-    public static native void log(String text) /*-{
-        $wnd.console.log(text);
-    }-*/;
+    @Nullable
+    Date getValue(T t);
 }

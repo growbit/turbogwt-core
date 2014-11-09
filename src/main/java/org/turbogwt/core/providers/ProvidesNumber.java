@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.util;
+package org.turbogwt.core.providers;
+
+import javax.annotation.Nullable;
 
 /**
- * It is a simple class intended to create instances of some type.
+ * @param <T> Model type
  *
- * @param <T> Type of object to instantiate.
+ * @author Danilo Reinert
  */
-public interface Factory<T> {
+public interface ProvidesNumber<T> extends ProvidesValue<T, Number> {
 
-    /**
-     * Instantiate T.
-     *
-     * @return a instance of T.
-     */
-    T get();
+    @Nullable
+    Number getValue(T t);
 }

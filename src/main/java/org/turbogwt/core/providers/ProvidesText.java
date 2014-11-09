@@ -14,23 +14,17 @@
  * limitations under the License.
  */
 
-package org.turbogwt.core.util;
+package org.turbogwt.core.providers;
 
-import com.google.web.bindery.event.shared.HandlerRegistration;
+import javax.annotation.Nullable;
 
 /**
- * Registration objects returned when any kind of binding is performed, used to deregister.
- * <p>
- * It inherits from {@link com.google.web.bindery.event.shared.HandlerRegistration} in order to maintain compatibility.
+ * @param <T> Model type
  *
  * @author Danilo Reinert
  */
-public interface Registration extends HandlerRegistration {
+public interface ProvidesText<T> extends ProvidesValue<T, String> {
 
-    /**
-     * Deregisters the object associated with this registration if the object is still attached to the source manager.
-     * If the object is no longer attached to the source manager, this is a no-op.
-     */
-    @Override
-    void removeHandler();
+    @Nullable
+    String getValue(T t);
 }

@@ -16,15 +16,17 @@
 
 package org.turbogwt.core.util;
 
-import javax.annotation.Nullable;
-
 /**
- * @param <T> Model type
+ * It is a simple class intended to create instances of some type.
  *
- * @author Danilo Reinert
+ * @param <T> Type of object to instantiate.
  */
-public interface ProvidesBoolean<T> extends ProvidesValue<T, Boolean> {
+public interface Provider<T> {
 
-    @Nullable
-    Boolean getValue(T t);
+    /**
+     * Instantiate T.
+     *
+     * @return a instance of T.
+     */
+    T get();
 }
