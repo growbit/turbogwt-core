@@ -42,7 +42,9 @@
     </issueManagement>
 
     <properties>
+        <target.jdk>1.6</target.jdk>
         <github.version>0.10</github.version>
+        <gwt.version>2.6.1</gwt.version>
     </properties>
 
     <build>
