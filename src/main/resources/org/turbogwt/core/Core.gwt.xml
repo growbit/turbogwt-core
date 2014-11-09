@@ -21,7 +21,6 @@
 
     <!-- Inherit the core Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.collections.Collections"/>
-    <inherits name="org.turbogwt.core.future.Future"/>
     <inherits name="org.turbogwt.core.util.Util"/>
 
     <!--
