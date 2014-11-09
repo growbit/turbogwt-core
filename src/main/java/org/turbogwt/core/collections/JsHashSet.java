@@ -19,7 +19,6 @@ package org.turbogwt.core.collections;
 import com.google.gwt.core.client.JsArrayString;
 
 import java.util.AbstractSet;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -128,9 +127,9 @@ public class JsHashSet<T> extends AbstractSet<T> {
         @Override
         public T next() {
             int i = cursor;
-            if (i >= keys.length()) {
+
+            if (i >= keys.length())
                 throw new NoSuchElementException();
-            }
 
             if (!bucketItr.hasNext()) {
                 bucketItr = new JsArrayIterator<T>(hashTable.get(keys.get(cursor)));
@@ -143,16 +142,12 @@ public class JsHashSet<T> extends AbstractSet<T> {
 
         @Override
         public void remove() {
-            if (lastRet == null) {
+            if (lastRet == null)
                 throw new IllegalStateException();
-            }
-            try {
-                bucketItr.remove();
-                JsHashSet.this.remove(lastRet);
-                lastRet = null;
-            } catch (IndexOutOfBoundsException ex) {
-                throw new ConcurrentModificationException();
-            }
+
+            bucketItr.remove();
+            JsHashSet.this.remove(lastRet);
+            lastRet = null;
         }
     }
 }

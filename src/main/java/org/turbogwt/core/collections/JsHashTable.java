@@ -86,9 +86,8 @@ public class JsHashTable<T> extends JavaScriptObject {
     }-*/;
 
     private void checkNotNull(Object o) {
-        if (o == null) {
+        if (o == null)
             throw new NullPointerException("This HashTable does not support null values.");
-        }
     }
 
     private native void deleteBucket(int hashCode) /*-{

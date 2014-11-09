@@ -20,7 +20,6 @@ import com.google.gwt.core.client.JsArrayString;
 
 import java.util.AbstractSet;
 import java.util.Collection;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -316,25 +315,22 @@ public class LightMap<T> implements Map<String, T> {
             @Override
             public Entry<String, T> next() {
                 int i = cursor;
-                if (i >= keys.length()) {
+
+                if (i >= keys.length())
                     throw new NoSuchElementException();
-                }
+
                 cursor = i + 1;
                 return new JsEntry<>(map, keys.get(lastRet = i));
             }
 
             @Override
             public void remove() {
-                if (lastRet < 0) {
+                if (lastRet < 0)
                     throw new IllegalStateException();
-                }
-                try {
-                    map.remove(keys.get(lastRet));
-                    cursor = lastRet;
-                    lastRet = -1;
-                } catch (IndexOutOfBoundsException ex) {
-                    throw new ConcurrentModificationException();
-                }
+
+                map.remove(keys.get(lastRet));
+                cursor = lastRet;
+                lastRet = -1;
             }
         }
     }
