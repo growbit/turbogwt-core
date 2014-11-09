@@ -12,43 +12,7 @@ In order to save memory usage, Turbo GWT Core provides common data structures im
 * [JsArrayList](https://github.com/growbit/turbogwt-core/blob/master/src/main/java/org/turbogwt/core/collections/client/JsArrayList.java) - **List** implementation wrapping native JS array. Take your json array from request and wrap it directly into a List. No iterations. Simple as <code>new JsArrayList(jsArray)</code>. It works with any object type (not only JavaScriptObjects)!
 * [JsArrayIterator](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsArrayIterator.html) - **Iterator** supporting JsArray.
 * [LightMap](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightMap.html) - Lightweight **Map\<String, T\>** implementation on a simple javascript object.
-* [LightSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/LightSet.html) - Lightweight **Set** implementation on a simple javascript object. Use it with caution! It assumes that t.toString().equals(otherT.toString()) is equivalent to t.equals(otherT).
 * [JsHashSet](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashSet.html) - **Set** implementation on a [ligthweight hash table](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/collections/client/JsHashTable.html) (simple js object) using object properties to store the hash codes. It's safer then LightSet.
-
-### Promises
-Turbo GWT Core contains a Promise API to easily use promises for varied cases. It is hosted in the future module.
-[Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) extends this API to enable the use of promises with http requests. 
-
-The basic usage of Deferred and Promise is as follows:
-
-```java
-Deferred deferred = new DeferredObject();
-Promise promise = deferred.promise();
-promise.done(new DoneCallback() {
-  public void onDone(Object result) {
-    ...
-  }
-}).fail(new FailCallback() {
-  public void onFail(Object rejection) {
-    ...
-  }
-}).progress(new ProgressCallback() {
-  public void onProgress(Object progress) {
-    ...
-  }
-}).always(new AlwaysCallback() {
-  public void onAlways(Context context, Object result, Object rejection) {
-    ...
-  }
-});
-```
-With the reference to deferred object, you can then trigger actions/updates:
-
-```java
-deferred.resolve("done");
-deferred.reject("oops");
-deferred.progress("100%");
-```
 
 ### Native Utilities
 * [Overlays](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/client/Overlays.html) - Easy boxing and unboxing JS native values and more.
@@ -61,42 +25,38 @@ With Overlays, you can avoid using JSNI for most common operations:
         }
 
         public Long getId() {
-            return Overlays.boxPropertyAsLong(this, "id");
+            return Overlays.getBoxedLong(this, "id");
         }
 
         public String getName() {
-            return Overlays.getPropertyAsString(this, "name");
+            return Overlays.getString(this, "name");
         }
 
         public Integer getAge() {
-            return Overlays.boxPropertyAsInteger(this, "age");
+            return Overlays.getBoxedInteger(this, "age");
         }
 
         public Double getWeight() {
-            return Overlays.boxPropertyAsDouble(this, "weight");
+            return Overlays.getBoxedDouble(this, "weight");
         }
 
         public void setId(Long id) {
-            Overlays.unboxValueToProperty(this, "id", id);
+            Overlays.setBoxedLong(this, "id", id);
         }
 
         public void setName(String name) {
-            Overlays.setValueToProperty(this, "name", name);
+            Overlays.setString(this, "name", name);
         }
 
         public void setAge(Integer age) {
-            Overlays.unboxValueToProperty(this, "age", age);
+            Overlays.setBoxedInteger(this, "age", age);
         }
 
         public void setWeight(Double weight) {
-            Overlays.unboxValueToProperty(this, "weight", weight);
+            Overlays.setBoxedDouble(this, "weight", weight);
         }
     }
 ```
-
-### Misc
-* [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/shared/Registration.html) - Inheriting from HandlerRegistration, it aims to represent the result of any registration (bind) operation (not only for events).
-* [ProvidesValue](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/shared/ProvidesValue.html) - Analogous to the ProvidesKey, there is a generic ProvidesValue and pre-defined value providers for Boolean, Date, Number and Text.
 
 ## Documentation
 * [Javadocs](http://growbit.github.io/turbogwt-core/javadoc/apidocs/index.html)
@@ -118,7 +78,6 @@ Turbo GWT Core is currently available at maven central.
 
 ## Thanks to
 * [Thomas Broyer](https://plus.google.com/u/0/+ThomasBroyer) for contributing with [JsCollections](http://code.google.com/p/gwt-in-the-air/source/browse/#svn%2Ftrunk%2Fsrc%2Fnet%2Fltgt%2Fgwt%2Fjscollections%2Fclient%253Fstate%253Dclosed).
-* [Ray Tsang](https://www.flickr.com/photos/saturnism/) for contributing with [JDeferred](https://github.com/jdeferred/jdeferred).
 
 ## License
 Turbo GWT Core is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
