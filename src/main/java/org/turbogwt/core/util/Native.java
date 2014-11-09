@@ -16,20 +16,30 @@
 
 package org.turbogwt.core.util;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
+import javax.annotation.Nullable;
 
 /**
+ * Utility methods derived from browser's native JS.
+ *
  * @author Danilo Reinert
  */
-public class UtilGwtTestSuite {
+public final class Native {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Util GWT Test Suite");
-
-        suite.addTestSuite(OverlaysTest.class);
-
-        return suite;
+    private Native() {
     }
+
+    public static native boolean isNumeric(@Nullable String text) /*-{
+        if (text) {
+            return !isNaN(text);
+        }
+        return false;
+    }-*/;
+
+    public static native String toFixed(double number) /*-{
+        return number.toFixed();
+    }-*/;
+
+    public static native String toFixed(double number, int fractionalDigits) /*-{
+        return number.toFixed(fractionalDigits);
+    }-*/;
 }

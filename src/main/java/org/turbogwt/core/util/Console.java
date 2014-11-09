@@ -16,20 +16,23 @@
 
 package org.turbogwt.core.util;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
+ * Utility methods derived from browser's console.
+ *
  * @author Danilo Reinert
  */
-public class UtilGwtTestSuite {
+public final class Console {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Util GWT Test Suite");
-
-        suite.addTestSuite(OverlaysTest.class);
-
-        return suite;
+    private Console() {
     }
+
+    public static native void log(JavaScriptObject jso) /*-{
+        $wnd.console.log(jso);
+    }-*/;
+
+    public static native void log(String text) /*-{
+        $wnd.console.log(text);
+    }-*/;
 }

@@ -16,20 +16,15 @@
 
 package org.turbogwt.core.util;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
+import javax.annotation.Nullable;
 
 /**
+ * @param <T> Model type
+ *
  * @author Danilo Reinert
  */
-public class UtilGwtTestSuite {
+public interface ProvidesBoolean<T> extends ProvidesValue<T, Boolean> {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Util GWT Test Suite");
-
-        suite.addTestSuite(OverlaysTest.class);
-
-        return suite;
-    }
+    @Nullable
+    Boolean getValue(T t);
 }

@@ -20,12 +20,6 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 
 import junit.framework.Test;
 
-import org.turbogwt.core.collections.client.JsArrayListObjectTest;
-import org.turbogwt.core.collections.client.JsArrayListStringTest;
-import org.turbogwt.core.collections.client.JsArrayTest;
-import org.turbogwt.core.collections.client.JsHashTableTest;
-import org.turbogwt.core.collections.client.JsMapTest;
-
 /**
  * @author Danilo Reinert
  */

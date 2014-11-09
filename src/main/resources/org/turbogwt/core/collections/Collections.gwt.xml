@@ -19,6 +19,5 @@
     <!-- Inherit the core Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
 
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock,**/*Stub.java.java"/>
-    <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock,**/*Stub.java.java"/>
+    <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock,**/*Stub.java.java"/>
 </module>

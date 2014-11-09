@@ -16,20 +16,17 @@
 
 package org.turbogwt.core.util;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
-
 /**
- * @author Danilo Reinert
+ * It is a simple class intended to create instances of some type.
+ *
+ * @param <T> Type of object to instantiate.
  */
-public class UtilGwtTestSuite {
+public interface Factory<T> {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Util GWT Test Suite");
-
-        suite.addTestSuite(OverlaysTest.class);
-
-        return suite;
-    }
+    /**
+     * Instantiate T.
+     *
+     * @return a instance of T.
+     */
+    T get();
 }

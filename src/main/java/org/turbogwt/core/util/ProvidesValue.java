@@ -16,20 +16,25 @@
 
 package org.turbogwt.core.util;
 
-import com.google.gwt.junit.tools.GWTTestSuite;
-
-import junit.framework.Test;
+import javax.annotation.Nullable;
 
 /**
+ * A value provider of an object, usually calling some getter.
+ *
+ * @param <T> Model type
+ * @param <F> Value type
+ *
  * @author Danilo Reinert
  */
-public class UtilGwtTestSuite {
+public interface ProvidesValue<T, F> {
 
-    public static Test suite() {
-        GWTTestSuite suite = new GWTTestSuite("Util GWT Test Suite");
-
-        suite.addTestSuite(OverlaysTest.class);
-
-        return suite;
-    }
+    /**
+     * Given a object, returns the value of a property. The property is known at compile time.
+     *
+     * @param t object to be accessed
+     *
+     * @return value of a property of the object
+     */
+    @Nullable
+    F getValue(T t);
 }
