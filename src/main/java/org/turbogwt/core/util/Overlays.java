@@ -16,6 +16,7 @@
 
 package org.turbogwt.core.util;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
 
@@ -30,110 +31,109 @@ public final class Overlays {
     private Overlays() {
     }
 
-    public static native Integer boxPropertyAsInteger(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? @java.lang.Integer::valueOf(I)(jso[property]) : null;
-    }-*/;
-
-    public static native Double boxPropertyAsDouble(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? @java.lang.Double::valueOf(D)(jso[property]) : null;
-    }-*/;
-
-    public static native Long boxPropertyAsLong(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? @java.lang.Long::valueOf(Ljava/lang/String;)(jso[property]+'') : null;
-    }-*/;
-
-    public static native Boolean boxPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? @java.lang.Boolean::valueOf(Z)(jso[property]) : null;
-    }-*/;
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Integer value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.intValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Double value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.doubleValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Long value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.doubleValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
-
-    public static void unboxValueToProperty(JavaScriptObject jso, String property, Boolean value) {
-        if (value != null) {
-            setValueToProperty(jso, property, value.booleanValue());
-        } else {
-            setNullToProperty(jso, property);
-        }
-    }
-
     @SuppressWarnings("unchecked")
     public static <T extends JavaScriptObject> T deepCopy(T obj) {
         return (T) deepCopyNative(obj);
     }
 
-    public static JsArrayString getPropertyNames(JavaScriptObject jso) {
-        return getPropertyNames(jso, false);
-    }
-
-    public static native JsArrayString getPropertyNames(JavaScriptObject jso, boolean sorted) /*-{
-        if (sorted) return Object.keys(jso).sort();
-        return Object.keys(jso);
-    }-*/;
-
-    public static native boolean getPropertyAsBoolean(JavaScriptObject jso, String property) /*-{
+    public static native boolean getBoolean(JavaScriptObject jso, String property) /*-{
         return jso[property];
     }-*/;
 
-    public static native double getPropertyAsDouble(JavaScriptObject jso, String property) /*-{
+    public static native Boolean getBoxedBoolean(JavaScriptObject jso, String property) /*-{
+        return jso[property] != null ? @java.lang.Boolean::valueOf(Z)(jso[property]) : null;
+    }-*/;
+
+    public static native Double getBoxedDouble(JavaScriptObject jso, String property) /*-{
+        return jso[property] != null ? @java.lang.Double::valueOf(D)(jso[property]) : null;
+    }-*/;
+
+    public static native Integer getBoxedInteger(JavaScriptObject jso, String property) /*-{
+        return jso[property] != null ? @java.lang.Integer::valueOf(I)(jso[property]) : null;
+    }-*/;
+
+    public static native Long getBoxedLong(JavaScriptObject jso, String property) /*-{
+        return jso[property] != null ? @java.lang.Long::valueOf(Ljava/lang/String;)(jso[property] + '') : null;
+    }-*/;
+
+    public static native double getDouble(JavaScriptObject jso, String property) /*-{
         return jso[property];
     }-*/;
 
-    public static native int getPropertyAsInt(JavaScriptObject jso, String property) /*-{
+    public static native int getInt(JavaScriptObject jso, String property) /*-{
         return jso[property];
     }-*/;
 
     @SuppressWarnings("unchecked")
-    public static <T extends JavaScriptObject> T getPropertyAsObject(JavaScriptObject jso, String property) {
-        return (T) getPropertyAsObjectNative(jso, property);
+    public static <T> T getObject(JavaScriptObject jso, String property) {
+        return (T) getObjectNative(jso, property);
     }
 
-    public static native String getPropertyAsString(JavaScriptObject jso, String property) /*-{
+    public static String[] getPropertyNames(JavaScriptObject jso) {
+        return getPropertyNames(jso, false);
+    }
+
+    public static String[] getPropertyNames(JavaScriptObject jso, boolean sorted) {
+        return toArray(getPropertyNamesNative(jso, sorted));
+    }
+
+    public static native String getString(JavaScriptObject jso, String property) /*-{
         return jso[property];
     }-*/;
 
     public static native boolean isPropertyNullOrUndefined(JavaScriptObject jso, String property) /*-{
-        return jso[property] ? false : true;
+        return jso[property] == null;
     }-*/;
 
-    public static native void setNullToProperty(JavaScriptObject jso, String property) /*-{
+    public static native void setBoolean(JavaScriptObject jso, String property, boolean value) /*-{
+        jso[property] = value;
+    }-*/;
+
+    public static void setBoxedBoolean(JavaScriptObject jso, String property, Boolean value) {
+        if (value != null) {
+            setBoolean(jso, property, value.booleanValue());
+        } else {
+            setNull(jso, property);
+        }
+    }
+
+    public static void setBoxedDouble(JavaScriptObject jso, String property, Double value) {
+        if (value != null) {
+            setDouble(jso, property, value.doubleValue());
+        } else {
+            setNull(jso, property);
+        }
+    }
+
+    public static void setBoxedInteger(JavaScriptObject jso, String property, Integer value) {
+        if (value != null) {
+            setInt(jso, property, value.intValue());
+        } else {
+            setNull(jso, property);
+        }
+    }
+
+    public static void setBoxedLong(JavaScriptObject jso, String property, Long value) {
+        if (value != null) {
+            setDouble(jso, property, value.doubleValue());
+        } else {
+            setNull(jso, property);
+        }
+    }
+
+    public static native void setDouble(JavaScriptObject jso, String property, double value) /*-{
+        jso[property] = value;
+    }-*/;
+
+    public static native void setInt(JavaScriptObject jso, String property, int value) /*-{
+        jso[property] = value;
+    }-*/;
+
+    public static native void setNull(JavaScriptObject jso, String property) /*-{
         jso[property] = null;
     }-*/;
 
-    public static native void setValueToProperty(JavaScriptObject jso, String property, String value) /*-{
-        jso[property] = value;
-    }-*/;
-
-    public static native void setValueToProperty(JavaScriptObject jso, String property, double value) /*-{
-        jso[property] = value;
-    }-*/;
-
-    public static native void setValueToProperty(JavaScriptObject jso, String property, int value) /*-{
-        jso[property] = value;
-    }-*/;
-
-    public static native void setValueToProperty(JavaScriptObject jso, String property, boolean value) /*-{
+    public static native void setString(JavaScriptObject jso, String property, String value) /*-{
         jso[property] = value;
     }-*/;
 
@@ -174,7 +174,29 @@ public final class Overlays {
         return copy;
     }-*/;
 
-    private static native JavaScriptObject getPropertyAsObjectNative(JavaScriptObject jso, String property) /*-{
+    private static native Object getObjectNative(JavaScriptObject jso, String property) /*-{
         return jso[property];
     }-*/;
+
+    private static native JsArrayString getPropertyNamesNative(JavaScriptObject jso, boolean sorted) /*-{
+        if (sorted) return Object.keys(jso).sort();
+        return Object.keys(jso);
+    }-*/;
+
+    private static native String[] reinterpretCast(JsArrayString value) /*-{
+        return value;
+    }-*/;
+
+    private static String[] toArray(JsArrayString values) {
+        if (GWT.isScript()) {
+            return reinterpretCast(values);
+        } else {
+            int length = values.length();
+            String[] ret = new String[length];
+            for (int i = 0, l = length; i < l; i++) {
+                ret[i] = values.get(i);
+            }
+            return ret;
+        }
+    }
 }

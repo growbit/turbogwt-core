@@ -17,10 +17,10 @@
 package org.turbogwt.core.util;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,43 +35,43 @@ public class OverlaysTest extends GWTTestCase {
         }
 
         public Long getId() {
-            return Overlays.boxPropertyAsLong(this, "id");
+            return Overlays.getBoxedLong(this, "id");
         }
 
         public String getName() {
-            return Overlays.getPropertyAsString(this, "name");
+            return Overlays.getString(this, "name");
         }
 
         public Integer getAge() {
-            return Overlays.boxPropertyAsInteger(this, "age");
+            return Overlays.getBoxedInteger(this, "age");
         }
 
         public Double getWeight() {
-            return Overlays.boxPropertyAsDouble(this, "weight");
+            return Overlays.getBoxedDouble(this, "weight");
         }
 
         public Boolean isActive() {
-            return Overlays.boxPropertyAsBoolean(this, "active");
+            return Overlays.getBoxedBoolean(this, "active");
         }
 
         public void setId(Long id) {
-            Overlays.unboxValueToProperty(this, "id", id);
+            Overlays.setBoxedLong(this, "id", id);
         }
 
         public void setName(String name) {
-            Overlays.setValueToProperty(this, "name", name);
+            Overlays.setString(this, "name", name);
         }
 
         public void setAge(Integer age) {
-            Overlays.unboxValueToProperty(this, "age", age);
+            Overlays.setBoxedInteger(this, "age", age);
         }
 
         public void setWeight(Double weight) {
-            Overlays.unboxValueToProperty(this, "weight", weight);
+            Overlays.setBoxedDouble(this, "weight", weight);
         }
 
         public void setActive(Boolean active) {
-            Overlays.unboxValueToProperty(this, "active", active);
+            Overlays.setBoxedBoolean(this, "active", active);
         }
     }
 
@@ -112,11 +112,13 @@ public class OverlaysTest extends GWTTestCase {
         assertEquals(expected, actual);
     }
 
-    private static <E extends Collection<String>> E accumulateArray(JsArrayString array, E accumulator) {
-        for (int i = 0; i < array.length(); i++) {
-            String name = array.get(i);
-            accumulator.add(name);
-        }
+    private static <E extends Collection<String>> E accumulateArray(String[] array, E accumulator) {
+//        for (int i = 0; i < array.length(); i++) {
+//            String name = array.get(i);
+//            accumulator.add(name);
+//        }
+//        return accumulator;
+        Collections.addAll(accumulator, array);
         return accumulator;
     }
 }
